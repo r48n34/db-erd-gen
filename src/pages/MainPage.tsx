@@ -1,8 +1,11 @@
 import Splitter from '@devbookhq/splitter'
+import { Text } from '@mantine/core';
+
+// import ThemeToggleBtn from '../components/common/ThemeToggleBtn';
 import ERTableComp from '../components/ERTableComp';
-// import NavBar from '../components/common/NavBar';
+import NavBar from '../components/common/NavBar';
+
 import 'reactflow/dist/style.css';
-import ThemeToggleBtn from '../components/common/ThemeToggleBtn';
 
 type MainPageProps = {
     data?: string;
@@ -11,14 +14,15 @@ type MainPageProps = {
 function MainPage({ data }: MainPageProps){
     return (
         <>
+        <NavBar/>
         <Splitter initialSizes={[18, 82]}>
 
             <div>
+                <Text>Hello</Text>
                 Tile 1
-                <ThemeToggleBtn/>
             </div>
 
-            <div style={{ height: "100vh", }}>
+            <div style={{ height: "95vh", }}>
                 <ERTableComp/>
             </div>
             

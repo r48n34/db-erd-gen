@@ -16,6 +16,8 @@ export function inputDataToNodeAndEdges(data: InputTable[]){
         // }
     ];
 
+    let initTableDistance = 200;
+
     for(let tableItem of data){
 
         const tableName = tableItem.tableName;
@@ -28,7 +30,7 @@ export function inputDataToNodeAndEdges(data: InputTable[]){
                 const targetHandle = `${tableName}_${k.name}_left`
 
                 initialEdges.push({
-                    "id": `reactflow__${sourceHandle}_${targetHandle}`,
+                    "id": `reactflow__${sourceHandle}_${targetHandle}_gen`,
                     "source": k.foreignTo!.tableName,
                     "sourceHandle": sourceHandle,
                     "target": tableName,
@@ -42,7 +44,8 @@ export function inputDataToNodeAndEdges(data: InputTable[]){
             tableItems: tableItem.tableItems
         } 
 
-        initNodes.push({ id: tableName, type: 'textUpdater', position: { x: 0, y: 0 }, data: tableInfo })
+        initNodes.push({ id: tableName, type: 'textUpdater', position: { x: initTableDistance, y: 500 }, data: tableInfo })
+        initTableDistance += 250;
     } 
 
     return {

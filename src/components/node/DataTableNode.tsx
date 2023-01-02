@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
 import { Card, Text, Group, Badge } from '@mantine/core';
 // import { TableData } from '../../interface/dataNode';
@@ -10,12 +10,16 @@ type DataTableNodeProps = {
 
 function DataTableNode({ data }: DataTableNodeProps){
 
-    useEffect(() => {
-        console.log("DataTableNode", data);
-    }, [data])
+    // useEffect(() => {
+    //     console.log("DataTableNode", data);
+    // }, [data])
     
     return (
-        <Card shadow="sm" radius="md" style={{ height: `${35 + data.tableItems.length * 22}px`, padding: "10px", fontSize: "2px", width:"180px" }}>
+        <Card 
+            shadow="sm" 
+            radius="md" 
+            style={{ height: `${35 + data.tableItems.length * 22}px`, padding: "10px", fontSize: "2px", width:"180px" }}
+        >
         <div>
 
             <Card.Section >
@@ -40,8 +44,16 @@ function DataTableNode({ data }: DataTableNodeProps){
                             <Text size={8}>{v.dataType}</Text>
                         </Group>
 
-                        <Handle type={!!v.foreignTo ? "target" : "source"} position={Position.Left} id={leftNodeName} style={{ top: nodeDistance }}/>
-                        <Handle type={!!v.foreignTo ? "target" : "source"} position={Position.Right} id={rightNodeName} style={{ top: nodeDistance }}/>
+                        <Handle 
+                            type={!!v.foreignTo ? "target" : "source"} 
+                            position={Position.Left} id={leftNodeName} 
+                            style={{ top: nodeDistance }}
+                        />
+                        <Handle 
+                            type={!!v.foreignTo ? "target" : "source"} 
+                            position={Position.Right} id={rightNodeName} 
+                            style={{ top: nodeDistance }}
+                        />
                     </div>
                 )
             }

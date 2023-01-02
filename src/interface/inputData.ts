@@ -11,7 +11,7 @@ export interface ForeignToObj {
 }
 
 export interface InputItem {
-    name: string
+    name: string // name is unique
     dataType: string
     isPrimaryKey: boolean
     foreignTo?: ForeignToObj // IF object exist, means this is a foreign key 

@@ -1,7 +1,7 @@
 import { Node, Edge } from "reactflow";
-import { TableData } from "../interface/dataNode";
+// import { TableData } from "../interface/dataNode";
 
-export const tableOne: TableData = {
+export const tableOne = {
     tableName: "hello",
     tableItems: [
         {title: "one", type: "Integer"},
@@ -13,7 +13,7 @@ export const tableOne: TableData = {
     ]
 }
 
-export const tableTwo: TableData = {
+export const tableTwo = {
     tableName: "yolo",
     tableItems: [
         {title: "one", type: "Integer"},

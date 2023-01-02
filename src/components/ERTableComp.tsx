@@ -12,7 +12,7 @@ import ReactFlow, {
 import DataTableNode from './node/DataTableNode';
 
 
-import { initNodes, initialEdges } from '../data/testNodeData';
+// import { initNodes, initialEdges } from '../data/testNodeDataUNUSED';
 
 import { grandData } from '../data/testInputData';
 import { inputDataToNodeAndEdges } from '../utilis/inputData/inputDataToNode';
@@ -38,10 +38,10 @@ function ERTableComp({ data }: ERTableCompProps){
         [setEdges]
     );
 
-    const onConnect = useCallback(
-        (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
-        [setEdges]
-    );
+    // const onConnect = useCallback(
+    //     (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
+    //     [setEdges]
+    // );
 
     // useEffect(() => {
     //     console.log(edges);
@@ -58,7 +58,7 @@ function ERTableComp({ data }: ERTableCompProps){
             
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
-            onConnect={onConnect}
+            // onConnect={onConnect}
 
             nodeTypes={nodeTypes}
         >
