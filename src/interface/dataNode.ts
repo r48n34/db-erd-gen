@@ -1,4 +1,4 @@
-export interface TableItem {
+export interface TableItem { // for node only
     title: string
     type: string
     nodeType?: 'source' | 'target'
