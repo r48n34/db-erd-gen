@@ -25,11 +25,6 @@ const testData = inputDataToNodeAndEdges(grandData);
 
 function ERTableComp({ data }: ERTableCompProps){
 
-    // console.log(testData);
-    
-    // const [nodes, setNodes] = useState(initNodes);
-    // const [edges, setEdges] = useState(initialEdges);
-
     const [nodes, setNodes] = useState(testData.nodes);
     const [edges, setEdges] = useState(testData.edges);
 
@@ -48,11 +43,10 @@ function ERTableComp({ data }: ERTableCompProps){
         [setEdges]
     );
 
-    useEffect(() => {
-        console.log(edges);
-        // console.log(nodes);
-    }, [ edges]);
-    
+    // useEffect(() => {
+    //     console.log(edges);
+    //     console.log(nodes);
+    // }, [nodes, edges]);
     
     const nodeTypes = useMemo(() => ({ textUpdater: DataTableNode }), []);
 

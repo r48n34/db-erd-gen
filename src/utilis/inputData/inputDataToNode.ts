@@ -18,30 +18,32 @@ export function inputDataToNodeAndEdges(data: InputTable[]){
 
     for(let tableItem of data){
 
+        const tableName = tableItem.tableName;
+
+        // Create Edge checking
         for(let k of tableItem.tableItems){
-            if(k.isForeignKey || !!k.foreignTo){
+            if(!!k.foreignTo){
 
                 const sourceHandle = `${k.foreignTo!.tableName}_${k.foreignTo!.column}_right`
-                const targetHandle = `${tableItem.tableName}_${k.name}_left`
+                const targetHandle = `${tableName}_${k.name}_left`
 
                 initialEdges.push({
                     "id": `reactflow__${sourceHandle}_${targetHandle}`,
                     "source": k.foreignTo!.tableName,
                     "sourceHandle": sourceHandle,
-                    "target": tableItem.tableName,
+                    "target": tableName,
                     "targetHandle": targetHandle,
                 })
             }
         }
 
         const tableInfo = {
-            tableName: tableItem.tableName,
+            tableName: tableName,
             tableItems: tableItem.tableItems
         } 
 
-
-        initNodes.push({ id: tableItem.tableName, type: 'textUpdater', position: { x: 0, y: 0 }, data: tableInfo })
-    }  
+        initNodes.push({ id: tableName, type: 'textUpdater', position: { x: 0, y: 0 }, data: tableInfo })
+    } 
 
     return {
         nodes: initNodes,

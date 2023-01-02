@@ -15,7 +15,7 @@ function DataTableNode({ data }: DataTableNodeProps){
     }, [data])
     
     return (
-        <Card shadow="sm" radius="md" style={{ height: `${30 + data.tableItems.length * 25}px`, padding: "10px", fontSize: "2px", width:"180px" }}>
+        <Card shadow="sm" radius="md" style={{ height: `${35 + data.tableItems.length * 22}px`, padding: "10px", fontSize: "2px", width:"180px" }}>
         <div>
 
             <Card.Section >
@@ -40,8 +40,8 @@ function DataTableNode({ data }: DataTableNodeProps){
                             <Text size={8}>{v.dataType}</Text>
                         </Group>
 
-                        <Handle type={v.isForeignKey ? "target" : "source"} position={Position.Left} id={leftNodeName} style={{ top: nodeDistance }}/>
-                        <Handle type={v.isForeignKey ? "target" : "source"} position={Position.Right} id={rightNodeName} style={{ top: nodeDistance }}/>
+                        <Handle type={!!v.foreignTo ? "target" : "source"} position={Position.Left} id={leftNodeName} style={{ top: nodeDistance }}/>
+                        <Handle type={!!v.foreignTo ? "target" : "source"} position={Position.Right} id={rightNodeName} style={{ top: nodeDistance }}/>
                     </div>
                 )
             }

@@ -14,7 +14,6 @@ export interface InputItem {
     name: string
     dataType: string
     isPrimaryKey: boolean
-    isForeignKey: boolean
-    foreignTo?: ForeignToObj
+    foreignTo?: ForeignToObj // IF object exist, means this is a foreign key 
     relationship?: Relationship
 }

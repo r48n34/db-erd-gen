@@ -7,19 +7,16 @@ let tableHello: InputTable = {
             name: "id",
             dataType: "Integer",
             isPrimaryKey: true,
-            isForeignKey: false
         },
         {
             name: "name",
             dataType: "string",
             isPrimaryKey: false,
-            isForeignKey: false
         },
         {
             name: "age",
             dataType: "Integer",
             isPrimaryKey: false,
-            isForeignKey: false
         }
     ]
 }
@@ -31,21 +28,60 @@ let tableYolo: InputTable = {
             name: "id",
             dataType: "Integer",
             isPrimaryKey: true,
-            isForeignKey: false
         },
         {
             name: "hello_id",
             dataType: "Integer",
             isPrimaryKey: false,
-            isForeignKey: true,
             relationship: "one-to-one",
             foreignTo: {
                 tableName: "hello",
                 column: "id"
             },
         },
-
     ]
 }
 
-export let grandData: InputTable[] = [tableHello, tableYolo];
+let tableHay: InputTable = {
+    tableName: "hay" ,
+    tableItems: [
+        {
+            name: "id",
+            dataType: "Integer",
+            isPrimaryKey: true,
+        },
+        {
+            name: "hello_id",
+            dataType: "Integer",
+            isPrimaryKey: false,
+            relationship: "one-to-one",
+            foreignTo: {
+                tableName: "hello",
+                column: "id"
+            },
+        },
+    ]
+}
+
+let tableApple: InputTable = {
+    tableName: "apple" ,
+    tableItems: [
+        {
+            name: "id",
+            dataType: "Integer",
+            isPrimaryKey: true,
+        },
+        {
+            name: "hay_id",
+            dataType: "Integer",
+            isPrimaryKey: false,
+            relationship: "one-to-one",
+            foreignTo: {
+                tableName: "hay",
+                column: "id"
+            },
+        },
+    ]
+}
+
+export let grandData: InputTable[] = [tableHello, tableYolo, tableHay, tableApple];
