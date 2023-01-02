@@ -10,11 +10,11 @@ type DataTableNodeProps = {
 function DataTableNode({ data }: DataTableNodeProps){
 
     useEffect(() => {
-        console.log(data);
+        console.log("DataTableNode", data);
     }, [data])
     
     return (
-        <Card shadow="sm" radius="md" style={{ height: `${data.tableItems.length * 25}px`, padding: "10px", fontSize: "2px", width:"180px" }}>
+        <Card shadow="sm" radius="md" style={{ height: `${30 + data.tableItems.length * 25}px`, padding: "10px", fontSize: "2px", width:"180px" }}>
         <div>
 
             <Card.Section >

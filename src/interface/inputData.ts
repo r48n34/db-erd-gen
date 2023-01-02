@@ -1,14 +1,15 @@
 export interface InputTable {
-    title: string
+    name: string
     items: InputItem[]
 }
 
-export type Relationship = "One-to-one" | "one-to-many" | "many-to-one" | "many-to-many"
+export type Relationship = "one-to-one" | "one-to-many" | "many-to-one" | "many-to-many"
 
 export interface ForeignToObj {
     tableName: string
     column: string
 }
+
 export interface InputItem {
     name: string
     dataType: string
