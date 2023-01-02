@@ -1,4 +1,4 @@
-import { ActionIcon, useMantineColorScheme } from '@mantine/core';
+import { Tooltip, ActionIcon, useMantineColorScheme } from '@mantine/core';
 import { IconSun, IconMoonStars } from '@tabler/icons';
     
 function ThemeToggleBtn(){
@@ -6,13 +6,14 @@ function ThemeToggleBtn(){
     const dark = colorScheme === 'dark';
   
     return (
-      <ActionIcon
-        color={dark ? 'yellow' : 'blue'}
-        onClick={() => toggleColorScheme()}
-        title="Toggle color scheme"
-      >
-        {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
-      </ActionIcon>
+        <Tooltip label="Toggle theme">
+        <ActionIcon
+            onClick={() => toggleColorScheme()}
+            title="Toggle color scheme"
+        >
+            {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
+        </ActionIcon>
+        </Tooltip>
     );
 }
     
