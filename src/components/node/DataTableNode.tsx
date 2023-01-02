@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
 import { Card, Text, Group, Badge } from '@mantine/core';
-import { TableData } from '../../interface/dataNode';
+// import { TableData } from '../../interface/dataNode';
+import { InputTable } from '../../interface/inputData';
 
 type DataTableNodeProps = {
-    data: TableData
+    data: InputTable
 }
 
 function DataTableNode({ data }: DataTableNodeProps){
@@ -28,19 +29,19 @@ function DataTableNode({ data }: DataTableNodeProps){
 
                 const nodeDistance = 45 + i * 19;
 
-                const leftNodeName = `${data.tableName}_${v.title}_left`
-                const rightNodeName = `${data.tableName}_${v.title}_right`
+                const leftNodeName = `${data.tableName}_${v.name}_left`
+                const rightNodeName = `${data.tableName}_${v.name}_right`
                 
                 return (
-                    <div key={`${data.tableName}_${v.title}_rows`}>
+                    <div key={`${data.tableName}_${v.name}_rows`}>
 
                         <Group position="apart">                 
-                            <Text size={8}>{v.title}</Text>
-                            <Text size={8}>{v.type}</Text>
+                            <Text size={8}>{v.name}</Text>
+                            <Text size={8}>{v.dataType}</Text>
                         </Group>
 
-                        <Handle type={v.nodeType || "source"} position={Position.Left} id={leftNodeName} style={{ top: nodeDistance }}/>
-                        <Handle type={v.nodeType || "source"} position={Position.Right} id={rightNodeName} style={{ top: nodeDistance }}/>
+                        <Handle type={v.isForeignKey ? "target" : "source"} position={Position.Left} id={leftNodeName} style={{ top: nodeDistance }}/>
+                        <Handle type={v.isForeignKey ? "target" : "source"} position={Position.Right} id={rightNodeName} style={{ top: nodeDistance }}/>
                     </div>
                 )
             }

@@ -1,6 +1,6 @@
 export interface InputTable {
-    name: string
-    items: InputItem[]
+    tableName: string
+    tableItems: InputItem[]
 }
 
 export type Relationship = "one-to-one" | "one-to-many" | "many-to-one" | "many-to-many"

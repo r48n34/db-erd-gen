@@ -1,8 +1,8 @@
 import { InputItem, InputTable } from "../interface/inputData";
 
 let tableHello: InputTable = {
-    name: "hello" ,
-    items: [
+    tableName: "hello" ,
+    tableItems: [
         {
             name: "id",
             dataType: "Integer",
@@ -25,8 +25,8 @@ let tableHello: InputTable = {
 }
 
 let tableYolo: InputTable = {
-    name: "yolo" ,
-    items: [
+    tableName: "yolo" ,
+    tableItems: [
         {
             name: "id",
             dataType: "Integer",

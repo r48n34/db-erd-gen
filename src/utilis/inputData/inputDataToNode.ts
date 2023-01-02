@@ -18,38 +18,29 @@ export function inputDataToNodeAndEdges(data: InputTable[]){
 
     for(let tableItem of data){
 
-        const tableItemsConvert = tableItem.items.map( v => {
+        for(let k of tableItem.tableItems){
+            if(k.isForeignKey || !!k.foreignTo){
 
-            let baseObj = {
-                title: v.name,
-                type: v.dataType
-            } as any
-
-            if(v.isForeignKey || !!v.foreignTo){
-                baseObj.nodeType = "target"
-                baseObj.linkTo = v.foreignTo
+                const sourceHandle = `${k.foreignTo!.tableName}_${k.foreignTo!.column}_right`
+                const targetHandle = `${tableItem.tableName}_${k.name}_left`
 
                 initialEdges.push({
-                    "id": `reactflow__${v.foreignTo!.tableName}_${v.foreignTo!.column}_${tableItem.name}_${v.name}_left_MY`,
-                    "source": v.foreignTo!.tableName,
-                    "sourceHandle": `${v.foreignTo!.tableName}_${v.foreignTo!.column}_right`,
-                    "target": tableItem.name,
-                    "targetHandle": `${tableItem.name}_${v.name}_left`,
+                    "id": `reactflow__${sourceHandle}_${targetHandle}`,
+                    "source": k.foreignTo!.tableName,
+                    "sourceHandle": sourceHandle,
+                    "target": tableItem.tableName,
+                    "targetHandle": targetHandle,
                 })
             }
-
-            return baseObj
-        })
+        }
 
         const tableInfo = {
-            tableName: tableItem.name,
-            tableItems: tableItemsConvert
+            tableName: tableItem.tableName,
+            tableItems: tableItem.tableItems
         } 
 
-        console.log("HELLO", tableItemsConvert);
-        
 
-        initNodes.push({ id: tableItem.name, type: 'textUpdater', position: { x: 0, y: 0 }, data: tableInfo })
+        initNodes.push({ id: tableItem.tableName, type: 'textUpdater', position: { x: 0, y: 0 }, data: tableInfo })
     }  
 
     return {
