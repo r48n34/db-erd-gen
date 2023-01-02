@@ -1,7 +1,6 @@
 import { Header, Group } from '@mantine/core';
 import ThemeToggleBtn from './ThemeToggleBtn';
 
-
 export default function NavBar() {
    return (
     <>

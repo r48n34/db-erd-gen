@@ -1,6 +1,6 @@
 import { Group } from "@mantine/core";
 
-import AddTableBtn from "./AddTableBtn";
+import AddTableBtn from "./components/AddTableBtn";
 
 type LeftTopBarProps = {
     data?: string;

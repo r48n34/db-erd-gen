@@ -2,15 +2,11 @@ import Splitter from '@devbookhq/splitter'
 
 import ERTableComp from '../components/ERTableComp';
 import NavBar from '../components/common/NavBar';
+import LeftNavBar from '../components/leftBar/components/LeftNavBar';
 
 import 'reactflow/dist/style.css';
-import LeftNavBar from '../components/leftBar/LeftNavBar';
-
-type MainPageProps = {
-    data?: string;
-}
-    
-function MainPage({ data }: MainPageProps){
+ 
+function MainPage(){
     return (
         <>
         <NavBar/>

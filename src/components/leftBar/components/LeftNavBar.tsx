@@ -1,4 +1,4 @@
-import LeftTopBar from "./LeftTopBar";
+import LeftTopBar from "../LeftTopBar";
 
 type LeftNavBarProps = {
     data?: string;

@@ -6,10 +6,13 @@ import ReactFlow, {
     applyEdgeChanges,
     NodeChange,
     EdgeChange,
+    MiniMap,
+    Panel,
     addEdge,
     Connection
 } from 'reactflow';
 import DataTableNode from './node/DataTableNode';
+import { Badge } from '@mantine/core';
 
 
 // import { initNodes, initialEdges } from '../data/testNodeDataUNUSED';
@@ -64,6 +67,10 @@ function ERTableComp({ data }: ERTableCompProps){
         >
             <Background />
             <Controls />
+            <MiniMap nodeStrokeWidth={3} zoomable pannable />
+            <Panel position="top-right">
+                <Badge>Table count: {nodes.length}</Badge>
+            </Panel>
         </ReactFlow>
         </div>
     )
