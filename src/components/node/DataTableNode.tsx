@@ -2,10 +2,10 @@
 import { Handle, Position } from 'reactflow';
 import { Card, Text, Group, Badge } from '@mantine/core';
 // import { TableData } from '../../interface/dataNode';
-import { InputTable } from '../../interface/inputData';
+import { Table } from '../../interface/inputData';
 
 type DataTableNodeProps = {
-    data: InputTable
+    data: Table
 }
 
 function DataTableNode({ data }: DataTableNodeProps){
@@ -18,26 +18,26 @@ function DataTableNode({ data }: DataTableNodeProps){
         <Card 
             shadow="sm" 
             radius="md" 
-            style={{ height: `${35 + data.tableItems.length * 22}px`, padding: "10px", fontSize: "2px", width:"180px" }}
+            style={{ height: `${35 + data.columns.length * 22}px`, padding: "10px", fontSize: "2px", width:"180px" }}
         >
         <div>
 
             <Card.Section >
                 <Text size={15} align="center">
                     
-                    <Badge size="lg">{data.tableName}</Badge>
+                    <Badge size="lg">{data.name}</Badge>
                 </Text>
             </Card.Section>
 
-            { data.tableItems.map( (v,i) => {
+            { data.columns.map( (v,i) => {
 
                 const nodeDistance = 45 + i * 19;
 
-                const leftNodeName = `${data.tableName}_${v.name}_left`
-                const rightNodeName = `${data.tableName}_${v.name}_right`
+                const leftNodeName = `${data.name}_${v.name}_left`
+                const rightNodeName = `${data.name}_${v.name}_right`
                 
                 return (
-                    <div key={`${data.tableName}_${v.name}_rows`}>
+                    <div key={`${data.name}_${v.name}_rows`}>
 
                         <Group position="apart">                 
                             <Text size={8}>{v.name}</Text>

@@ -1,50 +1,39 @@
-import { InputTable } from "../../interface/inputData";
+import { Table } from "../../interface/inputData";
 import { Node, Edge } from "reactflow";
 
-export function inputDataToNodeAndEdges(data: InputTable[]){
-    const initNodes: Node[] = [
-        // { id: 'tableOne', type: 'textUpdater', position: { x: 0, y: 0 }, data: tableOne },
-    ];
-
-    const initialEdges: Edge[] = [
-        // {
-        //     "id": "reactflow__edge-tableOnehello_one4_right-tableTwoyolo_one4_left",
-        //     "source": "tableOne",
-        //     "sourceHandle": "hello_one4_right",
-        //     "target": "tableTwo",
-        //     "targetHandle": "yolo_one4_left",
-        // }
-    ];
+export function inputDataToNodeAndEdges(tablesArr: Table[]){
+    const initNodes: Node[] = [];
+    const initialEdges: Edge[] = [];
 
     let initTableDistance = 200;
 
-    for(let tableItem of data){
+    for(let table of tablesArr){
 
-        const tableName = tableItem.tableName;
+        const name = table.name;
 
         // Create Edge checking
-        for(let k of tableItem.tableItems){
+        for(let k of table.columns){
             if(!!k.foreignTo){
 
-                const sourceHandle = `${k.foreignTo!.tableName}_${k.foreignTo!.column}_right`
-                const targetHandle = `${tableName}_${k.name}_left`
+                const sourceHandle = `${k.foreignTo!.name}_${k.foreignTo!.column}_right`
+                const targetHandle = `${name}_${k.name}_left`
 
                 initialEdges.push({
                     "id": `reactflow__${sourceHandle}_${targetHandle}_gen`,
-                    "source": k.foreignTo!.tableName,
+                    "source": k.foreignTo!.name,
                     "sourceHandle": sourceHandle,
-                    "target": tableName,
+                    "target": name,
                     "targetHandle": targetHandle,
                 })
             }
         }
 
         const tableInfo = {
-            tableName: tableName,
-            tableItems: tableItem.tableItems
+            name: name,
+            columns: table.columns
         } 
 
-        initNodes.push({ id: tableName, type: 'textUpdater', position: { x: initTableDistance, y: 500 }, data: tableInfo })
+        initNodes.push({ id: name, type: 'textUpdater', position: { x: initTableDistance, y: 500 }, data: tableInfo })
         initTableDistance += 250;
     } 
 

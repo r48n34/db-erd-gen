@@ -1,8 +1,8 @@
-import { InputItem, InputTable } from "../interface/inputData";
+import { Column, Table } from "../interface/inputData";
 
-let tableHello: InputTable = {
-    tableName: "hello" ,
-    tableItems: [
+let tableHello: Table = {
+    name: "hello" ,
+    columns: [
         {
             name: "id",
             dataType: "Integer",
@@ -21,9 +21,9 @@ let tableHello: InputTable = {
     ]
 }
 
-let tableYolo: InputTable = {
-    tableName: "yolo" ,
-    tableItems: [
+let tableYolo: Table = {
+    name: "yolo" ,
+    columns: [
         {
             name: "id",
             dataType: "Integer",
@@ -35,16 +35,16 @@ let tableYolo: InputTable = {
             isPrimaryKey: false,
             relationship: "one-to-one",
             foreignTo: {
-                tableName: "hello",
+                name: "hello",
                 column: "id"
             },
         },
     ]
 }
 
-let tableHay: InputTable = {
-    tableName: "hay" ,
-    tableItems: [
+let tableHay: Table = {
+    name: "hay" ,
+    columns: [
         {
             name: "id",
             dataType: "Integer",
@@ -56,16 +56,16 @@ let tableHay: InputTable = {
             isPrimaryKey: false,
             relationship: "one-to-one",
             foreignTo: {
-                tableName: "hello",
+                name: "hello",
                 column: "id"
             },
         },
     ]
 }
 
-let tableApple: InputTable = {
-    tableName: "apple" ,
-    tableItems: [
+let tableApple: Table = {
+    name: "apple" ,
+    columns: [
         {
             name: "id",
             dataType: "Integer",
@@ -77,11 +77,11 @@ let tableApple: InputTable = {
             isPrimaryKey: false,
             relationship: "one-to-one",
             foreignTo: {
-                tableName: "hay",
+                name: "hay",
                 column: "id"
             },
         },
     ]
 }
 
-export let grandData: InputTable[] = [tableHello, tableYolo, tableHay, tableApple];
+export let grandData: Table[] = [tableHello, tableYolo, tableHay, tableApple];

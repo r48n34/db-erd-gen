@@ -1,16 +1,16 @@
-export interface InputTable {
-    tableName: string
-    tableItems: InputItem[]
+export interface Table {
+    name: string
+    columns: Column[]
 }
 
 export type Relationship = "one-to-one" | "one-to-many" | "many-to-one" | "many-to-many"
 
 export interface ForeignToObj {
-    tableName: string
+    name: string
     column: string
 }
 
-export interface InputItem {
+export interface Column {
     name: string // name is unique
     dataType: string
     isPrimaryKey: boolean
