@@ -31,6 +31,9 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             }
           ],
         },
+        validate: {
+            tableName: (v) => (v.length <= 1 ? "Table name should be larger than one" : null),
+        }
     });
 
     const tablesField = form.values.columns.map((v, index) => (
@@ -38,9 +41,9 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             <Grid key={"col_" + v.id}>
                 <Grid.Col span={2}>
                     <TextInput
+                        withAsterisk
                         label="Column name"
                         placeholder="id"
-                        withAsterisk
                         {...form.getInputProps(`columns.${index}.name`)}
                     />
                 </Grid.Col>
