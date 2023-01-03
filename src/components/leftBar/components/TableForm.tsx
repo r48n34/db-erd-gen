@@ -7,6 +7,7 @@ import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Tex
 import { IconSquarePlus, IconEdit, IconTrash } from '@tabler/icons';
 import { uuidGen } from "../../../utilis/uuidGen";
 import useTableStore from "../../../store/zustandStore";
+import { commonSuccessActions } from "../../../utilis/notificationUtilis";
 
 type TableFormProps = {
   mode: "create" | "edit"
@@ -166,7 +167,10 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             } as Table
     
             addTableObjStore(storeObj);
+            setOpened(false);
+            commonSuccessActions();
         }
+
         
     }
 

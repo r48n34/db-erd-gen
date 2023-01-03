@@ -7,3 +7,10 @@ export function failedDelete(isBeingReferences: string[]){
         message: `You still have the references on ${isBeingReferences.join(", ")}.`,
     })
 }
+
+export function commonSuccessActions(){
+    showNotification({
+        title: 'Success',
+        message: `Success to perform the actions.`,
+    })
+}

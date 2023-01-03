@@ -47,12 +47,12 @@ function DataTableNode({ data }: DataTableNodeProps){
                         <Handle 
                             type={!!v.foreignTo ? "target" : "source"} 
                             position={Position.Left} id={leftNodeName} 
-                            style={{ top: nodeDistance }}
+                            style={{ top: nodeDistance, width: "0px", minWidth: "0px" }}
                         />
                         <Handle 
                             type={!!v.foreignTo ? "target" : "source"} 
                             position={Position.Right} id={rightNodeName} 
-                            style={{ top: nodeDistance }}
+                            style={{ top: nodeDistance, width: "0px", minWidth: "0px" }}
                         />
                     </div>
                 )
