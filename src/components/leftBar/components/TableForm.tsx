@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Table } from "../../../interface/inputData";
+import { Column, ForeignToObj, Table } from "../../../interface/inputData";
 
 import { useForm } from '@mantine/form';
 import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Text, Autocomplete, Select } from "@mantine/core";
 
 import { IconSquarePlus, IconEdit, IconTrash } from '@tabler/icons';
 import { uuidGen } from "../../../utilis/uuidGen";
+import useTableStore from "../../../store/zustandStore";
 
 type TableFormProps = {
   mode: "create" | "edit"
@@ -13,8 +14,26 @@ type TableFormProps = {
   editData?: Table // Optional if creating table 
 };
 
+interface FormObject {
+    tableName: string
+    columns: {
+        id: string
+        name: string,
+        dataType: string
+        isPrimaryKey: boolean
+        isForeignKey: boolean,
+        foreignTo: {
+            name: null | string,
+            column: null | string
+        },
+        relationship: null | string
+    }[]
+}
+
 function TableForm({ mode = "create", allTableData, editData }: TableFormProps) {
+
     const [ opened, setOpened ] = useState(false);
+    const addTableObjStore = useTableStore((state) => state.addTableObj);
 
     const form = useForm({
         initialValues: {
@@ -120,6 +139,37 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
      
     ));
 
+    function handleSubmit(values: FormObject){
+        console.log(values);
+
+        // Create table
+        if(mode === "create"){
+
+            const storeObj = {
+                name: values.tableName,
+                columns: values.columns.map( v => {
+                    let baseObj = {
+                        name: v.name,
+                        dataType: v.dataType,
+                        isPrimaryKey: v.isPrimaryKey
+                    } as Column
+    
+                    if(v.isForeignKey){
+                        baseObj.foreignTo = {
+                            name: v.foreignTo.name as string, 
+                            column: v.foreignTo.column as string
+                        }
+                    }
+    
+                    return baseObj
+                })
+            } as Table
+    
+            addTableObjStore(storeObj);
+        }
+        
+    }
+
     return (
         <>
         <Modal
@@ -128,7 +178,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             onClose={() => setOpened(false)}
             title={ mode === "create" ? "Create table" : "Edit table"}
         >
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
 
             <TextInput
                 withAsterisk

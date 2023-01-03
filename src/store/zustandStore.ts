@@ -6,19 +6,17 @@ import { Table } from '../interface/inputData';
 
 interface DataState {
   tableArray: Table[]
-  initDataFromDB: () => void // Get all data from db
+  addTableObj: (obj: Table) => void // Get all data from db
 }
 
 const useTableStore = create<DataState>()(
   devtools(
     persist( (set) => ({
         tableArray: grandData,
-        initDataFromDB: async () => {
-            let data:Table[] = [];
-
+        addTableObj: async (obj) => {
             set((state) => {
                 return { 
-                    tableArray: data,
+                  tableArray: [...state.tableArray, obj],
                 }
             })
         }

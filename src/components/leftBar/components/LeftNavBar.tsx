@@ -3,11 +3,7 @@ import useTableStore from "../../../store/zustandStore";
 import LeftTopBar from "../LeftTopBar";
 import DisplayTableComp from "./DisplayTableComp";
 
-type LeftNavBarProps = {
-    data?: string;
-}
-    
-function LeftNavBar({ data }: LeftNavBarProps){
+function LeftNavBar(){
 
     const tableArray = useTableStore((state) => state.tableArray);
 
