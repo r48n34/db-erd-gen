@@ -14,16 +14,13 @@ import ReactFlow, {
 import DataTableNode from './node/DataTableNode';
 import { Badge } from '@mantine/core';
 
-import { grandData } from '../data/testInputData';
 import { inputDataToNodeAndEdges } from '../utilis/inputData/inputDataToNode';
+import useTableStore from '../store/zustandStore';
 
-type ERTableCompProps = {
-    data?: string;
-}
+function ERTableComp(){
 
-const testData = inputDataToNodeAndEdges(grandData);
-
-function ERTableComp({ data }: ERTableCompProps){
+    const tableArray = useTableStore((state) => state.tableArray);
+    const testData = inputDataToNodeAndEdges(tableArray);
 
     const [nodes, setNodes] = useState(testData.nodes);
     const [edges, setEdges] = useState(testData.edges);

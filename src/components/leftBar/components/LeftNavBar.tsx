@@ -1,4 +1,5 @@
-import { grandData } from "../../../data/testInputData";
+import useTableStore from "../../../store/zustandStore";
+
 import LeftTopBar from "../LeftTopBar";
 import DisplayTableComp from "./DisplayTableComp";
 
@@ -7,10 +8,13 @@ type LeftNavBarProps = {
 }
     
 function LeftNavBar({ data }: LeftNavBarProps){
+
+    const tableArray = useTableStore((state) => state.tableArray);
+
     return (
         <>
         <LeftTopBar/>
-        <DisplayTableComp data={grandData} />
+        <DisplayTableComp data={tableArray} />
         </>
     )
 }
