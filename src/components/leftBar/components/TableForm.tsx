@@ -69,11 +69,12 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 </Grid.Col>
 
                 <Grid.Col span={2}>
-                    <Autocomplete
+                    <Select
                         label="Column type"
                         placeholder="integer"
                         withAsterisk
-                        data={['inetger', 'varchar', 'char', 'boolean', 'double', "float", "timespamps", "date"]}
+                        searchable
+                        data={['integer', 'varchar', 'char', 'boolean', 'double', "float", "timespamps", "date", "text", "point", "json", "jsonb"]}
                         {...form.getInputProps(`columns.${index}.dataType`)}
                     />
                 </Grid.Col>
