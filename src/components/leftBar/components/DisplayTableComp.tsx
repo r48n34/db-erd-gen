@@ -1,4 +1,4 @@
-import { Accordion, Group, Text, Box } from '@mantine/core';
+import { Accordion, Group, Text, Box, Badge } from '@mantine/core';
 import { Table } from '../../../interface/inputData';
 
 import DeleteTableBtn from './DeleteTableBtn';
@@ -16,24 +16,28 @@ function DisplayTableComp({ data }: DisplayTableCompProps){
             { data.map( v => (
                 <Accordion.Item value={v.name} key={"tables" + v.name}>
                     <Accordion.Control>
-                        <Text>{v.name}</Text>
+                        <Text size={20} align="left">
+                            {v.name}
+                        </Text>
                     </Accordion.Control>
 
                     <Accordion.Panel>
-                        <Group position="right">
-                            <DeleteTableBtn tableName={v.name} />
-                        </Group>
                         { v.columns.map( k => (
                             <Box key={"tables_cols_" + k.name}>
                                 <Group position="apart">                 
-                                    <Text size={10}>{k.name}</Text>
-                                    <Text size={10}>{k.dataType}</Text>
+                                    <Text size={14}>{k.name} {k.foreignTo && <Badge size="xs">(FK)</Badge>}</Text>
+                                    <Text size={14}>{k.dataType}</Text>
                                 </Group>
                                 { k.foreignTo && (
-                                    <Text size={10} ml={6}> {k.foreignTo.name} {"->"} {k.foreignTo.column}</Text> 
+                                    <Text size={14} ml={6}> {k.foreignTo.name} {"->"} {k.foreignTo.column}</Text> 
                                 )}
                             </Box>
                         ))}
+
+                        <Group position="right">
+                            <DeleteTableBtn tableName={v.name} />
+                        </Group>
+
                     </Accordion.Panel>
                 </Accordion.Item>
             ))}

@@ -1,9 +1,9 @@
 import { showNotification } from '@mantine/notifications';
 
-export function failedDelete(){
+export function failedDelete(isBeingReferences: string[]){
     showNotification({
         color: "red",
         title: 'Failed to delete',
-        message: 'You still have the references on this tables',
+        message: `You still have the references on ${isBeingReferences.join(", ")}.`,
     })
 }

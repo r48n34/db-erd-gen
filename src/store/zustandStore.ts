@@ -26,14 +26,14 @@ const useTableStore = create<DataState>()(
             set((state) => {
                 const newTableArr = state.tableArray.filter( v => v.name !== tableName);
 
-                const isBeingReferences = state.tableArray.map( v => v.columns)
+                const isBeingReferences = state.tableArray.map( v => v.columns )
                   .flat()
                   .filter( v => v.foreignTo && v.foreignTo.name === tableName);
                 
                 console.log(isBeingReferences);
                 
                 if(isBeingReferences.length >= 1){
-                    failedDelete();
+                    failedDelete(isBeingReferences.map( v => v.name));
 
                     return { 
                         tableArray: state.tableArray,
