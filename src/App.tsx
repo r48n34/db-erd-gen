@@ -1,5 +1,6 @@
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
+import { ModalsProvider } from '@mantine/modals';
 
 import MainPage from "./pages/MainPage"
 
@@ -18,7 +19,9 @@ function App() {
     <>
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+        <ModalsProvider>
             <MainPage/>
+        </ModalsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
     </>

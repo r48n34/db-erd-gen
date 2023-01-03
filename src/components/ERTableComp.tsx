@@ -8,6 +8,8 @@ import ReactFlow, {
     EdgeChange,
     MiniMap,
     Panel,
+    Node,
+    Edge,
     addEdge,
     Connection
 } from 'reactflow';
@@ -20,10 +22,15 @@ import useTableStore from '../store/zustandStore';
 function ERTableComp(){
 
     const tableArray = useTableStore((state) => state.tableArray);
-    const testData = inputDataToNodeAndEdges(tableArray);
+    
+    useEffect(() => {
+        const testData = inputDataToNodeAndEdges(tableArray);
+        setNodes(testData.nodes)
+        setEdges(testData.edges)
+    }, [tableArray]);
 
-    const [nodes, setNodes] = useState(testData.nodes);
-    const [edges, setEdges] = useState(testData.edges);
+    const [nodes, setNodes] = useState<Node<any>[]>([]);
+    const [edges, setEdges] = useState<Edge<any>[]>([]);
 
     const onNodesChange = useCallback(
         (changes: NodeChange[]) => setNodes((nds) => applyNodeChanges(changes, nds)),
