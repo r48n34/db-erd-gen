@@ -143,6 +143,9 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     function handleSubmit(values: FormObject){
         console.log(values);
 
+        // TODO: check if table name exist
+        // TODO2: check if columns is valid
+
         // Create table
         if(mode === "create"){
 
@@ -187,7 +190,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             <TextInput
                 withAsterisk
                 label="Table name"
-                placeholder="users"
+                placeholder="some_table_name"
                 {...form.getInputProps('tableName')}
             />
 
