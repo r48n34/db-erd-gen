@@ -1,18 +1,13 @@
-import { Group } from "@mantine/core";
+import { Badge, Group } from "@mantine/core";
+import { grandData } from "../../data/testInputData";
+import TableForm from "./components/TableForm";
 
-import AddTableBtn from "./components/AddTableBtn";
-
-type LeftTopBarProps = {
-    data?: string;
-}
-    
-function LeftTopBar({ data }: LeftTopBarProps){
+function LeftTopBar(){
     return (
         <>
-        <Group position="right" mt={8} mr={6}>
-
-           <AddTableBtn/>
-
+        <Group position="apart" mt={8} mr={6}>
+            <Badge ml={12}  color="green">Table List</Badge>
+            <TableForm mode={"create"} allTableData={grandData}/>
         </Group>
         </>
     )

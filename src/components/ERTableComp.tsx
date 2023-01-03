@@ -14,9 +14,6 @@ import ReactFlow, {
 import DataTableNode from './node/DataTableNode';
 import { Badge } from '@mantine/core';
 
-
-// import { initNodes, initialEdges } from '../data/testNodeDataUNUSED';
-
 import { grandData } from '../data/testInputData';
 import { inputDataToNodeAndEdges } from '../utilis/inputData/inputDataToNode';
 
