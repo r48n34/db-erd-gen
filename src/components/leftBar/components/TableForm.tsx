@@ -8,6 +8,7 @@ import { IconSquarePlus, IconEdit, IconTrash } from '@tabler/icons';
 import { uuidGen } from "../../../utilis/uuidGen";
 import useTableStore from "../../../store/zustandStore";
 import { commonSuccessActions } from "../../../utilis/notificationUtilis";
+import { postgresTypeArray } from "../../../data/database/postgresType";
 
 type TableFormProps = {
   mode: "create" | "edit"
@@ -59,7 +60,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     const tablesField = form.values.columns.map((v, index) => (
        
             <Grid key={"col_" + v.id}>
-                <Grid.Col span={2}>
+                <Grid.Col span={3}>
                     <TextInput
                         withAsterisk
                         label="Column name"
@@ -74,7 +75,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         placeholder="integer"
                         withAsterisk
                         searchable
-                        data={['integer', 'varchar', 'char', 'boolean', 'double', "float", "timespamps", "date", "text", "point", "json", "jsonb"]}
+                        data={postgresTypeArray}
                         {...form.getInputProps(`columns.${index}.dataType`)}
                     />
                 </Grid.Col>
@@ -128,7 +129,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 : (<Grid.Col span={4}></Grid.Col>) 
                 }
 
-                <Grid.Col span={2}>
+                <Grid.Col span={1}>
                     <ActionIcon
                         mt={26}
                         color="red" 
@@ -181,7 +182,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     return (
         <>
         <Modal
-            size="75%"
+            size="95%"
             opened={opened}
             onClose={() => setOpened(false)}
             title={ mode === "create" ? "Create table" : "Edit table"}
