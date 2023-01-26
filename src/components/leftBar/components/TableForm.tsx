@@ -38,16 +38,16 @@ interface FormObject {
 
 function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject{
     if(mode === "edit" && !!editData){
-        console.log(editData);
 
         return {
             tableName: editData.name,
             columns: editData.columns.map( v => {
                 return {
                     ...v,
-                    isForeignKey: !!v.foreignTo
+                    isForeignKey: !!v.foreignTo,
+                    relationship: null
                 }
-            }) as FormColumns
+            }) as FormColumns[]
         }
     }
 

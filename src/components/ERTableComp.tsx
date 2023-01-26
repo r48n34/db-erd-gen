@@ -10,8 +10,6 @@ import ReactFlow, {
     Panel,
     Node,
     Edge,
-    addEdge,
-    Connection
 } from 'reactflow';
 import DataTableNode from './node/DataTableNode';
 import { Badge } from '@mantine/core';
@@ -43,16 +41,6 @@ function ERTableComp(){
         [setEdges]
     );
 
-    // const onConnect = useCallback(
-    //     (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
-    //     [setEdges]
-    // );
-
-    // useEffect(() => {
-    //     console.log(edges);
-    //     console.log(nodes);
-    // }, [nodes, edges]);
-    
     const nodeTypes = useMemo(() => ({ textUpdater: DataTableNode }), []);
 
     return (

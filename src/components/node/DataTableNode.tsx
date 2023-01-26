@@ -24,7 +24,6 @@ function DataTableNode({ data }: DataTableNodeProps){
 
             <Card.Section >
                 <Text size={15} align="center">
-                    
                     <Badge size="lg">{data.name}</Badge>
                 </Text>
             </Card.Section>
