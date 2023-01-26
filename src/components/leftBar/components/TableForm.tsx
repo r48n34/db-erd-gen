@@ -54,7 +54,7 @@ function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject
             {
                 id: uuidGen(),
                 name: "id",
-                dataType: "integer",
+                dataType: "serial",
                 isPrimaryKey: true,
                 isForeignKey: false,
                 foreignTo: {name: null, column: null},
@@ -243,6 +243,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
 
             <Group position="right" mt="md">
                 <Button
+                    variant="light"
                     onClick={() =>
                         form.insertListItem(
                             'columns', 
@@ -257,7 +258,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                             }
                         )
                 }>
-                    Add column
+                    + column
                 </Button>
             </Group>
 

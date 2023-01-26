@@ -8,7 +8,9 @@ function TableDataToPostgresBtn(){
 
     return (
         <>
-        <Button onClick={ () => tableDataToPostgresScheme(tableArray) }>GEN</Button>
+        <Button onClick={ () => tableDataToPostgresScheme(tableArray) }>
+            Gen postgres string
+        </Button>
         </>
     )
 }

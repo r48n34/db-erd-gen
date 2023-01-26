@@ -11,6 +11,8 @@ interface DataState {
   addTableObj: (obj: Table) => void // Get all data from db
   updateTableObj: (obj: Table) => void // Update specific table content by name
   deleteOneTable: (tableName: string) => void // Get all data from db
+
+  importTableObj: (newTableArr: Table[]) => void // Update specific table content by name
 }
 
 const useTableStore = create<DataState>()(
@@ -66,7 +68,15 @@ const useTableStore = create<DataState>()(
                   update: state.update + 1
                 }
             })
-        }
+        },
+        importTableObj: async (newTableArr: Table[]) => {
+            set((state) => {
+                return { 
+                  tableArray: newTableArr,
+                  update: state.update + 1
+                }
+            })
+        },
     }), { name: 'table-data-storage' })
   )
 );

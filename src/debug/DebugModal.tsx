@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useHotkeys } from '@mantine/hooks';
-import { Drawer, Button, Group } from '@mantine/core';
+import { Drawer, Button, Group, Space } from '@mantine/core';
 import TableDataToPostgresBtn from './TableDataToPostgresBtn';
+import ExportJsonFormat from './ExportJsonFormat';
+import ImportJsonFormat from './ImportJsonFormat';
 
 function DebugModal() {
     const [opened, setOpened] = useState(false);
@@ -20,6 +22,12 @@ function DebugModal() {
             size="xl"
         >
             <TableDataToPostgresBtn/>
+            
+            <Space h="md"/>
+            <ExportJsonFormat/>
+
+            <Space h="md"/>
+            <ImportJsonFormat/>
         </Drawer>
         </>
     );
