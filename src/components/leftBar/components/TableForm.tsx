@@ -237,6 +237,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 withAsterisk
                 label="Table name"
                 placeholder="some_table_name"
+                disabled={ mode === "edit" }
                 {...form.getInputProps('tableName')}
             />
 

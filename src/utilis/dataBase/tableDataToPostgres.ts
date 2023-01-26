@@ -6,28 +6,30 @@ export function tableDataToPostgresScheme(tables: Table[]){
     let schemeArray = [];
 
     for(let table of tables){
-        let tableStr = `CREATE TABLE ${table.name} ( \n`
-        
+        let tableStr = []
+
         for(let col of table.columns){
             const defaultLength = postgresTypeArray.findIndex( 
                 (v:PostgresTypeArray) => v.value == col.dataType && v.defaultValue
             );
 
-            const currentString = `  ${col.name} ${col.dataType} ${defaultLength === -1 ? "" : postgresTypeArray[defaultLength].defaultValue}, \n`;
-            tableStr += currentString
+            const currentString = `  ${col.name} ${col.dataType} ${defaultLength === -1 ? "" : postgresTypeArray[defaultLength].defaultValue}`;
+            tableStr.push(currentString)
 
             if(col.foreignTo){
-                const joinString = `  FOREIGN KEY (${col.name}) REFERENCES ${col.foreignTo.name}(${col.foreignTo.column}), \n`
-                tableStr += joinString
+                const joinString = `  FOREIGN KEY (${col.name}) REFERENCES ${col.foreignTo.name}(${col.foreignTo.column})`
+                tableStr.push(joinString)
             }
         }
 
-        tableStr += `) \n`
+        const finalTableStr = `CREATE TABLE ${table.name} ( \n` + tableStr.join(", \n") + `\n` + `) \n`
 
-        schemeArray.push(tableStr)
+        schemeArray.push(finalTableStr)
     }
 
-    console.log(schemeArray);
+    // console.log(schemeArray);
     console.log(schemeArray.join("\n"));
+
+    return schemeArray.join("\n")
 
 }

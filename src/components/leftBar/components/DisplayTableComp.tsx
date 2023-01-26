@@ -7,6 +7,7 @@ import useTableStore from '../../../store/zustandStore';
 function DisplayTableComp(){
     
     const tableArray = useTableStore((state) => state.tableArray);
+    const update = useTableStore((state) => state.update);
 
     return (
         <>

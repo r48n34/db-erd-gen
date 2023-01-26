@@ -1,21 +1,21 @@
-import { Column, Table } from "../interface/inputData";
+import { Table } from "../interface/inputData";
 
 let tableHello: Table = {
     name: "hello" ,
     columns: [
         {
             name: "id",
-            dataType: "Integer",
+            dataType: "integer",
             isPrimaryKey: true,
         },
         {
             name: "name",
-            dataType: "string",
+            dataType: "varchar",
             isPrimaryKey: false,
         },
         {
             name: "age",
-            dataType: "Integer",
+            dataType: "integer",
             isPrimaryKey: false,
         }
     ]
@@ -26,12 +26,12 @@ let tableYolo: Table = {
     columns: [
         {
             name: "id",
-            dataType: "Integer",
+            dataType: "integer",
             isPrimaryKey: true,
         },
         {
             name: "hello_id",
-            dataType: "Integer",
+            dataType: "integer",
             isPrimaryKey: false,
             relationship: "one-to-one",
             foreignTo: {
@@ -47,12 +47,12 @@ let tableHay: Table = {
     columns: [
         {
             name: "id",
-            dataType: "Integer",
+            dataType: "integer",
             isPrimaryKey: true,
         },
         {
             name: "hello_id",
-            dataType: "Integer",
+            dataType: "integer",
             isPrimaryKey: false,
             relationship: "one-to-one",
             foreignTo: {
@@ -68,12 +68,12 @@ let tableApple: Table = {
     columns: [
         {
             name: "id",
-            dataType: "Integer",
+            dataType: "integer",
             isPrimaryKey: true,
         },
         {
             name: "hay_id",
-            dataType: "Integer",
+            dataType: "integer",
             isPrimaryKey: false,
             relationship: "one-to-one",
             foreignTo: {

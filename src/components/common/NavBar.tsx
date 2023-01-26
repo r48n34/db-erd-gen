@@ -1,6 +1,6 @@
 import { Header, Group } from '@mantine/core';
 import ThemeToggleBtn from './ThemeToggleBtn';
-import TableDataToPostgresBtn from './TableDataToPostgresBtn';
+import TableDataToPostgresBtn from '../../debug/TableDataToPostgresBtn';
 
 export default function NavBar() {
    return (
@@ -9,7 +9,7 @@ export default function NavBar() {
             <Group position="apart">
                 <div></div>
                 <ThemeToggleBtn/>
-                <TableDataToPostgresBtn/>
+                {/* <TableDataToPostgresBtn/> */}
             </Group>
         </Header>
     </>
