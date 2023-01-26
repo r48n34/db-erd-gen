@@ -8,6 +8,14 @@ export function failedDelete(isBeingReferences: string[]){
     })
 }
 
+export function failedDeleteMessage(messages: string){
+    showNotification({
+        color: "red",
+        title: 'Failed to delete',
+        message: messages,
+    })
+}
+
 export function commonSuccessActions(){
     showNotification({
         title: 'Success',

@@ -8,7 +8,7 @@ import { IconSquarePlus, IconEdit, IconTrash } from '@tabler/icons';
 import useTableStore from "../../../store/zustandStore";
 
 import { uuidGen } from "../../../utilis/uuidGen";
-import { commonSuccessActions } from "../../../utilis/notificationUtilis";
+import { commonSuccessActions, failedDeleteMessage } from "../../../utilis/notificationUtilis";
 
 import { postgresTypeArray } from "../../../data/database/postgresType";
 
@@ -178,15 +178,20 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
         try {
             
             console.log(values);
+
+            if(values.columns.length === 0){
+                failedDeleteMessage("Table can not be empty.")
+                return
+            }
     
             // TODO: check if table name exist
             // TODO2: check if columns is valid
     
             const storeObj = {
-                name: values.tableName,
+                name: values.tableName.trim().toLowerCase().split(" ").join("_"),
                 columns: values.columns.map( v => {
                     let baseObj = {
-                        name: v.name,
+                        name: v.name.trim().toLowerCase().split(" ").join("_"),
                         dataType: v.dataType,
                         isPrimaryKey: v.isPrimaryKey
                     } as Column
