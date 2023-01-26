@@ -22,12 +22,13 @@ import useTableStore from '../store/zustandStore';
 function ERTableComp(){
 
     const tableArray = useTableStore((state) => state.tableArray);
-    
+    const update = useTableStore((state) => state.update);
+
     useEffect(() => {
         const testData = inputDataToNodeAndEdges(tableArray);
         setNodes(testData.nodes)
         setEdges(testData.edges)
-    }, [tableArray]);
+    }, [tableArray, update]);
 
     const [nodes, setNodes] = useState<Node<any>[]>([]);
     const [edges, setEdges] = useState<Edge<any>[]>([]);
@@ -68,7 +69,7 @@ function ERTableComp(){
         >
             <Background />
             <Controls />
-            <MiniMap nodeStrokeWidth={3} zoomable pannable />
+            {/* <MiniMap nodeStrokeWidth={2} zoomable pannable /> */}
             <Panel position="top-right">
                 <Badge>Table count: {nodes.length}</Badge>
             </Panel>

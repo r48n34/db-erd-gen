@@ -7,7 +7,9 @@ import { failedDelete } from '../utilis/notificationUtilis';
 
 interface DataState {
   tableArray: Table[]
+  update: boolean
   addTableObj: (obj: Table) => void // Get all data from db
+  updateTableObj: (obj: Table) => void // Update specific table content by name
   deleteOneTable: (tableName: string) => void // Get all data from db
 }
 
@@ -15,10 +17,28 @@ const useTableStore = create<DataState>()(
   devtools(
     persist( (set) => ({
         tableArray: grandData,
+        update: false,
         addTableObj: async (obj: Table) => {
             set((state) => {
                 return { 
                   tableArray: [...state.tableArray, obj],
+                  update: !state.update
+                }
+            })
+        },
+        updateTableObj: async (obj: Table) => {
+            set((state) => {
+                const targetTableObjIndex = state.tableArray.findIndex( v => v.name === obj.name)
+
+                let newTable = state.tableArray;
+                newTable[targetTableObjIndex] = obj;
+
+                console.log("NEW DATA", );
+                
+
+                return { 
+                  tableArray: newTable,
+                  update: !state.update
                 }
             })
         },
@@ -37,11 +57,13 @@ const useTableStore = create<DataState>()(
 
                     return { 
                         tableArray: state.tableArray,
+                        update: !state.update
                     }
                 }
 
                 return { 
                   tableArray: newTableArr,
+                  update: !state.update
                 }
             })
         }

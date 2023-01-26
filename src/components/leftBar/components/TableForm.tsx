@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Column, ForeignToObj, Table } from "../../../interface/inputData";
+import { Column, Table } from "../../../interface/inputData";
 
 import { useForm } from '@mantine/form';
-import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Text, Autocomplete, Select } from "@mantine/core";
+import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Text, Select } from "@mantine/core";
 
 import { IconSquarePlus, IconEdit, IconTrash } from '@tabler/icons';
-import { uuidGen } from "../../../utilis/uuidGen";
 import useTableStore from "../../../store/zustandStore";
+
+import { uuidGen } from "../../../utilis/uuidGen";
 import { commonSuccessActions } from "../../../utilis/notificationUtilis";
+
 import { postgresTypeArray } from "../../../data/database/postgresType";
 
 type TableFormProps = {
@@ -16,31 +18,42 @@ type TableFormProps = {
   editData?: Table // Optional if creating table 
 };
 
-interface FormObject {
-    tableName: string
-    columns: {
-        id: string
-        name: string,
-        dataType: string
-        isPrimaryKey: boolean
-        isForeignKey: boolean,
-        foreignTo: {
-            name: null | string,
-            column: null | string
-        },
-        relationship: null | string
-    }[]
+interface FormColumns {
+    id: string
+    name: string,
+    dataType: string
+    isPrimaryKey: boolean
+    isForeignKey: boolean,
+    foreignTo: {
+        name: null | string,
+        column: null | string
+    },
+    relationship: null | string
 }
 
-function TableForm({ mode = "create", allTableData, editData }: TableFormProps) {
+interface FormObject {
+    tableName: string
+    columns: FormColumns[]
+}
 
-    const [ opened, setOpened ] = useState(false);
-    const addTableObjStore = useTableStore((state) => state.addTableObj);
+function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject{
+    if(mode === "edit" && !!editData){
+        console.log(editData);
 
-    const form = useForm({
-        initialValues: {
-          tableName: '',
-          columns: [
+        return {
+            tableName: editData.name,
+            columns: editData.columns.map( v => {
+                return {
+                    ...v,
+                    isForeignKey: !!v.foreignTo
+                }
+            }) as FormColumns
+        }
+    }
+
+    return {
+        tableName: '',
+        columns: [
             {
                 id: uuidGen(),
                 name: "id",
@@ -50,8 +63,18 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 foreignTo: {name: null, column: null},
                 relationship: null
             }
-          ],
-        },
+        ],
+    }
+}
+
+function TableForm({ mode = "create", allTableData, editData }: TableFormProps) {
+
+    const [ opened, setOpened ] = useState(false);
+    const addTableObjStore = useTableStore((state) => state.addTableObj);
+    const updateTableObj = useTableStore((state) => state.updateTableObj);
+
+    const form = useForm({
+        initialValues: initDataGenerator(mode, editData),
         validate: {
             tableName: (v) => (v.length <= 1 ? "Table name should be larger than one" : null),
         }
@@ -143,14 +166,14 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     ));
 
     function handleSubmit(values: FormObject){
-        console.log(values);
 
-        // TODO: check if table name exist
-        // TODO2: check if columns is valid
-
-        // Create table
-        if(mode === "create"){
-
+        try {
+            
+            console.log(values);
+    
+            // TODO: check if table name exist
+            // TODO2: check if columns is valid
+    
             const storeObj = {
                 name: values.tableName,
                 columns: values.columns.map( v => {
@@ -171,12 +194,25 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 })
             } as Table
     
-            addTableObjStore(storeObj);
+            // Create table
+            if(mode === "create"){
+                addTableObjStore(storeObj);
+            }
+    
+            // Create table
+            if(mode === "edit"){
+                updateTableObj(storeObj)
+            }
+
             setOpened(false);
             commonSuccessActions();
+
+            form.reset()
+
+        } catch (error) {
+            console.error(error);
         }
 
-        
     }
 
     return (
@@ -228,7 +264,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
         <Group position="center">
             <Tooltip label="Add table">
             <ActionIcon onClick={ () => setOpened(true) }>
-                { mode === "create" ? <IconSquarePlus size={36} /> : <IconEdit size={36} />}
+                { mode === "create" ? <IconSquarePlus size={36} /> : <IconEdit size={18} />}
             </ActionIcon>
             </Tooltip>
         </Group>

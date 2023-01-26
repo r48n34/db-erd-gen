@@ -5,8 +5,18 @@ import NavBar from '../components/common/NavBar';
 import LeftNavBar from '../components/leftBar/components/LeftNavBar';
 
 import 'reactflow/dist/style.css';
+
+import { useEffect } from 'react';
+import useTableStore from '../store/zustandStore';
  
 function MainPage(){
+    
+    const update = useTableStore((state) => state.update);
+    
+    useEffect(() => {
+        console.log("Updated tableArray");
+    }, [update]);
+
     return (
         <>
         <NavBar/>

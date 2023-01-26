@@ -6,8 +6,8 @@ export const postgresTypeArray = [
     { label: "boolean", value: "boolean", group: "boolean" },
     { label: "box", value: "box", group: "geometric" },
     { label: "bytea", value: "bytea", group: "binary" },
-    { label: "character", value: "varchar", group: "character" },
-    { label: "character", value: "char", group: "character" },
+    { label: "varchar", value: "varchar", group: "character" },
+    { label: "char", value: "char", group: "character" },
     { label: "cidr", value: "cidr", group: "network address" },
     { label: "circle", value: "circle", group: "geometric" },
     { label: "date", value: "date", group: "date/time" },
@@ -41,5 +41,5 @@ export const postgresTypeArray = [
     { label: "tsvector", value: "tsvector", group: "text search" },
     { label: "txid_snapshot", value: "txid_snapshot", group: "others" },
     { label: "uuid", value: "uuid", group: "uuid" },
-    { label: "xm",	 value: "xm", group: "" }	
+    { label: "xm",	 value: "xm", group: "others" }	
 ]

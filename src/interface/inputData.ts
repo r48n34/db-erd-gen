@@ -11,6 +11,7 @@ export interface ForeignToObj {
 }
 
 export interface Column {
+    id: string
     name: string // name is unique
     dataType: string
     isPrimaryKey: boolean
