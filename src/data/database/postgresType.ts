@@ -1,3 +1,10 @@
+export interface PostgresTypeArray {
+    label: string;
+    value: string;
+    group: string;
+    defaultValue?: undefined | string;
+}
+
 export const postgresTypeArray = [
     { label: "bigint", value: "bigint", group: "numeric" },
     { label: "bigserial", value: "bigserial", group: "numeric" },
@@ -6,12 +13,12 @@ export const postgresTypeArray = [
     { label: "boolean", value: "boolean", group: "boolean" },
     { label: "box", value: "box", group: "geometric" },
     { label: "bytea", value: "bytea", group: "binary" },
-    { label: "varchar", value: "varchar", group: "character" },
-    { label: "char", value: "char", group: "character" },
+    { label: "varchar", value: "varchar", group: "character", defaultValue: "(255)" },
+    { label: "char", value: "char", group: "character", defaultValue: "(255)" },
     { label: "cidr", value: "cidr", group: "network address" },
     { label: "circle", value: "circle", group: "geometric" },
     { label: "date", value: "date", group: "date/time" },
-    { label: "double precisio", value: "double precision", group: "numeric" },
+    { label: "double precision", value: "double precision", group: "numeric" },
     { label: "inet", value: "inet", group: "network address" },
     { label: "integer", value: "integer", group: "numeric" },
     { label: "interval", value: "interval", group: "date/time" },
@@ -42,4 +49,6 @@ export const postgresTypeArray = [
     { label: "txid_snapshot", value: "txid_snapshot", group: "others" },
     { label: "uuid", value: "uuid", group: "uuid" },
     { label: "xm",	 value: "xm", group: "others" }	
-]
+] as PostgresTypeArray[]
+
+export const postgresTypeArrayString = new Set(postgresTypeArray.map( v => v.value ))
