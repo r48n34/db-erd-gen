@@ -1,15 +1,10 @@
 import { Accordion, Group, Text, Box, Badge } from '@mantine/core';
-import { Table } from '../../../interface/inputData';
 
 import DeleteTableBtn from './DeleteTableBtn';
 import TableForm from './TableForm';
 import useTableStore from '../../../store/zustandStore';
 
-type DisplayTableCompProps = {
-    data: Table[];
-}
-    
-function DisplayTableComp({ data }: DisplayTableCompProps){
+function DisplayTableComp(){
     
     const tableArray = useTableStore((state) => state.tableArray);
 
@@ -17,7 +12,7 @@ function DisplayTableComp({ data }: DisplayTableCompProps){
         <>
         <Accordion multiple>
 
-            { data.map( v => (
+            { tableArray.map( v => (
                 <Accordion.Item value={v.name} key={"tables" + v.name}>
                     <Accordion.Control>
                         <Text size={18} align="left">

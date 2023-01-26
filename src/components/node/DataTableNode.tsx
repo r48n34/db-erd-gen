@@ -1,7 +1,5 @@
-// import { useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
 import { Card, Text, Group, Badge } from '@mantine/core';
-// import { TableData } from '../../interface/dataNode';
 import { Table } from '../../interface/inputData';
 
 type DataTableNodeProps = {
@@ -10,10 +8,6 @@ type DataTableNodeProps = {
 
 function DataTableNode({ data }: DataTableNodeProps){
 
-    // useEffect(() => {
-    //     console.log("DataTableNode", data);
-    // }, [data])
-    
     return (
         <Card 
             shadow="sm" 
@@ -37,7 +31,6 @@ function DataTableNode({ data }: DataTableNodeProps){
                 
                 return (
                     <div key={`${data.name}_${v.name}_rows`}>
-
                         <Group position="apart">                 
                             <Text size={8}>{v.name}</Text>
                             <Text size={8}>{v.dataType}</Text>

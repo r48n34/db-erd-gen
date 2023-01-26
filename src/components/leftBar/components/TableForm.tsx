@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Column, Table } from "../../../interface/inputData";
 
 import { useForm } from '@mantine/form';
@@ -31,14 +31,11 @@ interface FormColumns {
     relationship: null | string
 }
 
-interface FormObject {
-    tableName: string
-    columns: FormColumns[]
-}
-
 function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject{
+    console.log("NEW EDIT DATA", editData);
+    
     if(mode === "edit" && !!editData){
-
+        
         return {
             tableName: editData.name,
             columns: editData.columns.map( v => {
@@ -67,9 +64,15 @@ function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject
     }
 }
 
+interface FormObject {
+    tableName: string
+    columns: FormColumns[]
+}
+
 function TableForm({ mode = "create", allTableData, editData }: TableFormProps) {
 
     const [ opened, setOpened ] = useState(false);
+
     const addTableObjStore = useTableStore((state) => state.addTableObj);
     const updateTableObj = useTableStore((state) => state.updateTableObj);
 
@@ -79,6 +82,11 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             tableName: (v) => (v.length <= 1 ? "Table name should be larger than one" : null),
         }
     });
+
+    useEffect(() => {
+        form.setValues(initDataGenerator(mode, editData))
+    }, [editData])
+    
 
     const tablesField = form.values.columns.map((v, index) => (
        
@@ -262,7 +270,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
         </Modal>
 
         <Group position="center">
-            <Tooltip label="Add table">
+            <Tooltip label={ mode === "create" ? "Add table" : "Edit table" }>
             <ActionIcon onClick={ () => setOpened(true) }>
                 { mode === "create" ? <IconSquarePlus size={36} /> : <IconEdit size={18} />}
             </ActionIcon>
