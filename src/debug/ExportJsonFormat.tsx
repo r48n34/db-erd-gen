@@ -2,7 +2,7 @@ import { NavLink } from "@mantine/core";
 import useTableStore from "../store/zustandStore";
 import { exportJsonFormat } from "../utilis/dataBase/jsonFormat";
 import { commonSuccessActions } from "../utilis/notificationUtilis";
-import { IconHome2 } from '@tabler/icons';
+import { IconChevronRight, IconFileExport } from '@tabler/icons';
 
 function ExportJsonFormat(){
 
@@ -11,8 +11,9 @@ function ExportJsonFormat(){
     return (
         <>
         <NavLink
-            label="Export current json string"
-            icon={<IconHome2 size={16} stroke={1.5} />}
+            label="Export json"
+            icon={<IconFileExport size={16} stroke={1.5} />}
+            rightSection={<IconChevronRight size={12} stroke={1.5} />}
             onClick={ () => {
                 exportJsonFormat(tableArray);
                 commonSuccessActions();

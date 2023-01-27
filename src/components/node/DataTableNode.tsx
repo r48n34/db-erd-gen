@@ -1,5 +1,5 @@
 import { Handle, Position } from 'reactflow';
-import { Card, Text, Group, Badge } from '@mantine/core';
+import { Card, Text, Group, Badge, Grid } from '@mantine/core';
 import { Table } from '../../interface/inputData';
 
 type DataTableNodeProps = {
@@ -12,7 +12,7 @@ function DataTableNode({ data }: DataTableNodeProps){
         <Card 
             shadow="sm" 
             radius="md" 
-            style={{ height: `${35 + data.columns.length * 22}px`, padding: "10px", fontSize: "2px", width:"180px" }}
+            style={{ height: `${35 + data.columns.length * 28}px`, padding: "10px", fontSize: "2px", width:"180px" }}
         >
         <div>
 
@@ -24,17 +24,36 @@ function DataTableNode({ data }: DataTableNodeProps){
 
             { data.columns.map( (v,i) => {
 
-                const nodeDistance = 45 + i * 19;
+                const nodeDistance = 46 + i * 23;
 
                 const leftNodeName = `${data.name}_${v.name}_left`
                 const rightNodeName = `${data.name}_${v.name}_right`
                 
                 return (
                     <div key={`${data.name}_${v.name}_rows`}>
-                        <Group position="apart">                 
+                        {/* <Group position="apart">                 
                             <Text size={8}>{v.name}</Text>
                             <Text size={8}>{v.dataType}</Text>
-                        </Group>
+                        </Group> */}
+
+                        <Grid >
+                            <Grid.Col span={2}>
+                                <Text size={8}>
+                                    { v.isPrimaryKey 
+                                        ? "PK" 
+                                        : !!v.foreignTo
+                                        ? "FK"
+                                        : ""
+                                    }
+                                </Text>
+                            </Grid.Col>
+                            <Grid.Col span={6}>
+                                <Text size={8}>{v.name}</Text>
+                            </Grid.Col>
+                            <Grid.Col span={4}>
+                                <Text size={8}>{v.dataType}</Text>
+                            </Grid.Col>
+                        </Grid>
 
                         <Handle 
                             type={!!v.foreignTo ? "target" : "source"} 

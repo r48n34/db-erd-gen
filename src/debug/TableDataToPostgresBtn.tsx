@@ -1,7 +1,7 @@
 import { NavLink } from "@mantine/core";
 import useTableStore from "../store/zustandStore";
 import { tableDataToPostgresScheme } from "../utilis/dataBase/tableDataToPostgres";
-import { IconHome2 } from '@tabler/icons';
+import { IconChevronRight, IconDatabaseImport } from '@tabler/icons';
 
 function TableDataToPostgresBtn(){
     
@@ -10,9 +10,10 @@ function TableDataToPostgresBtn(){
     return (
         <>
         <NavLink 
-            label="Gen postgres string" 
+            label="Generate Postgres" 
             onClick={ () => tableDataToPostgresScheme(tableArray) }
-            icon={<IconHome2 size={16} stroke={1.5} />}
+            icon={<IconDatabaseImport size={16} stroke={1.5} />}
+            rightSection={<IconChevronRight size={12} stroke={1.5} />}
         />  
         </>
     )
