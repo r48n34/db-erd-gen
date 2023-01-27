@@ -1,8 +1,9 @@
-import { Modal, Button, JsonInput, Space, Group } from "@mantine/core";
+import { Modal, Button, JsonInput, Space, Group, NavLink  } from "@mantine/core";
 import useTableStore from "../store/zustandStore";
 import { importJsonFormat } from "../utilis/dataBase/jsonFormat";
 import { useState } from "react";
 import { commonSuccessActions } from "../utilis/notificationUtilis";
+import { IconHome2 } from '@tabler/icons';
 
 const importString = `[{"name":"users","columns":[{"name":"id","dataType":"serial","isPrimaryKey":true},{"name":"name","dataType":"varchar","isPrimaryKey":false}]},{"name":"yolo","columns":[{"name":"id","dataType":"serial","isPrimaryKey":true},{"name":"name","dataType":"integer","isPrimaryKey":false,"foreignTo":{"name":"users","column":"id"}}]}]`
 
@@ -48,9 +49,11 @@ function ImportJsonFormat(){
             </Group>
         </Modal>
 
-        <Button onClick={ () => setOpened(true) }>
-            Import json string
-        </Button>
+        <NavLink 
+            label="Import json string"
+            icon={<IconHome2 size={16} stroke={1.5} />}
+            onClick={ () => setOpened(true) }
+        />
         </>
     )
 }
