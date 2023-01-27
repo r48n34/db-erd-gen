@@ -8,7 +8,6 @@ import 'reactflow/dist/style.css';
 
 import { useEffect } from 'react';
 import useTableStore from '../store/zustandStore';
-import DebugModal from '../debug/DebugModal';
  
 function MainPage(){
     
@@ -32,7 +31,6 @@ function MainPage(){
             </div>
             
         </Splitter>
-        <DebugModal/>
         </>
     )
 }

@@ -1,6 +1,7 @@
 import { Button } from "@mantine/core";
 import useTableStore from "../store/zustandStore";
 import { exportJsonFormat } from "../utilis/dataBase/jsonFormat";
+import { commonSuccessActions } from "../utilis/notificationUtilis";
     
 function ExportJsonFormat(){
 
@@ -8,8 +9,13 @@ function ExportJsonFormat(){
 
     return (
         <>
-        <Button onClick={ () => exportJsonFormat(tableArray) }>
-            Export json string
+        <Button 
+            onClick={ () => {
+                exportJsonFormat(tableArray);
+                commonSuccessActions();
+            }}
+        >
+            Export current json string
         </Button>
         </>
     )

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHotkeys } from '@mantine/hooks';
-import { Drawer, Button, Group, Space } from '@mantine/core';
+import { Drawer, Burger, Space } from '@mantine/core';
 import TableDataToPostgresBtn from './TableDataToPostgresBtn';
 import ExportJsonFormat from './ExportJsonFormat';
 import ImportJsonFormat from './ImportJsonFormat';
@@ -17,7 +17,7 @@ function DebugModal() {
         <Drawer
             opened={opened}
             onClose={() => setOpened(false)}
-            title="Debug menu"
+            title="Control menu"
             padding="xl"
             size="xl"
         >
@@ -29,6 +29,13 @@ function DebugModal() {
             <Space h="md"/>
             <ImportJsonFormat/>
         </Drawer>
+
+        <Burger
+            size={16}
+            opened={opened}
+            onClick={() => setOpened((o) => !o)}
+            title={"Control menu"}
+        />
         </>
     );
 }
