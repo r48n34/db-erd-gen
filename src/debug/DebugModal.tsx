@@ -4,6 +4,7 @@ import { Drawer, Burger, Space } from '@mantine/core';
 import TableDataToPostgresBtn from './TableDataToPostgresBtn';
 import ExportJsonFormat from './ExportJsonFormat';
 import ImportJsonFormat from './ImportJsonFormat';
+import DeleteAllData from './DeleteAllData';
 
 function DebugModal() {
     const [opened, setOpened] = useState(false);
@@ -28,6 +29,9 @@ function DebugModal() {
 
             <Space h="md"/>
             <ImportJsonFormat/>
+            
+            <Space h="md"/>
+            <DeleteAllData/>
         </Drawer>
 
         <Burger

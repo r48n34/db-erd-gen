@@ -10,7 +10,8 @@ interface DataState {
   update: number
   addTableObj: (obj: Table) => void // Get all data from db
   updateTableObj: (obj: Table) => void // Update specific table content by name
-  deleteOneTable: (tableName: string) => void // Get all data from db
+  deleteOneTable: (tableName: string) => void // Delete single data from db
+  deleteAllRecord: () => void // Delete all data in db
 
   importTableObj: (newTableArr: Table[]) => void // Update specific table content by name
 }
@@ -73,6 +74,14 @@ const useTableStore = create<DataState>()(
             set((state) => {
                 return { 
                   tableArray: newTableArr,
+                  update: state.update + 1
+                }
+            })
+        },
+        deleteAllRecord: async () => {
+            set((state) => {
+                return { 
+                  tableArray: [],
                   update: state.update + 1
                 }
             })
