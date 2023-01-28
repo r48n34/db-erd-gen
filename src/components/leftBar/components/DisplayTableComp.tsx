@@ -22,6 +22,10 @@ function DisplayTableComp(){
                     </Accordion.Control>
 
                     <Accordion.Panel>
+                        <Text size={14} align="center">
+                            {v.name}
+                        </Text>
+
                         { v.columns.map( k => (
                             <Box key={"tables_cols_" + k.name}>
                                 <Group position="apart">                 

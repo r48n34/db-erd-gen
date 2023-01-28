@@ -1,5 +1,5 @@
 import { Handle, Position } from 'reactflow';
-import { Card, Text, Group, Badge, Grid } from '@mantine/core';
+import { Card, Text, Space, Badge, Grid } from '@mantine/core';
 import { Table } from '../../interface/inputData';
 
 type DataTableNodeProps = {
@@ -12,7 +12,7 @@ function DataTableNode({ data }: DataTableNodeProps){
         <Card 
             shadow="sm" 
             radius="md" 
-            style={{ height: `${35 + data.columns.length * 28}px`, padding: "10px", fontSize: "2px", width:"180px" }}
+            style={{ height: `${47 + data.columns.length * 28}px`, padding: "10px", fontSize: "2px", width:"210px" }}
         >
         <div>
 
@@ -22,9 +22,11 @@ function DataTableNode({ data }: DataTableNodeProps){
                 </Text>
             </Card.Section>
 
+            <Space h="xs" />
+
             { data.columns.map( (v,i) => {
 
-                const nodeDistance = 46 + i * 25;
+                const nodeDistance = 56 + i * 25;
 
                 const leftNodeName = `${data.name}_${v.name}_left`
                 const rightNodeName = `${data.name}_${v.name}_right`
