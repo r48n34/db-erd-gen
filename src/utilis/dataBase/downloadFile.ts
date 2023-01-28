@@ -1,4 +1,3 @@
-
 export function toDownloadFile(str: string, fileName: string){
 
     if(typeof window !== "undefined"){

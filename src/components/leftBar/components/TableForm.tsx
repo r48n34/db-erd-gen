@@ -191,6 +191,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 return
             }
 
+            // Duplicated column name
             if( Array.from(new Set(values.columns.map( v => v.name ))).length !== values.columns.length ){
                 failedDeleteMessage("Duplicated column name")
                 return

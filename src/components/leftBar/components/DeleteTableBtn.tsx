@@ -1,8 +1,8 @@
-import { ActionIcon, Tooltip, Text } from "@mantine/core";
-import useTableStore from "../../../store/zustandStore";
 import { IconTrash } from '@tabler/icons';
 import { openConfirmModal } from '@mantine/modals';
+import { ActionIcon, Tooltip, Text } from "@mantine/core";
 
+import useTableStore from "../../../store/zustandStore";
 
 type DeleteTableBtnProps = {
     tableName: string;

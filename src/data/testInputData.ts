@@ -1,4 +1,5 @@
 //@ts-nocheck
+// Old files, not in used
 import { Table } from "../interface/inputData";
 
 let tableHello: Table = {

@@ -1,5 +1,5 @@
-import { Table } from "../../interface/inputData";
 import { Node, Edge } from "reactflow";
+import { Table } from "../../interface/inputData";
 
 export function inputDataToNodeAndEdges(tablesArr: Table[]){
     const initNodes: Node[] = [];

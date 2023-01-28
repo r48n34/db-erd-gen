@@ -1,8 +1,10 @@
 import { NavLink } from "@mantine/core";
 import useTableStore from "../store/zustandStore";
-import { tableDataToPostgresScheme } from "../utilis/dataBase/tableDataToPostgres";
+
 import { IconChevronRight, IconDatabaseImport } from '@tabler/icons';
+
 import { toDownloadFile } from "../utilis/dataBase/downloadFile";
+import { tableDataToPostgresScheme } from "../utilis/dataBase/tableDataToPostgres";
 
 function TableDataToPostgresBtn(){
     
@@ -14,9 +16,7 @@ function TableDataToPostgresBtn(){
             label="Generate Postgres" 
             onClick={ () => {
                 const str = tableDataToPostgresScheme(tableArray)
-                const textString = `data:text/json;chatset=utf-8,${encodeURIComponent(
-                    str
-                )}`;
+                const textString = `data:text/json;chatset=utf-8,${encodeURIComponent(str)}`;
 
                 toDownloadFile(textString, "tables.sql")
             }}

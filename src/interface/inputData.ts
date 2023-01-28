@@ -3,7 +3,7 @@ export interface Table {
     columns: Column[]
 }
 
-export type Relationship = "one-to-one" | "one-to-many" | "many-to-one" | "many-to-many"
+export type Relationship = "one-to-one" | "one-to-many" | "many-to-one" | "many-to-many" // not in used now
 
 export interface ForeignToObj {
     name: string

@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useHotkeys } from '@mantine/hooks';
 import { Drawer, Burger, Space } from '@mantine/core';
-import TableDataToPostgresBtn from './TableDataToPostgresBtn';
+
+import DeleteAllData from './DeleteAllData';
 import ExportJsonFormat from './ExportJsonFormat';
 import ImportJsonFormat from './ImportJsonFormat';
-import DeleteAllData from './DeleteAllData';
+import TableDataToPostgresBtn from './TableDataToPostgresBtn';
 
 function DebugModal() {
     const [opened, setOpened] = useState(false);

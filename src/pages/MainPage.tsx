@@ -1,13 +1,13 @@
+import { useEffect } from 'react';
 import Splitter from '@devbookhq/splitter'
+
+import useTableStore from '../store/zustandStore';
 
 import ERTableComp from '../components/ERTableComp';
 import NavBar from '../components/common/NavBar';
 import LeftNavBar from '../components/leftBar/components/LeftNavBar';
 
 import 'reactflow/dist/style.css';
-
-import { useEffect } from 'react';
-import useTableStore from '../store/zustandStore';
  
 function MainPage(){
     
