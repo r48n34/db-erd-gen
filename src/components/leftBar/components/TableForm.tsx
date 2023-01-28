@@ -179,13 +179,22 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             
             console.log(values);
 
+            // Empty table name
             if(values.columns.length === 0){
                 failedDeleteMessage("Table can not be empty.")
                 return
             }
-    
-            // TODO: check if table name exist
-            // TODO2: check if columns is valid
+
+            // PK more than one
+            if(values.columns.filter( v => v.isPrimaryKey).length >= 2){
+                failedDeleteMessage("More than one PK exist, please remove it.")
+                return
+            }
+
+            if( Array.from(new Set(values.columns.map( v => v.name ))).length !== values.columns.length ){
+                failedDeleteMessage("Duplicated column name")
+                return
+            }
     
             const storeObj = {
                 name: values.tableName.trim().toLowerCase().split(" ").join("_"),
@@ -209,10 +218,17 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     
             // Create table
             if(mode === "create"){
+
+                // Table name already exist
+                if(allTableData.map( v => v.name ).indexOf(values.tableName) >= 0){
+                    failedDeleteMessage("Table name already exist")
+                    return
+                }
+
                 addTableObjStore(storeObj);
             }
     
-            // Create table
+            // Edit table
             if(mode === "edit"){
                 updateTableObj(storeObj)
             }

@@ -1,19 +1,12 @@
 import { Table } from "../../interface/inputData";
+import { toDownloadFile } from "./downloadFile";
 
 export function exportJsonFormat(tables: Table[]){
+    const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+        JSON.stringify(tables)
+    )}`;
 
-    if(typeof window !== "undefined"){
-        const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
-            JSON.stringify(tables)
-        )}`;
-
-        const link = document.createElement("a");
-        link.href = jsonString;
-        link.download = "data.json";
-    
-        link.click();
-    }
-
+    toDownloadFile(jsonString, "data.json")
 }
 
 export function importJsonFormat(str: string){

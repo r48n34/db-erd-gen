@@ -8,6 +8,7 @@ import { failedDelete } from '../utilis/notificationUtilis';
 interface DataState {
   tableArray: Table[]
   update: number
+  
   addTableObj: (obj: Table) => void // Get all data from db
   updateTableObj: (obj: Table) => void // Update specific table content by name
   deleteOneTable: (tableName: string) => void // Delete single data from db

@@ -1,7 +1,7 @@
-import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
 import { useLocalStorage, useHotkeys } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
+import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 
 import MainPage from "./pages/MainPage"
 

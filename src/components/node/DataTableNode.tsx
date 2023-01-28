@@ -24,7 +24,7 @@ function DataTableNode({ data }: DataTableNodeProps){
 
             { data.columns.map( (v,i) => {
 
-                const nodeDistance = 46 + i * 23;
+                const nodeDistance = 46 + i * 25;
 
                 const leftNodeName = `${data.name}_${v.name}_left`
                 const rightNodeName = `${data.name}_${v.name}_right`
@@ -39,7 +39,8 @@ function DataTableNode({ data }: DataTableNodeProps){
                         <Grid >
                             <Grid.Col span={2}>
                                 <Text size={8}>
-                                    { v.isPrimaryKey 
+                                    { 
+                                        v.isPrimaryKey 
                                         ? "PK" 
                                         : !!v.foreignTo
                                         ? "FK"
