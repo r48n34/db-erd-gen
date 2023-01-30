@@ -1,10 +1,10 @@
 export interface PostgresToKnexTypeArray {
     postgresKey: string;
     knexKey: string;
-
+    specificTypeName?: string
 }
 
-export const PostgresToKnexArray = [
+export const postgresToKnexArray = [
     { knexKey: "bigInteger", postgresKey: "bigint"},
     { knexKey: "bigIncrements", postgresKey: "bigserial" },
     { knexKey: "", postgresKey: "bit" },
