@@ -12,7 +12,7 @@ function DataTableNode({ data }: DataTableNodeProps){
         <Card 
             shadow="sm" 
             radius="md" 
-            style={{ height: `${47 + data.columns.length * 28}px`, padding: "10px", fontSize: "2px", width:"210px" }}
+            style={{ height: `${47 + data.columns.length * 28}px`, padding: "10px", fontSize: "2px", width:"230px" }}
         >
         <div>
 

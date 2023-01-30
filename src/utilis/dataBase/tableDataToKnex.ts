@@ -13,7 +13,7 @@ export function tableDataToKnexScheme(tables: Table[]){
         for(let col of table.columns){
 
             if(col.name === "id" && col.isPrimaryKey){
-                tableStr.push(tab(3) + "table.increments();");
+                tableStr.push(tab(3) + "table.increments()");
                 continue
             }
 

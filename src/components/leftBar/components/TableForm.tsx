@@ -310,7 +310,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
         <Group position="center">
             <Tooltip label={ mode === "create" ? "Add table" : "Edit table" }>
             <ActionIcon onClick={ () => setOpened(true) }>
-                { mode === "create" ? <IconSquarePlus size={36} /> : <IconEdit size={18} />}
+                { mode === "create" ? <IconSquarePlus size={20} /> : <IconEdit size={18} />}
             </ActionIcon>
             </Tooltip>
         </Group>

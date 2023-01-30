@@ -1,4 +1,4 @@
-import { Accordion, Group, Text, Box, Badge } from '@mantine/core';
+import { Accordion, Group, Text, Box, Badge, ScrollArea } from '@mantine/core';
 
 import DeleteTableBtn from './DeleteTableBtn';
 import TableForm from './TableForm';
@@ -11,6 +11,7 @@ function DisplayTableComp(){
 
     return (
         <>
+        <ScrollArea style={{ height: "88vh" }}>
         <Accordion multiple>
 
             { tableArray.map( v => (
@@ -52,6 +53,7 @@ function DisplayTableComp(){
             ))}
 
         </Accordion>
+        </ScrollArea>
         </>
     )
 }
