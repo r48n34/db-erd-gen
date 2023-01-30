@@ -28,6 +28,10 @@ export function tableDataToKnexScheme(tables: Table[]){
                 strs += `table.${postgresToKnexArray[targetTypeInd].knexKey}("${col.name}")`
             }
 
+            if(col.notNull){
+                strs += `.notNullable()`
+            }
+
             tableStr.push(strs)
 
             if(col.foreignTo){

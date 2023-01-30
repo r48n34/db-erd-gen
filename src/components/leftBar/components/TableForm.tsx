@@ -124,12 +124,21 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 </Grid.Col>
 
                 <Grid.Col span={1}>
+                    <Text align="left" size={14} weight={600} mt={3}>not Null</Text>
+                    <Switch
+                        mt={10}
+                        {...form.getInputProps(`columns.${index}.notNull`, { type: 'checkbox' })}
+                    />
+                </Grid.Col>
+
+                <Grid.Col span={1}>
                     <Text align="left" size={14} weight={600} mt={3}>FK</Text>
                     <Switch
                         mt={10}
                         {...form.getInputProps(`columns.${index}.isForeignKey`, { type: 'checkbox' })}
                     />
                 </Grid.Col>
+
 
                 { form.values.columns[index].isForeignKey 
                 ? (
