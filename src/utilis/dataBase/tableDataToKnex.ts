@@ -50,12 +50,16 @@ export function tableDataToKnexScheme(tables: Table[]){
         schemeArray.push(finalTableStr);
     }
 
-    console.log(schemeArray.join("\n"));
+    // console.log(schemeArray.join("\n"));
+
+    let reverseArr = [...tables]
+        .map( v => tab(1) + `await knex.schema.dropTableIfExists("${v.name}");`).reverse();
+
     return `import { Knex } from "knex"; \n \n`
         + `export async function up(knex: Knex): Promise<void> { \n \n `
         + schemeArray.join("\n")
         + `} \n \n`
         + `export async function down(knex: Knex): Promise<void> { \n`
-        + tables.map( v => tab(1) + `await knex.schema.dropTableIfExists("${v.name}");`).join("\n")
+        + reverseArr.join("\n")
         + `\n` + `}`
 }

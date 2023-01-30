@@ -26,7 +26,7 @@ function MainPage(){
                 <LeftNavBar/>
             </div>
 
-            <div style={{ height: "95vh" }}>
+            <div style={{ height: "93vh" }}>
                 <ERTableComp/>
             </div>
             

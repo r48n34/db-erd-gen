@@ -95,7 +95,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     const tablesField = form.values.columns.map((v, index) => (
        
             <Grid key={"col_" + v.id}>
-                <Grid.Col span={3}>
+                <Grid.Col span={2}>
                     <TextInput
                         withAsterisk
                         label="Column name"
@@ -138,7 +138,6 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         {...form.getInputProps(`columns.${index}.isForeignKey`, { type: 'checkbox' })}
                     />
                 </Grid.Col>
-
 
                 { form.values.columns[index].isForeignKey 
                 ? (
