@@ -23,11 +23,12 @@ interface FormColumns {
     name: string,
     dataType: string
     isPrimaryKey: boolean
-    isForeignKey: boolean,
+    isForeignKey: boolean
     foreignTo: {
         name: null | string,
         column: null | string
     },
+    notNull: boolean
     relationship: null | string
 }
 
@@ -57,6 +58,7 @@ function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject
                 dataType: "serial",
                 isPrimaryKey: true,
                 isForeignKey: false,
+                notNull: false,
                 foreignTo: {name: null, column: null},
                 relationship: null
             }
@@ -71,7 +73,7 @@ interface FormObject {
 
 function TableForm({ mode = "create", allTableData, editData }: TableFormProps) {
 
-    const [ opened, setOpened ] = useState(false);
+    const [ opened, setOpened ] = useState<boolean>(false);
 
     const addTableObjStore = useTableStore((state) => state.addTableObj);
     const updateTableObj = useTableStore((state) => state.updateTableObj);
@@ -80,6 +82,9 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
         initialValues: initDataGenerator(mode, editData),
         validate: {
             tableName: (v) => (v.length <= 1 ? "Table name should be larger than one" : null),
+            columns: {
+                name: (value) => (value.length === 0 ? 'Invalid names' : null),
+            }
         }
     });
 
@@ -87,7 +92,6 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
         form.setValues(initDataGenerator(mode, editData))
     }, [editData])
     
-
     const tablesField = form.values.columns.map((v, index) => (
        
             <Grid key={"col_" + v.id}>
@@ -155,8 +159,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                             {...form.getInputProps(`columns.${index}.foreignTo.column`)}
                         />
                     </Grid.Col>
-                </>
-                )
+                </> )
                 : (<Grid.Col span={4}></Grid.Col>) 
                 }
 
@@ -212,6 +215,8 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                             column: v.foreignTo.column as string
                         }
                     }
+
+                    baseObj.notNull = v.notNull
     
                     return baseObj
                 })
@@ -275,6 +280,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                                 dataType: "integer",
                                 isPrimaryKey: false,
                                 isForeignKey: false,
+                                notNull: false,
                                 foreignTo: {name: null, column: null},
                                 relationship: null
                             }

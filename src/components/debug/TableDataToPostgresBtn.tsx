@@ -1,24 +1,24 @@
 import { NavLink } from "@mantine/core";
-import useTableStore from "../store/zustandStore";
+import useTableStore from "../../store/zustandStore";
 
 import { IconChevronRight, IconDatabaseImport } from '@tabler/icons';
 
-import { toDownloadFile } from "../utilis/dataBase/downloadFile";
-import { tableDataToKnexScheme } from "../utilis/dataBase/tableDataToKnex";
+import { toDownloadFile } from "../../utilis/dataBase/downloadFile";
+import { tableDataToPostgresScheme } from "../../utilis/dataBase/tableDataToPostgres";
 
+function TableDataToPostgresBtn(){
     
-function TableDataToKnexBtn(){
     const tableArray = useTableStore((state) => state.tableArray);
 
     return (
         <>
         <NavLink 
-            label="Generate Knex" 
+            label="Generate Postgres" 
             onClick={ () => {
-                const str = tableDataToKnexScheme(tableArray)
+                const str = tableDataToPostgresScheme(tableArray)
                 const textString = `data:text/json;chatset=utf-8,${encodeURIComponent(str)}`;
 
-                toDownloadFile(textString, "megrations.ts")
+                toDownloadFile(textString, "tables.sql")
             }}
             icon={<IconDatabaseImport size={16} stroke={1.5} />}
             rightSection={<IconChevronRight size={12} stroke={1.5} />}
@@ -27,4 +27,4 @@ function TableDataToKnexBtn(){
     )
 }
     
-export default TableDataToKnexBtn
+export default TableDataToPostgresBtn

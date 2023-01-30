@@ -2,11 +2,11 @@ import { useState } from "react";
 import { IconChevronRight, IconFileImport } from '@tabler/icons';
 import { Modal, Button, JsonInput, Space, Group, NavLink  } from "@mantine/core";
 
-import useTableStore from "../store/zustandStore";
+import useTableStore from "../../store/zustandStore";
 
-import { importJsonFormat } from "../utilis/dataBase/jsonFormat";
-import { commonSuccessActions } from "../utilis/notificationUtilis";
-import { importString } from "../data/testInputData";
+import { importJsonFormat } from "../../utilis/dataBase/jsonFormat";
+import { commonSuccessActions } from "../../utilis/notificationUtilis";
+import { importString } from "../../data/testInputData";
 
 // const importString = `[{"name":"users","columns":[{"name":"id","dataType":"serial","isPrimaryKey":true},{"name":"name","dataType":"varchar","isPrimaryKey":false}]},{"name":"yolo","columns":[{"name":"id","dataType":"serial","isPrimaryKey":true},{"name":"name","dataType":"integer","isPrimaryKey":false,"foreignTo":{"name":"users","column":"id"}}]}]`
 

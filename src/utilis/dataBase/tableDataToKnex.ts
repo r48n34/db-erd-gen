@@ -28,7 +28,6 @@ export function tableDataToKnexScheme(tables: Table[]){
             + tab(2) + `}); \n`
             + tab(1) + `} \n`
 
-        
         schemeArray.push(finalTableStr);
     }
 
