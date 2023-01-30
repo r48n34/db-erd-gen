@@ -47,7 +47,6 @@ export const postgresTypeArray = [
     { label: "tsvector", value: "tsvector", group: "text search" },
     { label: "txid_snapshot", value: "txid_snapshot", group: "others" },
     { label: "uuid", value: "uuid", group: "uuid" },
-    { label: "xm",	 value: "xm", group: "others" }	
 ] as PostgresTypeArray[]
 
 export const postgresTypeArrayString = new Set(postgresTypeArray.map( v => v.value ))

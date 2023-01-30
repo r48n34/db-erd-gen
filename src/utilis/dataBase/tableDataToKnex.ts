@@ -17,12 +17,22 @@ export function tableDataToKnexScheme(tables: Table[]){
                 continue
             }
 
-            const targetType = postgresToKnexArray.findIndex( v => v.postgresKey === col.dataType );
-            const strs = tab(3) + `table.${postgresToKnexArray[targetType].knexKey}("${col.name}")`
+            const targetTypeInd = postgresToKnexArray.findIndex( v => v.postgresKey === col.dataType );
+            let strs = tab(3) + ``
+
+            if(postgresToKnexArray[targetTypeInd].knexKey === "specificType"){
+                const specificType = postgresToKnexArray[targetTypeInd].specificTypeName;
+                strs += `table.specificType("${col.name}", "${specificType}")`;
+            }
+            else{
+                strs += `table.${postgresToKnexArray[targetTypeInd].knexKey}("${col.name}")`
+            }
+
             tableStr.push(strs)
 
             if(col.foreignTo){
-                const forientStr = tab(3) + `table.foreign("${col.name}").references("${col.foreignTo.name}.${col.foreignTo.column}")`;
+                const forientStr = tab(3) 
+                    + `table.foreign("${col.name}").references("${col.foreignTo.name}.${col.foreignTo.column}")`;
                 tableStr.push(forientStr)
             }
         }
