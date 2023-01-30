@@ -33,7 +33,7 @@ interface FormColumns {
 }
 
 function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject{
-    console.log("NEW EDIT DATA", editData);
+    // console.log("NEW EDIT DATA", editData);
     
     if(mode === "edit" && !!editData){
         
@@ -83,7 +83,11 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
         validate: {
             tableName: (v) => (v.length <= 1 ? "Table name should be larger than one" : null),
             columns: {
-                name: (value) => (value.length === 0 ? 'Invalid names' : null),
+                name: (v, obj) => {
+                    console.log(obj);
+                    return (v.length === 0 ? 'Invalid names' : null)
+                    
+                },
             }
         }
     });
