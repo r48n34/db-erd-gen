@@ -1,0 +1,50 @@
+export interface PostgresToKnexTypeArray {
+    postgresKey: string;
+    knexKey: string;
+
+}
+
+export const PostgresToKnexArray = [
+    { knexKey: "bigInteger", postgresKey: "bigint"},
+    { knexKey: "bigIncrements", postgresKey: "bigserial" },
+    { knexKey: "", postgresKey: "bit" },
+    { knexKey: "", postgresKey: "bit varying " },
+    { knexKey: "boolean", postgresKey: "boolean" },
+    { knexKey: "", postgresKey: "box" },
+    { knexKey: "", postgresKey: "bytea" },
+    { knexKey: "string", postgresKey: "varchar" },
+    { knexKey: "specificType", postgresKey: "char", specificTypeName: "char(255)"},
+    { knexKey: "", postgresKey: "cidr" },
+    { knexKey: "", postgresKey: "circle" },
+    { knexKey: "date", postgresKey: "date" },
+    { knexKey: "double", postgresKey: "double precision" },
+    { knexKey: "", postgresKey: "inet" },
+    { knexKey: "integer", postgresKey: "integer" },
+    { knexKey: "", postgresKey: "interval" },
+    { knexKey: "json", postgresKey: "json" },
+    { knexKey: "jsonb", postgresKey: "jsonb" },
+    { knexKey: "", postgresKey: "line" },
+    { knexKey: "", postgresKey: "lseg" },
+    { knexKey: "", postgresKey: "macaddr" },
+    { knexKey: "", postgresKey: "macaddr8" },
+    { knexKey: "", postgresKey: "money" },
+    { knexKey: "decimal", postgresKey: "numeric"},
+    { knexKey: "", postgresKey: "path" },
+    { knexKey: "", postgresKey: "pg_lsn" },
+    { knexKey: "", postgresKey: "pg_snapshot" },
+    { knexKey: "point", postgresKey: "point" },
+    { knexKey: "", postgresKey: "polygon" },
+    { knexKey: "", postgresKey: "real" },
+    { knexKey: "smallint", postgresKey: "smallint" },
+    { knexKey: "increments", postgresKey: "smallserial" },
+    { knexKey: "increments", postgresKey: "serial" },
+    { knexKey: "text", postgresKey: "text" },
+    { knexKey: "time", postgresKey: "time" },
+    { knexKey: "timestamp", postgresKey: "timestamp" },
+    { knexKey: "timestamp", postgresKey: "timestamp with time zone" },
+    { knexKey: "", postgresKey: "tsquery" },
+    { knexKey: "", postgresKey: "tsvector" },
+    { knexKey: "", postgresKey: "txid_snapshot" },
+    { knexKey: "uuid", postgresKey: "uuid" },
+    { knexKey: "",	 postgresKey: "xm" }	
+] as PostgresToKnexTypeArray[]

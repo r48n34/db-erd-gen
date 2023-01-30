@@ -43,7 +43,6 @@ export const postgresTypeArray = [
     { label: "time", value: "time", group: "date/time" },
     { label: "time with time zone", value: "time with time zone", group: "date/time" },
     { label: "timestamp", value: "timestamp", group: "date/time" },
-    { label: "timestamp with time zone", value: "timestamp with time zone", group: "date/time" },
     { label: "tsquery", value: "tsquery", group: "text search" },
     { label: "tsvector", value: "tsvector", group: "text search" },
     { label: "txid_snapshot", value: "txid_snapshot", group: "others" },
