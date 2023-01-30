@@ -1,7 +1,7 @@
 import { NavLink } from "@mantine/core";
 import useTableStore from "../../store/zustandStore";
 
-import { IconChevronRight, IconDatabaseImport } from '@tabler/icons';
+import { IconChevronRight, IconFileDatabase } from '@tabler/icons';
 
 import { toDownloadFile } from "../../utilis/dataBase/downloadFile";
 import { tableDataToKnexScheme } from "../../utilis/dataBase/tableDataToKnex";
@@ -19,7 +19,7 @@ function TableDataToKnexBtn(){
 
                 toDownloadFile(textString, `${new Date().getTime()}_migrations.ts`)
             }}
-            icon={<IconDatabaseImport size={16} stroke={1.5} />}
+            icon={<IconFileDatabase size={16} stroke={1.5} />}
             rightSection={<IconChevronRight size={12} stroke={1.5} />}
         />  
         </>
