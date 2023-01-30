@@ -12,14 +12,19 @@ export function tableDataToKnexScheme(tables: Table[]){
 
         for(let col of table.columns){
 
-           if(col.name === "id" && col.isPrimaryKey){
-            tableStr.push(tab(3) + "table.increments();");
-            continue
-           }
+            if(col.name === "id" && col.isPrimaryKey){
+                tableStr.push(tab(3) + "table.increments();");
+                continue
+            }
 
-           const targetType = postgresToKnexArray.findIndex( v => v.postgresKey === col.dataType );
-           const strs = tab(3) + `table.${postgresToKnexArray[targetType].knexKey}("${col.name}")`
-           tableStr.push(strs)
+            const targetType = postgresToKnexArray.findIndex( v => v.postgresKey === col.dataType );
+            const strs = tab(3) + `table.${postgresToKnexArray[targetType].knexKey}("${col.name}")`
+            tableStr.push(strs)
+
+            if(col.foreignTo){
+                const forientStr = tab(3) + `table.foreign("${col.name}").references("${col.foreignTo.name}.${col.foreignTo.column}")`;
+                tableStr.push(forientStr)
+            }
         }
 
         const finalTableStr = tab(1) + `if ( !(await knex.schema.hasTable("${table.name}")) ) { \n`
