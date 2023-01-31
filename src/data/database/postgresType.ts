@@ -45,8 +45,10 @@ export const postgresTypeArray = [
     { label: "timestamp", value: "timestamp", group: "date/time" },
     { label: "tsquery", value: "tsquery", group: "text search" },
     { label: "tsvector", value: "tsvector", group: "text search" },
-    { label: "txid_snapshot", value: "txid_snapshot", group: "others" },
+    // { label: "txid_snapshot", value: "txid_snapshot", group: "others" },
     { label: "uuid", value: "uuid", group: "uuid" },
 ] as PostgresTypeArray[]
 
 export const postgresTypeArrayString = new Set(postgresTypeArray.map( v => v.value ))
+
+export const postgresTypeGroup = Array.from( new Set(postgresTypeArray.map( v => v.group )) )

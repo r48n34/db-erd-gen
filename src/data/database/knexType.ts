@@ -44,6 +44,6 @@ export const postgresToKnexArray = [
     { knexKey: "timestamp", postgresKey: "timestamp with time zone" },
     { knexKey: "specificType", postgresKey: "tsquery", specificTypeName: "tsquery" },
     { knexKey: "specificType", postgresKey: "tsvector", specificTypeName: "tsvector" },
-    { knexKey: "specificType", postgresKey: "txid_snapshot", specificTypeName: "txid_snapshot" },
+    // { knexKey: "specificType", postgresKey: "txid_snapshot", specificTypeName: "txid_snapshot" },
     { knexKey: "uuid", postgresKey: "uuid" },
 ] as PostgresToKnexTypeArray[]

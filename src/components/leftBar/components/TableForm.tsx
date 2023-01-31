@@ -11,6 +11,7 @@ import { uuidGen } from "../../../utilis/uuidGen";
 import { commonSuccessActions, failedDeleteMessage } from "../../../utilis/notificationUtilis";
 
 import { postgresTypeArray } from "../../../data/database/postgresType";
+import ColumnTypeList from "../../dataSample/ColumnTypeList";
 
 type TableFormProps = {
   mode: "create" | "edit"
@@ -105,8 +106,9 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 </Grid.Col>
 
                 <Grid.Col span={2}>
+                    
                     <Select
-                        label="Column type"
+                        label={<div style={{ display: "inline-block"}}><ColumnTypeList/></div>}
                         placeholder="integer"
                         withAsterisk
                         searchable
@@ -116,7 +118,10 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 </Grid.Col>
 
                 <Grid.Col span={1}>
-                    <Text align="left" size={14} weight={600} mt={3}>PK</Text>
+                    <Tooltip label="Primary Key">
+                        <Text align="left" size={14} weight={600} mt={3}>PK</Text>
+                    </Tooltip>
+
                     <Switch
                         mt={10}
                         {...form.getInputProps(`columns.${index}.isPrimaryKey`, { type: 'checkbox' })}
@@ -124,7 +129,10 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 </Grid.Col>
 
                 <Grid.Col span={1}>
-                    <Text align="left" size={14} weight={600} mt={3}>not Null</Text>
+                    <Tooltip label="Column not nullable?">
+                        <Text align="left" size={14} weight={600} mt={3}>not Null</Text>
+                    </Tooltip>
+
                     <Switch
                         mt={10}
                         {...form.getInputProps(`columns.${index}.notNull`, { type: 'checkbox' })}
@@ -132,7 +140,10 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 </Grid.Col>
 
                 <Grid.Col span={1}>
-                    <Text align="left" size={14} weight={600} mt={3}>FK</Text>
+                    <Tooltip label="Foreign Key">
+                        <Text align="left" size={14} weight={600} mt={3}>FK</Text>
+                    </Tooltip>
+
                     <Switch
                         mt={10}
                         {...form.getInputProps(`columns.${index}.isForeignKey`, { type: 'checkbox' })}
