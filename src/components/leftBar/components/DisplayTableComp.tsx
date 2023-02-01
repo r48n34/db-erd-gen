@@ -31,7 +31,7 @@ function DisplayTableComp(){
                             <Box key={"tables_cols_" + k.name}>
                                 <Group position="apart">                 
                                     <Text size={14}>
-                                        {k.name}
+                                        {k.name}{" "}
                                         {k.foreignTo && <Badge size="xs">(FK)</Badge>}
                                         {k.notNull && <Badge color="red" size="xs">(Not Null)</Badge>}
                                     </Text>
