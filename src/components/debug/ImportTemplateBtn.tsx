@@ -1,0 +1,29 @@
+import { NavLink } from "@mantine/core";
+import { IconFileExport, IconChevronRight } from "@tabler/icons";
+
+import { importString } from "../../data/testInputData";
+import { commonSuccessActions } from "../../utilis/notificationUtilis";
+import { importJsonFormat } from "../../utilis/dataBase/jsonFormat";
+
+import useTableStore from "../../store/zustandStore";
+
+function ImportTemplateBtn(){
+    const importTableObj = useTableStore((state) => state.importTableObj);
+
+    return (
+        <>
+        <NavLink
+            label="Import template"
+            icon={<IconFileExport size={16} stroke={1.5} />}
+            rightSection={<IconChevronRight size={12} stroke={1.5} />}
+            onClick={ () => {
+                const result = importJsonFormat(importString);
+                importTableObj(result);
+                commonSuccessActions();
+            }}
+        />
+        </>
+    )
+}
+    
+export default ImportTemplateBtn

@@ -1,5 +1,5 @@
-import { Tooltip, ActionIcon, useMantineColorScheme } from '@mantine/core';
 import { IconSun, IconMoonStars } from '@tabler/icons';
+import { Tooltip, ActionIcon, useMantineColorScheme } from '@mantine/core';
     
 function ThemeToggleBtn(){
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();

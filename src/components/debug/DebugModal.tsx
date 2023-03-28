@@ -7,6 +7,7 @@ import ExportJsonFormat from './ExportJsonFormat';
 import ImportJsonFormat from './ImportJsonFormat';
 import TableDataToPostgresBtn from './TableDataToPostgresBtn';
 import TableDataToKnexBtn from './TableDataToKnexBtn';
+import ImportTemplateBtn from './ImportTemplateBtn';
 
 function DebugModal() {
     const [opened, setOpened] = useState(false);
@@ -34,6 +35,9 @@ function DebugModal() {
 
             <Space h="md"/>
             <ImportJsonFormat/>
+
+            <Space h="md"/>
+            <ImportTemplateBtn/>
             
             <Space h="md"/>
             <DeleteAllData/>

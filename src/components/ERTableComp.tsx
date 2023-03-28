@@ -6,7 +6,6 @@ import ReactFlow, {
     applyEdgeChanges,
     NodeChange,
     EdgeChange,
-    MiniMap,
     Panel,
     Node,
     Edge,

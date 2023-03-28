@@ -2,7 +2,6 @@ import { Header, Group } from '@mantine/core';
 import ThemeToggleBtn from './ThemeToggleBtn';
 import DebugModal from '../debug/DebugModal';
 
-
 export default function NavBar() {
    return (
     <>
