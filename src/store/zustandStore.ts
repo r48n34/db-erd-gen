@@ -22,7 +22,7 @@ const useTableStore = create<DataState>()(
     persist( (set) => ({
         tableArray: grandData,
         update: 0,
-        addTableObj: async (obj: Table) => {
+        addTableObj: (obj: Table) => {
             set((state) => {
                 return { 
                   tableArray: [...state.tableArray, obj],
@@ -30,23 +30,20 @@ const useTableStore = create<DataState>()(
                 }
             })
         },
-        updateTableObj: async (obj: Table) => {
+        updateTableObj: (obj: Table) => {
             set((state) => {
                 const targetTableObjIndex = state.tableArray.findIndex( v => v.name === obj.name)
 
                 let newTable = state.tableArray;
                 newTable[targetTableObjIndex] = obj;
-
-                console.log("NEW DATA", );
                 
-
                 return { 
                   tableArray: newTable,
                   update: state.update + 1
                 }
             })
         },
-        deleteOneTable: async (tableName: string) => {
+        deleteOneTable: (tableName: string) => {
             set((state) => {
                 const newTableArr = state.tableArray.filter( v => v.name !== tableName);
 
@@ -71,7 +68,7 @@ const useTableStore = create<DataState>()(
                 }
             })
         },
-        importTableObj: async (newTableArr: Table[]) => {
+        importTableObj: (newTableArr: Table[]) => {
             set((state) => {
                 return { 
                   tableArray: newTableArr,
@@ -79,7 +76,7 @@ const useTableStore = create<DataState>()(
                 }
             })
         },
-        deleteAllRecord: async () => {
+        deleteAllRecord: () => {
             set((state) => {
                 return { 
                   tableArray: [],
