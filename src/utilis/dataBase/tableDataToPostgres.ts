@@ -25,7 +25,7 @@ export function tableDataToPostgresScheme(tables: Table[]){
             }
         }
 
-        const finalTableStr = `CREATE TABLE ${table.name} ( \n` + tableStr.join(", \n") + `\n` + `) \n`
+        const finalTableStr = `CREATE TABLE ${table.name} ( \n` + tableStr.join(", \n") + `\n` + `); \n`
         schemeArray.push(finalTableStr);
     }
 
