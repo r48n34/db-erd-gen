@@ -295,8 +295,8 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                             'columns', 
                             {
                                 id: uuidGen(),
-                                name: "id",
-                                dataType: "integer",
+                                name: "name",
+                                dataType: "varchar",
                                 isPrimaryKey: false,
                                 isForeignKey: false,
                                 notNull: false,

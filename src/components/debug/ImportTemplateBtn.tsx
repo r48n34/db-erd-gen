@@ -1,5 +1,5 @@
 import { NavLink } from "@mantine/core";
-import { IconFileExport, IconChevronRight } from "@tabler/icons";
+import { IconListDetails, IconChevronRight } from "@tabler/icons";
 
 import { importString } from "../../data/testInputData";
 import { commonSuccessActions } from "../../utilis/notificationUtilis";
@@ -14,7 +14,7 @@ function ImportTemplateBtn(){
         <>
         <NavLink
             label="Import template"
-            icon={<IconFileExport size={16} stroke={1.5} />}
+            icon={<IconListDetails size={16} stroke={1.5} />}
             rightSection={<IconChevronRight size={12} stroke={1.5} />}
             onClick={ () => {
                 const result = importJsonFormat(importString);
