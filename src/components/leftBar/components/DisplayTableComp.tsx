@@ -11,7 +11,7 @@ function DisplayTableComp(){
 
     return (
         <>
-        <ScrollArea style={{ height: "88vh" }}>
+        <ScrollArea style={{ height: "88vh" }} mt={4}>
         <Accordion multiple>
 
             { tableArray.map( v => (

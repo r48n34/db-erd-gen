@@ -33,7 +33,7 @@ function DeleteAllData(){
             color="red"
             active
             icon={<IconTrashOff size={16} stroke={1.5} />}
-            rightSection={<IconChevronRight size={12} stroke={1.5} />}
+            // rightSection={<IconChevronRight size={12} stroke={1.5} />}
             onClick={ () => openModal() }
         />
         </>

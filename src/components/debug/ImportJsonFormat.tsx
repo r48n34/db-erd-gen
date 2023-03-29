@@ -53,7 +53,7 @@ function ImportJsonFormat(){
         <NavLink 
             label="Import json"
             icon={<IconFileImport size={16} stroke={1.5} />}
-            rightSection={<IconChevronRight size={12} stroke={1.5} />}
+            // rightSection={<IconChevronRight size={12} stroke={1.5} />}
             onClick={ () => setOpened(true) }
         />
         </>

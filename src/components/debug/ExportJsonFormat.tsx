@@ -15,7 +15,7 @@ function ExportJsonFormat(){
         <NavLink
             label="Export json"
             icon={<IconFileExport size={16} stroke={1.5} />}
-            rightSection={<IconChevronRight size={12} stroke={1.5} />}
+            // rightSection={<IconChevronRight size={12} stroke={1.5} />}
             onClick={ () => {
                 exportJsonFormat(tableArray);
                 commonSuccessActions();

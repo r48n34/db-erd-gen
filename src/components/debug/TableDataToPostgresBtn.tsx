@@ -21,7 +21,7 @@ function TableDataToPostgresBtn(){
                 toDownloadFile(textString, "tables.sql")
             }}
             icon={<IconDatabaseImport size={16} stroke={1.5} />}
-            rightSection={<IconChevronRight size={12} stroke={1.5} />}
+            // rightSection={<IconChevronRight size={12} stroke={1.5} />}
         />  
         </>
     )
