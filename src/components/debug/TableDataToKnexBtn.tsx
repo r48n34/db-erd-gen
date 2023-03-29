@@ -1,7 +1,7 @@
 import { NavLink } from "@mantine/core";
 import useTableStore from "../../store/zustandStore";
 
-import { IconChevronRight, IconFileDatabase } from '@tabler/icons';
+import { IconFileDatabase } from '@tabler/icons';
 
 import { toDownloadFile } from "../../utilis/dataBase/downloadFile";
 import { tableDataToKnexScheme } from "../../utilis/dataBase/tableDataToKnex";
@@ -12,7 +12,7 @@ function TableDataToKnexBtn(){
     return (
         <>
         <NavLink 
-            label="Generate Knex" 
+            label="Generate Knex (Download)" 
             onClick={ () => {
                 const str = tableDataToKnexScheme(tableArray)
                 const textString = `data:text/json;chatset=utf-8,${encodeURIComponent(str)}`;

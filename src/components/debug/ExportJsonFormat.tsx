@@ -1,5 +1,5 @@
 import { NavLink } from "@mantine/core";
-import { IconChevronRight, IconFileExport } from '@tabler/icons';
+import { IconFileExport } from '@tabler/icons';
 
 import useTableStore from "../../store/zustandStore";
 
@@ -13,12 +13,13 @@ function ExportJsonFormat(){
     return (
         <>
         <NavLink
-            label="Export json"
+            label="Export json (Download)"
             icon={<IconFileExport size={16} stroke={1.5} />}
             // rightSection={<IconChevronRight size={12} stroke={1.5} />}
             onClick={ () => {
                 exportJsonFormat(tableArray);
                 commonSuccessActions();
+                window.open("vscode://file/c:/");
             }}
         />
         </>

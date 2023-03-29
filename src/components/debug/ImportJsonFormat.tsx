@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IconChevronRight, IconFileImport } from '@tabler/icons';
+import { IconFileImport } from '@tabler/icons';
 import { Modal, Button, JsonInput, Space, Group, NavLink  } from "@mantine/core";
 
 import useTableStore from "../../store/zustandStore";

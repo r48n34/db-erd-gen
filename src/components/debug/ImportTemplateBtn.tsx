@@ -1,5 +1,5 @@
 import { NavLink } from "@mantine/core";
-import { IconListDetails, IconChevronRight } from "@tabler/icons";
+import { IconListDetails } from "@tabler/icons";
 
 import { importString } from "../../data/testInputData";
 import { commonSuccessActions } from "../../utilis/notificationUtilis";

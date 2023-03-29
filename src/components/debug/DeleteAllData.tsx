@@ -2,7 +2,7 @@ import { NavLink, Text } from '@mantine/core';
 import { openConfirmModal } from '@mantine/modals';
 
 import useTableStore from "../../store/zustandStore";
-import { IconTrashOff, IconChevronRight } from '@tabler/icons';
+import { IconTrashOff } from '@tabler/icons';
 import { commonSuccessActions } from '../../utilis/notificationUtilis';
 
 function DeleteAllData(){
