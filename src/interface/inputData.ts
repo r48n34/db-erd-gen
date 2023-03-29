@@ -1,6 +1,12 @@
 export interface Table {
     name: string
     columns: Column[]
+    position?: TablePosition // Newly added
+}
+
+export type TablePosition = { 
+    x: number,
+    y: number
 }
 
 export type Relationship = "one-to-one" | "one-to-many" | "many-to-one" | "many-to-many" // not in used now

@@ -19,19 +19,30 @@ import useTableStore from '../store/zustandStore';
 function ERTableComp(){
 
     const tableArray = useTableStore((state) => state.tableArray);
+    const updateTablePositions = useTableStore((state) => state.updateTablePositions);
     const update = useTableStore((state) => state.update);
-
-    useEffect(() => {
-        const testData = inputDataToNodeAndEdges(tableArray);
-        setNodes(testData.nodes)
-        setEdges(testData.edges)
-    }, [tableArray, update]);
 
     const [nodes, setNodes] = useState<Node<any>[]>([]);
     const [edges, setEdges] = useState<Edge<any>[]>([]);
 
+    useEffect(() => {
+        const testData = inputDataToNodeAndEdges(tableArray);
+        
+        setNodes(testData.nodes)
+        setEdges(testData.edges)
+    }, [tableArray, update]);
+
     const onNodesChange = useCallback(
-        (changes: NodeChange[]) => setNodes((nds) => applyNodeChanges(changes, nds)),
+        (changes: NodeChange[]) => {
+            setNodes((nds) => applyNodeChanges(changes, nds))
+        },
+        []
+    );
+
+    const onNodeDragStop = useCallback(
+        (_: React.MouseEvent, node: Node,) => {
+            updateTablePositions(node.data.name, node.position);
+        },
         []
     );
 
@@ -50,13 +61,12 @@ function ERTableComp(){
             
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
-            // onConnect={onConnect}
+            onNodeDragStop={onNodeDragStop}
 
             nodeTypes={nodeTypes}
         >
             <Background />
             <Controls />
-            {/* <MiniMap nodeStrokeWidth={2} zoomable pannable /> */}
             <Panel position="top-right">
                 <Badge>Table count: {nodes.length}</Badge>
             </Panel>

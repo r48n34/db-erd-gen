@@ -30,10 +30,17 @@ export function inputDataToNodeAndEdges(tablesArr: Table[]){
 
         const tableInfo = {
             name: name,
-            columns: table.columns
+            columns: table.columns,
+            position: table.position || { x: initTableDistance, y: 500 }
         } 
 
-        initNodes.push({ id: name, type: 'textUpdater', position: { x: initTableDistance, y: 500 }, data: tableInfo })
+        initNodes.push({ 
+            id: name, 
+            type: 'textUpdater',
+            position: table.position || { x: initTableDistance, y: 500 },
+            data: tableInfo
+        })
+
         initTableDistance += 250;
     } 
 

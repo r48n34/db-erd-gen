@@ -1,6 +1,6 @@
 import create from 'zustand'
 
-import { Table } from '../interface/inputData';
+import { Table, TablePosition } from '../interface/inputData';
 import { grandData } from '../data/testInputData';
 import { devtools, persist } from 'zustand/middleware'
 import { failedDelete } from '../utilis/notificationUtilis';
@@ -13,6 +13,8 @@ interface DataState {
   updateTableObj: (obj: Table) => void // Update specific table content by name
   deleteOneTable: (tableName: string) => void // Delete single data from db
   deleteAllRecord: () => void // Delete all data in db
+
+  updateTablePositions: (tableName: string, position: TablePosition) => void // Update 
 
   importTableObj: (newTableArr: Table[]) => void // Update specific table content by name
 }
@@ -32,7 +34,7 @@ const useTableStore = create<DataState>()(
         },
         updateTableObj: (obj: Table) => {
             set((state) => {
-                const targetTableObjIndex = state.tableArray.findIndex( v => v.name === obj.name)
+                const targetTableObjIndex = state.tableArray.findIndex( v => v.name === obj.name )
 
                 let newTable = state.tableArray;
                 newTable[targetTableObjIndex] = obj;
@@ -66,6 +68,33 @@ const useTableStore = create<DataState>()(
                   tableArray: newTableArr,
                   update: state.update + 1
                 }
+            })
+        },
+        updateTablePositions:(tableName: string, position: TablePosition) => { 
+            set((state) => {
+
+                console.log(tableName);
+                console.log(tableName);
+                
+                const targetTableObjIndex = state.tableArray.findIndex( v => v.name === tableName );
+                
+                if(targetTableObjIndex === -1){
+                    return { 
+                        tableArray: state.tableArray,
+                        update: state.update + 1
+                    } 
+                }
+
+                console.log(targetTableObjIndex);
+                
+
+                let newTable = state.tableArray;
+                newTable[targetTableObjIndex].position = position
+
+                return { 
+                    tableArray: newTable,
+                    update: state.update + 1
+                } 
             })
         },
         importTableObj: (newTableArr: Table[]) => {
