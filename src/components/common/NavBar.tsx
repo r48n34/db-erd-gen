@@ -9,6 +9,7 @@ export default function NavBar() {
     <>
         <Header height={50} p="xs">
             <Group position="apart">
+                
                 <DebugModal/>
 
                 <Group>
@@ -16,6 +17,7 @@ export default function NavBar() {
                     <ImportJsonFromatFile/>
                     <ThemeToggleBtn/>
                 </Group>
+
             </Group>
         </Header>
     </>

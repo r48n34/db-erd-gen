@@ -1,15 +1,18 @@
 import create from 'zustand'
 
 import { Table } from '../interface/inputData';
-import { grandData } from '../data/testInputData';
 import { devtools, persist } from 'zustand/middleware'
-// import { failedDelete } from '../utilis/notificationUtilis';
+
+interface TemplateStoreData {
+    name: string
+    data: Table[]
+}
 
 interface TemplateDataState {
-  templateArray: Table[][]
+  templateArray: TemplateStoreData[]
   update: number
 
-  addTemplate: (obj: Table[]) => void // Get all data from db
+  addTemplate: (name: string, obj: Table[]) => void // Get all data from db
   deleteAllRecord: () => void // Delete all data in db
 
 }
@@ -19,12 +22,19 @@ const useTemplateStoreStore = create<TemplateDataState>()(
     persist( (set) => ({
         templateArray: [],
         update: 0,
-        addTemplate: (obj: Table[]) => {
+        addTemplate: (name: string, obj: Table[]) => {
             set((state) => {
+
+                const templateStoreData = {
+                    name: name,
+                    data: obj
+                }
+
                 return { 
-                    templateArray: [...state.templateArray, obj],
+                    templateArray: [...state.templateArray, templateStoreData],
                     update: state.update + 1
                 }
+                
             })
         },
         deleteAllRecord: () => {

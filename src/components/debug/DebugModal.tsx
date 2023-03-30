@@ -14,6 +14,7 @@ import TableDataToPostgresBtnView from './TableDataToPostgresBtnView';
 
 import { IconArchive, IconFileArrowRight, IconAlertTriangle, IconClipboardData, IconDeviceFloppy } from '@tabler/icons';
 import SavedSchemeList from './SavedSchemeList';
+import DeleteAllSchemeBtn from './DeleteAllSchemeBtn';
 
 
 function DebugModal() {
@@ -47,7 +48,7 @@ function DebugModal() {
             </NavLink>
 
             <NavLink 
-                label="Saved Scheme"
+                label="Scheme"
                 icon={<IconDeviceFloppy size={16} stroke={1.5} />}
                 childrenOffset={28}
             >
@@ -60,6 +61,7 @@ function DebugModal() {
                 childrenOffset={28}
             >
                 <DeleteAllData/>
+                <DeleteAllSchemeBtn/>
             </NavLink>
         </Drawer>
 

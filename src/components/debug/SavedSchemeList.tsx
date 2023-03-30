@@ -12,6 +12,13 @@ function SavedSchemeList({ data }: SavedSchemeListProps){
     
     return (
         <>
+        { templateArray.length === 0 && (
+            <NavLink
+                label="No saved scheme"
+                icon={<IconListDetails size={16} stroke={1.5} />}
+            />
+        )}
+
         { templateArray.map( v => (
             <Grid>
                 <Grid.Col span={10}>
