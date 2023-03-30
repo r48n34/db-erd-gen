@@ -1,5 +1,5 @@
-import { ActionIcon, Group, Modal, NavLink } from "@mantine/core";
-import { IconDownload, IconFileExport } from '@tabler/icons';
+import { Group, Modal, NavLink } from "@mantine/core";
+import { IconFileExport } from '@tabler/icons';
 
 import useTableStore from "../../store/zustandStore";
 

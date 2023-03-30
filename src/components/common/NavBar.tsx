@@ -1,6 +1,7 @@
 import { Header, Group } from '@mantine/core';
 import ThemeToggleBtn from './ThemeToggleBtn';
 import DebugModal from '../debug/DebugModal';
+import ImportJsonFromatFile from '../debug/ImportJsonFromatFile';
 
 export default function NavBar() {
    return (
@@ -8,8 +9,11 @@ export default function NavBar() {
         <Header height={50} p="xs">
             <Group position="apart">
                 <DebugModal/>
-                <div></div>
-                <ThemeToggleBtn/>
+
+                <Group>
+                    <ImportJsonFromatFile/>
+                    <ThemeToggleBtn/>
+                </Group>
             </Group>
         </Header>
     </>

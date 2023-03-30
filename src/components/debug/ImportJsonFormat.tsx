@@ -1,18 +1,20 @@
 import { useState } from "react";
-import { IconFileImport, IconFileUpload } from '@tabler/icons';
-import { FileButton, Modal, Button, JsonInput, Space, Group, NavLink, Tooltip, ActionIcon, LoadingOverlay } from "@mantine/core";
+import { IconFileImport } from '@tabler/icons';
+import { Modal, Button, JsonInput, Space, Group, NavLink, LoadingOverlay } from "@mantine/core";
 
 import useTableStore from "../../store/zustandStore";
 
 import { importJsonFormat } from "../../utilis/dataBase/jsonFormat";
 import { commonSuccessActions, failedDeleteMessage } from "../../utilis/notificationUtilis";
 import { importString } from "../../data/testInputData";
+import ImportJsonFromatFile from "./ImportJsonFromatFile";
 
 function ImportJsonFormat(){
 
     const [ jsonValue, setJsonValue ] = useState<string>(importString);
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const [ opened, setOpened ] = useState<boolean>(false);
+    
     const importTableObj = useTableStore((state) => state.importTableObj);
 
     function importToStore(inputValue: any){
@@ -39,25 +41,6 @@ function ImportJsonFormat(){
         !!jsonValue && importToStore(jsonValue);
     }
 
-    function importStringToStoreFromFile(file: File){
-        setIsLoading(true);
-
-        try { 
-            let reader = new FileReader();
-            
-            reader.onload = function() {
-                importToStore(reader.result as string)    
-            }
-            
-            reader.readAsText(file); 
-        } 
-        catch (error) {
-            setIsLoading(false);
-            failedDeleteMessage("Fail to import, please check you file format.");
-        }
-        
-    }
-
     return (
         <>
         <Modal
@@ -69,15 +52,7 @@ function ImportJsonFormat(){
             <LoadingOverlay visible={isLoading} overlayBlur={2} />
 
             <Group position="right" mb={14}>
-                <FileButton onChange={importStringToStoreFromFile} accept="application/JSON">
-                {(props) => (
-                    <Tooltip label="Upload JSON">
-                    <ActionIcon {...props}>
-                        <IconFileUpload size={18} />
-                    </ActionIcon>
-                    </Tooltip>
-                )}
-                </FileButton>
+                <ImportJsonFromatFile setLoading={setIsLoading} setCloseModal={setOpened}/>
             </Group>
 
             <JsonInput 
