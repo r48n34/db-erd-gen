@@ -20,7 +20,6 @@ function TableDataToKnexBtn(){
                 toDownloadFile(textString, `${new Date().getTime()}_migrations.ts`)
             }}
             icon={<IconFileDatabase size={16} stroke={1.5} />}
-            // rightSection={<IconChevronRight size={12} stroke={1.5} />}
         />  
         </>
     )

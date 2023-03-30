@@ -6,7 +6,7 @@ export function exportJsonFormat(tables: Table[]){
         JSON.stringify(tables)
     )}`;
 
-    toDownloadFile(jsonString, "data.json")
+    toDownloadFile(jsonString, `data-${new Date().getTime()}.json`)
 }
 
 export function importJsonFormat(str: string){

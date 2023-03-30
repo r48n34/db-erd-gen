@@ -30,14 +30,14 @@ function DebugModal() {
             size="xl"
         >
             <NavLink label="Generate" icon={<IconArchive size={16} stroke={1.5} />} childrenOffset={28}>
-                <TableDataToPostgresBtn/>
+                {/* <TableDataToPostgresBtn/> */}
                 <TableDataToPostgresBtnView/>
                 
                 <TableDataToKnexBtn/>
             </NavLink>
 
             <NavLink label="Import / Export" icon={<IconFileArrowRight size={16} stroke={1.5} />} childrenOffset={28}>
-                <ExportJsonFormat/>
+                {/* <ExportJsonFormat/> */}
                 <ExportJsonFormatView/>
                 
                 <ImportJsonFormat/>

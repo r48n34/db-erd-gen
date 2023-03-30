@@ -15,7 +15,6 @@ function ImportTemplateBtn(){
         <NavLink
             label="Import dummy template"
             icon={<IconListDetails size={16} stroke={1.5} />}
-            // rightSection={<IconChevronRight size={12} stroke={1.5} />}
             onClick={ () => {
                 const result = importJsonFormat(importString);
                 importTableObj(result);

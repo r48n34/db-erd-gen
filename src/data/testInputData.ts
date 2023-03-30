@@ -22,7 +22,11 @@ export const importString = `[
                 "isPrimaryKey": false,
                 "notNull": false
             }
-        ]
+        ],
+        "position": {
+			"x": 100,
+			"y": 0
+		}
     },
     {
         "name": "blog_content",
@@ -49,7 +53,11 @@ export const importString = `[
                 "isPrimaryKey": false,
                 "notNull": false
             }
-        ]
+        ],
+        "position": {
+			"x": 500,
+			"y": 0
+		}
     }
 ]`
 

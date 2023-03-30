@@ -1,10 +1,11 @@
-import { Modal, NavLink } from "@mantine/core";
-import { IconFileExport } from '@tabler/icons';
+import { ActionIcon, Group, Modal, NavLink } from "@mantine/core";
+import { IconDownload, IconFileExport } from '@tabler/icons';
 
 import useTableStore from "../../store/zustandStore";
 
 import { Prism } from '@mantine/prism';
 import { useState } from "react";
+import ExportJsonFormat from "./ExportJsonFormat";
 
 function ExportJsonFormatView(){
 
@@ -20,6 +21,10 @@ function ExportJsonFormatView(){
             onClose={() => setOpened(false)}
             title="Json Code"
         >
+            <Group position="right" mb={14}>
+                <ExportJsonFormat/>
+            </Group>
+
             <Prism language="json">
                 {jsonContent}
             </Prism>
@@ -27,7 +32,7 @@ function ExportJsonFormatView(){
 
 
         <NavLink
-            label="Export json (View)"
+            label="Export json"
             icon={<IconFileExport size={16} stroke={1.5} />}
             onClick={ () => {
                 setJsonContent(JSON.stringify(tableArray, null, "\t"));

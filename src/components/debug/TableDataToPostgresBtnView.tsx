@@ -1,10 +1,11 @@
-import { Modal, NavLink } from "@mantine/core";
+import { Group, Modal, NavLink } from "@mantine/core";
 import useTableStore from "../../store/zustandStore";
 
 import { IconDatabaseImport } from '@tabler/icons';
 import { tableDataToPostgresScheme } from "../../utilis/dataBase/tableDataToPostgres";
 import { useState } from "react";
 import { Prism } from '@mantine/prism';
+import TableDataToPostgresBtn from "./TableDataToPostgresBtn";
 
 function TableDataToPostgresBtnView(){
     
@@ -20,13 +21,17 @@ function TableDataToPostgresBtnView(){
             onClose={() => setOpened(false)}
             title="Postgres Code"
         >
+            <Group position="right" mb={14}>
+                <TableDataToPostgresBtn/>
+            </Group>
+
             <Prism language="sql">
                 {sqlContent}
             </Prism>
         </Modal>
 
         <NavLink 
-            label="Generate Postgres (View)" 
+            label="Generate Postgres" 
             onClick={ () => {
                 const str = tableDataToPostgresScheme(tableArray);
                 setSqlContent(str);
