@@ -13,7 +13,8 @@ interface TemplateDataState {
   update: number
 
   addTemplate: (name: string, obj: Table[]) => void // Get all data from db
-  deleteAllRecord: () => void // Delete all data in db
+  deleteOneTemplate: (name: string) => void // Delete all data in db
+  deleteAllTemplate: () => void // Delete all data in db
 
 }
 
@@ -34,10 +35,20 @@ const useTemplateStoreStore = create<TemplateDataState>()(
                     templateArray: [...state.templateArray, templateStoreData],
                     update: state.update + 1
                 }
-                
+
             })
         },
-        deleteAllRecord: () => {
+        deleteOneTemplate: (name: string) => {
+            set((state) => {
+                const newList = state.templateArray.filter( v => v.name !== name );
+                
+                return { 
+                    templateArray: newList,
+                    update: state.update + 1
+                }
+            })
+        },
+        deleteAllTemplate: () => {
             set((state) => {
                 return { 
                     templateArray: [],

@@ -1,7 +1,7 @@
 import { ActionIcon, Button, Group, Modal, TextInput, Tooltip } from "@mantine/core";
 import { IconCloudDownload } from "@tabler/icons";
 
-import { commonSuccessActions } from "../../utilis/notificationUtilis";
+import { commonSuccessActions, failedDeleteMessage } from "../../utilis/notificationUtilis";
 
 import useTableStore from "../../store/zustandStore";
 import useTemplateStoreStore from "../../store/templateStore";
@@ -17,11 +17,13 @@ function SavedSchemeBtn(){
 
     function addCurrentSchemeToTemplateList(){
         if(!schemeName){
+            failedDeleteMessage("Please input a name.");
             return;
         }
 
         addTemplate(schemeName, importTableObj);
         commonSuccessActions();
+        setOpened(false)
     }
     
     return (
@@ -31,7 +33,8 @@ function SavedSchemeBtn(){
             onClose={() => setOpened(false)}
             title="Name the template"
         >
-            <TextInput 
+            <TextInput
+                placeholder="my_project"
                 value={schemeName}
                 onChange={(event) => setSchemeName(event.currentTarget.value)}
             />

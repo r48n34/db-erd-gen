@@ -7,7 +7,7 @@ import { commonSuccessActions } from "../../utilis/notificationUtilis";
     
 function DeleteAllSchemeBtn(){
 
-    const deleteAllRecord = useTemplateStoreStore((state) => state.deleteAllRecord);
+    const deleteAllTemplate = useTemplateStoreStore((state) => state.deleteAllTemplate);
 
     const openModal = () => openConfirmModal({
         title: 'Please confirm your action',
@@ -20,7 +20,7 @@ function DeleteAllSchemeBtn(){
         labels: { confirm: 'Confirm', cancel: 'Cancel' },
         onCancel: () => console.log(),
         onConfirm: () => {
-            deleteAllRecord()
+            deleteAllTemplate()
             commonSuccessActions();
         },
     });

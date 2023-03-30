@@ -52,7 +52,7 @@ function DebugModal() {
                 icon={<IconDeviceFloppy size={16} stroke={1.5} />}
                 childrenOffset={28}
             >
-                <SavedSchemeList/>
+                <SavedSchemeList closeModal={ () => setOpened(false) }/>
             </NavLink>
 
             <NavLink 
