@@ -1,28 +1,31 @@
-import { NavLink } from "@mantine/core";
+import { ActionIcon, Tooltip } from "@mantine/core";
 import useTableStore from "../../store/zustandStore";
 
-import { IconFileDatabase } from '@tabler/icons';
+import { IconDownload } from '@tabler/icons';
 
 import { toDownloadFile } from "../../utilis/dataBase/downloadFile";
 import { tableDataToKnexScheme } from "../../utilis/dataBase/tableDataToKnex";
 
-function TableDataToKnexBtn(){
+
+function TableDataToKnexBtnView(){
+
     const tableArray = useTableStore((state) => state.tableArray);
 
     return (
         <>
-        <NavLink 
-            label="Generate Knex (Download)" 
+        <Tooltip label="Download Knex">
+        <ActionIcon
             onClick={ () => {
                 const str = tableDataToKnexScheme(tableArray)
                 const textString = `data:text/json;chatset=utf-8,${encodeURIComponent(str)}`;
-
                 toDownloadFile(textString, `${new Date().getTime()}_migrations.ts`)
             }}
-            icon={<IconFileDatabase size={16} stroke={1.5} />}
-        />  
+        >
+            <IconDownload size={18} />
+        </ActionIcon>
+        </Tooltip>
         </>
     )
 }
     
-export default TableDataToKnexBtn
+export default TableDataToKnexBtnView
