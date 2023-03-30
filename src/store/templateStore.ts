@@ -2,6 +2,7 @@ import create from 'zustand'
 
 import { Table } from '../interface/inputData';
 import { devtools, persist } from 'zustand/middleware'
+import { failedDeleteMessage } from '../utilis/notificationUtilis';
 
 interface TemplateStoreData {
     name: string
@@ -26,6 +27,13 @@ const useTemplateStoreStore = create<TemplateDataState>()(
         addTemplate: (name: string, obj: Table[]) => {
             set((state) => {
 
+                if(state.templateArray.findIndex( v => v.name === name) >= 0){
+                    return { 
+                        templateArray: state.templateArray,
+                        update: state.update + 1
+                    }
+                }
+
                 const templateStoreData = {
                     name: name,
                     data: obj
@@ -41,7 +49,7 @@ const useTemplateStoreStore = create<TemplateDataState>()(
         deleteOneTemplate: (name: string) => {
             set((state) => {
                 const newList = state.templateArray.filter( v => v.name !== name );
-                
+
                 return { 
                     templateArray: newList,
                     update: state.update + 1

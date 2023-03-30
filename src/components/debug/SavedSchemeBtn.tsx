@@ -10,14 +10,20 @@ import { useState } from "react";
 function SavedSchemeBtn(){
 
     const [ opened, setOpened ] = useState<boolean>(false);
-    const [ schemeName , setSchemeName ] = useState('');
+    const [ schemeName , setSchemeName ] = useState('project');
 
+    const templateArray = useTemplateStoreStore((state) => state.templateArray);
     const addTemplate = useTemplateStoreStore((state) => state.addTemplate);
     const importTableObj = useTableStore((state) => state.tableArray);
 
     function addCurrentSchemeToTemplateList(){
         if(!schemeName){
             failedDeleteMessage("Please input a name.");
+            return;
+        }
+
+        if(templateArray.findIndex( v => v.name === schemeName ) >= 0){
+            failedDeleteMessage("Duplicated name, please input another name.");
             return;
         }
 
