@@ -3,15 +3,17 @@ import { useHotkeys } from '@mantine/hooks';
 import { Drawer, Burger, NavLink, Tooltip } from '@mantine/core';
 
 import DeleteAllData from './DeleteAllData';
-// import ExportJsonFormat from './ExportJsonFormat';
+
 import ImportJsonFormat from './ImportJsonFormat';
-// import TableDataToPostgresBtn from './TableDataToPostgresBtn';
-import TableDataToKnexBtnView from './TableDataToKnexBtnView';
 import ImportTemplateBtn from './ImportTemplateBtn';
 
-import { IconArchive, IconFileArrowRight, IconAlertTriangle, IconClipboardData } from '@tabler/icons';
-import TableDataToPostgresBtnView from './TableDataToPostgresBtnView';
 import ExportJsonFormatView from './ExportJsonFormatView';
+
+import TableDataToKnexBtnView from './TableDataToKnexBtnView';
+import TableDataToPostgresBtnView from './TableDataToPostgresBtnView';
+
+import { IconArchive, IconFileArrowRight, IconAlertTriangle, IconClipboardData, IconDeviceFloppy } from '@tabler/icons';
+import SavedSchemeList from './SavedSchemeList';
 
 
 function DebugModal() {
@@ -42,6 +44,14 @@ function DebugModal() {
 
             <NavLink label="Template" icon={<IconClipboardData size={16} stroke={1.5} />} childrenOffset={28}>
                 <ImportTemplateBtn/>
+            </NavLink>
+
+            <NavLink 
+                label="Saved Scheme"
+                icon={<IconDeviceFloppy size={16} stroke={1.5} />}
+                childrenOffset={28}
+            >
+                <SavedSchemeList/>
             </NavLink>
 
             <NavLink 

@@ -2,11 +2,11 @@ import { useState } from "react";
 import { IconFileImport } from '@tabler/icons';
 import { Modal, Button, JsonInput, Space, Group, NavLink, LoadingOverlay } from "@mantine/core";
 
-import useTableStore from "../../store/zustandStore";
-
+import { importString } from "../../data/testInputData";
 import { importJsonFormat } from "../../utilis/dataBase/jsonFormat";
 import { commonSuccessActions, failedDeleteMessage } from "../../utilis/notificationUtilis";
-import { importString } from "../../data/testInputData";
+
+import useTableStore from "../../store/zustandStore";
 import ImportJsonFromatFile from "./ImportJsonFromatFile";
 
 function ImportJsonFormat(){
@@ -14,7 +14,7 @@ function ImportJsonFormat(){
     const [ jsonValue, setJsonValue ] = useState<string>(importString);
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const [ opened, setOpened ] = useState<boolean>(false);
-    
+
     const importTableObj = useTableStore((state) => state.importTableObj);
 
     function importToStore(inputValue: any){
@@ -64,7 +64,11 @@ function ImportJsonFormat(){
             <Space h="lg"/>
 
             <Group position="right">
-                <Button onClick={ () => importStringToStore() }>
+                <Button
+                    variant="light"
+                    leftIcon={<IconFileImport size={16} stroke={1.5} />}
+                    onClick={ () => importStringToStore() }
+                >
                     Import
                 </Button>
             </Group>

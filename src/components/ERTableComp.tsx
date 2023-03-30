@@ -40,7 +40,7 @@ function ERTableComp(){
     );
 
     const onNodeDragStop = useCallback(
-        (_: React.MouseEvent, node: Node,) => {
+        (_: React.MouseEvent, node: Node,) => {          
             updateTablePositions(node.data.name, node.position);
         },
         []

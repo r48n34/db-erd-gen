@@ -13,7 +13,7 @@ function ImportTemplateBtn(){
     return (
         <>
         <NavLink
-            label="Import dummy template"
+            label="Import simple template"
             icon={<IconListDetails size={16} stroke={1.5} />}
             onClick={ () => {
                 const result = importJsonFormat(importString);

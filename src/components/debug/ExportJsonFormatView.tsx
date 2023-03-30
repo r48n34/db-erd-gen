@@ -19,7 +19,7 @@ function ExportJsonFormatView(){
             size="85%"
             opened={opened}
             onClose={() => setOpened(false)}
-            title="Json Code"
+            title="JSON Code"
         >
             <Group position="right" mb={14}>
                 <ExportJsonFormat/>

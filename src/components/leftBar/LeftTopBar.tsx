@@ -8,7 +8,7 @@ function LeftTopBar(){
 
     return (
         <>
-        <Group position="apart" mt={8} mr={6}>
+        <Group position="apart" mt={12} mr={6}>
             <Badge ml={12}  color="green">Table List</Badge>
             <TableForm mode={"create"} allTableData={tableArray}/>
         </Group>

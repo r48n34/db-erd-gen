@@ -2,6 +2,7 @@ import { Header, Group } from '@mantine/core';
 import ThemeToggleBtn from './ThemeToggleBtn';
 import DebugModal from '../debug/DebugModal';
 import ImportJsonFromatFile from '../debug/ImportJsonFromatFile';
+import SavedSchemeBtn from '../debug/SavedSchemeBtn';
 
 export default function NavBar() {
    return (
@@ -11,6 +12,7 @@ export default function NavBar() {
                 <DebugModal/>
 
                 <Group>
+                    <SavedSchemeBtn/>
                     <ImportJsonFromatFile/>
                     <ThemeToggleBtn/>
                 </Group>
