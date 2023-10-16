@@ -6,4 +6,7 @@ Free DrawSQL like website but free forever
 2. Save SQL in postgres / knex format  
 3. Easy to use / store  
 
-Work in progress...
+## Todo
+[ ] - Support kysely types output
+[ ] - More features
+[ ] - Update UI
