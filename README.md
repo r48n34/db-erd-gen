@@ -8,7 +8,9 @@ Free DrawSQL like website but free forever
 
 ## Curretn support output  
 - Postgres  
+- MySQL / MariaDB  
 - knex.js  
+- kysely.js  
 
 ## Todo
 [ ] - Add UNIQUE types  
