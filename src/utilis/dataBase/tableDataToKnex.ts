@@ -2,8 +2,6 @@ import { postgresToKnexArray } from "../../data/database/knexType";
 import { Table } from "../../interface/inputData";
 import { tab } from "../generateTab";
 
-
-
 export function tableDataToKnexScheme(tables: Table[]){
     let schemeArray = [];
 
