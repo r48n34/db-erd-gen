@@ -17,6 +17,7 @@ import TableDataToBtnView from './TableDataToBtnView';
 import { tableDataToKnexScheme } from '../../utilis/dataBase/tableDataToKnex';
 import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPostgres';
 import { tableDataToKyselyScheme } from '../../utilis/dataBase/tableDataToKysely';
+import { tableDataToMySQLScheme } from '../../utilis/dataBase/tableDataToMySQL';
 
 function DebugModal() {
     const [opened, setOpened] = useState(false);
@@ -52,6 +53,12 @@ function DebugModal() {
                     types='Kysely Postgres'
                     schemeFunc={tableDataToKyselyScheme}
                     downloadFileName={`${new Date().getTime()}_migrations.ts`}
+                />
+
+                <TableDataToBtnView 
+                    types='MySQL'
+                    schemeFunc={tableDataToMySQLScheme}
+                    downloadFileName={`mySqlTables.sql`}
                 />
             </NavLink>
 

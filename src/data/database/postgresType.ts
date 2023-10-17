@@ -9,7 +9,7 @@ export interface PostgresTypeArray {
     sqLiteKey: { 
         key: string | null;
     }
-    mySQLKey?: { 
+    mySQLKey: { 
         key: string | null;
     }
     defaultValue?: undefined | string;
