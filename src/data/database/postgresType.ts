@@ -6,13 +6,16 @@ export interface PostgresTypeArray {
         key: string; // knex using their string
         specificTypeName?: string;
     };
-    sqLiteKey?: { // 
-        key: string | null ;
+    sqLiteKey: { 
+        key: string | null;
+    }
+    mySQLKey?: { 
+        key: string | null;
     }
     defaultValue?: undefined | string;
 }
 
-export const postgresTypeArray = [
+export const postgresTypeArray: PostgresTypeArray[] = [
     {
         label: "bigint",
         value: "bigint",
@@ -22,6 +25,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "INTEGER"
+        },
+        mySQLKey: { 
+            key: "BIGINT"
         }
     },
     {
@@ -33,6 +39,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "INTEGER"
+        },
+        mySQLKey: { 
+            key: "BIGINT"
         }
     },
     {
@@ -45,6 +54,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "BIT"
         }
     },
     {
@@ -57,6 +69,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "BIT"
         }
     },
     {
@@ -69,6 +84,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "INTEGER"
+        },
+        mySQLKey: { 
+            key: "TINYINT(1)"
         }
     },
     {
@@ -81,6 +99,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "POLYGON"
         }
     },
     {
@@ -92,6 +113,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "LONGBLOB"
         }
     },
     {
@@ -104,6 +128,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "TEXT"
+        },
+        mySQLKey: { 
+            key: "VARCHAR"
         }
     },
     {
@@ -117,6 +144,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "TEXT"
+        },
+        mySQLKey: { 
+            key: "CHAR"
         }
     },
     {
@@ -129,6 +159,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "VARCHAR(43)"
         }
     },
     {
@@ -139,6 +172,12 @@ export const postgresTypeArray = [
             key: "specificType",
             specificTypeName: "circle"
         },
+        sqLiteKey: { 
+            key: null
+        },
+        mySQLKey: { 
+            key: "POLYGON"
+        }
     },
     {
         label: "date",
@@ -149,6 +188,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "NUMERIC"
+        },
+        mySQLKey: { 
+            key: "DATE"
         }
     },
     {
@@ -160,6 +202,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "DOUBLE"
         }
     },
     {
@@ -172,6 +217,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "VARCHAR(43)"
         }
     },
     {
@@ -183,6 +231,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "INTEGER"
+        },
+        mySQLKey: { 
+            key: "INT"
         }
     },
     {
@@ -195,6 +246,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "NUMERIC"
+        },
+        mySQLKey: { 
+            key: "TIME"
         }
     },
     {
@@ -206,6 +260,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "LONGTEXT"
         }
     },
     {
@@ -217,6 +274,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "LONGTEXT"
         }
     },
     {
@@ -229,6 +289,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "LINESTRING"
         }
     },
     {
@@ -241,6 +304,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "LINESTRING"
         }
     },
     {
@@ -253,6 +319,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "VARCHAR(17)"
         }
     },
     {
@@ -263,6 +332,12 @@ export const postgresTypeArray = [
             key: "specificType",
             specificTypeName: "macaddr8"
         },
+        sqLiteKey: { 
+            key: null
+        },
+        mySQLKey: { 
+            key: "VARCHAR(17)"
+        }
     },
     {
         label: "money",
@@ -274,6 +349,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "DECIMAL(19,2)"
         }
     },
     {
@@ -285,6 +363,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "INTEGER"
+        },
+        mySQLKey: { 
+            key: "DECIMAL"
         }
     },
     {
@@ -297,6 +378,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "LINESTRING"
         }
     },
     {
@@ -308,6 +392,9 @@ export const postgresTypeArray = [
             specificTypeName: "pg_lsn"
         },
         sqLiteKey: { 
+            key: null
+        },
+        mySQLKey: { 
             key: null
         }
     },
@@ -321,6 +408,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: null
         }
     },
     {
@@ -332,6 +422,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "POINT"
         }
     },
     {
@@ -344,6 +437,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "POLYGON"
         }
     },
     {
@@ -356,6 +452,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "INTEGER"
+        },
+        mySQLKey: { 
+            key: "FLOAT"
         }
     },
     {
@@ -367,6 +466,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "INTEGER"
+        },
+        mySQLKey: { 
+            key: "SMALLINT"
         }
     },
     {
@@ -378,6 +480,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "INTEGER"
+        },
+        mySQLKey: { 
+            key: "SMALLINT"
         }
     },
     {
@@ -389,6 +494,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "INTEGER"
+        },
+        mySQLKey: { 
+            key: "INT"
         }
     },
     {
@@ -400,6 +508,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "TEXT"
+        },
+        mySQLKey: { 
+            key: "LONGTEXT"
         }
     },
     {
@@ -411,6 +522,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "NUMERIC"
+        },
+        mySQLKey: { 
+            key: "TIME"
         }
     },
     {
@@ -422,6 +536,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "NUMERIC"
+        },
+        mySQLKey: { 
+            key: "TIME"
         }
     },
     {
@@ -433,6 +550,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "NUMERIC"
+        },
+        mySQLKey: { 
+            key: "DATETIME"
         }
     },
     {
@@ -445,6 +565,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "LONGTEXT"
         }
     },
     {
@@ -457,6 +580,9 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: null
+        },
+        mySQLKey: { 
+            key: "LONGTEXT"
         }
     },
     {
@@ -468,9 +594,12 @@ export const postgresTypeArray = [
         },
         sqLiteKey: { 
             key: "TEXT"
+        },
+        mySQLKey: { 
+            key: "VARCHAR(36)"
         }
     },
-] as PostgresTypeArray[];
+];
 
 export const postgresTypeArrayString = new Set(
     postgresTypeArray.map((v) => v.value),

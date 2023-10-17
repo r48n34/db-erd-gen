@@ -8,19 +8,22 @@ export const importString = `[
                 "name": "id",
                 "dataType": "serial",
                 "isPrimaryKey": true,
-                "notNull": false
+                "notNull": false,
+                "unique": false
             },
             {
                 "name": "username",
                 "dataType": "varchar",
                 "isPrimaryKey": false,
-                "notNull": false
+                "notNull": false,
+                "unique": false
             },
             {
                 "name": "password",
                 "dataType": "varchar",
                 "isPrimaryKey": false,
-                "notNull": false
+                "notNull": false,
+                "unique": false
             }
         ],
         "position": {
@@ -35,7 +38,8 @@ export const importString = `[
                 "name": "id",
                 "dataType": "serial",
                 "isPrimaryKey": true,
-                "notNull": false
+                "notNull": false,
+                "unique": false
             },
             {
                 "name": "users_id",
@@ -45,13 +49,15 @@ export const importString = `[
                     "name": "users",
                     "column": "id"
                 },
-                "notNull": false
+                "notNull": false,
+                "unique": false
             },
             {
                 "name": "content",
                 "dataType": "text",
                 "isPrimaryKey": false,
-                "notNull": false
+                "notNull": false,
+                "unique": false
             }
         ],
         "position": {

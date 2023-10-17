@@ -1,10 +1,10 @@
 import { NavLink, Text } from "@mantine/core";
 import { openConfirmModal } from "@mantine/modals";
 import { IconTrashOff } from "@tabler/icons";
+
 import useTemplateStoreStore from "../../store/templateStore";
 import { commonSuccessActions } from "../../utilis/notificationUtilis";
 
-    
 function DeleteAllSchemeBtn(){
 
     const deleteAllTemplate = useTemplateStoreStore((state) => state.deleteAllTemplate);

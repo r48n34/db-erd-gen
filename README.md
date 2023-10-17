@@ -11,7 +11,8 @@ Free DrawSQL like website but free forever
 - knex.js  
 
 ## Todo
-[ ] - Support kysely types output  
+[ ] - Add UNIQUE types  
+[x] - Support kysely types output  
 [ ] - Support MySQL / MariaDB types output  
 [ ] - Support sqlite types output    
 [ ] - More features  

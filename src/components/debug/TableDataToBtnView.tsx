@@ -6,8 +6,6 @@ import { IconDatabaseImport } from '@tabler/icons';
 import { useState } from "react";
 import { Prism } from '@mantine/prism';
 
-// import { tableDataToPostgresScheme } from "../../utilis/dataBase/tableDataToPostgres";
-// import TableDataToPostgresBtn from "./TableDataToPostgresBtn";
 import { Table } from "../../interface/inputData";
 import { toDownloadFile } from "../../utilis/dataBase/downloadFile";
 
@@ -17,7 +15,7 @@ interface TableDataToBtnViewProps {
     schemeFunc: (tables: Table[]) => string
 }
 
-function TableDataToBtnView({ types, schemeFunc }:TableDataToBtnViewProps){
+function TableDataToBtnView({ types, schemeFunc, downloadFileName }:TableDataToBtnViewProps){
     
     const [ opened, setOpened ] = useState<boolean>(false);
     const [ sqlContent, setSqlContent ] = useState<string>("");
@@ -38,7 +36,7 @@ function TableDataToBtnView({ types, schemeFunc }:TableDataToBtnViewProps){
                         const str = schemeFunc(tableArray)
                         const textString = `data:text/json;chatset=utf-8,${encodeURIComponent(str)}`;
 
-                        toDownloadFile(textString, "tables.sql")
+                        toDownloadFile(textString, downloadFileName)
                     }}
                 >
                     <IconDownload size={18} />
