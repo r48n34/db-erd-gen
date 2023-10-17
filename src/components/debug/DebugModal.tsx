@@ -9,12 +9,16 @@ import ImportTemplateBtn from './ImportTemplateBtn';
 
 import ExportJsonFormatView from './ExportJsonFormatView';
 
-import TableDataToKnexBtnView from './TableDataToKnexBtnView';
-import TableDataToPostgresBtnView from './TableDataToPostgresBtnView';
+// import TableDataToKnexBtnView from './old/TableDataToKnexBtnView';
+// import TableDataToPostgresBtnView from './old/TableDataToPostgresBtnView';
 
 import { IconArchive, IconFileArrowRight, IconAlertTriangle, IconClipboardData, IconDeviceFloppy } from '@tabler/icons';
 import SavedSchemeList from './SavedSchemeList';
 import DeleteAllSchemeBtn from './DeleteAllSchemeBtn';
+import TableDataToBtnView from './TableDataToBtnView';
+// import { Table } from '../../interface/inputData';
+import { tableDataToKnexScheme } from '../../utilis/dataBase/tableDataToKnex';
+import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPostgres';
 
 
 function DebugModal() {
@@ -34,8 +38,20 @@ function DebugModal() {
             size="xl"
         >
             <NavLink label="Generate" icon={<IconArchive size={16} stroke={1.5} />} childrenOffset={28}>
-                <TableDataToPostgresBtnView/>
-                <TableDataToKnexBtnView/>
+                {/* <TableDataToPostgresBtnView/>
+                <TableDataToKnexBtnView/> */}
+
+                <TableDataToBtnView 
+                    types='Postgres'
+                    schemeFunc={tableDataToPostgresScheme}
+                    downloadFileName="tables.sql"
+                />
+
+                <TableDataToBtnView 
+                    types='Knex'
+                    schemeFunc={tableDataToKnexScheme}
+                    downloadFileName={`${new Date().getTime()}_migrations.ts`}
+                />
             </NavLink>
 
             <NavLink label="Import / Export" icon={<IconFileArrowRight size={16} stroke={1.5} />} childrenOffset={28}>

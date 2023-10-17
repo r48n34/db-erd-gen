@@ -1,8 +1,8 @@
 import { Group, Modal, NavLink } from "@mantine/core";
-import useTableStore from "../../store/zustandStore";
+import useTableStore from "../../../store/zustandStore";
 
 import { IconDatabaseImport } from '@tabler/icons';
-import { tableDataToPostgresScheme } from "../../utilis/dataBase/tableDataToPostgres";
+import { tableDataToPostgresScheme } from "../../../utilis/dataBase/tableDataToPostgres";
 import { useState } from "react";
 import { Prism } from '@mantine/prism';
 import TableDataToPostgresBtn from "./TableDataToPostgresBtn";

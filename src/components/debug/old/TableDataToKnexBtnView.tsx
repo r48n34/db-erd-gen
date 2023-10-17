@@ -1,11 +1,11 @@
 import { Group, Modal, NavLink } from "@mantine/core";
-import useTableStore from "../../store/zustandStore";
+import useTableStore from "../../../store/zustandStore";
 
 import { IconFileDatabase } from '@tabler/icons';
 import { Prism } from '@mantine/prism';
 
-import { toDownloadFile } from "../../utilis/dataBase/downloadFile";
-import { tableDataToKnexScheme } from "../../utilis/dataBase/tableDataToKnex";
+// import { toDownloadFile } from "../../utilis/dataBase/downloadFile";
+import { tableDataToKnexScheme } from "../../../utilis/dataBase/tableDataToKnex";
 import { useState } from "react";
 import TableDataToKnexBtn from "./TableDataToKnexBtn";
 

@@ -2,7 +2,7 @@ import { postgresTypeArray } from "../../data/database/postgresType";
 import { Table } from "../../interface/inputData";
 import { tab } from "../generateTab";
 
-export function tableDataToKnexScheme(tables: Table[]){
+export function tableDataToKyselyScheme(tables: Table[]){
 
     let schemeArray = [];
 
