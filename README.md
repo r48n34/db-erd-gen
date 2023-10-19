@@ -12,10 +12,14 @@ Free DrawSQL like website but free forever
 - knex.js  
 - kysely.js  
 
+## Roadmap
+- ⬜️ Update Maininte to v7
+- ⬜️ i18n adapts
+
 ## Todo
-[ ] - Add UNIQUE types  
-[x] - Support kysely types output  
-[x] - Support MySQL / MariaDB types output  
-[-] - Support sqlite types output    
-[ ] - More features  
-[ ] - Update UI  
+- ✅ Support kysely types output  
+- ✅ Support MySQL / MariaDB types output  
+- ⬜️ Add UNIQUE types  
+- ⬜️ Support sqlite types output    
+- ⬜️ More features  
+- ⬜️ Update UI  

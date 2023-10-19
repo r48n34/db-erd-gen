@@ -4,7 +4,7 @@ import { tab } from "../generateTab";
 
 export function tableDataToKyselyScheme(tables: Table[]){
 
-    let schemeArray = [];
+    let schemeArray:string[] = [];
 
     for(let table of tables){
         let tableStr: string[] = []

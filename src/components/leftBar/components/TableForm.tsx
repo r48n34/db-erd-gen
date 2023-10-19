@@ -277,7 +277,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             onClose={() => setOpened(false)}
             title={ mode === "create" ? "Create table" : "Edit table"}
         >
-        <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+        <form onSubmit={form.onSubmit( (values) => handleSubmit(values) )}>
 
             <TextInput
                 withAsterisk
@@ -300,7 +300,10 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                                 isPrimaryKey: false,
                                 isForeignKey: false,
                                 notNull: false,
-                                foreignTo: {name: null, column: null},
+                                foreignTo: {
+                                    name: null,
+                                    column: null
+                                },
                                 relationship: null
                             }
                         )
@@ -312,7 +315,9 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             {tablesField}
 
             <Group position="right" mt="md">
-                <Button type="submit">Submit</Button>
+                <Button type="submit">
+                    Submit
+                </Button>
             </Group>
 
         </form>

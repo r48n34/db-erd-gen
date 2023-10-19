@@ -1,3 +1,7 @@
+// pg key to mySQL key references:
+// https://www.convert-in.com/mysql-to-postgres-types-mapping.html
+// https://dev.mysql.com/doc/workbench/en/wb-migration-database-postgresql-typemapping.html
+
 export interface PostgresTypeArray {
     label: string;
     value: string;
@@ -6,10 +10,10 @@ export interface PostgresTypeArray {
         key: string; // knex using their string
         specificTypeName?: string;
     };
-    sqLiteKey: { 
+    sqLiteKey: { // pg key to sqLiteKey key
         key: string | null;
     }
-    mySQLKey: { 
+    mySQLKey: { // pg key to mySQL key
         key: string | null;
     }
     defaultValue?: undefined | string;
@@ -41,7 +45,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "INTEGER"
         },
         mySQLKey: { 
-            key: "BIGINT"
+            key: "BIGINT AUTO_INCREMENT"
         }
     },
     {
@@ -482,7 +486,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "INTEGER"
         },
         mySQLKey: { 
-            key: "SMALLINT"
+            key: "SMALLINT AUTO_INCREMENT"
         }
     },
     {
@@ -496,7 +500,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "INTEGER"
         },
         mySQLKey: { 
-            key: "INT"
+            key: "INTEGER AUTO_INCREMENT"
         }
     },
     {

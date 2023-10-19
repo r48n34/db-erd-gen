@@ -2,10 +2,11 @@ import { Node, Edge } from "reactflow";
 import { Table } from "../../interface/inputData";
 
 export function inputDataToNodeAndEdges(tablesArr: Table[]){
+
     const initNodes: Node[] = [];
     const initialEdges: Edge[] = [];
 
-    let initTableDistance = 200;
+    let initTableDistance: number = 200;
 
     for(let table of tablesArr){
 

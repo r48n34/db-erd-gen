@@ -1,5 +1,5 @@
 export function readJsonFromFile(file: File): Promise<string> {
-    return new Promise( (rec, rej) => {
+    return new Promise( (rec) => {
         try { 
             let reader = new FileReader();
             

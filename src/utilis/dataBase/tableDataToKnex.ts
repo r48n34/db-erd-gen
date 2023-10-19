@@ -4,10 +4,10 @@ import { tab } from "../generateTab";
 
 export function tableDataToKnexScheme(tables: Table[]){
 
-    let schemeArray = [];
+    let schemeArray:string[] = [];
 
     for(let table of tables){
-        let tableStr = []
+        let tableStr:string[] = []
 
         for(let col of table.columns){
 

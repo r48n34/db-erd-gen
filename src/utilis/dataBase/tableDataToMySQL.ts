@@ -2,10 +2,10 @@ import { PostgresTypeArray, postgresTypeArray } from "../../data/database/postgr
 import { Table } from "../../interface/inputData";
 
 export function tableDataToMySQLScheme(tables: Table[]){
-    let schemeArray = [];
+    let schemeArray:string[] = [];
 
     for(let table of tables){
-        let tableStr = []
+        let tableStr:string[] = []
 
         for(let col of table.columns){
 
