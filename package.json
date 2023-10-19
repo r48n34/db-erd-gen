@@ -19,8 +19,10 @@
     "@mantine/prism": "5.10.5",
     "@tabler/icons": "^1.119.0",
     "add": "^2.0.6",
+    "i18next": "^23.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^13.3.1",
     "reactflow": "^11.4.0",
     "zod": "^3.22.4",
     "zustand": "^4.2.0"

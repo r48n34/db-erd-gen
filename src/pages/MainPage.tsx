@@ -10,7 +10,6 @@ import LeftNavBar from '../components/leftBar/components/LeftNavBar';
 import 'reactflow/dist/style.css';
  
 function MainPage(){
-    
     const update = useTableStore((state) => state.update);
     
     useEffect(() => {
