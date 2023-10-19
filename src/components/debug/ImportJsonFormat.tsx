@@ -8,6 +8,7 @@ import { commonSuccessActions, failedDeleteMessage } from "../../utilis/notifica
 
 import useTableStore from "../../store/zustandStore";
 import ImportJsonFromatFile from "./ImportJsonFromatFile";
+import { JsonImportScheme } from "../../interface/inputData";
 
 function ImportJsonFormat(){
 
@@ -26,11 +27,13 @@ function ImportJsonFormat(){
                 throw new Error("Invalid format")
             }
 
+            JsonImportScheme.parse(result);
             importTableObj(result);
     
             commonSuccessActions();
             setOpened(false);
-        } catch (error) {
+        } 
+        catch (error) {
             failedDeleteMessage("Fail to import, please check you file format.");
         }
 

@@ -10,7 +10,8 @@ Free DrawSQL like website but free forever
 - Postgres  
 - MySQL / MariaDB  
 - knex.js  
-- kysely.js  
+- kysely Postgres
+- kysely MySQL
 
 ## Roadmap
 - ⬜️ Update Maininte to v7
