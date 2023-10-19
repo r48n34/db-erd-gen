@@ -30,7 +30,7 @@ export const tableDataScheme = z.object({
     position: z.optional(tablePositionScheme)
 })
 
-export const JsonImportScheme = z.array(tableDataScheme);
+export const jsonImportScheme = z.array(tableDataScheme);
 
 export type Table = z.infer<typeof tableDataScheme>;
 export type TablePosition = z.infer<typeof tablePositionScheme>;

@@ -1,4 +1,5 @@
-import { NavLink } from "@mantine/core";
+import { NavLink, Text } from "@mantine/core";
+import { openConfirmModal } from '@mantine/modals';
 import { IconListDetails } from "@tabler/icons";
 
 import { importString } from "../../data/testInputData";
@@ -10,15 +11,29 @@ import useTableStore from "../../store/zustandStore";
 function ImportTemplateBtn(){
     const importTableObj = useTableStore((state) => state.importTableObj);
 
+    const openModal = () => openConfirmModal({
+        title: 'Confirm the action',
+        children: (
+          <Text size="sm">
+            The current table will be deleted. Are you sure to do this?
+          </Text>
+        ),
+        labels: { confirm: 'Confirm', cancel: 'Cancel' },
+        onCancel: () => console.log('Cancel'),
+        onConfirm: () => {
+            const result = importJsonFormat(importString);
+            importTableObj(result);
+            commonSuccessActions();
+        },
+    });
+
     return (
         <>
         <NavLink
             label="Import simple template"
             icon={<IconListDetails size={16} stroke={1.5} />}
             onClick={ () => {
-                const result = importJsonFormat(importString);
-                importTableObj(result);
-                commonSuccessActions();
+                openModal();
             }}
         />
         </>

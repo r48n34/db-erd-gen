@@ -4,6 +4,7 @@ import { readJsonFromFile } from "../../utilis/fileUtils";
 import { commonSuccessActions, failedDeleteMessage } from "../../utilis/notificationUtilis";
 import { importJsonFormat } from "../../utilis/dataBase/jsonFormat";
 import useTableStore from "../../store/zustandStore";
+import { jsonImportScheme } from "../../interface/inputData";
 
 type ImportJsonFromatFileProps = {
     setLoading?: Function;
@@ -26,6 +27,8 @@ function ImportJsonFromatFile({ setLoading, setCloseModal }: ImportJsonFromatFil
             if(!Array.isArray(result) || result.length <= 0){
                 throw new Error("Invalid format")
             }
+
+            jsonImportScheme.parse(result);
     
             importTableObj(result);
             commonSuccessActions();
