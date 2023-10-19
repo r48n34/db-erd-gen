@@ -15,6 +15,7 @@ Free DrawSQL like website but free forever
 ## Roadmap
 - ⬜️ Update Maininte to v7
 - ⬜️ i18n adapts
+- ⬜️ With Zod type checking
 
 ## Todo
 - ✅ Support kysely types output  

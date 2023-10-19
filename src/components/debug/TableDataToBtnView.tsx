@@ -10,12 +10,13 @@ import { Table } from "../../interface/inputData";
 import { toDownloadFile } from "../../utilis/dataBase/downloadFile";
 
 interface TableDataToBtnViewProps {
-    types: string // "Postgres"
+    title: string
+    types?: "postgresql" | "mySQL" | "sqlite" | ""
     downloadFileName: string
-    schemeFunc: (tables: Table[]) => string
+    schemeFunc: (tables: Table[], types?: "postgresql" | "mySQL" | "sqlite" | "") => string
 }
 
-function TableDataToBtnView({ types, schemeFunc, downloadFileName }:TableDataToBtnViewProps){
+function TableDataToBtnView({ title, types, schemeFunc, downloadFileName }:TableDataToBtnViewProps){
     
     const [ opened, setOpened ] = useState<boolean>(false);
     const [ sqlContent, setSqlContent ] = useState<string>("");
@@ -27,7 +28,7 @@ function TableDataToBtnView({ types, schemeFunc, downloadFileName }:TableDataToB
             size="85%"
             opened={opened}
             onClose={() => setOpened(false)}
-            title={types + " Code"}
+            title={title + " Code"}
         >
             <Group position="right" mb={14}>
                 <Tooltip label="Download SQL">
@@ -50,9 +51,9 @@ function TableDataToBtnView({ types, schemeFunc, downloadFileName }:TableDataToB
         </Modal>
 
         <NavLink 
-            label={"Generate " + types}
+            label={"Generate " + title}
             onClick={ () => {
-                const str = schemeFunc(tableArray);
+                const str = schemeFunc(tableArray, types);
                 setSqlContent(str);
                 setOpened(true);
             }}

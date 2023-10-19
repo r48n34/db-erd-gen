@@ -38,28 +38,40 @@ function DebugModal() {
             <NavLink label="Generate" icon={<IconArchive size={16} stroke={1.5} />} childrenOffset={28}>
 
                 <TableDataToBtnView 
-                    types='Postgres'
+                    title='Postgres'
+                    types="postgresql"
                     schemeFunc={tableDataToPostgresScheme}
                     downloadFileName="tables.sql"
                 />
 
                 <TableDataToBtnView 
-                    types='Knex'
+                    title='MySQL'
+                    types="mySQL"
+                    schemeFunc={tableDataToMySQLScheme}
+                    downloadFileName={`mySqlTables.sql`}
+                />
+
+                <TableDataToBtnView 
+                    title='Knex'
                     schemeFunc={tableDataToKnexScheme}
                     downloadFileName={`${new Date().getTime()}_migrations.ts`}
                 />
 
-                <TableDataToBtnView 
-                    types='Kysely Postgres'
+                <TableDataToBtnView
+                    title="Kysely Postgres"
+                    types='postgresql'
                     schemeFunc={tableDataToKyselyScheme}
                     downloadFileName={`${new Date().getTime()}_migrations.ts`}
                 />
 
-                <TableDataToBtnView 
-                    types='MySQL'
-                    schemeFunc={tableDataToMySQLScheme}
-                    downloadFileName={`mySqlTables.sql`}
+                <TableDataToBtnView
+                    title="Kysely SQLite"
+                    types="sqlite"
+                    schemeFunc={tableDataToKyselyScheme}
+                    downloadFileName={`${new Date().getTime()}_migrations.ts`}
                 />
+
+               
             </NavLink>
 
             <NavLink label="Import / Export" icon={<IconFileArrowRight size={16} stroke={1.5} />} childrenOffset={28}>

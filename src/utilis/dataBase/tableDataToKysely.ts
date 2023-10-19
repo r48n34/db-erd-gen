@@ -2,7 +2,7 @@ import { postgresTypeArray } from "../../data/database/postgresType";
 import { Table } from "../../interface/inputData";
 import { tab } from "../generateTab";
 
-export function tableDataToKyselyScheme(tables: Table[]){
+export function tableDataToKyselyScheme(tables: Table[], dbTypes: "postgresql" | "mySQL" | "sqlite" | "" = "postgresql"){
 
     let schemeArray:string[] = [];
 
@@ -11,16 +11,32 @@ export function tableDataToKyselyScheme(tables: Table[]){
 
         for(let col of table.columns){
 
-            if(col.name === "id" && col.isPrimaryKey){
-                tableStr.push(tab(2) + `.addColumn("id", "serial", (col) => col.primaryKey())`);
-                continue
-            }
-
             const targetTypeInd = postgresTypeArray.findIndex( v => v.value === col.dataType );
             const currentType = postgresTypeArray[targetTypeInd]
-            let strs = tab(2) + ``;
 
-            let funcString = "(col) => col"
+            const dataType = dbTypes === "postgresql"
+                ? currentType.value
+                : dbTypes === "sqlite"
+                ? currentType.sqLiteKey.key
+                : dbTypes === "mySQL"
+                ? currentType.mySQLKey.key
+                : ""
+
+            console.log(currentType);
+
+            // if(col.name === "id" && col.isPrimaryKey){
+            //     tableStr.push(tab(2) + `.addColumn("id", "${dataType}", (col) => col.primaryKey())`);
+            //     continue
+            // }
+
+            let finalStrs = tab(2) + ``;
+            let funcString = "(col) => col";
+
+            const defFuncLength = funcString.length
+
+            if(col.name === "id" && col.isPrimaryKey){
+                funcString += `.primaryKey()`;
+            }
 
             if(col.foreignTo){
                 funcString += `.references("${col.foreignTo.name}.${col.foreignTo.column}").onDelete('cascade')`;
@@ -30,49 +46,28 @@ export function tableDataToKyselyScheme(tables: Table[]){
                 funcString += `.notNull()`;
             }
 
-            if(funcString.length > 12){
-                strs += `.addColumn("${col.name}", "${currentType.value}", ${funcString})`
+            // Determine last string
+            if(funcString.length > defFuncLength){ // default, no extra cb strings
+                finalStrs += `.addColumn("${col.name}", "${dataType}", ${funcString})`
             }
             else{
-                strs += `.addColumn("${col.name}", "${currentType.value}")`
+                finalStrs += `.addColumn("${col.name}", "${dataType}")`
             }
 
-            tableStr.push(strs)
+            tableStr.push(finalStrs)
 
-            // if(postgresTypeArray[targetTypeInd].knexKey.key === "specificType"){
-            //     const specificType = postgresTypeArray[targetTypeInd].knexKey.specificTypeName;
-            //     strs += `table.specificType("${col.name}", "${specificType}")`;
-            // }
-            // else{
-            //     strs += `table.${postgresTypeArray[targetTypeInd].knexKey.key}("${col.name}")`
-            // }
-
-            // if(col.notNull){
-            //     strs += `.notNullable()`
-            // }
-
-            // tableStr.push(strs)
-
-            // if(col.foreignTo){
-            //     const forientStr = tab(3) 
-            //         + `table.foreign("${col.name}").references("${col.foreignTo.name}.${col.foreignTo.column}")`;
-            //     tableStr.push(forientStr)
-            // }
         }
 
         const finalTableStr = tab(1) + `await db.schema \n`
             + tab(2) + `.createTable("${table.name}") \n`
             + tableStr.join("\n") + `\n`
             
-            
-
         schemeArray.push(finalTableStr);
     }
 
     // console.log(schemeArray.join("\n"));
 
     let reverseArr = [...tables]
-        // .map( v => tab(1) + `await knex.schema.dropTableIfExists("${v.name}");`).reverse();
         .map( v => tab(1) + `await db.schema.dropTable('${v.name}').execute();`).reverse();
 
     return `import { Kysely } from 'kysely'; \n \n`
