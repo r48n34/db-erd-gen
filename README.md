@@ -8,7 +8,8 @@ Free DrawSQL like website but free forever
 
 ## Curretn support output  
 - Postgres  
-- MySQL / MariaDB  
+- MySQL / MariaDB
+- SQLite  
 - knex.js  
 - kysely Postgres
 - kysely sqlite
@@ -20,6 +21,7 @@ Free DrawSQL like website but free forever
 
 ## Todo
 - ✅ Support kysely types output  
+- ✅ Support SQLite types output  
 - ✅ Support MySQL / MariaDB types output  
 - ⬜️ Support defaultTo string in general
 - ⬜️ Support defaultTo string in kysely

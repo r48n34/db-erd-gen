@@ -62,7 +62,7 @@ function DebugModal() {
                 <TableDataToBtnView 
                     title='SQLite'
                     schemeFunc={tableDataToSQLiteScheme}
-                    downloadFileName={`${new Date().getTime()}_migrations.sqlite`}
+                    downloadFileName={`${new Date().getTime()}_migrations.db`}
                 />
 
                 {/* <TableDataToBtnView 
