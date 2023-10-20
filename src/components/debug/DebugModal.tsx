@@ -19,6 +19,7 @@ import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPost
 import { tableDataToKyselyScheme } from '../../utilis/dataBase/tableDataToKysely';
 import { tableDataToMySQLScheme } from '../../utilis/dataBase/tableDataToMySQL';
 import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
+import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite';
 
 function DebugModal() {
     const [opened, setOpened] = useState(false);
@@ -59,10 +60,16 @@ function DebugModal() {
                 />
 
                 <TableDataToBtnView 
+                    title='SQLite'
+                    schemeFunc={tableDataToSQLiteScheme}
+                    downloadFileName={`${new Date().getTime()}_migrations.sqlite`}
+                />
+
+                {/* <TableDataToBtnView 
                     title='Prisma'
                     schemeFunc={tableDataToPrismaScheme}
                     downloadFileName={`${new Date().getTime()}_migra.prisma`}
-                />
+                /> */}
 
                 <TableDataToBtnView
                     title="Kysely Postgres"

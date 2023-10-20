@@ -13,10 +13,10 @@ export function tableDataToPostgresScheme(tables: Table[]){
             );
 
             const defaultString = haveDefault === -1 ? "" : postgresTypeArray[haveDefault].defaultValue;
-            const isPrimary = col.isPrimaryKey ? "primary key" : "";
-            const isNotNull = col.notNull ? "NOT NULL" : "";
+            const isPrimary = col.isPrimaryKey ? " primary key" : "";
+            const isNotNull = col.notNull ? " NOT NULL" : "";
 
-            const currentString = `  ${col.name} ${col.dataType} ${defaultString + isPrimary} ${isNotNull}`;
+            const currentString = `  ${col.name} ${col.dataType}${defaultString + isPrimary}${isNotNull}`;
             tableStr.push(currentString)
 
             if(col.foreignTo){
