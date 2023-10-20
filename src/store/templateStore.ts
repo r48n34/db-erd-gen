@@ -7,6 +7,7 @@ interface TemplateStoreData {
     data: Table[]
 }
 
+// For each set of database table sets
 interface TemplateDataState {
     templateArray: TemplateStoreData[]
     update: number

@@ -18,8 +18,9 @@ import { tableDataToKnexScheme } from '../../utilis/dataBase/tableDataToKnex';
 import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPostgres';
 import { tableDataToKyselyScheme } from '../../utilis/dataBase/tableDataToKysely';
 import { tableDataToMySQLScheme } from '../../utilis/dataBase/tableDataToMySQL';
-import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
+// import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
 import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite';
+import { tableDataToTsTypeScheme } from '../../utilis/dataBase/tableDataToTsType';
 
 function DebugModal() {
     const [opened, setOpened] = useState(false);
@@ -38,6 +39,12 @@ function DebugModal() {
             size="xl"
         >
             <NavLink label="Generate" icon={<IconArchive size={16} stroke={1.5} />} childrenOffset={28}>
+
+                <TableDataToBtnView 
+                    title='Typescript'
+                    schemeFunc={tableDataToTsTypeScheme}
+                    downloadFileName="types.ts"
+                />
 
                 <TableDataToBtnView 
                     title='Postgres'

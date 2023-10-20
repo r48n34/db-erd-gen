@@ -6,6 +6,7 @@ export interface PostgresTypeArray {
   label: string;
   value: string;
   group: string;
+  tsTypes: "string" | "number" | "boolean" | "object" | "null" | "Date"
   knexKey: {
     key: string; // knex using their string
     specificTypeName?: string;
@@ -32,6 +33,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "bigint",
     value: "bigint",
     group: "numeric",
+    tsTypes: "number",
     knexKey: {
       key: "bigInteger",
     },
@@ -51,6 +53,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "bigserial",
     value: "bigserial",
     group: "numeric",
+    tsTypes: "number",
     knexKey: {
       key: "bigIncrements",
     },
@@ -70,6 +73,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "bit",
     value: "bit",
     group: "bit",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "BIT(8)",
@@ -90,6 +94,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "bit varying",
     value: "bit varying ",
     group: "bit",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "bit varying(255)",
@@ -110,6 +115,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "boolean",
     value: "boolean",
     group: "boolean",
+    tsTypes: "boolean",
     knexKey: {
       key: "boolean",
       specificTypeName: "box",
@@ -130,6 +136,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "box",
     value: "box",
     group: "geometric",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "bytea",
@@ -150,6 +157,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "bytea",
     value: "bytea",
     group: "binary",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
     },
@@ -169,6 +177,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "varchar",
     value: "varchar",
     group: "character",
+    tsTypes: "string",
     defaultValue: "(255)",
     knexKey: {
       key: "string",
@@ -189,6 +198,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "char",
     value: "char",
     group: "character",
+    tsTypes: "string",
     defaultValue: "(255)",
     knexKey: {
       key: "specificType",
@@ -209,6 +219,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
   {
     label: "cidr",
     value: "cidr",
+    tsTypes: "string",
     group: "network address",
     knexKey: {
       key: "specificType",
@@ -230,6 +241,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "circle",
     value: "circle",
     group: "geometric",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "circle",
@@ -250,6 +262,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "date",
     value: "date",
     group: "date/time",
+    tsTypes: "Date",
     knexKey: {
       key: "date",
     },
@@ -269,6 +282,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "double precision",
     value: "double precision",
     group: "numeric",
+    tsTypes: "number",
     knexKey: {
       key: "double",
     },
@@ -288,6 +302,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "inet",
     value: "inet",
     group: "network address",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "inet",
@@ -308,6 +323,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "integer",
     value: "integer",
     group: "numeric",
+    tsTypes: "number",
     knexKey: {
       key: "integer",
     },
@@ -327,6 +343,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "interval",
     value: "interval",
     group: "date/time",
+    tsTypes: "Date",
     knexKey: {
       key: "specificType",
       specificTypeName: "interval",
@@ -347,6 +364,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "json",
     value: "json",
     group: "JSON",
+    tsTypes: "string",
     knexKey: {
       key: "json",
     },
@@ -366,6 +384,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "jsonb",
     value: "jsonb",
     group: "JSON",
+    tsTypes: "string",
     knexKey: {
       key: "jsonb",
     },
@@ -385,6 +404,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "line",
     value: "line",
     group: "geometric",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "line",
@@ -405,6 +425,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "lseg",
     value: "lseg",
     group: "geometric",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "lseg",
@@ -425,6 +446,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "macaddr",
     value: "macaddr",
     group: "network address",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "macaddr",
@@ -445,6 +467,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "macaddr8",
     value: "macaddr8",
     group: "network address",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "macaddr8",
@@ -465,6 +488,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "money",
     value: "money",
     group: "monetary",
+    tsTypes: "number",
     knexKey: {
       key: "specificType",
       specificTypeName: "money",
@@ -485,6 +509,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "numeric",
     value: "numeric",
     group: "numeric",
+    tsTypes: "number",
     knexKey: {
       key: "decimal",
     },
@@ -504,6 +529,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "path",
     value: "path",
     group: "geometric",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "path",
@@ -524,6 +550,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "pg_lsn",
     value: "pg_lsn",
     group: "pg_lsn",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "pg_lsn",
@@ -544,6 +571,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "pg_snapshot",
     value: "pg_snapshot",
     group: "pg_snapshot",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "pg_snapshot",
@@ -564,6 +592,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "point",
     value: "point",
     group: "geometric",
+    tsTypes: "number",
     knexKey: {
       key: "point",
     },
@@ -583,6 +612,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "polygon",
     value: "polygon",
     group: "geometric",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "polygon",
@@ -603,6 +633,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "real",
     value: "real",
     group: "numeric",
+    tsTypes: "number",
     knexKey: {
       key: "specificType",
       specificTypeName: "real",
@@ -623,6 +654,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "smallint",
     value: "smallint",
     group: "numeric",
+    tsTypes: "number",
     knexKey: {
       key: "smallint",
     },
@@ -642,6 +674,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "smallserial",
     value: "smallserial",
     group: "numeric",
+    tsTypes: "number",
     knexKey: {
       key: "increments",
     },
@@ -661,6 +694,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "serial",
     value: "serial",
     group: "numeric",
+    tsTypes: "number",
     knexKey: {
       key: "increments",
     },
@@ -680,6 +714,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "text",
     value: "text",
     group: "character",
+    tsTypes: "string",
     knexKey: {
       key: "text",
     },
@@ -699,6 +734,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "time",
     value: "time",
     group: "date/time",
+    tsTypes: "Date",
     knexKey: {
       key: "time",
     },
@@ -718,6 +754,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "time with time zone",
     value: "time with time zone",
     group: "date/time",
+    tsTypes: "Date",
     knexKey: {
       key: "timestamp",
     },
@@ -737,6 +774,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "timestamp",
     value: "timestamp",
     group: "date/time",
+    tsTypes: "Date",
     knexKey: {
       key: "timestamp",
     },
@@ -756,6 +794,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "tsquery",
     value: "tsquery",
     group: "text search",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "tsquery",
@@ -776,6 +815,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "tsvector",
     value: "tsvector",
     group: "text search",
+    tsTypes: "string",
     knexKey: {
       key: "specificType",
       specificTypeName: "tsvector",
@@ -796,6 +836,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     label: "uuid",
     value: "uuid",
     group: "uuid",
+    tsTypes: "string",
     knexKey: {
       key: "uuid",
     },
