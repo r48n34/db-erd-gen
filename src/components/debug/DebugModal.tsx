@@ -21,6 +21,7 @@ import { tableDataToMySQLScheme } from '../../utilis/dataBase/tableDataToMySQL';
 // import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
 import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite';
 import { tableDataToTsTypeScheme } from '../../utilis/dataBase/tableDataToTsType';
+import { tableDataToZodTypeScheme } from '../../utilis/dataBase/tableDataToZodType';
 
 function DebugModal() {
     const [opened, setOpened] = useState(false);
@@ -44,6 +45,12 @@ function DebugModal() {
                     title='Typescript'
                     schemeFunc={tableDataToTsTypeScheme}
                     downloadFileName="types.ts"
+                />
+
+                <TableDataToBtnView 
+                    title='Typescript Zod'
+                    schemeFunc={tableDataToZodTypeScheme}
+                    downloadFileName="zodScheme.ts"
                 />
 
                 <TableDataToBtnView 

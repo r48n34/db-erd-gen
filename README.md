@@ -24,7 +24,7 @@ Free DrawSQL like website but free forever
 - ✅ Support SQLite types output  
 - ✅ Support MySQL / MariaDB types output  
 - ✅ Support typescript normal types
-- ⬜️ Support zod types generate
+- ✅ Support zod types generate
 - ⬜️ Support defaultTo string in general
 - ⬜️ Support defaultTo string in kysely
 - ⬜️ Support Prisma types output  

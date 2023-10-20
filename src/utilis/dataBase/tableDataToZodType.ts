@@ -2,7 +2,7 @@ import { postgresTypeArray } from "../../data/database/postgresType";
 import { Table } from "../../interface/inputData";
 import { tab } from "../generateTab";
 
-export function tableDataToTsTypeScheme(tables: Table[]){
+export function tableDataToZodTypeScheme(tables: Table[]){
 
     let schemeArray:string[] = [];
 
@@ -13,21 +13,25 @@ export function tableDataToTsTypeScheme(tables: Table[]){
 
             const targetTypeInd = postgresTypeArray.findIndex( v => v.value === col.dataType );
             const currentType = postgresTypeArray[targetTypeInd].tsTypes
-            const notNull = col.notNull || col.isPrimaryKey ? "" : "?"
 
-            let finalStrs = tab(1) + `${col.name}${notNull}: ${currentType};`;
+            const zodVal = `z.${currentType}()`
+            const finalZodValue = col.notNull || col.isPrimaryKey ? zodVal : `z.optional(${zodVal})`
+
+            let finalStrs = tab(1) + `${col.name}: ${finalZodValue},`;
             tableStr.push(finalStrs)
 
         }
 
         const uppperName = table.name.charAt(0).toUpperCase() + table.name.slice(1);
 
-        const finalTableStr = `export type ${uppperName} = { \n`
-            + tableStr.join("\n") + `\n } \n`
+        const finalTableStr = `export const ${uppperName}Scheme = z.object({ \n`
+            + tableStr.join("\n") + `\n }) \n`
+            + `\n type ${uppperName} = z.infer<typeof ${uppperName}Scheme>; \n`
             
         schemeArray.push(finalTableStr);
     }
 
-    return schemeArray.join("\n")
+    return `import { z } from "zod"; \n \n`
+        + schemeArray.join("\n")
         
 }
