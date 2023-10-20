@@ -13,6 +13,8 @@ Free DrawSQL like website but free forever
 - knex.js  
 - kysely Postgres
 - kysely sqlite
+- Typescript types
+- Zod scheme types
 
 ## Roadmap
 - ⬜️ Update Maininte to v7
