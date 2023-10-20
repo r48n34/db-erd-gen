@@ -15,14 +15,7 @@ export function tableDataToPrismaScheme(tables: Table[]){
             const targetTypeInd = postgresTypeArray.findIndex( v => v.value === col.dataType );
             const currentType = postgresTypeArray[targetTypeInd]
 
-            const dbTypes = "postgresql"
-            const dataType = dbTypes === "postgresql"
-                ? currentType.value
-                : dbTypes === "sqlite"
-                ? currentType.sqLiteKey.key
-                : dbTypes === "mySQL"
-                ? currentType.mySQLKey.key
-                : ""
+            const dataType = currentType.value
 
             console.log(currentType);
 

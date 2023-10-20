@@ -18,6 +18,7 @@ import { tableDataToKnexScheme } from '../../utilis/dataBase/tableDataToKnex';
 import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPostgres';
 import { tableDataToKyselyScheme } from '../../utilis/dataBase/tableDataToKysely';
 import { tableDataToMySQLScheme } from '../../utilis/dataBase/tableDataToMySQL';
+import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
 
 function DebugModal() {
     const [opened, setOpened] = useState(false);
@@ -55,6 +56,12 @@ function DebugModal() {
                     title='Knex'
                     schemeFunc={tableDataToKnexScheme}
                     downloadFileName={`${new Date().getTime()}_migrations.ts`}
+                />
+
+                <TableDataToBtnView 
+                    title='Prisma'
+                    schemeFunc={tableDataToPrismaScheme}
+                    downloadFileName={`${new Date().getTime()}_migra.prisma`}
                 />
 
                 <TableDataToBtnView
