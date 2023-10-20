@@ -21,6 +21,8 @@ Free DrawSQL like website but free forever
 ## Todo
 - ✅ Support kysely types output  
 - ✅ Support MySQL / MariaDB types output  
+- ⬜️ Support defaultTo string in general
+- ⬜️ Support defaultTo string in kysely
 - ⬜️ Support Prisma types output  
 - ⬜️ Add UNIQUE types  
 - ⬜️ Support sqlite types output    
