@@ -14,7 +14,7 @@ export function tableDataToZodTypeScheme(tables: Table[]){
             const targetTypeInd = postgresTypeArray.findIndex( v => v.value === col.dataType );
             const currentType = postgresTypeArray[targetTypeInd].tsTypes
 
-            const zodVal = `z.${currentType}()`
+            const zodVal = `z.${currentType.toLocaleLowerCase()}()`
             const finalZodValue = col.notNull || col.isPrimaryKey ? zodVal : `z.optional(${zodVal})`
 
             let finalStrs = tab(1) + `${col.name}: ${finalZodValue},`;
