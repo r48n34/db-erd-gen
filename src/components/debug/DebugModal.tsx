@@ -22,6 +22,7 @@ import { tableDataToMySQLScheme } from '../../utilis/dataBase/tableDataToMySQL';
 import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite';
 import { tableDataToTsTypeScheme } from '../../utilis/dataBase/tableDataToTsType';
 import { tableDataToZodTypeScheme } from '../../utilis/dataBase/tableDataToZodType';
+import SavedScheme from './SavedSchemeBtn';
 
 function DebugModal() {
     const [opened, setOpened] = useState(false);
@@ -42,13 +43,13 @@ function DebugModal() {
             <NavLink label="Generate" icon={<IconArchive size={16} stroke={1.5} />} childrenOffset={28}>
 
                 <TableDataToBtnView 
-                    title='Typescript'
+                    title='Typescript Type'
                     schemeFunc={tableDataToTsTypeScheme}
                     downloadFileName="types.ts"
                 />
 
                 <TableDataToBtnView 
-                    title='Typescript Zod'
+                    title='Ts Zod Scheme'
                     schemeFunc={tableDataToZodTypeScheme}
                     downloadFileName="zodScheme.ts"
                 />
@@ -116,6 +117,7 @@ function DebugModal() {
                 icon={<IconDeviceFloppy size={16} stroke={1.5} />}
                 childrenOffset={28}
             >
+                <SavedScheme types="list" />
                 <SavedSchemeList closeModal={ () => setOpened(false) }/>
             </NavLink>
 

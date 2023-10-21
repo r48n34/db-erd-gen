@@ -23,30 +23,36 @@ function DisplayTableComp(){
                     </Accordion.Control>
 
                     <Accordion.Panel>
-                        <Text size={14} align="center">
+                        {/* <Text size={14} align="center">
                             {v.name}
-                        </Text>
+                        </Text> */}
+
+                        <Group position="apart" mb={4}>
+                            <DeleteTableBtn tableName={v.name} />
+                                {/* <Text size={14} align="center">
+                                {v.name}
+                                </Text> */}
+                            <TableForm mode={'edit'} allTableData={tableArray} editData={v}  />
+                        </Group>
 
                         { v.columns.map( k => (
                             <Box key={"tables_cols_" + k.name}>
                                 <Group position="apart">                 
                                     <Text size={14}>
                                         {k.name}{" "}
-                                        {k.foreignTo && <Badge size="xs">(FK)</Badge>}
+                                        {/* {k.foreignTo && <Badge size="xs">(FK)</Badge>} */}
                                         {k.notNull && <Badge color="red" size="xs">(Not Null)</Badge>}
                                     </Text>
                                     <Text size={14}>{k.dataType}</Text>
                                 </Group>
                                 { k.foreignTo && (
-                                    <Text size={14} ml={6}> {k.foreignTo.name} {"->"} {k.foreignTo.column}</Text> 
+                                    <Group ml={6}>
+                                        <Badge size="xs">(FK)</Badge>
+                                        <Text size={14} > {k.foreignTo.name} {"->"} {k.foreignTo.column}</Text> 
+                                    </Group>
                                 )}
                             </Box>
                         ))}
-
-                        <Group position="right">
-                            <DeleteTableBtn tableName={v.name} />
-                            <TableForm mode={'edit'} allTableData={tableArray} editData={v}  />
-                        </Group>
 
                     </Accordion.Panel>
                 </Accordion.Item>

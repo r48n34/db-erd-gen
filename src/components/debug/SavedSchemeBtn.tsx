@@ -1,5 +1,5 @@
-import { ActionIcon, Button, Group, Modal, TextInput, Tooltip } from "@mantine/core";
-import { IconCloudDownload } from "@tabler/icons";
+import { ActionIcon, Button, Group, Modal, NavLink, TextInput, Tooltip } from "@mantine/core";
+import { IconCloudDownload, IconFileImport } from "@tabler/icons";
 
 import { commonSuccessActions, failedDeleteMessage } from "../../utilis/notificationUtilis";
 
@@ -7,7 +7,11 @@ import useTableStore from "../../store/zustandStore";
 import useTemplateStoreStore from "../../store/templateStore";
 import { useState } from "react";
     
-function SavedSchemeBtn(){
+interface SavedSchemeProps {
+    types: "btn" | "list"
+}
+
+function SavedScheme({ types }: SavedSchemeProps){
 
     const [ opened, setOpened ] = useState<boolean>(false);
     const [ schemeName , setSchemeName ] = useState('project');
@@ -52,13 +56,26 @@ function SavedSchemeBtn(){
             </Group>
         </Modal>
 
-        <Tooltip label="Save Current Scheme">
-        <ActionIcon onClick={ () => setOpened(true) }>
-            <IconCloudDownload size={16}/>
-        </ActionIcon>
-        </Tooltip>
+        { types === "btn" 
+            ? (
+                <Tooltip label="Save Current Scheme">
+                <ActionIcon onClick={ () => setOpened(true) }>
+                    <IconCloudDownload size={16}/>
+                </ActionIcon>
+                </Tooltip>
+            )
+            : (
+                <NavLink 
+                label="Save Current Scheme"
+                icon={<IconFileImport size={16} stroke={1.5} />}
+                onClick={ () => setOpened(true) }
+            />
+            )
+        }
+       
+
         </>
     )
 }
     
-export default SavedSchemeBtn
+export default SavedScheme

@@ -4,7 +4,7 @@ import { Column, Table } from "../../../interface/inputData";
 import { useForm } from '@mantine/form';
 import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Text, Select } from "@mantine/core";
 
-import { IconSquarePlus, IconEdit, IconTrash } from '@tabler/icons';
+import { IconSquarePlus, IconEdit, IconTrash, IconDeviceFloppy } from '@tabler/icons';
 import useTableStore from "../../../store/zustandStore";
 
 import { uuidGen } from "../../../utilis/uuidGen";
@@ -315,8 +315,8 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             {tablesField}
 
             <Group position="right" mt="md">
-                <Button type="submit">
-                    Submit
+                <Button type="submit" leftIcon={<IconDeviceFloppy size={18}/>}>
+                    Save
                 </Button>
             </Group>
 
