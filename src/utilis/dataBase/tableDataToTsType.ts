@@ -12,10 +12,10 @@ export function tableDataToTsTypeScheme(tables: Table[]){
         for(let col of table.columns){
 
             const targetTypeInd = postgresTypeArray.findIndex( v => v.value === col.dataType );
-            const currentType = postgresTypeArray[targetTypeInd].tsTypes
-            const notNull = col.notNull || col.isPrimaryKey ? "" : "?"
+            const currentType = postgresTypeArray[targetTypeInd].tsTypes + (col.notNull || col.isPrimaryKey ? "" : " | null")
+            // currentType += col.notNull || col.isPrimaryKey ? "" : "?"
 
-            let finalStrs = tab(1) + `${col.name}${notNull}: ${currentType};`;
+            let finalStrs = tab(1) + `${col.name}: ${currentType};`;
             tableStr.push(finalStrs)
 
         }
