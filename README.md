@@ -11,18 +11,20 @@ Free DrawSQL like website but free forever
 - MySQL / MariaDB
 - SQLite  
 - knex.js  
+- kysely ts types
 - kysely Postgres
 - kysely sqlite
 - Typescript types
 - Zod scheme types
 
 ## Roadmap
+- ✅ With Zod type checking
 - ⬜️ Update Maininte to v7
 - ⬜️ i18n adapts
-- ✅ With Zod type checking
 
 ## Todo
-- ✅ Support kysely types output  
+- ✅ Support kysely db migrate types output  
+- ✅ Support kysely ts types output  
 - ✅ Support SQLite types output  
 - ✅ Support MySQL / MariaDB types output  
 - ✅ Support typescript normal types

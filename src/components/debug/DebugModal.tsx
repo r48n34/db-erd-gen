@@ -16,7 +16,7 @@ import TableDataToBtnView from './TableDataToBtnView';
 
 import { tableDataToKnexScheme } from '../../utilis/dataBase/tableDataToKnex';
 import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPostgres';
-import { tableDataToKyselyScheme } from '../../utilis/dataBase/tableDataToKysely';
+import { tableDataToKyselyScheme, tableDataToKyselyTypescriptScheme } from '../../utilis/dataBase/tableDataToKysely';
 import { tableDataToMySQLScheme } from '../../utilis/dataBase/tableDataToMySQL';
 // import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
 import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite';
@@ -85,6 +85,12 @@ function DebugModal() {
                     schemeFunc={tableDataToPrismaScheme}
                     downloadFileName={`${new Date().getTime()}_migra.prisma`}
                 /> */}
+
+                <TableDataToBtnView
+                    title="Kysely Types"
+                    schemeFunc={tableDataToKyselyTypescriptScheme}
+                    downloadFileName={`types.ts`}
+                />
 
                 <TableDataToBtnView
                     title="Kysely Postgres"

@@ -78,3 +78,51 @@ export function tableDataToKyselyScheme(tables: Table[], dbTypes: "postgresql" |
         + reverseArr.join("\n")
         + `\n` + `}`
 }
+
+// https://github.com/RobinBlomberg/kysely-codegen
+export function tableDataToKyselyTypescriptScheme(
+    tables: Table[]
+){
+
+    let schemeArray: string[] = [];
+    let schemeTableTypesArray: string[] = [];
+
+    for(let table of tables){
+
+        const uppperName = table.name.charAt(0).toUpperCase() + table.name.slice(1);
+        schemeTableTypesArray.push(tab(1) + `${table.name} : ${uppperName}Table`);
+
+        let tableStr: string[] = []
+
+        for(let col of table.columns){
+
+            const targetTypeInd = postgresTypeArray.findIndex( v => v.value === col.dataType );
+            let currentType = postgresTypeArray[targetTypeInd].tsTypes + (col.notNull || col.isPrimaryKey ? "" : " | null")
+
+            if(postgresTypeArray[targetTypeInd].value === "serial"){
+                currentType = "Generated<number>"
+            }
+
+            let finalStrs = tab(1) + `${col.name}: ${currentType}`;
+            tableStr.push(finalStrs);
+
+        }
+
+        const finalTableStr = `export interface ${uppperName}Table { \n`
+            + tableStr.join("\n") + `\n } \n \n`
+            + `export type ${uppperName} = Selectable<${uppperName}Table> \n`
+            + `export type New${uppperName} = Insertable<${uppperName}Table> \n`
+            + `export type ${uppperName}Update = Updateable<${uppperName}Table> \n `
+            
+        schemeArray.push(finalTableStr);
+    }
+
+    return `import { ColumnType, Generated, Insertable, Selectable, Updateable } from 'kysely' \n \n`
+        + `export interface Database { \n`
+        + schemeTableTypesArray.join("\n")
+        + `\n} \n\n`
+        + schemeArray.join("\n")
+
+
+
+}
