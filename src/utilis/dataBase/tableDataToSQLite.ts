@@ -6,6 +6,7 @@ export function tableDataToSQLiteScheme(tables: Table[]){
 
     for(let table of tables){
         let tableStr:string[] = []
+        let uniqueKeys: string[] = []; 
 
         for(let col of table.columns){
             // const currentTyleInd = postgresTypeArray.findIndex( 
@@ -21,6 +22,8 @@ export function tableDataToSQLiteScheme(tables: Table[]){
             const isPrimary = col.isPrimaryKey ? " PRIMARY KEY" : "";
             const isNotNull = col.notNull ? " NOT NULL" : "";
 
+            col.unique && uniqueKeys.push(col.name)
+
             const currentString = `  ${col.name} ${sqliteType}${isPrimary}${isNotNull}`;
             tableStr.push(currentString)
 
@@ -30,10 +33,12 @@ export function tableDataToSQLiteScheme(tables: Table[]){
             }
         }
 
+        uniqueKeys.length >= 1 && tableStr.push(`  UNIQUE (${uniqueKeys.join(", ")})`)
+
         const finalTableStr = `CREATE TABLE ${table.name} ( \n` + tableStr.join(", \n") + `\n` + `); \n`
         schemeArray.push(finalTableStr);
     }
 
-    console.log(schemeArray.join("\n"));
+    // console.log(schemeArray.join("\n"));
     return schemeArray.join("\n")
 }

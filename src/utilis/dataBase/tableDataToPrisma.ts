@@ -17,7 +17,7 @@ export function tableDataToPrismaScheme(tables: Table[]){
 
             const dataType = currentType.value
 
-            console.log(currentType);
+            // console.log(currentType);
 
             let finalStrs = tab(2) + ``;
             let funcString = "(col) => col";

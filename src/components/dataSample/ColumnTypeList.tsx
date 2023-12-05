@@ -17,13 +17,18 @@ function ColumnTypeList(){
             <Tabs>
                 <Tabs.List>
                     { postgresTypeGroup.map( v => (
-                        <Tabs.Tab value={v} icon={<IconSettings size={14} />}>{v}</Tabs.Tab>
+                        <Tabs.Tab key={v} value={v} icon={<IconSettings size={14} />}>
+                            {v}
+                        </Tabs.Tab>
                     ))}
                 </Tabs.List>
 
                 { postgresTypeGroup.map( v => (
                     <Tabs.Panel value={v} pt="xs">
-                        { postgresTypeArray.filter( k => k.group === v ).map( k => <Text>- {k.value}</Text> )}
+                        { postgresTypeArray
+                            .filter( k => k.group === v )
+                            .map( k => <Text key={k.value}>- {k.value}</Text> )
+                        }
                     </Tabs.Panel>
                 ))}
 

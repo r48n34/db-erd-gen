@@ -38,14 +38,10 @@ export function tableDataToKyselyScheme(tables: Table[], dbTypes: "postgresql" |
                 funcString += `.primaryKey()`;
             }
 
-            if(col.foreignTo){
-                funcString += `.references("${col.foreignTo.name}.${col.foreignTo.column}").onDelete('cascade')`;
-            }
-
-            if(col.notNull){
-                funcString += `.notNull()`;
-            }
-
+            col.foreignTo && (funcString += `.references("${col.foreignTo.name}.${col.foreignTo.column}").onDelete('cascade')`)
+            col.notNull && (funcString += `.notNull()`);
+            col.unique  && (funcString += `.unique()`);
+            
             // Determine last string
             if(funcString.length > defFuncLength){ // default, no extra cb strings
                 finalStrs += `.addColumn("${col.name}", "${dataType}", ${funcString})`

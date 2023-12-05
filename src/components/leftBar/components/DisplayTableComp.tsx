@@ -23,15 +23,9 @@ function DisplayTableComp(){
                     </Accordion.Control>
 
                     <Accordion.Panel>
-                        {/* <Text size={14} align="center">
-                            {v.name}
-                        </Text> */}
 
                         <Group position="apart" mb={4}>
                             <DeleteTableBtn tableName={v.name} />
-                                {/* <Text size={14} align="center">
-                                {v.name}
-                                </Text> */}
                             <TableForm mode={'edit'} allTableData={tableArray} editData={v}  />
                         </Group>
 
@@ -42,6 +36,7 @@ function DisplayTableComp(){
                                         {k.name}{" "}
                                         {/* {k.foreignTo && <Badge size="xs">(FK)</Badge>} */}
                                         {k.notNull && <Badge color="red" size="xs">(Not Null)</Badge>}
+                                        {k.unique  && <Badge color="red" size="xs">(U)</Badge>}
                                     </Text>
                                     <Text size={14}>{k.dataType}</Text>
                                 </Group>

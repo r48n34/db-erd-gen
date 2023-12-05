@@ -27,9 +27,8 @@ export function tableDataToKnexScheme(tables: Table[]){
                 strs += `table.${postgresTypeArray[targetTypeInd].knexKey.key}("${col.name}")`
             }
 
-            if(col.notNull){
-                strs += `.notNullable()`
-            }
+            col.unique  && (strs += `.unique()`)
+            col.notNull && (strs += `.notNullable()`)
 
             tableStr.push(strs)
 

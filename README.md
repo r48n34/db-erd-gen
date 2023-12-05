@@ -32,7 +32,7 @@ Free DrawSQL like website but free forever
 - ⬜️ Support defaultTo string in general
 - ⬜️ Support defaultTo string in kysely
 - ⬜️ Support Prisma types output  
-- ⬜️ Add UNIQUE types  
-- ⬜️ Support sqlite types output    
+- ✅ Add UNIQUE types  
+- ✅ Support sqlite types output    
 - ⬜️ More features  
 - ⬜️ Update UI  

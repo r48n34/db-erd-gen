@@ -15,8 +15,9 @@ export function tableDataToPostgresScheme(tables: Table[]){
             const defaultString = haveDefault === -1 ? "" : postgresTypeArray[haveDefault].defaultValue;
             const isPrimary = col.isPrimaryKey ? " primary key" : "";
             const isNotNull = col.notNull ? " NOT NULL" : "";
+            const isUnique = col.unique ? " UNIQUE" : "";
 
-            const currentString = `  ${col.name} ${col.dataType}${defaultString + isPrimary}${isNotNull}`;
+            const currentString = `  ${col.name} ${col.dataType}${defaultString + isPrimary}${isNotNull}${isUnique}`;
             tableStr.push(currentString)
 
             if(col.foreignTo){
@@ -29,6 +30,6 @@ export function tableDataToPostgresScheme(tables: Table[]){
         schemeArray.push(finalTableStr);
     }
 
-    console.log(schemeArray.join("\n"));
+    // console.log(schemeArray.join("\n"));
     return schemeArray.join("\n")
 }

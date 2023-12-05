@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Column, Table } from "../../../interface/inputData";
 
 import { useForm } from '@mantine/form';
-import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Text, Select } from "@mantine/core";
+import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Text, Select, Box } from "@mantine/core";
 
 import { IconSquarePlus, IconEdit, IconTrash, IconDeviceFloppy } from '@tabler/icons';
 import useTableStore from "../../../store/zustandStore";
@@ -25,7 +25,8 @@ interface FormColumns {
     dataType: string
     isPrimaryKey: boolean
     isForeignKey: boolean
-    foreignTo: {
+    unique?: boolean
+    foreignTo?: {
         name: null | string,
         column: null | string
     },
@@ -44,7 +45,9 @@ function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject
                 return {
                     ...v,
                     isForeignKey: !!v.foreignTo,
-                    relationship: null
+                    relationship: null,
+                    unique: v.hasOwnProperty("unique") ? v.unique : false,
+                    foreignTo: v.hasOwnProperty("foreignTo") ? v.foreignTo : { name: null, column: null },
                 }
             }) as FormColumns[]
         }
@@ -60,7 +63,11 @@ function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject
                 isPrimaryKey: true,
                 isForeignKey: false,
                 notNull: false,
-                foreignTo: {name: null, column: null},
+                unique: false,
+                foreignTo: { 
+                    name: null,
+                    column: null
+                },
                 relationship: null
             }
         ],
@@ -95,20 +102,32 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     
     const tablesField = form.values.columns.map((v, index) => (
        
-            <Grid key={"col_" + v.id}>
+            <Grid key={"col_" + v.name} mb={8}>
+
                 <Grid.Col span={2}>
-                    <TextInput
-                        withAsterisk
-                        label="Column name"
-                        placeholder="id"
-                        {...form.getInputProps(`columns.${index}.name`)}
-                    />
+                    <Group>
+                        <Tooltip label="Delete column">
+                        <ActionIcon
+                            mt={26}
+                            color="red" 
+                            onClick={() => form.removeListItem('columns', index)}
+                        >
+                            <IconTrash size={16} />
+                        </ActionIcon>
+                        </Tooltip>
+
+                        <TextInput
+                            withAsterisk
+                            label="Column name"
+                            placeholder="id"
+                            {...form.getInputProps(`columns.${index}.name`)}
+                        />
+                    </Group>
                 </Grid.Col>
 
                 <Grid.Col span={2}>
-                    
                     <Select
-                        label={<div style={{ display: "inline-block"}}><ColumnTypeList/></div>}
+                        label={<div style={{ display: "inline-block" }}><ColumnTypeList/></div>}
                         placeholder="integer"
                         withAsterisk
                         searchable
@@ -117,7 +136,9 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                     />
                 </Grid.Col>
 
-                <Grid.Col span={1}>
+                <Grid.Col span={2}>
+                    <Group>
+                    <Box>
                     <Tooltip label="Primary Key">
                         <Text align="left" size={14} weight={600} mt={3}>PK</Text>
                     </Tooltip>
@@ -126,9 +147,9 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         mt={10}
                         {...form.getInputProps(`columns.${index}.isPrimaryKey`, { type: 'checkbox' })}
                     />
-                </Grid.Col>
+                    </Box>
 
-                <Grid.Col span={1}>
+                    <Box>
                     <Tooltip label="Column not nullable?">
                         <Text align="left" size={14} weight={600} mt={3}>not Null</Text>
                     </Tooltip>
@@ -137,17 +158,31 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         mt={10}
                         {...form.getInputProps(`columns.${index}.notNull`, { type: 'checkbox' })}
                     />
-                </Grid.Col>
+                    </Box>
 
-                <Grid.Col span={1}>
+                    <Box>
+                    <Tooltip label="Unique">
+                        <Text align="left" size={14} weight={600} mt={3}>Unique</Text>
+                    </Tooltip>
+
+                    <Switch
+                        mt={10}
+                        {...form.getInputProps(`columns.${index}.unique`, { type: 'checkbox' })}
+                    />
+                    </Box>
+
+                    <Box>
                     <Tooltip label="Foreign Key">
                         <Text align="left" size={14} weight={600} mt={3}>FK</Text>
                     </Tooltip>
 
                     <Switch
                         mt={10}
+                        disabled={allTableData.length <= 1 && mode === "edit"}
                         {...form.getInputProps(`columns.${index}.isForeignKey`, { type: 'checkbox' })}
                     />
+                    </Box>
+                    </Group>
                 </Grid.Col>
 
                 { form.values.columns[index].isForeignKey 
@@ -158,7 +193,12 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                             label="FK Table name"
                             placeholder="name"
                             withAsterisk
-                            data={Array.isArray(allTableData) ? allTableData.map( v => v.name ) : []}
+                            disabled={allTableData.length <= 1 && mode === "edit"}
+                            data={
+                                Array.isArray(allTableData) 
+                                ? allTableData.map( v => ({ value: v.name, label: v.name, disabled: v.name === form.values.tableName }) ) 
+                                : []
+                            }
                             {...form.getInputProps(`columns.${index}.foreignTo.name`)}
                         />
                     </Grid.Col>
@@ -168,10 +208,10 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                             label="FK Column"
                             placeholder="id"
                             withAsterisk
-                            disabled={!form.values.columns[index].foreignTo.name}
+                            disabled={!form.values.columns[index].foreignTo!.name}
                             data={
-                                form.values.columns[index].foreignTo.name 
-                                ?   allTableData.filter( v => v.name === form.values.columns[index].foreignTo.name )
+                                form.values.columns[index].foreignTo!.name 
+                                ?   allTableData.filter( v => v.name === form.values.columns[index].foreignTo!.name )
                                     [0].columns.map( v => v.name )
                                 : []
                             }
@@ -179,18 +219,10 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         />
                     </Grid.Col>
                 </> )
-                : (<Grid.Col span={4}></Grid.Col>) 
+                : (<Grid.Col span={3}></Grid.Col>) 
                 }
 
-                <Grid.Col span={1}>
-                    <ActionIcon
-                        mt={26}
-                        color="red" 
-                        onClick={() => form.removeListItem('columns', index)}
-                    >
-                        <IconTrash size={16} />
-                    </ActionIcon>
-                </Grid.Col>
+                
             </Grid>
      
     ));
@@ -199,7 +231,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
 
         try {
             
-            console.log(values);
+            // console.log(values);
 
             // Empty table name
             if(values.columns.length === 0){
@@ -225,10 +257,11 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                     let baseObj = {
                         name: v.name.trim().toLowerCase().split(" ").join("_"),
                         dataType: v.dataType,
+                        unique: v.unique,
                         isPrimaryKey: v.isPrimaryKey
                     } as Column
     
-                    if(v.isForeignKey){
+                    if(v.isForeignKey && !!v.foreignTo){
                         baseObj.foreignTo = {
                             name: v.foreignTo.name as string, 
                             column: v.foreignTo.column as string
@@ -300,6 +333,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                                 isPrimaryKey: false,
                                 isForeignKey: false,
                                 notNull: false,
+                                unique: false,
                                 foreignTo: {
                                     name: null,
                                     column: null
