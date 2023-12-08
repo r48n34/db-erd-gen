@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Column, Table } from "../../../interface/inputData";
 
 import { useForm } from '@mantine/form';
-import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Text, Select, Box } from "@mantine/core";
+import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Text, Select, Box, Card } from "@mantine/core";
 
 import { IconSquarePlus, IconEdit, IconTrash, IconDeviceFloppy } from '@tabler/icons';
 import useTableStore from "../../../store/zustandStore";
@@ -105,31 +105,30 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     }, [editData])
     
     const tablesField = form.values.columns.map((v, index) => (
-       
-            <Grid key={"col_" + v.id} mb={8}>
-
-                <Grid.Col span={2}>
-                    <Group>
-                        <Tooltip label="Delete column">
-                        <ActionIcon
-                            mt={26}
-                            color="red" 
-                            onClick={() => form.removeListItem('columns', index)}
-                        >
-                            <IconTrash size={16} />
-                        </ActionIcon>
-                        </Tooltip>
-
-                        <TextInput
-                            withAsterisk
-                            label="Column name"
-                            placeholder="id"
-                            {...form.getInputProps(`columns.${index}.name`)}
-                        />
-                    </Group>
+        // <Card shadow="sm" p="sm" radius="md" withBorder  m={8}>
+            <Grid key={"col_" + v.id}>
+                <Grid.Col md={1}>
+                    <Tooltip label="Delete column">
+                    <ActionIcon
+                        mt={26}
+                        color="red" 
+                        onClick={() => form.removeListItem('columns', index)}
+                    >
+                        <IconTrash size={16} />
+                    </ActionIcon>
+                    </Tooltip>
                 </Grid.Col>
 
-                <Grid.Col span={2}>
+                <Grid.Col md={2}>
+                    <TextInput
+                        withAsterisk
+                        label="Column name"
+                        placeholder="id"
+                        {...form.getInputProps(`columns.${index}.name`)}
+                    />
+                </Grid.Col>
+
+                <Grid.Col md={2}>
                     <Select
                         label={<div style={{ display: "inline-block" }}><ColumnTypeList/></div>}
                         placeholder="integer"
@@ -140,7 +139,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                     />
                 </Grid.Col>
 
-                <Grid.Col span={2}>
+                <Grid.Col md={2}>
                     <Group>
                     <Box>
                     <Tooltip label="Primary Key">
@@ -192,7 +191,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 { form.values.columns[index].isForeignKey 
                 ? (
                 <>
-                    <Grid.Col span={2}>  
+                    <Grid.Col md={2}>  
                         <Select
                             label="FK Table name"
                             placeholder="name"
@@ -207,7 +206,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         />
                     </Grid.Col>
 
-                    <Grid.Col span={2}>
+                    <Grid.Col md={2}>
                         <Select
                             label="FK Column"
                             placeholder="id"
@@ -223,11 +222,12 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         />
                     </Grid.Col>
                 </> )
-                : (<Grid.Col span={3}></Grid.Col>) 
+                : (<Grid.Col md={3}></Grid.Col>) 
                 }
 
-                
+             
             </Grid>
+        // </Card>
      
     ));
 
@@ -290,9 +290,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
 
                 addTableObjStore(storeObj);
             }
-    
-            // Edit table
-            if(mode === "edit"){
+            else if(mode === "edit"){ // Edit table
                 updateTableObj(storeObj)
             }
 
@@ -328,6 +326,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             <Group position="right" mt="md">
                 <Button
                     variant="light"
+                    mb={8}
                     onClick={() =>
                         form.insertListItem(
                             'columns', 
@@ -347,15 +346,15 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                             }
                         )
                 }>
-                    + column
+                    + Add column
                 </Button>
             </Group>
 
             { tablesField }
 
             <Group position="right" mt="md">
-                <Button type="submit" leftIcon={<IconDeviceFloppy size={18}/>}>
-                    Save
+                <Button type="submit" leftIcon={<IconDeviceFloppy size={18}/>} variant="light">
+                    Save Changes
                 </Button>
             </Group>
 

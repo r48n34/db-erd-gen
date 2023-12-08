@@ -26,7 +26,7 @@ function DataTableNode({ data }: DataTableNodeProps){
 
             { data.columns.map( (v,i) => {
 
-                const nodeDistance = 56 + i * 25;
+                const nodeDistance = 54 + i * 24;
 
                 const leftNodeName = `${data.name}_${v.name}_left`
                 const rightNodeName = `${data.name}_${v.name}_right`
@@ -51,10 +51,10 @@ function DataTableNode({ data }: DataTableNodeProps){
                                 </Text>
                             </Grid.Col>
                             <Grid.Col span={6}>
-                                <Text size={8}>{v.name}</Text>
+                                <Text size={12}>{v.name}</Text>
                             </Grid.Col>
                             <Grid.Col span={4}>
-                                <Text size={8}>{v.dataType}</Text>
+                                <Text size={12}>{v.dataType}</Text>
                             </Grid.Col>
                         </Grid>
 

@@ -29,6 +29,7 @@ Free DrawSQL like website but free forever
 - ✅ Support MySQL / MariaDB types output  
 - ✅ Support typescript normal types
 - ✅ Support zod types generate
+- ⬜️ Add enums options and input for enums
 - ⬜️ Support defaultTo string in general
 - ⬜️ Support defaultTo string in kysely
 - ⬜️ Support Prisma types output  

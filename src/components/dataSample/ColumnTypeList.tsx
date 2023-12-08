@@ -24,7 +24,7 @@ function ColumnTypeList(){
                 </Tabs.List>
 
                 { postgresTypeGroup.map( v => (
-                    <Tabs.Panel value={v} pt="xs">
+                    <Tabs.Panel value={v} pt="xs" key={v}>
                         { postgresTypeArray
                             .filter( k => k.group === v )
                             .map( k => <Text key={k.value}>- {k.value}</Text> )

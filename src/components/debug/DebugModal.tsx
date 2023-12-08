@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHotkeys } from '@mantine/hooks';
-import { Drawer, Burger, NavLink, Tooltip } from '@mantine/core';
+import { Drawer, Burger, NavLink, Tooltip, Text, Group } from '@mantine/core';
 
 import DeleteAllData from './DeleteAllData';
 
@@ -9,7 +9,7 @@ import ImportTemplateBtn from './ImportTemplateBtn';
 
 import ExportJsonFormatView from './ExportJsonFormatView';
 
-import { IconArchive, IconFileArrowRight, IconAlertTriangle, IconClipboardData, IconDeviceFloppy } from '@tabler/icons';
+import { IconArchive, IconFileArrowRight, IconAlertTriangle, IconClipboardData, IconDeviceFloppy, IconList, IconBrandGithub } from '@tabler/icons';
 import SavedSchemeList from './SavedSchemeList';
 import DeleteAllSchemeBtn from './DeleteAllSchemeBtn';
 import TableDataToBtnView from './TableDataToBtnView';
@@ -23,6 +23,8 @@ import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite
 import { tableDataToTsTypeScheme } from '../../utilis/dataBase/tableDataToTsType';
 import { tableDataToZodTypeScheme } from '../../utilis/dataBase/tableDataToZodType';
 import SavedScheme from './SavedSchemeBtn';
+import GoUrlBtn from '../common/GoUrlBtn';
+import ThemeToggleBtn from '../common/ThemeToggleBtn';
 
 function DebugModal() {
     const [opened, setOpened] = useState(false);
@@ -36,7 +38,16 @@ function DebugModal() {
         <Drawer
             opened={opened}
             onClose={() => setOpened(false)}
-            title="Control menu"
+            title={
+            <>
+            <Group>
+                <GoUrlBtn title={'Github'} url={'https://github.com/r48n34/db-erd-gen'} icon={<IconBrandGithub/>}/>
+                <Text>DB graphers (Beta)</Text>
+                <ThemeToggleBtn/>
+            </Group>
+            <Text c="dimmed" size={"sm"}>Still in beta, please be patients</Text>
+            </>
+            }
             padding="xl"
             size="xl"
         >
@@ -124,7 +135,16 @@ function DebugModal() {
                 childrenOffset={28}
             >
                 <SavedScheme types="list" />
-                <SavedSchemeList closeModal={ () => setOpened(false) }/>
+
+                <NavLink 
+                    label="Saved Scheme List"
+                    icon={<IconList size={16} stroke={1.5} />}
+                    childrenOffset={28}
+                >
+                    <SavedSchemeList closeModal={ () => setOpened(false) }/>
+                </NavLink>
+
+
             </NavLink>
 
             <NavLink 
@@ -137,6 +157,7 @@ function DebugModal() {
             </NavLink>
         </Drawer>
 
+        <Group>
         <Tooltip label="Menu">
             <Burger
                 size={16}
@@ -145,6 +166,7 @@ function DebugModal() {
                 title={"Control menu"}
             />
         </Tooltip>
+        </Group>
         </>
     );
 }
