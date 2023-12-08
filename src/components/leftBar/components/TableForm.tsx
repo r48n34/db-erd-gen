@@ -38,12 +38,15 @@ function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject
     // console.log("NEW EDIT DATA", editData);
     
     if(mode === "edit" && !!editData){
+
+        // console.log(editData.columns);
         
         return {
             tableName: editData.name,
             columns: editData.columns.map( v => {
                 return {
                     ...v,
+                    id: v.hasOwnProperty("id") ? v.id : uuidGen(),
                     isForeignKey: !!v.foreignTo,
                     relationship: null,
                     unique: v.hasOwnProperty("unique") ? v.unique : false,
@@ -97,12 +100,13 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     });
 
     useEffect(() => {
+        // console.log("Hello")
         form.setValues(initDataGenerator(mode, editData))
     }, [editData])
     
     const tablesField = form.values.columns.map((v, index) => (
        
-            <Grid key={"col_" + v.name} mb={8}>
+            <Grid key={"col_" + v.id} mb={8}>
 
                 <Grid.Col span={2}>
                     <Group>
@@ -255,6 +259,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 name: values.tableName.trim().toLowerCase().split(" ").join("_"),
                 columns: values.columns.map( v => {
                     let baseObj = {
+                        id: v.id,
                         name: v.name.trim().toLowerCase().split(" ").join("_"),
                         dataType: v.dataType,
                         unique: v.unique,
@@ -346,7 +351,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                 </Button>
             </Group>
 
-            {tablesField}
+            { tablesField }
 
             <Group position="right" mt="md">
                 <Button type="submit" leftIcon={<IconDeviceFloppy size={18}/>}>
