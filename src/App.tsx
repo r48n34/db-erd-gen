@@ -2,8 +2,10 @@ import { ModalsProvider } from '@mantine/modals';
 import { useLocalStorage, useHotkeys } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { ErrorBoundary } from "react-error-boundary";
 
 import MainPage from "./pages/MainPage"
+import ErrorComp from './components/common/ErrorComp';
 
 function App() {
   
@@ -26,7 +28,9 @@ function App() {
             <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
             <ModalsProvider>
             <NotificationsProvider>
-                <MainPage/>
+                <ErrorBoundary fallback={<ErrorComp/>}>
+                    <MainPage/>
+                </ErrorBoundary>
             </NotificationsProvider>
             </ModalsProvider>
             </MantineProvider>
