@@ -56,7 +56,9 @@ export function tableDataToKyselyScheme(tables: Table[], dbTypes: "postgresql" |
 
         const finalTableStr = tab(1) + `await db.schema \n`
             + tab(2) + `.createTable("${table.name}") \n`
-            + tableStr.join("\n") + `\n`
+            + tableStr.join("\n") 
+            + `\n`
+            + tab(2) + `.execute(); \n`;
             
         schemeArray.push(finalTableStr);
     }
