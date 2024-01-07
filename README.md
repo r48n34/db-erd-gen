@@ -1,6 +1,10 @@
 # db-erd-gen
 Free DrawSQL like website but free forever  
 
+![https://db-erd-gen.vercel.app/](/assert/banners.jpg)
+
+URL: https://db-erd-gen.vercel.app/
+
 ## Features  
 1. Free forever  
 2. Save SQL in various DB format  
