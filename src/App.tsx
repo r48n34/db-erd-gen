@@ -3,6 +3,7 @@ import { useLocalStorage, useHotkeys } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { ErrorBoundary } from "react-error-boundary";
+import { Analytics } from '@vercel/analytics/react';
 
 import MainPage from "./pages/MainPage"
 import ErrorComp from './components/common/ErrorComp';
@@ -24,6 +25,7 @@ function App() {
 
     return (
         <>
+        <Analytics />
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
             <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
             <ModalsProvider>
