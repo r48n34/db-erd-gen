@@ -23,7 +23,7 @@ URL: https://db-erd-gen.vercel.app/
 
 ## Roadmap
 - ✅ With Zod type checking
-- ⬜️ Update Maininte to v7
+- ✅ Update Maininte to v7
 - ⬜️ i18n adapts
 
 ## Todo
@@ -40,4 +40,4 @@ URL: https://db-erd-gen.vercel.app/
 - ✅ Add UNIQUE types  
 - ✅ Support sqlite types output    
 - ⬜️ More features  
-- ⬜️ Update UI  
+- ✅ Update UI  
