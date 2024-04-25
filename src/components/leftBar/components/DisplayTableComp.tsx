@@ -7,7 +7,6 @@ import useTableStore from '../../../store/zustandStore';
 function DisplayTableComp(){
     
     const tableArray = useTableStore((state) => state.tableArray);
-    // const update = useTableStore((state) => state.update);
 
     return (
         <>
@@ -17,33 +16,36 @@ function DisplayTableComp(){
             { tableArray.map( v => (
                 <Accordion.Item value={v.name} key={"tables" + v.name}>
                     <Accordion.Control>
-                        <Text size={18} align="left">
+                        <Text fz={18} ta="left">
                             {v.name}
                         </Text>
                     </Accordion.Control>
 
                     <Accordion.Panel>
 
-                        <Group position="apart" mb={4}>
+                        <Group justify="space-between" mb={4}>
                             <DeleteTableBtn tableName={v.name} />
                             <TableForm mode={'edit'} allTableData={tableArray} editData={v}  />
                         </Group>
 
                         { v.columns.map( k => (
-                            <Box key={"tables_cols_" + k.name}>
-                                <Group position="apart">                 
-                                    <Text size={14}>
+                            <Box key={"tables_cols_" + k.name} mt={4}>
+                                <Group justify="space-between">                 
+                                    <Text fz={14}>
                                         {k.name}{" "}
-                                        {/* {k.foreignTo && <Badge size="xs">(FK)</Badge>} */}
-                                        {k.notNull && <Badge color="red" size="xs">(Not Null)</Badge>}
-                                        {k.unique  && <Badge color="red" size="xs">(U)</Badge>}
+                                        {k.notNull && <Badge color="red" size="xs" variant="light">(Not Null)</Badge>}
+                                        {k.unique  && <Badge color="red" size="xs" variant="light">(U)</Badge>}
                                     </Text>
-                                    <Text size={14}>{k.dataType}</Text>
+                                    <Text fz={14}>
+                                        {k.dataType}
+                                    </Text>
                                 </Group>
                                 { k.foreignTo && (
                                     <Group ml={6}>
-                                        <Badge size="xs">(FK)</Badge>
-                                        <Text size={14} > {k.foreignTo.name} {"->"} {k.foreignTo.column}</Text> 
+                                        <Badge size="xs" variant="light" mt={4}>(FK) {k.foreignTo.name} {"->"} {k.foreignTo.column}</Badge>
+                                        {/* <Text fz={14} >
+                                            {k.foreignTo.name} {"->"} {k.foreignTo.column}
+                                        </Text>  */}
                                     </Group>
                                 )}
                             </Box>

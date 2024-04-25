@@ -17,7 +17,7 @@ function ColumnTypeList(){
             <Tabs>
                 <Tabs.List>
                     { postgresTypeGroup.map( v => (
-                        <Tabs.Tab key={v} value={v} icon={<IconSettings size={14} />}>
+                        <Tabs.Tab key={v} value={v} leftSection={<IconSettings size={14} />}>
                             {v}
                         </Tabs.Tab>
                     ))}
@@ -36,8 +36,8 @@ function ColumnTypeList(){
         </Modal>
   
         <Group>
-            <Text>Type</Text>
-            <ActionIcon size="sm" onClick={ () => setOpened(true) }>
+            <Text fw={600} fz={14}>Type</Text>
+            <ActionIcon variant="light" size="sm" onClick={ () => setOpened(true) }>
                 <IconQuestionCircle size={14} />
             </ActionIcon>
         </Group>

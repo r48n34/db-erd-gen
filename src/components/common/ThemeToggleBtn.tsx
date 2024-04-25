@@ -8,6 +8,7 @@ function ThemeToggleBtn(){
     return (
         <Tooltip label="Toggle theme">
         <ActionIcon
+            variant="light"
             onClick={() => toggleColorScheme()}
             title="Toggle color scheme"
         >

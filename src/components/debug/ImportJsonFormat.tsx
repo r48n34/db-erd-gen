@@ -34,6 +34,7 @@ function ImportJsonFormat(){
             setOpened(false);
         } 
         catch (error) {
+            console.log(error)
             failedDeleteMessage("Fail to import, please check you file format.");
         }
 
@@ -52,9 +53,9 @@ function ImportJsonFormat(){
             onClose={() => setOpened(false)}
             title="Import json"
         >
-            <LoadingOverlay visible={isLoading} overlayBlur={2} />
+            <LoadingOverlay visible={isLoading} />
 
-            <Group position="right" mb={14}>
+            <Group justify="flex-end" mb={14}>
                 <ImportJsonFromatFile setLoading={setIsLoading} setCloseModal={setOpened}/>
             </Group>
 
@@ -62,14 +63,15 @@ function ImportJsonFormat(){
                 value={jsonValue}
                 validationError="Invalid json"
                 onChange={setJsonValue}
+                autosize
                 minRows={18}
             />
             <Space h="lg"/>
 
-            <Group position="right">
+            <Group justify="flex-end">
                 <Button
                     variant="light"
-                    leftIcon={<IconFileImport size={16} stroke={1.5} />}
+                    leftSection={<IconFileImport size={16} stroke={1.5} />}
                     onClick={ () => importStringToStore() }
                 >
                     Import
@@ -79,7 +81,7 @@ function ImportJsonFormat(){
 
         <NavLink 
             label="Import json"
-            icon={<IconFileImport size={16} stroke={1.5} />}
+            leftSection={<IconFileImport size={16} stroke={1.5} />}
             onClick={ () => setOpened(true) }
         />
         </>

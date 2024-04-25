@@ -1,7 +1,13 @@
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+import '@mantine/code-highlight/styles.css';
+
 import { ModalsProvider } from '@mantine/modals';
-import { useLocalStorage, useHotkeys } from '@mantine/hooks';
-import { NotificationsProvider } from '@mantine/notifications';
-import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
+// import { useHotkeys } from '@mantine/hooks';
+
+import { Notifications } from '@mantine/notifications';
+import { MantineProvider, useMantineColorScheme } from '@mantine/core';
+
 import { ErrorBoundary } from "react-error-boundary";
 import { Analytics } from '@vercel/analytics/react';
 
@@ -9,34 +15,26 @@ import MainPage from "./pages/MainPage"
 import ErrorComp from './components/common/ErrorComp';
 
 function App() {
-  
-    const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-        key: 'mantine-color-scheme',
-        defaultValue: 'light',
-        getInitialValueInEffect: true,
-    });
 
-    const toggleColorScheme = (value?: ColorScheme) =>
-        setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+    // const { toggleColorScheme } = useMantineColorScheme();
 
-    useHotkeys([
-        ['mod+J', () => setColorScheme(colorScheme === 'dark' ? 'light' : 'dark')],
-    ]);
+    // useHotkeys([
+    //     ['mod+J', () => toggleColorScheme()],
+    // ]);
 
     return (
         <>
         <Analytics />
-        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-            <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-            <ModalsProvider>
-            <NotificationsProvider>
+        {/* <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}> */}
+            <MantineProvider defaultColorScheme="dark">
+            <ModalsProvider> 
+            <Notifications />
                 <ErrorBoundary fallback={<ErrorComp/>}>
                     <MainPage/>
                 </ErrorBoundary>
-            </NotificationsProvider>
             </ModalsProvider>
             </MantineProvider>
-        </ColorSchemeProvider>
+        {/* </ColorSchemeProvider> */}
         </>
     )
 }

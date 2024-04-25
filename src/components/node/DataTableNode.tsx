@@ -1,5 +1,5 @@
 import { Handle, Position } from 'reactflow';
-import { Card, Text, Space, Badge, Grid } from '@mantine/core';
+import { Card, Text, Space, Badge, Grid, Box } from '@mantine/core';
 import { Table } from '../../interface/inputData';
 
 type DataTableNodeProps = {
@@ -16,8 +16,8 @@ function DataTableNode({ data }: DataTableNodeProps){
         >
         <div>
 
-            <Card.Section >
-                <Text size={15} align="center">
+            <Card.Section>
+                <Text fz={15} ta="center" mt={12}>
                     <Badge size="lg">{data.name}</Badge>
                 </Text>
             </Card.Section>
@@ -32,29 +32,30 @@ function DataTableNode({ data }: DataTableNodeProps){
                 const rightNodeName = `${data.name}_${v.name}_right`
                 
                 return (
-                    <div key={`${data.name}_${v.name}_rows`}>
-                        {/* <Group position="apart">                 
-                            <Text size={8}>{v.name}</Text>
-                            <Text size={8}>{v.dataType}</Text>
-                        </Group> */}
-
+                    <Box key={`${data.name}_${v.name}_rows`}>
                         <Grid >
                             <Grid.Col span={2}>
-                                <Text size={8}>
+                                <Text fz={8}>
                                     { 
                                         v.isPrimaryKey 
-                                        ? "PK" 
-                                        : !!v.foreignTo
-                                        ? "FK"
-                                        : ""
+                                            ? "PK" 
+                                            : !!v.foreignTo
+                                            ? "FK"
+                                            : ""
                                     }
                                 </Text>
                             </Grid.Col>
+
                             <Grid.Col span={6}>
-                                <Text size={12}>{v.name}</Text>
+                                <Text fz={12}>
+                                    {v.name}
+                                </Text>
                             </Grid.Col>
+
                             <Grid.Col span={4}>
-                                <Text size={12}>{v.dataType}</Text>
+                                <Text fz={12}>
+                                    {v.dataType}
+                                </Text>
                             </Grid.Col>
                         </Grid>
 
@@ -68,7 +69,7 @@ function DataTableNode({ data }: DataTableNodeProps){
                             position={Position.Right} id={rightNodeName} 
                             style={{ top: nodeDistance, width: "0px", minWidth: "0px" }}
                         />
-                    </div>
+                    </Box>
                 )
             }
             )}

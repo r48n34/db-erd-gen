@@ -14,6 +14,7 @@ function ExportJsonFormat(){
         <>
         <Tooltip label="Download JSON">
         <ActionIcon
+            variant="light"
             onClick={ () => {
                 exportJsonFormat(tableArray);
                 commonSuccessActions();

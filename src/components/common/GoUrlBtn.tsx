@@ -4,7 +4,6 @@ function GoUrlBtn({ title, url, icon }: { title: string, url: string, icon: JSX.
     return (
         <Tooltip label={title}>
             <ActionIcon
-                size={18}
                 variant="light"
                 onClick={() => !!window && window.open(url, '_blank')}
             >

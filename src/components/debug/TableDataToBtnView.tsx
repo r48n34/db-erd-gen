@@ -4,7 +4,7 @@ import { IconDownload } from '@tabler/icons';
 
 import { IconDatabaseImport } from '@tabler/icons';
 import { useState } from "react";
-import { Prism } from '@mantine/prism';
+import { CodeHighlight } from '@mantine/code-highlight';
 
 import { Table } from "../../interface/inputData";
 import { toDownloadFile } from "../../utilis/dataBase/downloadFile";
@@ -14,9 +14,10 @@ interface TableDataToBtnViewProps {
     types?: "postgresql" | "mySQL" | "sqlite" | ""
     downloadFileName: string
     schemeFunc: (tables: Table[], types?: "postgresql" | "mySQL" | "sqlite" | "") => string
+    codeLanguages: string
 }
 
-function TableDataToBtnView({ title, types, schemeFunc, downloadFileName }:TableDataToBtnViewProps){
+function TableDataToBtnView({ title, types, schemeFunc, downloadFileName, codeLanguages = "sql" }:TableDataToBtnViewProps){
     
     const [ opened, setOpened ] = useState<boolean>(false);
     const [ sqlContent, setSqlContent ] = useState<string>("");
@@ -30,9 +31,10 @@ function TableDataToBtnView({ title, types, schemeFunc, downloadFileName }:Table
             onClose={() => setOpened(false)}
             title={title + " Code"}
         >
-            <Group position="right" mb={14}>
+            <Group justify="flex-end" mb={14}>
                 <Tooltip label="Download SQL">
                 <ActionIcon
+                    variant="light"
                     onClick={ () => {
                         const str = schemeFunc(tableArray)
                         const textString = `data:text/json;chatset=utf-8,${encodeURIComponent(str)}`;
@@ -45,9 +47,7 @@ function TableDataToBtnView({ title, types, schemeFunc, downloadFileName }:Table
                 </Tooltip>
             </Group>
 
-            <Prism language="sql">
-                {sqlContent}
-            </Prism>
+            <CodeHighlight code={sqlContent} language={codeLanguages} />
         </Modal>
 
         <NavLink 
@@ -57,7 +57,7 @@ function TableDataToBtnView({ title, types, schemeFunc, downloadFileName }:Table
                 setSqlContent(str);
                 setOpened(true);
             }}
-            icon={<IconDatabaseImport size={16} stroke={1.5} />}
+            leftSection={<IconDatabaseImport size={16} stroke={1.5} />}
      
         />  
         </>

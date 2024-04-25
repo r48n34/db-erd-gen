@@ -28,7 +28,7 @@ function DeleteTableBtn({ tableName }: DeleteTableBtnProps){
     return (
         <>
         <Tooltip label={ "Delete " + tableName }>
-            <ActionIcon onClick={ () => openModal() }>
+            <ActionIcon onClick={ () => openModal() } variant="light">
                 <IconTrash size={14}/>
             </ActionIcon>
         </Tooltip>

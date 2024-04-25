@@ -14,7 +14,12 @@ type ImportJsonFromatFileProps = {
 function ImportJsonFromatFile({ setLoading, setCloseModal }: ImportJsonFromatFileProps){
     const importTableObj = useTableStore((state) => state.importTableObj);
     
-    async function importStringToStoreFromFile(file: File){
+    async function importStringToStoreFromFile(file: File | null){
+
+        if(file === null){
+            return
+        }
+        
         !!setLoading && setLoading(true);
 
         try {
@@ -46,7 +51,7 @@ function ImportJsonFromatFile({ setLoading, setCloseModal }: ImportJsonFromatFil
         <FileButton onChange={importStringToStoreFromFile} accept="application/JSON">
             {(props) => (
                 <Tooltip label="Upload JSON">
-                <ActionIcon {...props}>
+                <ActionIcon {...props} variant="light">
                     <IconFileUpload size={18} />
                 </ActionIcon>
                 </Tooltip>

@@ -51,18 +51,20 @@ function DebugModal() {
             padding="xl"
             size="xl"
         >
-            <NavLink label="Generate" icon={<IconArchive size={16} stroke={1.5} />} childrenOffset={28}>
+            <NavLink label="Generate" leftSection={<IconArchive size={16} stroke={1.5} />} childrenOffset={28}>
 
                 <TableDataToBtnView 
                     title='Typescript Type'
                     schemeFunc={tableDataToTsTypeScheme}
                     downloadFileName="types.ts"
+                    codeLanguages='ts'
                 />
 
                 <TableDataToBtnView 
                     title='Ts Zod Scheme'
                     schemeFunc={tableDataToZodTypeScheme}
                     downloadFileName="zodScheme.ts"
+                    codeLanguages='ts'
                 />
 
                 <TableDataToBtnView 
@@ -70,6 +72,7 @@ function DebugModal() {
                     types="postgresql"
                     schemeFunc={tableDataToPostgresScheme}
                     downloadFileName="tables.sql"
+                    codeLanguages='sql'
                 />
 
                 <TableDataToBtnView 
@@ -77,18 +80,21 @@ function DebugModal() {
                     types="mySQL"
                     schemeFunc={tableDataToMySQLScheme}
                     downloadFileName={`mySqlTables.sql`}
+                    codeLanguages='sql'
                 />
 
                 <TableDataToBtnView 
                     title='Knex'
                     schemeFunc={tableDataToKnexScheme}
                     downloadFileName={`${new Date().getTime()}_migrations.ts`}
+                    codeLanguages='ts'
                 />
 
                 <TableDataToBtnView 
                     title='SQLite'
                     schemeFunc={tableDataToSQLiteScheme}
                     downloadFileName={`${new Date().getTime()}_migrations.db`}
+                    codeLanguages='sql'
                 />
 
                 {/* <TableDataToBtnView 
@@ -101,6 +107,7 @@ function DebugModal() {
                     title="Kysely Types"
                     schemeFunc={tableDataToKyselyTypescriptScheme}
                     downloadFileName={`types.ts`}
+                    codeLanguages='ts'
                 />
 
                 <TableDataToBtnView
@@ -108,6 +115,7 @@ function DebugModal() {
                     types='postgresql'
                     schemeFunc={tableDataToKyselyScheme}
                     downloadFileName={`${new Date().getTime()}_migrations.ts`}
+                    codeLanguages='ts'
                 />
 
                 <TableDataToBtnView
@@ -115,30 +123,31 @@ function DebugModal() {
                     types="sqlite"
                     schemeFunc={tableDataToKyselyScheme}
                     downloadFileName={`${new Date().getTime()}_migrations.ts`}
+                    codeLanguages='ts'
                 />
 
                
             </NavLink>
 
-            <NavLink label="Import / Export" icon={<IconFileArrowRight size={16} stroke={1.5} />} childrenOffset={28}>
+            <NavLink label="Import / Export" leftSection={<IconFileArrowRight size={16} stroke={1.5} />} childrenOffset={28}>
                 <ExportJsonFormatView/> 
                 <ImportJsonFormat/>
             </NavLink>
 
-            <NavLink label="Template" icon={<IconClipboardData size={16} stroke={1.5} />} childrenOffset={28}>
+            <NavLink label="Template" leftSection={<IconClipboardData size={16} stroke={1.5} />} childrenOffset={28}>
                 <ImportTemplateBtn/>
             </NavLink>
 
             <NavLink 
                 label="Scheme"
-                icon={<IconDeviceFloppy size={16} stroke={1.5} />}
+                leftSection={<IconDeviceFloppy size={16} stroke={1.5} />}
                 childrenOffset={28}
             >
                 <SavedScheme types="list" />
 
                 <NavLink 
                     label="Saved Scheme List"
-                    icon={<IconList size={16} stroke={1.5} />}
+                    leftSection={<IconList size={16} stroke={1.5} />}
                     childrenOffset={28}
                 >
                     <SavedSchemeList closeModal={ () => setOpened(false) }/>
@@ -149,7 +158,7 @@ function DebugModal() {
 
             <NavLink 
                 label="Dangerous zone"
-                icon={<IconAlertTriangle size={16} stroke={1.5} />}
+                leftSection={<IconAlertTriangle size={16} stroke={1.5} />}
                 childrenOffset={28}
             >
                 <DeleteAllData/>

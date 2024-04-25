@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Column, Table } from "../../../interface/inputData";
 
 import { useForm } from '@mantine/form';
-import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Text, Select, Box, Card } from "@mantine/core";
+import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Text, Select, Box } from "@mantine/core";
 
 import { IconSquarePlus, IconEdit, IconTrash, IconDeviceFloppy } from '@tabler/icons';
 import useTableStore from "../../../store/zustandStore";
@@ -10,13 +10,13 @@ import useTableStore from "../../../store/zustandStore";
 import { uuidGen } from "../../../utilis/uuidGen";
 import { commonSuccessActions, failedDeleteMessage } from "../../../utilis/notificationUtilis";
 
-import { postgresTypeArray } from "../../../data/database/postgresType";
+import { groupedPostgresTypeArray } from "../../../data/database/postgresType";
 import ColumnTypeList from "../../dataSample/ColumnTypeList";
 
 type TableFormProps = {
-  mode: "create" | "edit"
-  allTableData: Table[]
-  editData?: Table // Optional if creating table 
+    mode: "create" | "edit"
+    allTableData: Table[]
+    editData?: Table // Optional if creating table 
 };
 
 interface FormColumns {
@@ -34,16 +34,13 @@ interface FormColumns {
     relationship: null | string
 }
 
-function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject{
-    // console.log("NEW EDIT DATA", editData);
-    
-    if(mode === "edit" && !!editData){
+function initDataGenerator(mode: "create" | "edit", editData?: Table): FormObject {
 
-        // console.log(editData.columns);
-        
+    if (mode === "edit" && !!editData) {
+
         return {
             tableName: editData.name,
-            columns: editData.columns.map( v => {
+            columns: editData.columns.map(v => {
                 return {
                     ...v,
                     id: v.hasOwnProperty("id") ? v.id : uuidGen(),
@@ -67,7 +64,7 @@ function initDataGenerator(mode: "create" | "edit", editData?:Table): FormObject
                 isForeignKey: false,
                 notNull: false,
                 unique: false,
-                foreignTo: { 
+                foreignTo: {
                     name: null,
                     column: null
                 },
@@ -84,7 +81,7 @@ interface FormObject {
 
 function TableForm({ mode = "create", allTableData, editData }: TableFormProps) {
 
-    const [ opened, setOpened ] = useState<boolean>(false);
+    const [opened, setOpened] = useState<boolean>(false);
 
     const addTableObjStore = useTableStore((state) => state.addTableObj);
     const updateTableObj = useTableStore((state) => state.updateTableObj);
@@ -100,164 +97,146 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     });
 
     useEffect(() => {
-        // console.log("Hello")
         form.setValues(initDataGenerator(mode, editData))
     }, [editData])
-    
+
     const tablesField = form.values.columns.map((v, index) => (
         // <Card shadow="sm" p="sm" radius="md" withBorder  m={8}>
-            <Grid key={"col_" + v.id}>
-                <Grid.Col md={1}>
-                    <Tooltip label="Delete column">
+        <Grid key={"col_" + v.id}>
+            <Grid.Col span={{ base: 1, md: 1 }}>
+                <Tooltip label="Delete column">
                     <ActionIcon
+                        variant="light"
                         mt={26}
-                        color="red" 
+                        color="red"
                         onClick={() => form.removeListItem('columns', index)}
                     >
                         <IconTrash size={16} />
                     </ActionIcon>
-                    </Tooltip>
-                </Grid.Col>
+                </Tooltip>
+            </Grid.Col>
 
-                <Grid.Col md={2}>
-                    <TextInput
-                        withAsterisk
-                        label="Column name"
-                        placeholder="id"
-                        {...form.getInputProps(`columns.${index}.name`)}
-                    />
-                </Grid.Col>
+            <Grid.Col span={{ base: 2, md: 2 }}>
+                <TextInput
+                    withAsterisk
+                    label="Column name"
+                    placeholder="id"
+                    {...form.getInputProps(`columns.${index}.name`)}
+                />
+            </Grid.Col>
 
-                <Grid.Col md={2}>
-                    <Select
-                        label={<div style={{ display: "inline-block" }}><ColumnTypeList/></div>}
-                        placeholder="integer"
-                        withAsterisk
-                        searchable
-                        data={postgresTypeArray}
-                        {...form.getInputProps(`columns.${index}.dataType`)}
-                    />
-                </Grid.Col>
+            <Grid.Col span={{ base: 2, md: 2 }}>
+                <Select
+                    label={<div style={{ display: "inline-block" }}><ColumnTypeList /></div>}
+                    placeholder="integer"
+                    withAsterisk
+                    searchable
+                    data={groupedPostgresTypeArray}
+                    {...form.getInputProps(`columns.${index}.dataType`)}
+                />
+            </Grid.Col>
 
-                <Grid.Col md={2}>
-                    <Group>
-                    <Box>
-                    <Tooltip label="Primary Key">
-                        <Text align="left" size={14} weight={600} mt={3}>PK</Text>
-                    </Tooltip>
-
+            <Grid.Col span={{ base: 3, md: 3 }}>
+                <Group mt={12}>
                     <Switch
                         mt={10}
+                        label="PK" size="xs"
                         {...form.getInputProps(`columns.${index}.isPrimaryKey`, { type: 'checkbox' })}
                     />
-                    </Box>
-
-                    <Box>
-                    <Tooltip label="Column not nullable?">
-                        <Text align="left" size={14} weight={600} mt={3}>not Null</Text>
-                    </Tooltip>
 
                     <Switch
                         mt={10}
-                        {...form.getInputProps(`columns.${index}.notNull`, { type: 'checkbox' })}
-                    />
-                    </Box>
-
-                    <Box>
-                    <Tooltip label="Unique">
-                        <Text align="left" size={14} weight={600} mt={3}>Unique</Text>
-                    </Tooltip>
-
-                    <Switch
-                        mt={10}
-                        {...form.getInputProps(`columns.${index}.unique`, { type: 'checkbox' })}
-                    />
-                    </Box>
-
-                    <Box>
-                    <Tooltip label="Foreign Key">
-                        <Text align="left" size={14} weight={600} mt={3}>FK</Text>
-                    </Tooltip>
-
-                    <Switch
-                        mt={10}
+                        label="FK" size="xs"
                         disabled={allTableData.length <= 1 && mode === "edit"}
                         {...form.getInputProps(`columns.${index}.isForeignKey`, { type: 'checkbox' })}
                     />
-                    </Box>
-                    </Group>
-                </Grid.Col>
+                </Group>
 
-                { form.values.columns[index].isForeignKey 
+                <Group>
+                    <Switch
+                        mt={10}
+                        label="Unique" size="xs"
+                        {...form.getInputProps(`columns.${index}.unique`, { type: 'checkbox' })}
+                    />
+
+                    <Switch
+                        mt={10}
+                        label="Not Null" size="xs"
+                        {...form.getInputProps(`columns.${index}.notNull`, { type: 'checkbox' })}
+                    />
+                </Group>
+            </Grid.Col>
+
+            {form.values.columns[index].isForeignKey
                 ? (
-                <>
-                    <Grid.Col md={2}>  
-                        <Select
-                            label="FK Table name"
-                            placeholder="name"
-                            withAsterisk
-                            disabled={allTableData.length <= 1 && mode === "edit"}
-                            data={
-                                Array.isArray(allTableData) 
-                                ? allTableData.map( v => ({ value: v.name, label: v.name, disabled: v.name === form.values.tableName }) ) 
-                                : []
-                            }
-                            {...form.getInputProps(`columns.${index}.foreignTo.name`)}
-                        />
-                    </Grid.Col>
+                    <>
+                        <Grid.Col span={{ base: 2, md: 2 }}>
+                            <Select
+                                label="FK Table name"
+                                placeholder="name"
+                                withAsterisk
+                                disabled={allTableData.length <= 1 && mode === "edit"}
+                                data={
+                                    Array.isArray(allTableData)
+                                        ? allTableData.map(v => ({ value: v.name, label: v.name, disabled: v.name === form.values.tableName }))
+                                        : []
+                                }
+                                {...form.getInputProps(`columns.${index}.foreignTo.name`)}
+                            />
+                        </Grid.Col>
 
-                    <Grid.Col md={2}>
-                        <Select
-                            label="FK Column"
-                            placeholder="id"
-                            withAsterisk
-                            disabled={!form.values.columns[index].foreignTo!.name}
-                            data={
-                                form.values.columns[index].foreignTo!.name 
-                                ?   allTableData.filter( v => v.name === form.values.columns[index].foreignTo!.name )
-                                    [0].columns.map( v => v.name )
-                                : []
-                            }
-                            {...form.getInputProps(`columns.${index}.foreignTo.column`)}
-                        />
-                    </Grid.Col>
-                </> )
-                : (<Grid.Col md={3}></Grid.Col>) 
-                }
+                        <Grid.Col span={{ base: 2, md: 2 }}>
+                            <Select
+                                label="FK Column"
+                                placeholder="id"
+                                withAsterisk
+                                disabled={!form.values.columns[index].foreignTo!.name}
+                                data={
+                                    form.values.columns[index].foreignTo!.name
+                                        ? allTableData.filter(v => v.name === form.values.columns[index].foreignTo!.name)
+                                        [0].columns.map(v => v.name)
+                                        : []
+                                }
+                                {...form.getInputProps(`columns.${index}.foreignTo.column`)}
+                            />
+                        </Grid.Col>
+                    </>)
+                : (<Grid.Col span={{ base: 3, md: 3 }}><></></Grid.Col>)
+            }
 
-             
-            </Grid>
+
+        </Grid>
         // </Card>
-     
+
     ));
 
-    function handleSubmit(values: FormObject){
+    function handleSubmit(values: FormObject) {
 
         try {
-            
+
             // console.log(values);
 
             // Empty table name
-            if(values.columns.length === 0){
+            if (values.columns.length === 0) {
                 failedDeleteMessage("Table can not be empty.")
                 return
             }
 
             // PK more than one
-            if(values.columns.filter( v => v.isPrimaryKey).length >= 2){
+            if (values.columns.filter(v => v.isPrimaryKey).length >= 2) {
                 failedDeleteMessage("More than one PK exist, please remove it.")
                 return
             }
 
             // Duplicated column name
-            if( Array.from(new Set(values.columns.map( v => v.name ))).length !== values.columns.length ){
+            if (Array.from(new Set(values.columns.map(v => v.name))).length !== values.columns.length) {
                 failedDeleteMessage("Duplicated column name")
                 return
             }
-    
+
             const storeObj = {
                 name: values.tableName.trim().toLowerCase().split(" ").join("_"),
-                columns: values.columns.map( v => {
+                columns: values.columns.map(v => {
                     let baseObj = {
                         id: v.id,
                         name: v.name.trim().toLowerCase().split(" ").join("_"),
@@ -265,32 +244,32 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         unique: v.unique,
                         isPrimaryKey: v.isPrimaryKey
                     } as Column
-    
-                    if(v.isForeignKey && !!v.foreignTo){
+
+                    if (v.isForeignKey && !!v.foreignTo) {
                         baseObj.foreignTo = {
-                            name: v.foreignTo.name as string, 
+                            name: v.foreignTo.name as string,
                             column: v.foreignTo.column as string
                         }
                     }
 
                     baseObj.notNull = v.notNull
-    
+
                     return baseObj
                 })
             } as Table
-    
+
             // Create table
-            if(mode === "create"){
+            if (mode === "create") {
 
                 // Table name already exist
-                if(allTableData.map( v => v.name ).indexOf(values.tableName) >= 0){
+                if (allTableData.map(v => v.name).indexOf(values.tableName) >= 0) {
                     failedDeleteMessage("Table name already exist")
                     return
                 }
 
                 addTableObjStore(storeObj);
             }
-            else if(mode === "edit"){ // Edit table
+            else if (mode === "edit") { // Edit table
                 updateTableObj(storeObj)
             }
 
@@ -307,67 +286,67 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
 
     return (
         <>
-        <Modal
-            size="95%"
-            opened={opened}
-            onClose={() => setOpened(false)}
-            title={ mode === "create" ? "Create table" : "Edit table"}
-        >
-        <form onSubmit={form.onSubmit( (values) => handleSubmit(values) )}>
+            <Modal
+                size="95%"
+                opened={opened}
+                onClose={() => setOpened(false)}
+                title={mode === "create" ? "Create table" : "Edit table"}
+            >
+                <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
 
-            <TextInput
-                withAsterisk
-                label="Table name"
-                placeholder="some_table_name"
-                disabled={ mode === "edit" }
-                {...form.getInputProps('tableName')}
-            />
+                    <TextInput
+                        withAsterisk
+                        label="Table name"
+                        placeholder="some_table_name"
+                        disabled={mode === "edit"}
+                        {...form.getInputProps('tableName')}
+                    />
 
-            <Group position="right" mt="md">
-                <Button
-                    variant="light"
-                    mb={8}
-                    onClick={() =>
-                        form.insertListItem(
-                            'columns', 
-                            {
-                                id: uuidGen(),
-                                name: "name",
-                                dataType: "varchar",
-                                isPrimaryKey: false,
-                                isForeignKey: false,
-                                notNull: false,
-                                unique: false,
-                                foreignTo: {
-                                    name: null,
-                                    column: null
-                                },
-                                relationship: null
-                            }
-                        )
-                }>
-                    + Add column
-                </Button>
+                    <Group justify="flex-end" mt="md">
+                        <Button
+                            variant="light"
+                            mb={8}
+                            onClick={() =>
+                                form.insertListItem(
+                                    'columns',
+                                    {
+                                        id: uuidGen(),
+                                        name: "name",
+                                        dataType: "varchar",
+                                        isPrimaryKey: false,
+                                        isForeignKey: false,
+                                        notNull: false,
+                                        unique: false,
+                                        foreignTo: {
+                                            name: null,
+                                            column: null
+                                        },
+                                        relationship: null
+                                    }
+                                )
+                            }>
+                            + Add column
+                        </Button>
+                    </Group>
+
+                    {tablesField}
+
+                    <Group justify="flex-end" mt="md">
+                        <Button type="submit" leftSection={<IconDeviceFloppy size={18} />} variant="light">
+                            Save Changes
+                        </Button>
+                    </Group>
+
+                </form>
+            </Modal>
+
+            <Group justify="center">
+                <Tooltip label={mode === "create" ? "Add table" : "Edit table"}>
+                    <ActionIcon variant="light" onClick={() => setOpened(true)}>
+                        {mode === "create" ? <IconSquarePlus size={20} /> : <IconEdit size={18} />}
+                    </ActionIcon>
+                </Tooltip>
             </Group>
-
-            { tablesField }
-
-            <Group position="right" mt="md">
-                <Button type="submit" leftIcon={<IconDeviceFloppy size={18}/>} variant="light">
-                    Save Changes
-                </Button>
-            </Group>
-
-        </form>
-        </Modal>
-
-        <Group position="center">
-            <Tooltip label={ mode === "create" ? "Add table" : "Edit table" }>
-            <ActionIcon onClick={ () => setOpened(true) }>
-                { mode === "create" ? <IconSquarePlus size={20} /> : <IconEdit size={18} />}
-            </ActionIcon>
-            </Tooltip>
-        </Group>
         </>
     );
 }

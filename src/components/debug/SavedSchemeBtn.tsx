@@ -49,7 +49,7 @@ function SavedScheme({ types }: SavedSchemeProps){
                 onChange={(event) => setSchemeName(event.currentTarget.value)}
             />
 
-            <Group position="right" mt={16}>
+            <Group justify="flex-end" mt={16}>
                 <Button variant="light" onClick={ () => addCurrentSchemeToTemplateList() }>
                     Save
                 </Button>
@@ -59,17 +59,17 @@ function SavedScheme({ types }: SavedSchemeProps){
         { types === "btn" 
             ? (
                 <Tooltip label="Save Current Scheme">
-                <ActionIcon onClick={ () => setOpened(true) }>
+                <ActionIcon onClick={ () => setOpened(true) } variant="light">
                     <IconCloudDownload size={16}/>
                 </ActionIcon>
                 </Tooltip>
             )
             : (
                 <NavLink 
-                label="Save Current Scheme"
-                icon={<IconFileImport size={16} stroke={1.5} />}
-                onClick={ () => setOpened(true) }
-            />
+                    label="Save Current Scheme"
+                    leftSection={<IconFileImport size={16} stroke={1.5} />}
+                    onClick={ () => setOpened(true) }
+                />
             )
         }
        

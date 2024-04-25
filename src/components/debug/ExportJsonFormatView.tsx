@@ -3,7 +3,7 @@ import { IconFileExport } from '@tabler/icons';
 
 import useTableStore from "../../store/zustandStore";
 
-import { Prism } from '@mantine/prism';
+import { CodeHighlight } from '@mantine/code-highlight';
 import { useState } from "react";
 import ExportJsonFormat from "./ExportJsonFormat";
 
@@ -21,19 +21,20 @@ function ExportJsonFormatView(){
             onClose={() => setOpened(false)}
             title="JSON Code"
         >
-            <Group position="right" mb={14}>
+            <Group justify="flex-end" mb={14}>
                 <ExportJsonFormat/>
             </Group>
 
-            <Prism language="json">
+            <CodeHighlight code={jsonContent} language="json" />
+            {/* <Prism language="json">
                 {jsonContent}
-            </Prism>
+            </Prism> */}
         </Modal>
 
 
         <NavLink
             label="Export json"
-            icon={<IconFileExport size={16} stroke={1.5} />}
+            leftSection={<IconFileExport size={16} stroke={1.5} />}
             onClick={ () => {
                 setJsonContent(JSON.stringify(tableArray, null, "\t"));
                 setOpened(true);

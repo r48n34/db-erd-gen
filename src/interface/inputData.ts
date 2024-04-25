@@ -9,7 +9,7 @@ export const foreignToObjScheme = z.object({
 })
 
 const tableTypesScheme = z.object({
-    id: z.string(),
+    id: z.optional(z.string()),
     name: z.string(),
     dataType: z.string(),
     isPrimaryKey: z.boolean(),

@@ -8,7 +8,7 @@ function LeftTopBar(){
 
     return (
         <>
-        <Group position="apart" mt={12} mr={6}>
+        <Group justify="space-between" mt={12} mr={6}>
             <Badge ml={12} color="green">
                 Table List
             </Badge>

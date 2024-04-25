@@ -32,7 +32,7 @@ function DeleteAllSchemeBtn(){
             variant="light"
             color="red"
             active
-            icon={<IconTrashOff size={16} stroke={1.5} />}
+            leftSection={<IconTrashOff size={16} stroke={1.5} />}
             onClick={ () => openModal() }
         />
         </>

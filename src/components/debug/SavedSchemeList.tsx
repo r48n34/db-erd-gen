@@ -1,4 +1,6 @@
-import { ActionIcon, Grid, NavLink, Tooltip } from "@mantine/core";
+import { ActionIcon, Grid, NavLink, Tooltip, Text } from "@mantine/core";
+import { modals } from '@mantine/modals';
+
 import { IconListDetails, IconCloudDownload, IconTrashOff } from "@tabler/icons";
 
 import useTemplateStoreStore from "../../store/templateStore";
@@ -16,12 +18,27 @@ function SavedSchemeList({ closeModal }:SavedSchemeListProps){
 
     const importTableObj = useTableStore((state) => state.importTableObj);
 
+    const openDeleteSchemeConfirmModal = (schemeName: string) => modals.openConfirmModal({
+        title: 'Please confirm your action',
+        children: (
+          <Text size="sm">
+            Are you sure to delete this scheme?
+          </Text>
+        ),
+        labels: { confirm: 'Confirm', cancel: 'Cancel' },
+        onCancel: () => {},
+        onConfirm: () => {
+            deleteOneTemplate(schemeName);
+            commonSuccessActions();
+        },
+      });
+
     return (
         <>
         { templateArray.length === 0 && (
             <NavLink
                 label="No saved scheme"
-                icon={<IconListDetails size={16} stroke={1.5} />}
+                leftSection={<IconListDetails size={16} stroke={1.5} />}
             />
         )}
 
@@ -30,16 +47,17 @@ function SavedSchemeList({ closeModal }:SavedSchemeListProps){
                 <Grid.Col span={10}>
                     <NavLink
                         label={v.name}
-                        icon={<IconListDetails size={16} stroke={1.5} />}
+                        leftSection={<IconListDetails size={16} stroke={1.5} />}
                     />
                 </Grid.Col>
 
                 <Grid.Col span={1}>
                     <Tooltip label={`Delete ${v.name}`}>
-                    <ActionIcon 
+                    <ActionIcon
+                        variant="light"
+                        color="red"
                         onClick={ () => {
-                            deleteOneTemplate(v.name);
-                            commonSuccessActions();
+                            openDeleteSchemeConfirmModal(v.name);
                         }}
                     >
                         <IconTrashOff size={16}/>
@@ -49,7 +67,8 @@ function SavedSchemeList({ closeModal }:SavedSchemeListProps){
 
                 <Grid.Col span={1}>
                     <Tooltip label={`Load ${v.name}`}>
-                    <ActionIcon 
+                    <ActionIcon
+                        variant="light"
                         onClick={ () => { 
                             importTableObj(v.data);
                             !!closeModal && closeModal()
