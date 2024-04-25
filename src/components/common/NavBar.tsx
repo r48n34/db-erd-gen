@@ -16,7 +16,7 @@ export default function NavBar() {
 
                 <Group>
                     <SavedScheme types='btn'/>
-                    <ImportJsonFromatFile/>
+                    {/* <ImportJsonFromatFile/> */}
                     <ThemeToggleBtn/>
                     <GoUrlBtn title={'Github'} url={'https://github.com/r48n34/db-erd-gen'} icon={<IconBrandGithub size={18}/>}/>
                 </Group>

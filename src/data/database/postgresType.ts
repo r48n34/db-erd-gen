@@ -854,12 +854,13 @@ export const postgresTypeArray: PostgresTypeArray[] = [
     },
 ];
 
-const groupByKey = (list: any[], key: string): Record<string, any[]> => list.reduce((hash, obj) => ({...hash, [obj[key]]:( hash[obj[key]] || [] ).concat(obj)}), {})
+const groupByKey = <T>(list: T[], key: string): Record<string, T[]> => list.reduce((hash: Record<string, T[]>, obj: any) => ({...hash, [obj[key]]:( hash[obj[key]] || [] ).concat(obj)}), {})
 
-export const groupedPostgresTypeArray = Object.entries(groupByKey(postgresTypeArray, "group")).map( ([key, value]) => ({
-    group: key, items: value.map( k => ({ value: k.value, label: k.label }))
-}))
-// console.log(groupedPostgresTypeArray)
+export const groupedPostgresTypeArray = Object.entries(groupByKey(postgresTypeArray, "group"))
+    .map( ([key, value]) => ({
+        group: key,
+        items: value.map( k => ({ value: k.value, label: k.label }))
+    }))
 
 export const postgresTypeArrayString = new Set(
     postgresTypeArray.map((v) => v.value)

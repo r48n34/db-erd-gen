@@ -30,7 +30,7 @@ function ImportTemplateBtn(){
     return (
         <>
         <NavLink
-            label="Import simple template"
+            label="Import Simple template"
             leftSection={<IconListDetails size={16} stroke={1.5} />}
             onClick={ () => {
                 openModal();

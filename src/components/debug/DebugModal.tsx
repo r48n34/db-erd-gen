@@ -41,11 +41,15 @@ function DebugModal() {
             title={
             <>
             <Group>
-                <GoUrlBtn title={'Github'} url={'https://github.com/r48n34/db-erd-gen'} icon={<IconBrandGithub/>}/>
-                <Text>DB graphers (Beta)</Text>
+                <GoUrlBtn
+                    title={'Github'}
+                    url={'https://github.com/r48n34/db-erd-gen'}
+                    icon={<IconBrandGithub size={18}/>}
+                />
+                <Text fw={300} fz={22} >DB graphers (Beta)</Text>
                 <ThemeToggleBtn/>
             </Group>
-            <Text c="dimmed" size={"sm"}>Still in beta, please be patients</Text>
+            <Text c="dimmed" fz={"sm"} mt={8}>Still in testing, bugs may occur</Text>
             </>
             }
             padding="xl"
@@ -134,10 +138,6 @@ function DebugModal() {
                 <ImportJsonFormat/>
             </NavLink>
 
-            <NavLink label="Template" leftSection={<IconClipboardData size={16} stroke={1.5} />} childrenOffset={28}>
-                <ImportTemplateBtn/>
-            </NavLink>
-
             <NavLink 
                 label="Scheme"
                 leftSection={<IconDeviceFloppy size={16} stroke={1.5} />}
@@ -154,6 +154,10 @@ function DebugModal() {
                 </NavLink>
 
 
+            </NavLink>
+
+            <NavLink label="Load Templates" leftSection={<IconClipboardData size={16} stroke={1.5} />} childrenOffset={28}>
+                <ImportTemplateBtn/>
             </NavLink>
 
             <NavLink 

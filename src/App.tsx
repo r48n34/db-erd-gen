@@ -2,11 +2,9 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/code-highlight/styles.css';
 
+import { MantineProvider } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
-// import { useHotkeys } from '@mantine/hooks';
-
 import { Notifications } from '@mantine/notifications';
-import { MantineProvider, useMantineColorScheme } from '@mantine/core';
 
 import { ErrorBoundary } from "react-error-boundary";
 import { Analytics } from '@vercel/analytics/react';
@@ -16,16 +14,9 @@ import ErrorComp from './components/common/ErrorComp';
 
 function App() {
 
-    // const { toggleColorScheme } = useMantineColorScheme();
-
-    // useHotkeys([
-    //     ['mod+J', () => toggleColorScheme()],
-    // ]);
-
     return (
         <>
         <Analytics />
-        {/* <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}> */}
             <MantineProvider defaultColorScheme="dark">
             <ModalsProvider> 
             <Notifications />
@@ -34,7 +25,6 @@ function App() {
                 </ErrorBoundary>
             </ModalsProvider>
             </MantineProvider>
-        {/* </ColorSchemeProvider> */}
         </>
     )
 }
