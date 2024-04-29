@@ -254,7 +254,7 @@ function DebugModal() {
             </NavLink>
 
             <NavLink 
-                label="Scheme"
+                label="Saved Scheme"
                 leftSection={<IconDeviceFloppy size={16} stroke={1.5} />}
                 childrenOffset={28}
             >
@@ -271,7 +271,7 @@ function DebugModal() {
 
             </NavLink>
 
-            <NavLink label="Load Templates" leftSection={<IconClipboardData size={16} stroke={1.5} />} childrenOffset={28}>
+            <NavLink label="Templates" leftSection={<IconClipboardData size={16} stroke={1.5} />} childrenOffset={28}>
                 <ImportTemplateBtn/>
             </NavLink>
 

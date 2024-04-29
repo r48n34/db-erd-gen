@@ -24,8 +24,6 @@ interface ERTableProps {
 
 function ERTableComp({ tableArray, updateTablePositions }: ERTableProps){
 
-    // const tableArray = useTableStore((state) => state.tableArray);
-    // const updateTablePositions = useTableStore((state) => state.updateTablePositions);
     const update = useTableStore((state) => state.update);
 
     const [nodes, setNodes] = useState<Node<any>[]>([]);

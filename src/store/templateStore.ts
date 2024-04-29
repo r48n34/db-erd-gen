@@ -2,7 +2,7 @@ import create from 'zustand'
 import { Table } from '../interface/inputData';
 import { devtools, persist } from 'zustand/middleware'
 
-interface TemplateStoreData {
+export interface TemplateStoreData {
     name: string
     data: Table[]
     addedDate?: string // Date
