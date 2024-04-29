@@ -9,6 +9,7 @@ import ReactFlow, {
     Panel,
     Node,
     Edge,
+    // MiniMap
 } from 'reactflow';
 import DataTableNode from './node/DataTableNode';
 import { Badge } from '@mantine/core';
@@ -58,7 +59,7 @@ function ERTableComp({ tableArray, updateTablePositions }: ERTableProps){
     const nodeTypes = useMemo(() => ({ textUpdater: DataTableNode }), []);
 
     return (
-        <div style={{ height: '100%', width: "100%" }}>
+        <div style={{ height: '100%', width: "100%", marginTop: "5vh" }}>
         <ReactFlow 
             nodes={nodes}
             edges={edges}
@@ -71,6 +72,7 @@ function ERTableComp({ tableArray, updateTablePositions }: ERTableProps){
         >
             <Background />
             <Controls />
+            {/* <MiniMap  pannable zoomable/> */}
             <Panel position="top-right">
                 <Badge>Table count: {nodes.length}</Badge>
             </Panel>
