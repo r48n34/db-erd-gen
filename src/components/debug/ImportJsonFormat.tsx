@@ -56,9 +56,11 @@ function ImportJsonFormat({ showsFormat = "NavLink" }: ImportJsonFormatProps) {
     });
 
     function importToStore(inputValue: string) {
+        
         setIsLoading(true);
-
+        
         try {
+
             const result = importJsonFormat(inputValue);
             if (!Array.isArray(result) || result.length <= 0) {
                 throw new Error("Invalid format")
@@ -74,15 +76,15 @@ function ImportJsonFormat({ showsFormat = "NavLink" }: ImportJsonFormatProps) {
             console.log(error)
             failedDeleteMessage("Fail to import, please check you file format.");
         }
+        finally{
+            setIsLoading(false);
+        }
 
-        setIsLoading(false);
     }
 
     function importStringToStore() {
         !!jsonValue && importToStore(jsonValue);
     }
-
-
 
     return (
         <>

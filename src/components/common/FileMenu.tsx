@@ -1,15 +1,18 @@
-import { Menu, Button, Text, rem } from '@mantine/core';
-import {
-    IconSettings,
-    IconSearch,
-    IconPhoto,
-    IconMessageCircle,
-    IconTrash,
-    IconArrowsLeftRight,
-    IconFile,
-} from '@tabler/icons';
+import { Menu, Button } from '@mantine/core';
+// import {
+//     IconSettings,
+//     IconSearch,
+//     IconPhoto,
+//     IconMessageCircle,
+//     IconTrash,
+//     IconArrowsLeftRight,
+//     IconFile,
+// } from '@tabler/icons';
+
 import ExportJsonFormatView from '../debug/ExportJsonFormatView';
 import ImportJsonFormat from '../debug/ImportJsonFormat';
+import DeleteAllData from '../debug/DeleteAllData';
+// import DeleteAllSchemeBtn from '../debug/DeleteAllSchemeBtn';
 
 function FileMenu() {
     return (
@@ -29,6 +32,11 @@ function FileMenu() {
             </Menu.Target>
 
             <Menu.Dropdown>
+                <Menu.Label>Files</Menu.Label>
+
+                <DeleteAllData showsFormat="Menu"/>
+
+                <Menu.Divider />
                 <Menu.Label>Import / Export</Menu.Label>
 
                 <ExportJsonFormatView showsFormat="Menu" /> 

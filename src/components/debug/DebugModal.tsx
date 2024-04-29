@@ -275,8 +275,8 @@ function DebugModal() {
                 leftSection={<IconAlertTriangle size={16} stroke={1.5} />}
                 childrenOffset={28}
             >
-                <DeleteAllData/>
-                <DeleteAllSchemeBtn/>
+                <DeleteAllData showsFormat = "NavLink"/>
+                <DeleteAllSchemeBtn showsFormat = "NavLink"/>
             </NavLink>
         </Drawer>
 
