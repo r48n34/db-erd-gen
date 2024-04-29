@@ -9,19 +9,20 @@ import ImportTemplateBtn from './ImportTemplateBtn';
 
 import ExportJsonFormatView from './ExportJsonFormatView';
 
-import { IconArchive, IconFileArrowRight, IconAlertTriangle, IconClipboardData, IconDeviceFloppy, IconList, IconBrandGithub } from '@tabler/icons';
+import { IconArchive, IconFileArrowRight, IconAlertTriangle, IconClipboardData, IconDeviceFloppy, IconList, IconBrandGithub, IconFileDatabase, IconBrandTypescript, IconDatabase, IconSteeringWheel } from '@tabler/icons';
 import SavedSchemeList from './SavedSchemeList';
 import DeleteAllSchemeBtn from './DeleteAllSchemeBtn';
 import TableDataToBtnView from './TableDataToBtnView';
 
 import { tableDataToKnexScheme } from '../../utilis/dataBase/tableDataToKnex';
-import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPostgres';
-import { tableDataToKyselyScheme, tableDataToKyselyTypescriptScheme } from '../../utilis/dataBase/tableDataToKysely';
 import { tableDataToMySQLScheme } from '../../utilis/dataBase/tableDataToMySQL';
-// import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
 import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite';
 import { tableDataToTsTypeScheme } from '../../utilis/dataBase/tableDataToTsType';
 import { tableDataToZodTypeScheme } from '../../utilis/dataBase/tableDataToZodType';
+import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPostgres';
+import { tableDataToKyselyScheme, tableDataToKyselyTypescriptScheme } from '../../utilis/dataBase/tableDataToKysely';
+// import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
+
 import SavedScheme from './SavedSchemeBtn';
 import GoUrlBtn from '../common/GoUrlBtn';
 import ThemeToggleBtn from '../common/ThemeToggleBtn';
@@ -57,83 +58,197 @@ function DebugModal() {
         >
             <NavLink label="Generate" leftSection={<IconArchive size={16} stroke={1.5} />} childrenOffset={28}>
 
-                <TableDataToBtnView 
-                    title='Typescript Type'
-                    schemeFunc={tableDataToTsTypeScheme}
-                    downloadFileName="types.ts"
-                    codeLanguages='ts'
-                />
+                <NavLink
+                    label="Typescript"
+                    leftSection={<IconBrandTypescript size={16} stroke={1.5} />}
+                    childrenOffset={28}
+                >
+                    <TableDataToBtnView 
+                        title='Typescript Type'
+                        generatedDataList={[
+                            {
+                                title: 'Typescript Type',
+                                schemeFunc: tableDataToTsTypeScheme,
+                                downloadFileName: "types.ts",
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            }
+                        ]}
+                    />
 
-                <TableDataToBtnView 
-                    title='Ts Zod Scheme'
-                    schemeFunc={tableDataToZodTypeScheme}
-                    downloadFileName="zodScheme.ts"
-                    codeLanguages='ts'
-                />
+                    <TableDataToBtnView 
+                        title='Typescript Zod Scheme'
+                        generatedDataList={[
+                            {
+                                title: 'Typescript Zod Scheme',
+                                schemeFunc: tableDataToZodTypeScheme,
+                                downloadFileName: "zodScheme.ts",
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            }
+                        ]}
+                    />
+                </NavLink>
 
-                <TableDataToBtnView 
-                    title='Postgres'
-                    types="postgresql"
-                    schemeFunc={tableDataToPostgresScheme}
-                    downloadFileName="tables.sql"
-                    codeLanguages='sql'
-                />
+                <NavLink
+                    label="Raw Databases"
+                    leftSection={<IconDatabase size={16} stroke={1.5} />}
+                    childrenOffset={28}
+                >
 
-                <TableDataToBtnView 
-                    title='MySQL'
-                    types="mySQL"
-                    schemeFunc={tableDataToMySQLScheme}
-                    downloadFileName={`mySqlTables.sql`}
-                    codeLanguages='sql'
-                />
+                    <TableDataToBtnView 
+                        title='Postgres'
+                        generatedDataList={[
+                            {
+                                title: 'Postgres',
+                                schemeFunc: tableDataToPostgresScheme,
+                                downloadFileName: "tables.sql",
+                                codeLanguages: 'sql',
+                                icon: <IconDatabase size={18} />
+                            }
+                        ]}
+                    />
 
-                <TableDataToBtnView 
-                    title='Knex'
-                    schemeFunc={tableDataToKnexScheme}
-                    downloadFileName={`${new Date().getTime()}_migrations.ts`}
-                    codeLanguages='ts'
-                />
+                    <TableDataToBtnView 
+                        title='MySQL'
+                        generatedDataList={[
+                            {
+                                title: 'mySQL',
+                                schemeFunc: tableDataToMySQLScheme,
+                                downloadFileName: "mySqlTables.sql",
+                                codeLanguages: 'sql',
+                                icon: <IconDatabase size={18} />
+                            }
+                        ]}
+                    />
 
-                <TableDataToBtnView 
-                    title='SQLite'
-                    schemeFunc={tableDataToSQLiteScheme}
-                    downloadFileName={`${new Date().getTime()}_migrations.db`}
-                    codeLanguages='sql'
-                />
+
+                    <TableDataToBtnView 
+                        title='SQLite'
+                        generatedDataList={[
+                            {
+                                title: 'SQLite',
+                                schemeFunc: tableDataToSQLiteScheme,
+                                downloadFileName: `${new Date().getTime()}_migrations.db`,
+                                codeLanguages: 'sql',
+                                icon: <IconDatabase size={18} />
+                            }
+                        ]}
+                    />
+
+                </NavLink>
+
+                <NavLink
+                    label="Knex"
+                    leftSection={<IconSteeringWheel size={16} stroke={1.5} />}
+                    childrenOffset={28}
+                >
+                    <TableDataToBtnView 
+                        title='knex migrations'
+                        generatedDataList={[
+                            {
+                                title: 'knex',
+                                schemeFunc: tableDataToKnexScheme,
+                                downloadFileName: `${new Date().getTime()}_migrations.ts`,
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            }
+                        ]}
+                    />
+
+                    
+                </NavLink>
 
                 {/* <TableDataToBtnView 
                     title='Prisma'
                     schemeFunc={tableDataToPrismaScheme}
                     downloadFileName={`${new Date().getTime()}_migra.prisma`}
                 /> */}
+                
+                <NavLink
+                    label="Kysely"
+                    leftSection={<IconFileDatabase size={16} stroke={1.5} />}
+                    childrenOffset={28}
+                >
+                    {/* <TableDataToBtnView
+                        title="Kysely Types"
+                        schemeFunc={tableDataToKyselyTypescriptScheme}
+                        downloadFileName={`types.ts`}
+                        codeLanguages='ts'
+                        icon={<IconBrandTypescript size={18} />}
+                    /> */}
 
-                <TableDataToBtnView
-                    title="Kysely Types"
-                    schemeFunc={tableDataToKyselyTypescriptScheme}
-                    downloadFileName={`types.ts`}
-                    codeLanguages='ts'
-                />
+                    <TableDataToBtnView
+                        title="Kysely Postgres"
+                        generatedDataList={[
+                            {
+                                title: 'postgresql',
+                                schemeFunc: tableDataToKyselyScheme,
+                                downloadFileName: `${new Date().getTime()}_migrations.ts`,
+                                types: "postgresql",
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            },
+                            {
+                                title: 'Kysely Types',
+                                schemeFunc: tableDataToKyselyTypescriptScheme,
+                                downloadFileName: `types.ts`,
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            },
+                        ]}
+                    />
 
-                <TableDataToBtnView
-                    title="Kysely Postgres"
-                    types='postgresql'
-                    schemeFunc={tableDataToKyselyScheme}
-                    downloadFileName={`${new Date().getTime()}_migrations.ts`}
-                    codeLanguages='ts'
-                />
+                    <TableDataToBtnView
+                        title="Kysely MySQL"
+                        generatedDataList={[
+                            {
+                                title: 'MYSQL',
+                                schemeFunc: tableDataToKyselyScheme,
+                                downloadFileName: `${new Date().getTime()}_migrations.ts`,
+                                types: "mySQL",
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            },
+                            {
+                                title: 'Kysely Types',
+                                schemeFunc: tableDataToKyselyTypescriptScheme,
+                                downloadFileName: `types.ts`,
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            },
+                        ]}
+                    />
 
-                <TableDataToBtnView
-                    title="Kysely SQLite"
-                    types="sqlite"
-                    schemeFunc={tableDataToKyselyScheme}
-                    downloadFileName={`${new Date().getTime()}_migrations.ts`}
-                    codeLanguages='ts'
-                />
+                    <TableDataToBtnView
+                        title="Kysely SQLite"
+                        generatedDataList={[
+                            {
+                                title: 'sqlite',
+                                schemeFunc: tableDataToKyselyScheme,
+                                types: "sqlite",
+                                downloadFileName: `${new Date().getTime()}_migrations.ts`,
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            },
+                            {
+                                title: 'Kysely Types',
+                                schemeFunc: tableDataToKyselyTypescriptScheme,
+                                downloadFileName: `types.ts`,
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            },
+                        ]}
+                    />
+                </NavLink>
 
-               
             </NavLink>
 
-            <NavLink label="Import / Export" leftSection={<IconFileArrowRight size={16} stroke={1.5} />} childrenOffset={28}>
+            <NavLink 
+                label="Import / Export"
+                leftSection={<IconFileArrowRight size={16} stroke={1.5} />}
+                childrenOffset={28}
+            >
                 <ExportJsonFormatView/> 
                 <ImportJsonFormat/>
             </NavLink>

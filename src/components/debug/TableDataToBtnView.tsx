@@ -4,25 +4,34 @@ import { IconDownload } from '@tabler/icons';
 
 import { IconDatabaseImport } from '@tabler/icons';
 import { useState } from "react";
-import { CodeHighlight } from '@mantine/code-highlight';
+import { CodeHighlightTabs, CodeHighlightTabsCode } from '@mantine/code-highlight';
 
 import { Table } from "../../interface/inputData";
 import { toDownloadFile } from "../../utilis/dataBase/downloadFile";
 
+type DBFunc = (tables: Table[], types?: "postgresql" | "mySQL" | "sqlite" | "") => string
+
 interface TableDataToBtnViewProps {
     title: string
-    types?: "postgresql" | "mySQL" | "sqlite" | ""
-    downloadFileName: string
-    schemeFunc: (tables: Table[], types?: "postgresql" | "mySQL" | "sqlite" | "") => string
-    codeLanguages: string
+    generatedDataList: {
+        title: string
+        types?: "postgresql" | "mySQL" | "sqlite" | ""
+        downloadFileName: string
+        schemeFunc: DBFunc
+        codeLanguages: string
+        icon?: JSX.Element
+    }[]
 }
 
-function TableDataToBtnView({ title, types, schemeFunc, downloadFileName, codeLanguages = "sql" }:TableDataToBtnViewProps){
+function TableDataToBtnView({ 
+    title,
+    generatedDataList = [],
+}:TableDataToBtnViewProps){
     
     const [ opened, setOpened ] = useState<boolean>(false);
-    const [ sqlContent, setSqlContent ] = useState<string>("");
+    const [ contentList, setContentList ] = useState<CodeHighlightTabsCode[]>([]);
     const tableArray = useTableStore((state) => state.tableArray);
-
+    
     return (
         <>
         <Modal
@@ -36,10 +45,12 @@ function TableDataToBtnView({ title, types, schemeFunc, downloadFileName, codeLa
                 <ActionIcon
                     variant="light"
                     onClick={ () => {
-                        const str = schemeFunc(tableArray)
-                        const textString = `data:text/json;chatset=utf-8,${encodeURIComponent(str)}`;
-
-                        toDownloadFile(textString, downloadFileName)
+                        generatedDataList.forEach( v => {
+                            const str = v.schemeFunc(tableArray)
+                            const textString = `data:text/json;chatset=utf-8,${encodeURIComponent(str)}`;
+    
+                            toDownloadFile(textString, v.downloadFileName)
+                        })
                     }}
                 >
                     <IconDownload size={18} />
@@ -47,18 +58,27 @@ function TableDataToBtnView({ title, types, schemeFunc, downloadFileName, codeLa
                 </Tooltip>
             </Group>
 
-            <CodeHighlight code={sqlContent} language={codeLanguages} />
+            <CodeHighlightTabs
+                withExpandButton
+                defaultExpanded
+                code={contentList} 
+            />
         </Modal>
 
         <NavLink 
             label={"Generate " + title}
             onClick={ () => {
-                const str = schemeFunc(tableArray, types);
-                setSqlContent(str);
+                setContentList(generatedDataList.map( v => 
+                    ({
+                        fileName: v.title,
+                        code: v.schemeFunc(tableArray, v.types),
+                        language: v.codeLanguages,
+                        icon: v.icon
+                    }))
+                )
                 setOpened(true);
             }}
             leftSection={<IconDatabaseImport size={16} stroke={1.5} />}
-     
         />  
         </>
     )

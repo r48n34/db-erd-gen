@@ -1,9 +1,9 @@
 import { Group, Modal, NavLink } from "@mantine/core";
-import { IconFileExport } from '@tabler/icons';
+import { IconDatabaseExport, IconFileExport } from '@tabler/icons';
 
 import useTableStore from "../../store/zustandStore";
 
-import { CodeHighlight } from '@mantine/code-highlight';
+import { CodeHighlightTabs } from '@mantine/code-highlight';
 import { useState } from "react";
 import ExportJsonFormat from "./ExportJsonFormat";
 
@@ -25,10 +25,13 @@ function ExportJsonFormatView(){
                 <ExportJsonFormat/>
             </Group>
 
-            <CodeHighlight code={jsonContent} language="json" />
-            {/* <Prism language="json">
-                {jsonContent}
-            </Prism> */}
+            <CodeHighlightTabs 
+                withExpandButton
+                defaultExpanded={false}
+                code={[
+                    { fileName: 'databaseScheme.json', code: jsonContent, language: 'json', icon: <IconDatabaseExport size={16}/> },
+                ]}
+            />
         </Modal>
 
 

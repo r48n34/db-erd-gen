@@ -55,9 +55,19 @@ function ImportJsonFormat(){
         >
             <LoadingOverlay visible={isLoading} />
 
-            <Group justify="flex-end" mb={14}>
+            <Group justify="space-between">
                 <ImportJsonFromatFile setLoading={setIsLoading} setCloseModal={setOpened}/>
+
+                <Button
+                    variant="light"
+                    leftSection={<IconFileImport size={16} />}
+                    onClick={ () => importStringToStore() }
+                >
+                    Import
+                </Button>
             </Group>
+
+            <Space h="lg"/>
 
             <JsonInput 
                 value={jsonValue}
@@ -66,17 +76,7 @@ function ImportJsonFormat(){
                 autosize
                 minRows={18}
             />
-            <Space h="lg"/>
-
-            <Group justify="flex-end">
-                <Button
-                    variant="light"
-                    leftSection={<IconFileImport size={16} stroke={1.5} />}
-                    onClick={ () => importStringToStore() }
-                >
-                    Import
-                </Button>
-            </Group>
+            
         </Modal>
 
         <NavLink 

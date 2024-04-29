@@ -51,8 +51,8 @@ function ImportJsonFromatFile({ setLoading, setCloseModal }: ImportJsonFromatFil
         <FileButton onChange={importStringToStoreFromFile} accept="application/JSON">
             {(props) => (
                 <Tooltip label="Upload JSON">
-                <ActionIcon {...props} variant="light">
-                    <IconFileUpload size={18} />
+                <ActionIcon {...props} variant="light" size="lg">
+                    <IconFileUpload size={20} />
                 </ActionIcon>
                 </Tooltip>
             )}
