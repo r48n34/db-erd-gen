@@ -15,11 +15,17 @@ import { Badge } from '@mantine/core';
 
 import { inputDataToNodeAndEdges } from '../utilis/inputData/inputDataToNode';
 import useTableStore from '../store/zustandStore';
+import { Table, TablePosition } from '../interface/inputData';
 
-function ERTableComp(){
+interface ERTableProps {
+    tableArray: Table[]
+    updateTablePositions?: (tableName: string, position: TablePosition) => void 
+}
 
-    const tableArray = useTableStore((state) => state.tableArray);
-    const updateTablePositions = useTableStore((state) => state.updateTablePositions);
+function ERTableComp({ tableArray, updateTablePositions }: ERTableProps){
+
+    // const tableArray = useTableStore((state) => state.tableArray);
+    // const updateTablePositions = useTableStore((state) => state.updateTablePositions);
     const update = useTableStore((state) => state.update);
 
     const [nodes, setNodes] = useState<Node<any>[]>([]);
@@ -41,7 +47,7 @@ function ERTableComp(){
 
     const onNodeDragStop = useCallback(
         (_: React.MouseEvent, node: Node,) => {          
-            updateTablePositions(node.data.name, node.position);
+            !!updateTablePositions && updateTablePositions(node.data.name, node.position);
         },
         []
     );

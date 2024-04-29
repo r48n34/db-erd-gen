@@ -5,6 +5,7 @@ import { devtools, persist } from 'zustand/middleware'
 interface TemplateStoreData {
     name: string
     data: Table[]
+    addedDate?: string // Date
 }
 
 // For each set of database table sets
@@ -34,7 +35,8 @@ const useTemplateStoreStore = create<TemplateDataState>()(
 
                     const templateStoreData = {
                         name: name,
-                        data: obj
+                        data: obj,
+                        addedDate: new Date().toISOString()
                     }
 
                     return {

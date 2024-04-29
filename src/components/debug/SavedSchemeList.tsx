@@ -1,11 +1,12 @@
-import { ActionIcon, Grid, NavLink, Tooltip, Text } from "@mantine/core";
+import { ActionIcon, Grid, NavLink, Tooltip, Text, Modal } from "@mantine/core";
 import { modals } from '@mantine/modals';
 
-import { IconListDetails, IconCloudDownload, IconTrashOff } from "@tabler/icons";
+import { IconListDetails, IconCloudDownload, IconTrashOff, IconInfoCircle } from "@tabler/icons";
 
 import useTemplateStoreStore from "../../store/templateStore";
 import useTableStore from "../../store/zustandStore";
 import { commonSuccessActions } from "../../utilis/notificationUtilis";
+import { useDisclosure } from "@mantine/hooks";
 
 interface SavedSchemeListProps{
     closeModal?: Function
@@ -17,6 +18,8 @@ function SavedSchemeList({ closeModal }:SavedSchemeListProps){
     const deleteOneTemplate = useTemplateStoreStore((state) => state.deleteOneTemplate);
 
     const importTableObj = useTableStore((state) => state.importTableObj);
+
+    const [opened, { open, close }] = useDisclosure(false);
 
     const openDeleteSchemeConfirmModal = (schemeName: string) => modals.openConfirmModal({
         title: 'Please confirm your action',
@@ -31,10 +34,15 @@ function SavedSchemeList({ closeModal }:SavedSchemeListProps){
             deleteOneTemplate(schemeName);
             commonSuccessActions();
         },
-      });
+    });
 
     return (
         <>
+
+        <Modal opened={opened} onClose={close} title="Info Table">
+            {/* Modal content */}
+        </Modal>
+
         { templateArray.length === 0 && (
             <NavLink
                 label="No saved scheme"
@@ -44,7 +52,7 @@ function SavedSchemeList({ closeModal }:SavedSchemeListProps){
 
         { templateArray.map( v => (
             <Grid>
-                <Grid.Col span={10}>
+                <Grid.Col span={9}>
                     <NavLink
                         label={v.name}
                         leftSection={<IconListDetails size={16} stroke={1.5} />}
@@ -61,6 +69,17 @@ function SavedSchemeList({ closeModal }:SavedSchemeListProps){
                         }}
                     >
                         <IconTrashOff size={16}/>
+                    </ActionIcon>
+                    </Tooltip>
+                </Grid.Col>
+
+                <Grid.Col span={1}>
+                    <Tooltip label={`Info`}>
+                    <ActionIcon
+                        variant="light"
+                        onClick={open}
+                    >
+                        <IconInfoCircle size={16}/>
                     </ActionIcon>
                     </Tooltip>
                 </Grid.Col>
