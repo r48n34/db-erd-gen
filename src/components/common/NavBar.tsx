@@ -5,6 +5,7 @@ import ImportJsonFromatFile from '../debug/ImportJsonFromatFile';
 import SavedScheme from '../debug/SavedSchemeBtn';
 import { IconBrandGithub } from '@tabler/icons';
 import GoUrlBtn from './GoUrlBtn';
+import DownloadButton from '../leftBar/components/DownloadButton';
 
 export default function NavBar() {
    return (
@@ -18,7 +19,8 @@ export default function NavBar() {
                     <SavedScheme types='btn'/>
                     {/* <ImportJsonFromatFile/> */}
                     <ThemeToggleBtn/>
-                    <GoUrlBtn title={'Github'} url={'https://github.com/r48n34/db-erd-gen'} icon={<IconBrandGithub size={18}/>}/>
+                    {/* <GoUrlBtn title={'Github'} url={'https://github.com/r48n34/db-erd-gen'} icon={<IconBrandGithub size={18}/>}/> */}
+                    {/* <DownloadButton /> */}
                 </Group>
 
             </Group>

@@ -1,11 +1,12 @@
 import { ActionIcon, Button, Group, Modal, NavLink, TextInput, Tooltip } from "@mantine/core";
-import { IconCloudDownload, IconFileImport } from "@tabler/icons";
+import { IconCloudDownload, IconDeviceFloppy, IconFileImport } from "@tabler/icons";
 
 import { commonSuccessActions, failedDeleteMessage } from "../../utilis/notificationUtilis";
 
 import useTableStore from "../../store/zustandStore";
 import useTemplateStoreStore from "../../store/templateStore";
 import { useState } from "react";
+import { useHotkeys } from "@mantine/hooks";
     
 interface SavedSchemeProps {
     types: "btn" | "list"
@@ -19,6 +20,10 @@ function SavedScheme({ types }: SavedSchemeProps){
     const templateArray = useTemplateStoreStore((state) => state.templateArray);
     const addTemplate = useTemplateStoreStore((state) => state.addTemplate);
     const importTableObj = useTableStore((state) => state.tableArray);
+
+    useHotkeys([
+        ['ctrl+S', () => setOpened(true)],
+    ]);
 
     function addCurrentSchemeToTemplateList(){
         if(!schemeName){
@@ -41,16 +46,21 @@ function SavedScheme({ types }: SavedSchemeProps){
         <Modal
             opened={opened}
             onClose={() => setOpened(false)}
-            title="Name the template"
+            title="Save Current Scheme"
         >
             <TextInput
+                label="Named current project"
                 placeholder="my_project"
                 value={schemeName}
                 onChange={(event) => setSchemeName(event.currentTarget.value)}
             />
 
             <Group justify="flex-end" mt={16}>
-                <Button variant="light" onClick={ () => addCurrentSchemeToTemplateList() }>
+                <Button
+                    leftSection={<IconDeviceFloppy size={18}/>}
+                    variant="light"
+                    onClick={ () => addCurrentSchemeToTemplateList() }
+                >
                     Save
                 </Button>
             </Group>

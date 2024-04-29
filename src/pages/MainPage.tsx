@@ -17,8 +17,6 @@ function MainPage(){
     const updateTablePositions = useTableStore((state) => state.updateTablePositions);
     const update = useTableStore((state) => state.update);
 
-    // const update = useTableStore((state) => state.update);
-
     const { toggleColorScheme } = useMantineColorScheme();
 
     useHotkeys([

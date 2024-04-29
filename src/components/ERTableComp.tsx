@@ -12,11 +12,12 @@ import ReactFlow, {
     // MiniMap
 } from 'reactflow';
 import DataTableNode from './node/DataTableNode';
-import { Badge } from '@mantine/core';
+import { Badge, Group } from '@mantine/core';
 
 import { inputDataToNodeAndEdges } from '../utilis/inputData/inputDataToNode';
 import useTableStore from '../store/zustandStore';
 import { Table, TablePosition } from '../interface/inputData';
+import DownloadButton from './leftBar/components/DownloadButton';
 
 interface ERTableProps {
     tableArray: Table[]
@@ -73,8 +74,15 @@ function ERTableComp({ tableArray, updateTablePositions }: ERTableProps){
             <Background />
             <Controls />
             {/* <MiniMap  pannable zoomable/> */}
+
             <Panel position="top-right">
-                <Badge>Table count: {nodes.length}</Badge>
+                <Group mt={6}>
+                    <Badge>
+                        Table count: {nodes.length}
+                    </Badge>
+                    
+                    {!!updateTablePositions && <DownloadButton />}
+                </Group>
             </Panel>
         </ReactFlow>
         </div>
