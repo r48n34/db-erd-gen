@@ -1,72 +1,44 @@
-import { useState } from 'react';
-import { useHotkeys } from '@mantine/hooks';
-import { Drawer, Burger, NavLink, Tooltip, Text, Group } from '@mantine/core';
-
-import DeleteAllData from './DeleteAllData';
-
-import ImportJsonFormat from './ImportJsonFormat';
-import ImportTemplateBtn from './ImportTemplateBtn';
-
-import ExportJsonFormatView from './ExportJsonFormatView';
-
-import { IconArchive, IconFileArrowRight, IconAlertTriangle, IconClipboardData, IconDeviceFloppy, IconList, IconBrandGithub, IconFileDatabase, IconBrandTypescript, IconDatabase, IconSteeringWheel } from '@tabler/icons';
-import SavedSchemeList from './SavedSchemeList';
-import DeleteAllSchemeBtn from './DeleteAllSchemeBtn';
-import TableDataToBtnView from './TableDataToBtnView';
-
-import { tableDataToKnexScheme } from '../../utilis/dataBase/tableDataToKnex';
-import { tableDataToMySQLScheme } from '../../utilis/dataBase/tableDataToMySQL';
-import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite';
+import { Menu, Button } from '@mantine/core';
+import {
+    IconBrandTypescript,
+    IconDatabase,
+} from '@tabler/icons';
 import { tableDataToTsTypeScheme } from '../../utilis/dataBase/tableDataToTsType';
 import { tableDataToZodTypeScheme } from '../../utilis/dataBase/tableDataToZodType';
+import TableDataToBtnView from '../debug/TableDataToBtnView';
+import { tableDataToMySQLScheme } from '../../utilis/dataBase/tableDataToMySQL';
 import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPostgres';
+import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite';
+import { tableDataToKnexScheme } from '../../utilis/dataBase/tableDataToKnex';
 import { tableDataToKyselyScheme, tableDataToKyselyTypescriptScheme } from '../../utilis/dataBase/tableDataToKysely';
-// import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
 
-import SavedScheme from './SavedSchemeBtn';
-import GoUrlBtn from '../common/GoUrlBtn';
-import ThemeToggleBtn from '../common/ThemeToggleBtn';
-
-function DebugModal() {
-    const [opened, setOpened] = useState<boolean>(false);
-
-    useHotkeys([
-        ['mod+D', () => setOpened(true)],
-    ]);
+function GenerateMenu() {
 
     return (
         <>
-        <Drawer
-            opened={opened}
-            onClose={() => setOpened(false)}
-            title={
-                <>
-                <Group>
-                    <GoUrlBtn
-                        title={'Github'}
-                        url={'https://github.com/r48n34/db-erd-gen'}
-                        icon={<IconBrandGithub size={18}/>}
-                    />
-                    <Text fw={300} fz={22} >
-                        DB graphers (Beta)
-                    </Text>
-                    <ThemeToggleBtn/>
-                </Group>
-                <Text c="dimmed" fz={"sm"} mt={8}>Still in testing, bugs may occur</Text>
-                </>
-            }
-            padding="xl"
-            size="xl"
-        >
-            <NavLink label="Generate" leftSection={<IconArchive size={16} stroke={1.5} />} childrenOffset={28}>
+            <Menu
+                shadow="md" width={250}
+                position="bottom-start"
+                trigger="hover"
+                loop={false}
+                withinPortal={false}
+                trapFocus={false}
+                menuItemTabIndex={0}
+            >
+                <Menu.Target>
+                    <Button variant="subtle" size="xs">
+                        Generation
+                    </Button>
+                </Menu.Target>
 
-                <NavLink
-                    label="Typescript"
-                    leftSection={<IconBrandTypescript size={16} stroke={1.5} />}
-                    childrenOffset={28}
-                >
+                <Menu.Dropdown>
+
+                    <Menu.Label>
+                        Typescript
+                    </Menu.Label>
+
                     <TableDataToBtnView
-                        showsFormat="NavLink"  
+                        showsFormat="Menu"
                         title='Typescript Type'
                         generatedDataList={[
                             {
@@ -80,7 +52,7 @@ function DebugModal() {
                     />
 
                     <TableDataToBtnView
-                        showsFormat="NavLink"  
+                        showsFormat="Menu"
                         title='Typescript Zod Scheme'
                         generatedDataList={[
                             {
@@ -92,16 +64,15 @@ function DebugModal() {
                             }
                         ]}
                     />
-                </NavLink>
 
-                <NavLink
-                    label="Raw Databases"
-                    leftSection={<IconDatabase size={16} stroke={1.5} />}
-                    childrenOffset={28}
-                >
+                    <Menu.Divider />
+
+                    <Menu.Label>
+                        Raw Database
+                    </Menu.Label>
 
                     <TableDataToBtnView
-                        showsFormat="NavLink"  
+                        showsFormat="Menu"
                         title='Postgres'
                         generatedDataList={[
                             {
@@ -115,7 +86,7 @@ function DebugModal() {
                     />
 
                     <TableDataToBtnView
-                        showsFormat="NavLink"  
+                        showsFormat="Menu"
                         title='MySQL'
                         generatedDataList={[
                             {
@@ -130,7 +101,7 @@ function DebugModal() {
 
 
                     <TableDataToBtnView
-                        showsFormat="NavLink" 
+                        showsFormat="Menu"
                         title='SQLite'
                         generatedDataList={[
                             {
@@ -143,15 +114,14 @@ function DebugModal() {
                         ]}
                     />
 
-                </NavLink>
+                    <Menu.Divider />
 
-                <NavLink
-                    label="Knex"
-                    leftSection={<IconSteeringWheel size={16} stroke={1.5} />}
-                    childrenOffset={28}
-                >
+                    <Menu.Label>
+                        Knex
+                    </Menu.Label>
+
                     <TableDataToBtnView
-                        showsFormat="NavLink" 
+                        showsFormat="Menu"
                         title='knex migrations'
                         generatedDataList={[
                             {
@@ -162,16 +132,16 @@ function DebugModal() {
                                 icon: <IconBrandTypescript size={18} />
                             }
                         ]}
-                    />     
-                </NavLink>
-                
-                <NavLink
-                    label="Kysely"
-                    leftSection={<IconFileDatabase size={16} stroke={1.5} />}
-                    childrenOffset={28}
-                >
+                    />
+
+                    <Menu.Divider />
+
+                    <Menu.Label>
+                        Kysely
+                    </Menu.Label>
+
                     <TableDataToBtnView
-                        showsFormat="NavLink"
+                        showsFormat="Menu"
                         title="Kysely Postgres"
                         generatedDataList={[
                             {
@@ -193,7 +163,7 @@ function DebugModal() {
                     />
 
                     <TableDataToBtnView
-                        showsFormat="NavLink"
+                        showsFormat="Menu"
                         title="Kysely MySQL"
                         generatedDataList={[
                             {
@@ -215,7 +185,7 @@ function DebugModal() {
                     />
 
                     <TableDataToBtnView
-                        showsFormat="NavLink" 
+                        showsFormat="Menu"
                         title="Kysely SQLite"
                         generatedDataList={[
                             {
@@ -235,63 +205,13 @@ function DebugModal() {
                             },
                         ]}
                     />
-                </NavLink>
-
-            </NavLink>
-
-            <NavLink 
-                label="Import / Export"
-                leftSection={<IconFileArrowRight size={16} stroke={1.5} />}
-                childrenOffset={28}
-            >
-                <ExportJsonFormatView showsFormat="NavLink" /> 
-                <ImportJsonFormat showsFormat="NavLink"/>
-            </NavLink>
-
-            <NavLink 
-                label="Saved Scheme"
-                leftSection={<IconDeviceFloppy size={16} stroke={1.5} />}
-                childrenOffset={28}
-            >
-                <SavedScheme types="list" />
-
-                <NavLink 
-                    label="Saved Scheme List"
-                    leftSection={<IconList size={16} stroke={1.5} />}
-                    childrenOffset={28}
-                >
-                    <SavedSchemeList closeModal={ () => setOpened(false) }/>
-                </NavLink>
 
 
-            </NavLink>
 
-            <NavLink label="Templates" leftSection={<IconClipboardData size={16} stroke={1.5} />} childrenOffset={28}>
-                <ImportTemplateBtn/>
-            </NavLink>
-
-            <NavLink 
-                label="Dangerous zone"
-                leftSection={<IconAlertTriangle size={16} stroke={1.5} />}
-                childrenOffset={28}
-            >
-                <DeleteAllData/>
-                <DeleteAllSchemeBtn/>
-            </NavLink>
-        </Drawer>
-
-        <Group>
-        <Tooltip label="Menu">
-            <Burger
-                size={16}
-                opened={opened}
-                onClick={() => setOpened((o) => !o)}
-                title={"Control menu"}
-            />
-        </Tooltip>
-        </Group>
+                </Menu.Dropdown>
+            </Menu>
         </>
     );
 }
 
-export default DebugModal
+export default GenerateMenu

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { IconFileImport } from '@tabler/icons';
-import { Modal, Button, JsonInput, Space, Group, NavLink, LoadingOverlay } from "@mantine/core";
+import { IconFileExport, IconFileImport } from '@tabler/icons';
+import { Button, JsonInput, Space, Group, NavLink, LoadingOverlay, Menu } from "@mantine/core";
 
 import { importString } from "../../data/testInputData";
 import { importJsonFormat } from "../../utilis/dataBase/jsonFormat";
@@ -9,30 +9,67 @@ import { commonSuccessActions, failedDeleteMessage } from "../../utilis/notifica
 import useTableStore from "../../store/zustandStore";
 import ImportJsonFromatFile from "./ImportJsonFromatFile";
 import { jsonImportScheme } from "../../interface/inputData";
+import { modals } from "@mantine/modals";
 
-function ImportJsonFormat(){
+interface ImportJsonFormatProps {
+    showsFormat: "Menu" | "NavLink"
+}
 
-    const [ jsonValue, setJsonValue ] = useState<string>(importString);
-    const [ isLoading, setIsLoading ] = useState<boolean>(false);
-    const [ opened, setOpened ] = useState<boolean>(false);
+function ImportJsonFormat({ showsFormat = "NavLink" }: ImportJsonFormatProps) {
 
+    const [jsonValue, setJsonValue] = useState<string>(importString);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const importTableObj = useTableStore((state) => state.importTableObj);
 
-    function importToStore(inputValue: any){
+    const openImportJsonViewModal = () => modals.open({
+        title: "Import JSON Code",
+        size: "85%",
+        children: (
+            <>
+                <LoadingOverlay visible={isLoading} />
+
+                <Group justify="space-between">
+                    <ImportJsonFromatFile setLoading={setIsLoading} setCloseModal={() => modals.closeAll()} />
+
+                    <Button
+                        variant="light"
+                        leftSection={<IconFileImport size={16} />}
+                        onClick={() => {
+                            importStringToStore();
+                        }}
+                    >
+                        Import
+                    </Button>
+                </Group>
+
+                <Space h="lg" />
+
+                <JsonInput
+                    value={jsonValue}
+                    validationError="Invalid json"
+                    onChange={setJsonValue}
+                    autosize
+                    minRows={18}
+                />
+            </>
+        ),
+    });
+
+    function importToStore(inputValue: string) {
         setIsLoading(true);
 
         try {
             const result = importJsonFormat(inputValue);
-            if(!Array.isArray(result) || result.length <= 0){
+            if (!Array.isArray(result) || result.length <= 0) {
                 throw new Error("Invalid format")
             }
 
             jsonImportScheme.parse(result);
             importTableObj(result);
-    
+
             commonSuccessActions();
-            setOpened(false);
-        } 
+            modals.closeAll();
+        }
         catch (error) {
             console.log(error)
             failedDeleteMessage("Fail to import, please check you file format.");
@@ -41,51 +78,34 @@ function ImportJsonFormat(){
         setIsLoading(false);
     }
 
-    function importStringToStore(){
+    function importStringToStore() {
         !!jsonValue && importToStore(jsonValue);
     }
 
+
+
     return (
         <>
-        <Modal
-            size="85%"
-            opened={opened}
-            onClose={() => setOpened(false)}
-            title="Import json"
-        >
-            <LoadingOverlay visible={isLoading} />
+            {showsFormat === "NavLink" && (
+                <NavLink
+                    label="Import json"
+                    leftSection={<IconFileImport size={16} stroke={1.5} />}
+                    onClick={() => openImportJsonViewModal()}
+                />
+            )}
 
-            <Group justify="space-between">
-                <ImportJsonFromatFile setLoading={setIsLoading} setCloseModal={setOpened}/>
-
-                <Button
-                    variant="light"
-                    leftSection={<IconFileImport size={16} />}
-                    onClick={ () => importStringToStore() }
+            {showsFormat === "Menu" && (
+                <Menu.Item
+                    leftSection={<IconFileImport size={16} stroke={1.5} />}
+                    onClick={() => {
+                        openImportJsonViewModal();
+                    }}
                 >
-                    Import
-                </Button>
-            </Group>
-
-            <Space h="lg"/>
-
-            <JsonInput 
-                value={jsonValue}
-                validationError="Invalid json"
-                onChange={setJsonValue}
-                autosize
-                minRows={18}
-            />
-            
-        </Modal>
-
-        <NavLink 
-            label="Import json"
-            leftSection={<IconFileImport size={16} stroke={1.5} />}
-            onClick={ () => setOpened(true) }
-        />
+                    Import json
+                </Menu.Item>
+            )}
         </>
     )
 }
-    
+
 export default ImportJsonFormat

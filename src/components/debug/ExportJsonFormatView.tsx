@@ -1,27 +1,26 @@
-import { Group, Modal, NavLink } from "@mantine/core";
+import { Group, Menu, NavLink } from "@mantine/core";
 import { IconDatabaseExport, IconFileExport } from '@tabler/icons';
 
 import useTableStore from "../../store/zustandStore";
 
 import { CodeHighlightTabs } from '@mantine/code-highlight';
-import { useState } from "react";
 import ExportJsonFormat from "./ExportJsonFormat";
+import { modals } from "@mantine/modals";
 
-function ExportJsonFormatView(){
+interface ExportJsonFormatViewProps {
+    showsFormat: "Menu" | "NavLink"
+}
 
-    const [ opened, setOpened ] = useState<boolean>(false);
-    const [ jsonContent, setJsonContent ] = useState<string>("");
+function ExportJsonFormatView({ showsFormat = "NavLink" }: ExportJsonFormatViewProps){
+
     const tableArray = useTableStore((state) => state.tableArray);
 
-    return (
-        <>
-        <Modal
-            size="85%"
-            opened={opened}
-            onClose={() => setOpened(false)}
-            title="JSON Code"
-        >
-            <Group justify="flex-end" mb={14}>
+    const opeJsonFormatViewModal = (jsonData: string) => modals.open({
+        title:"JSON Code",
+        size: "85%",
+        children: (
+            <>
+                <Group justify="flex-end" mb={14}>
                 <ExportJsonFormat/>
             </Group>
 
@@ -29,20 +28,35 @@ function ExportJsonFormatView(){
                 withExpandButton
                 defaultExpanded={false}
                 code={[
-                    { fileName: 'databaseScheme.json', code: jsonContent, language: 'json', icon: <IconDatabaseExport size={16}/> },
+                    { fileName: 'databaseScheme.json', code: jsonData, language: 'json', icon: <IconDatabaseExport size={16}/> },
                 ]}
             />
-        </Modal>
+            </>
+        ),
+    });
 
+    return (
+        <>
+        { showsFormat === "NavLink" && (
+            <NavLink
+                label="Export json"
+                leftSection={<IconFileExport size={16} stroke={1.5} />}
+                onClick={ () => {
+                    opeJsonFormatViewModal(JSON.stringify(tableArray, null, "\t"));
+                }}
+            />
+        )}
 
-        <NavLink
-            label="Export json"
-            leftSection={<IconFileExport size={16} stroke={1.5} />}
-            onClick={ () => {
-                setJsonContent(JSON.stringify(tableArray, null, "\t"));
-                setOpened(true);
-            }}
-        />
+        { showsFormat === "Menu" && (
+            <Menu.Item
+                leftSection={<IconFileExport size={16} stroke={1.5} />}
+                onClick={ () => {
+                    opeJsonFormatViewModal(JSON.stringify(tableArray, null, "\t"));
+                }}
+            >
+                Export json
+            </Menu.Item>
+        )}
         </>
     )
 }

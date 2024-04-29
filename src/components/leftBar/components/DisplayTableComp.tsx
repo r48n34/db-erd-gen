@@ -48,14 +48,11 @@ function DisplayTableComp(){
                                 { k.foreignTo && (
                                     <Group ml={6}>
                                         <Badge size="xs" variant="light" mt={4}>(FK) {k.foreignTo.name} {"->"} {k.foreignTo.column}</Badge>
-                                        {/* <Text fz={14} >
-                                            {k.foreignTo.name} {"->"} {k.foreignTo.column}
-                                        </Text>  */}
                                     </Group>
                                 )}
                             </Box>
                         ))}
-
+                        
                     </Accordion.Panel>
                 </Accordion.Item>
             ))}

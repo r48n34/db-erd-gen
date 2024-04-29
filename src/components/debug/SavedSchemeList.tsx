@@ -67,7 +67,7 @@ function SavedSchemeList({ closeModal }: SavedSchemeListProps) {
             )}
 
             {templateArray.map(v => (
-                <Grid>
+                <Grid key={v.name}>
                     <Grid.Col span={9}>
                         <NavLink
                             label={v.name}
