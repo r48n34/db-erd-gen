@@ -21,7 +21,7 @@ import { tableDataToTsTypeScheme } from '../../utilis/dataBase/tableDataToTsType
 import { tableDataToZodTypeScheme } from '../../utilis/dataBase/tableDataToZodType';
 import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPostgres';
 import { tableDataToKyselyScheme, tableDataToKyselyTypescriptScheme } from '../../utilis/dataBase/tableDataToKysely';
-// import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
+import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
 
 import SavedScheme from './SavedSchemeBtn';
 import GoUrlBtn from '../common/GoUrlBtn';
@@ -235,6 +235,38 @@ function DebugModal() {
                             },
                         ]}
                     />
+
+                </NavLink>
+
+                <NavLink
+                    label="Prisma"
+                    leftSection={<IconFileDatabase size={16} stroke={1.5} />}
+                    childrenOffset={28}
+                >
+                    <TableDataToBtnView
+                        showsFormat="NavLink" 
+                        title="Prisma Scheme"
+                        generatedDataList={[
+                            {
+                                title: 'PostgreSQL',
+                                schemeFunc: tableDataToPrismaScheme,
+                                types: "postgresql",
+                                downloadFileName: `${new Date().getTime()}_schema.prisma`,
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            },
+                            {
+                                title: 'MySQL',
+                                schemeFunc: tableDataToPrismaScheme,
+                                types: "mySQL",
+                                downloadFileName: `${new Date().getTime()}_schema.prisma`,
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            },
+                        ]}
+                    />
+
+
                 </NavLink>
 
             </NavLink>

@@ -2,69 +2,70 @@ import { postgresTypeArray } from "../../data/database/postgresType";
 import { Table } from "../../interface/inputData";
 import { tab } from "../generateTab";
 
-// https://www.prisma.io/docs/concepts/components/prisma-schema/data-model
-export function tableDataToPrismaScheme(tables: Table[]){
+export function tableDataToPrismaScheme(tables: Table[], dbTypes: "postgresql" | "mySQL" | "sqlite" | "" = "postgresql"){
 
     let schemeArray:string[] = [];
-
+    
     for(let table of tables){
         let tableStr: string[] = []
+        let uniqueList: string[] = []
 
         for(let col of table.columns){
 
             const targetTypeInd = postgresTypeArray.findIndex( v => v.value === col.dataType );
             const currentType = postgresTypeArray[targetTypeInd]
 
-            const dataType = currentType.value
+            const currentKey = currentType.prismaKey.key + (!col.notNull && col.isPrimaryKey ? "" : "?")
 
-            // console.log(currentType);
+            const prismaKeyNativeAttribute = dbTypes === "postgresql"
+                ? " " + currentType.prismaKey.nativeAttribute.psql
+                : dbTypes === "mySQL"
+                ? " " + currentType.prismaKey.nativeAttribute.mySQL
+                : ""
 
-            let finalStrs = tab(2) + ``;
-            let funcString = "(col) => col";
-
-            const defFuncLength = funcString.length
-
-            if(col.name === "id" && col.isPrimaryKey){
-                funcString += `.primaryKey()`;
-            }
+            let finalStrs = tab(1) + `${col.name} ${currentKey}${prismaKeyNativeAttribute}`;
 
             if(col.foreignTo){
-                funcString += `.references("${col.foreignTo.name}.${col.foreignTo.column}").onDelete('cascade')`;
+                finalStrs = tab(1) + `${col.name} ${col.foreignTo.name} @relation(fields: [${col.foreignTo.column}], references: [${col.foreignTo.column}], onDelete: NoAction, onUpdate: NoAction)`
             }
 
-            if(col.notNull){
-                funcString += `.notNull()`;
+            if(col.unique){
+                uniqueList.push(col.name) 
             }
+            // let funcString = "(col) => col";
 
-            // Determine last string
-            if(funcString.length > defFuncLength){ // default, no extra cb strings
-                finalStrs += `.addColumn("${col.name}", "${dataType}", ${funcString})`
-            }
-            else{
-                finalStrs += `.addColumn("${col.name}", "${dataType}")`
-            }
+            // const defFuncLength = funcString.length
+
+            // if(col.name === "id" && col.isPrimaryKey){
+            //     funcString += `.primaryKey()`;
+            // }
+
+            // col.foreignTo && (funcString += `.references("${col.foreignTo.name}.${col.foreignTo.column}").onDelete('cascade')`)
+            // col.notNull && (funcString += `.notNull()`);
+            // col.unique  && (funcString += `.unique()`);
+            
+            // // Determine last string
+            // if(funcString.length > defFuncLength){ // default, no extra cb strings
+            //     finalStrs += `.addColumn("${col.name}", "${dataType}", ${funcString})`
+            // }
+            // else{
+            //     finalStrs += `.addColumn("${col.name}", "${dataType}")`
+            // }
 
             tableStr.push(finalStrs)
 
         }
 
-        const finalTableStr = tab(1) + `await db.schema \n`
-            + tab(2) + `.createTable("${table.name}") \n`
-            + tableStr.join("\n") + `\n`
-            
+        const finalTableStr = `model ${table.name} { \n`
+            + tableStr.join("\n") 
+            + (uniqueList.length >= 1 ? `\n\n${tab(1)}@@unique([${uniqueList.join(", ")}])` : "")
+            + `\n} \n`
+
         schemeArray.push(finalTableStr);
     }
 
-    // console.log(schemeArray.join("\n"));
 
-    let reverseArr = [...tables]
-        .map( v => tab(1) + `await db.schema.dropTable('${v.name}').execute();`).reverse();
+    return schemeArray.join("\n")
 
-    return `import { Kysely } from 'kysely'; \n \n`
-        + `export async function up(db: Kysely<any>): Promise<void> { \n `
-        + schemeArray.join("\n")
-        + `} \n \n`
-        + `export async function down(db: Kysely<any>): Promise<void> { \n`
-        + reverseArr.join("\n")
-        + `\n` + `}`
+
 }

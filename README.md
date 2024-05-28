@@ -11,15 +11,17 @@ URL: https://db-erd-gen.vercel.app/
 3. Easy to use / store GUI website    
 
 ## Curretn support output  
-- Postgres  
-- MySQL / MariaDB
-- SQLite  
+- Postgres raw  
+- MySQL / MariaDB raw 
+- SQLite raw
 - knex.js  
 - kysely ts types
 - kysely Postgres
 - kysely sqlite
 - Typescript types
 - Zod scheme types
+- Prisma Postgres
+- Prisma MySQL
 
 ## Roadmap
 - ✅ With Zod type checking
@@ -36,7 +38,7 @@ URL: https://db-erd-gen.vercel.app/
 - ⬜️ Add enums options and input for enums
 - ⬜️ Support defaultTo string in general
 - ⬜️ Support defaultTo string in kysely
-- ⬜️ Support Prisma types output  
+- ✅ Support Prisma types output  
 - ✅ Add UNIQUE types  
 - ✅ Support sqlite types output    
 - ⬜️ More features  

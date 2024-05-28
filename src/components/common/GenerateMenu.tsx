@@ -11,6 +11,7 @@ import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPost
 import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite';
 import { tableDataToKnexScheme } from '../../utilis/dataBase/tableDataToKnex';
 import { tableDataToKyselyScheme, tableDataToKyselyTypescriptScheme } from '../../utilis/dataBase/tableDataToKysely';
+import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
 
 function GenerateMenu() {
 
@@ -202,6 +203,41 @@ function GenerateMenu() {
                                 downloadFileName: `types.ts`,
                                 codeLanguages: 'ts',
                                 icon: <IconBrandTypescript size={18} />
+                            },
+                        ]}
+                    />
+
+                    <Menu.Label>
+                        Prisma
+                    </Menu.Label>
+
+                    <TableDataToBtnView
+                        showsFormat="Menu" 
+                        title="Prisma Scheme"
+                        generatedDataList={[
+                            {
+                                title: 'PostgreSQL',
+                                schemeFunc: tableDataToPrismaScheme,
+                                types: "postgresql",
+                                downloadFileName: `${new Date().getTime()}_schema_psql.prisma`,
+                                codeLanguages: 'ts',
+                                icon: <IconDatabase size={18} />
+                            },
+                            {
+                                title: 'MySQL',
+                                schemeFunc: tableDataToPrismaScheme,
+                                types: "mySQL",
+                                downloadFileName: `${new Date().getTime()}_schema_mysql.prisma`,
+                                codeLanguages: 'ts',
+                                icon: <IconDatabase size={18} />
+                            },
+                            {
+                                title: 'Sqlite',
+                                schemeFunc: tableDataToPrismaScheme,
+                                types: "sqlite",
+                                downloadFileName: `${new Date().getTime()}_schema_sqlite.prisma`,
+                                codeLanguages: 'ts',
+                                icon: <IconDatabase size={18} />
                             },
                         ]}
                     />
