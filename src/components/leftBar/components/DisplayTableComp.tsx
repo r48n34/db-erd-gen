@@ -33,6 +33,10 @@ function DisplayTableComp(){
                             <TableForm mode={'edit'} allTableData={tableArray} editData={v}  />
                         </Group>
 
+                        <Text fz={16} ta="center">
+                            {v.name}
+                        </Text>
+
                         { v.columns.map( k => (
                             <Box key={"tables_cols_" + k.name} mt={4}>
                                 <Group justify="space-between">                 

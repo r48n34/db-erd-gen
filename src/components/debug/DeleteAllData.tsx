@@ -41,7 +41,6 @@ function DeleteAllData({ showsFormat = "NavLink" }: DeleteAllDataProps) {
                         color="red"
                         active
                         leftSection={<IconTrashOff size={16} stroke={1.5} />}
-                        // rightSection={<IconChevronRight size={12} stroke={1.5} />}
                         onClick={() => openDeleteAllDataModal()}
                     />
                 )
@@ -53,7 +52,7 @@ function DeleteAllData({ showsFormat = "NavLink" }: DeleteAllDataProps) {
                         leftSection={<IconFile size={16} stroke={1.5} />}
                         onClick={() => openDeleteAllDataModal()}
                     >
-                        New Scheme
+                        New File
                     </Menu.Item>
                 )
             }

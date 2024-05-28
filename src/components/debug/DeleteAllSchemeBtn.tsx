@@ -49,7 +49,7 @@ function DeleteAllSchemeBtn({ showsFormat = "NavLink" }: DeleteAllSchemeBtnProps
                     leftSection={<IconFile size={16} stroke={1.5} />}
                     onClick={ () => openDeleteModal()}
                 >
-                    New Scheme
+                    Delete all scheme
                 </Menu.Item>
             )
         }

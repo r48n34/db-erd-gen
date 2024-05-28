@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import Splitter from '@devbookhq/splitter'
+// import Splitter from '@devbookhq/splitter'
+import Split from '@uiw/react-split';
 
 import useTableStore from '../store/zustandStore';
 
@@ -30,20 +31,20 @@ function MainPage(){
     return (
         <>
         <NavBar/>
-        <Splitter initialSizes={[18, 82]}>
+        <Split>
 
-            <div>
+            <div style={{ width: '20%' }}>
                 <LeftNavBar/>
             </div>
 
-            <div style={{ height: "93vh" }}>
+            <div style={{ width: '80%', height: "93vh" }}>
                 <ERTableComp
                     tableArray={tableArray}
                     updateTablePositions={updateTablePositions}                
                 />
             </div>
             
-        </Splitter>
+        </Split>
         </>
     )
 }

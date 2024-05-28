@@ -32,15 +32,20 @@ function FileMenu() {
             </Menu.Target>
 
             <Menu.Dropdown>
-                <Menu.Label>Files</Menu.Label>
+                <Menu.Label>
+                    Files
+                </Menu.Label>
 
                 <DeleteAllData showsFormat="Menu"/>
 
                 <Menu.Divider />
-                <Menu.Label>Import / Export</Menu.Label>
+                <Menu.Label>
+                    Import / Export
+                </Menu.Label>
 
                 <ExportJsonFormatView showsFormat="Menu" /> 
                 <ImportJsonFormat showsFormat="Menu"/>
+
             </Menu.Dropdown>
         </Menu>
     );

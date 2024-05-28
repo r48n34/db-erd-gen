@@ -8,7 +8,8 @@ export interface PostgresTypeArray {
     group: string;
     tsTypes: "string" | "number" | "boolean" | "object" | "null" | "Date"
     knexKey: {
-        key: string; // knex using their string
+        // knex using their string
+        key: string; 
         specificTypeName?: string;
     };
     sqLiteKey: {
@@ -20,10 +21,11 @@ export interface PostgresTypeArray {
         key: string | null;
     };
     prismaKey: {
-        // pg key to prisma Key
-        postgreSqlKey: string | null;
-        mySQLKey: string | null;
-        sqLiteKey: string | null;
+        key: string | null;
+        nativeAttribute: {
+            psql: string | null
+            mySQL: string | null
+        }
     };
     defaultValue?: undefined | string;
 }
@@ -44,9 +46,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "BIGINT",
         },
         prismaKey: {
-            postgreSqlKey: "BigInt @db.BigInt",
-            mySQLKey: "BigInt @db.BigInt",
-            sqLiteKey: "BigInt",
+            key: "BigInt",
+            nativeAttribute: {
+                psql: "@db.BigInt",
+                mySQL: "@db.BigInt"
+            }
         },
     },
     {
@@ -64,9 +68,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "BIGINT AUTO_INCREMENT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "BigInt",
+            nativeAttribute: {
+                psql: "@db.BigInt @default(autoincrement())",
+                mySQL: "@db.UnsignedBigInt @default(autoincrement())"
+            }
         },
     },
     {
@@ -85,9 +91,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "BIT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "Bytes",
+            nativeAttribute: {
+                psql: "@db.ByteA",
+                mySQL: "@db.Bit"
+            }
         },
     },
     {
@@ -106,9 +114,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "BIT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "String",
+            nativeAttribute: {
+                psql: "@db.VarBit",
+                mySQL: ""
+            }
         },
     },
     {
@@ -127,9 +137,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "TINYINT(1)",
         },
         prismaKey: {
-            postgreSqlKey: "Boolean",
-            mySQLKey: "Boolean",
-            sqLiteKey: "Boolean",
+            key: "Boolean",
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -148,9 +160,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "POLYGON",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: `Unsupported("box")`,
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -168,9 +182,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "LONGBLOB",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "Bytes",
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -189,9 +205,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "VARCHAR",
         },
         prismaKey: {
-            postgreSqlKey: "String",
-            mySQLKey: "String",
-            sqLiteKey: "String",
+            key: "String",
+            nativeAttribute: {
+                psql: "@db.VarChar(255)",
+                mySQL: "@db.VarChar(255)"
+            }
         },
     },
     {
@@ -211,9 +229,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "CHAR",
         },
         prismaKey: {
-            postgreSqlKey: "String @db.Char(255)",
-            mySQLKey: "String @db.Char(255)",
-            sqLiteKey: "String",
+            key: "String",
+            nativeAttribute: {
+                psql: "@db.Char(255)",
+                mySQL: "@db.Char(255)"
+            }
         },
     },
     {
@@ -232,9 +252,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "VARCHAR(43)",
         },
         prismaKey: {
-            postgreSqlKey: "String @db.VarChar(43)",
-            mySQLKey: "String @db.VarChar(43)",
-            sqLiteKey: "String",
+            key: "String",
+            nativeAttribute: {
+                psql: "@db.VarChar(43)",
+                mySQL: "@db.VarChar(43)"
+            }
         },
     },
     {
@@ -253,9 +275,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "POLYGON",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: `Unsupported("circle")`,
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -273,9 +297,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "DATE",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "DateTime",
+            nativeAttribute: {
+                psql: "@db.Date",
+                mySQL: "@db.Date(3)"
+            }
         },
     },
     {
@@ -293,9 +319,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "DOUBLE",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "Float",
+            nativeAttribute: {
+                psql: "@db.DoublePrecision",
+                mySQL: "@db.Double"
+            }
         },
     },
     {
@@ -314,9 +342,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "VARCHAR(43)",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "String",
+            nativeAttribute: {
+                psql: "@db.VarChar(43)",
+                mySQL: "@db.VarChar(43)"
+            }
         },
     },
     {
@@ -334,9 +364,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "INT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "Int",
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -355,9 +387,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "TIME",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "DateTime",
+            nativeAttribute: {
+                psql: "@db.Time(3)",
+                mySQL: "@db.Time(3)"
+            }
         },
     },
     {
@@ -375,9 +409,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "LONGTEXT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "Json",
+            nativeAttribute: {
+                psql: "@db.Json",
+                mySQL: "@db.Json"
+            }
         },
     },
     {
@@ -395,9 +431,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "LONGTEXT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "JSONB",
+            nativeAttribute: {
+                psql: "@db.JsonB",
+                mySQL: "@db.Json"
+            }
         },
     },
     {
@@ -416,9 +454,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "LINESTRING",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: `Unsupported("line")`,
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -437,9 +477,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "LINESTRING",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: `Unsupported("lseg")`,
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -458,9 +500,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "VARCHAR(17)",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "String",
+            nativeAttribute: {
+                psql: "@db.VarChar(17)",
+                mySQL: "@db.VarChar(17)"
+            }
         },
     },
     {
@@ -479,9 +523,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "VARCHAR(17)",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "String",
+            nativeAttribute: {
+                psql: "@db.VarChar(17)",
+                mySQL: "@db.VarChar(17)"
+            }
         },
     },
     {
@@ -500,9 +546,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "DECIMAL(19,2)",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "Decimal",
+            nativeAttribute: {
+                psql: "@db.Money",
+                mySQL: "@db.Decimal(19, 2)"
+            }
         },
     },
     {
@@ -520,9 +568,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "DECIMAL",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "Decimal",
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -541,9 +591,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "LINESTRING",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: `Unsupported("path")`,
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -562,9 +614,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: null,
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: `Unsupported("pg_lsn")`,
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -583,9 +637,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: null,
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: `Unsupported("pg_snapshot")`,
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -603,9 +659,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "POINT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: `Unsupported("point")`,
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -624,9 +682,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "POLYGON",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: `Unsupported("polygon")`,
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -645,9 +705,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "FLOAT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "Float",
+            nativeAttribute: {
+                psql: "@db.Real",
+                mySQL: ""
+            }
         },
     },
     {
@@ -665,9 +727,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "SMALLINT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "Int",
+            nativeAttribute: {
+                psql: "@db.SmallInt",
+                mySQL: "@db.SmallInt"
+            }
         },
     },
     {
@@ -685,9 +749,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "SMALLINT AUTO_INCREMENT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "INT",
+            nativeAttribute: {
+                psql: "@db.SmallInt @default(autoincrement())",
+                mySQL: "@db.SmallInt @default(autoincrement())"
+            }
         },
     },
     {
@@ -705,9 +771,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "INTEGER AUTO_INCREMENT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "INT",
+            nativeAttribute: {
+                psql: "@db.Int @default(autoincrement())",
+                mySQL: "@db.Int @default(autoincrement())"
+            }
         },
     },
     {
@@ -725,9 +793,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "LONGTEXT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "String",
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -745,9 +815,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "TIME",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "DateTime",
+            nativeAttribute: {
+                psql: "@db.Time(3)",
+                mySQL: "@db.Time(3)"
+            }
         },
     },
     {
@@ -765,9 +837,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "TIME",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "DateTime",
+            nativeAttribute: {
+                psql: "@db.Time(3)",
+                mySQL: "@db.Time(3)"
+            }
         },
     },
     {
@@ -785,9 +859,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "DATETIME",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "DateTime",
+            nativeAttribute: {
+                psql: "@db.Timestamp(3)",
+                mySQL: "@db.Timestamp(3)"
+            }
         },
     },
     {
@@ -806,9 +882,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "LONGTEXT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "String",
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -827,9 +905,11 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "LONGTEXT",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "String",
+            nativeAttribute: {
+                psql: "",
+                mySQL: ""
+            }
         },
     },
     {
@@ -847,14 +927,18 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "VARCHAR(36)",
         },
         prismaKey: {
-            postgreSqlKey: "",
-            mySQLKey: "",
-            sqLiteKey: "",
+            key: "String",
+            nativeAttribute: {
+                psql: "@db.Uuid",
+                mySQL: ""
+            }
         },
     },
 ];
 
-const groupByKey = <T>(list: T[], key: string): Record<string, T[]> => list.reduce((hash: Record<string, T[]>, obj: any) => ({...hash, [obj[key]]:( hash[obj[key]] || [] ).concat(obj)}), {})
+const groupByKey = <T>(list: T[], key: string): Record<string, T[]> => list.reduce(
+    (hash: Record<string, T[]>, obj: any) => ({...hash, [obj[key]]:( hash[obj[key]] || [] ).concat(obj)})
+, {})
 
 export const groupedPostgresTypeArray = Object.entries(groupByKey(postgresTypeArray, "group"))
     .map( ([key, value]) => ({
