@@ -24,11 +24,6 @@ export function tableDataToKyselyScheme(tables: Table[], dbTypes: "postgresql" |
 
             console.log(currentType);
 
-            // if(col.name === "id" && col.isPrimaryKey){
-            //     tableStr.push(tab(2) + `.addColumn("id", "${dataType}", (col) => col.primaryKey())`);
-            //     continue
-            // }
-
             let finalStrs = tab(2) + ``;
             let funcString = "(col) => col";
 
@@ -43,12 +38,9 @@ export function tableDataToKyselyScheme(tables: Table[], dbTypes: "postgresql" |
             col.unique  && (funcString += `.unique()`);
             
             // Determine last string
-            if(funcString.length > defFuncLength){ // default, no extra cb strings
-                finalStrs += `.addColumn("${col.name}", "${dataType}", ${funcString})`
-            }
-            else{
-                finalStrs += `.addColumn("${col.name}", "${dataType}")`
-            }
+            finalStrs += funcString.length > defFuncLength
+                ? `.addColumn("${col.name}", "${dataType}", ${funcString})`
+                : `.addColumn("${col.name}", "${dataType}")`
 
             tableStr.push(finalStrs)
 
@@ -63,9 +55,7 @@ export function tableDataToKyselyScheme(tables: Table[], dbTypes: "postgresql" |
         schemeArray.push(finalTableStr);
     }
 
-    // console.log(schemeArray.join("\n"));
-
-    let reverseArr = [...tables]
+    const reverseArr = [...tables]
         .map( v => tab(1) + `await db.schema.dropTable('${v.name}').execute();`).reverse();
 
     return `import { Kysely } from 'kysely'; \n \n`

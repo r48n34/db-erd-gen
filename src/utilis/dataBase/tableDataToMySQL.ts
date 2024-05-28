@@ -15,10 +15,7 @@ export function tableDataToMySQLScheme(tables: Table[]){
             );
 
             const currentType = postgresTypeArray[haveDefaultInd]
-            console.log(currentType.mySQLKey.key);
             const mySQLKey = currentType.mySQLKey.key
-
-            // const defaultString = haveDefaultInd === -1 ? "" : currentType.defaultValue;
 
             const isPrimary = col.isPrimaryKey ? "AUTO_INCREMENT PRIMARY KEY" : "";
             const isNotNull = col.notNull ? "NOT NULL" : "";
@@ -40,6 +37,5 @@ export function tableDataToMySQLScheme(tables: Table[]){
         schemeArray.push(finalTableStr);
     }
 
-    // console.log(schemeArray.join("\n"));
     return schemeArray.join("\n")
 }

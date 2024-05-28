@@ -51,7 +51,9 @@ function DisplayTableComp(){
                                 </Group>
                                 { k.foreignTo && (
                                     <Group ml={6}>
-                                        <Badge size="xs" variant="light" mt={4}>(FK) {k.foreignTo.name} {"->"} {k.foreignTo.column}</Badge>
+                                        <Badge size="xs" variant="light" mt={4}>
+                                            (FK) {k.foreignTo.name} {"->"} {k.foreignTo.column}
+                                        </Badge>
                                     </Group>
                                 )}
                             </Box>

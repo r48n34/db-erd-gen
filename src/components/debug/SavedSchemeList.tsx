@@ -7,7 +7,6 @@ import useTemplateStoreStore, { TemplateStoreData } from "../../store/templateSt
 import useTableStore from "../../store/zustandStore";
 import { commonSuccessActions } from "../../utilis/notificationUtilis";
 import ERTableComp from "../ERTableComp";
-import { Table } from "../../interface/inputData";
 
 interface SavedSchemeListProps {
     closeModal?: Function
@@ -17,10 +16,7 @@ function SavedSchemeList({ closeModal }: SavedSchemeListProps) {
 
     const templateArray = useTemplateStoreStore((state) => state.templateArray);
     const deleteOneTemplate = useTemplateStoreStore((state) => state.deleteOneTemplate);
-
     const importTableObj = useTableStore((state) => state.importTableObj);
-
-    // const [opened, { open, close }] = useDisclosure(false);
 
     const openDeleteSchemeConfirmModal = (schemeName: string) => modals.openConfirmModal({
         title: 'Please confirm your action',
@@ -54,10 +50,6 @@ function SavedSchemeList({ closeModal }: SavedSchemeListProps) {
 
     return (
         <>
-
-            {/* <Modal opened={opened} onClose={close} title="Info Table">
-            <ERTableComp tableArray={[]} />
-        </Modal> */}
 
             {templateArray.length === 0 && (
                 <NavLink

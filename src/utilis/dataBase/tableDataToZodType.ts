@@ -4,7 +4,7 @@ import { tab } from "../generateTab";
 
 export function tableDataToZodTypeScheme(tables: Table[]){
 
-    let schemeArray:string[] = [];
+    let schemeArray: string[] = [];
 
     for(let table of tables){
         let tableStr: string[] = []

@@ -1,18 +1,7 @@
 import { Menu, Button } from '@mantine/core';
-// import {
-//     IconSettings,
-//     IconSearch,
-//     IconPhoto,
-//     IconMessageCircle,
-//     IconTrash,
-//     IconArrowsLeftRight,
-//     IconFile,
-// } from '@tabler/icons';
-
 import ExportJsonFormatView from '../debug/ExportJsonFormatView';
 import ImportJsonFormat from '../debug/ImportJsonFormat';
 import DeleteAllData from '../debug/DeleteAllData';
-// import DeleteAllSchemeBtn from '../debug/DeleteAllSchemeBtn';
 
 function FileMenu() {
     return (

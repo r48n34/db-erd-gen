@@ -13,9 +13,8 @@ export function tableDataToTsTypeScheme(tables: Table[]){
 
             const targetTypeInd = postgresTypeArray.findIndex( v => v.value === col.dataType );
             const currentType = postgresTypeArray[targetTypeInd].tsTypes + (col.notNull || col.isPrimaryKey ? "" : " | null")
-            // currentType += col.notNull || col.isPrimaryKey ? "" : "?"
 
-            let finalStrs = tab(1) + `${col.name}: ${currentType};`;
+            const finalStrs = tab(1) + `${col.name}: ${currentType};`;
             tableStr.push(finalStrs)
 
         }

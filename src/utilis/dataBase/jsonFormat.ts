@@ -10,6 +10,5 @@ export function exportJsonFormat(tables: Table[]){
 }
 
 export function importJsonFormat(str: string){
-    const obj = JSON.parse(str);
-    return obj
+    return JSON.parse(str)
 }

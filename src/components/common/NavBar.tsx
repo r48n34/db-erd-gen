@@ -20,7 +20,6 @@ export default function NavBar() {
                     </Group>
                 </Group>
                 
-
                 <Group>
                     <SavedScheme types='btn'/>
                     <ThemeToggleBtn/>

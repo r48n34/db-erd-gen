@@ -9,16 +9,12 @@ export function tableDataToSQLiteScheme(tables: Table[]){
         let uniqueKeys: string[] = []; 
 
         for(let col of table.columns){
-            // const currentTyleInd = postgresTypeArray.findIndex( 
-            //     (v:PostgresTypeArray) => v.value == col.dataType
-            // );
 
             const targetTypeInd = postgresTypeArray.findIndex( v => v.value === col.dataType );
             const currentType = postgresTypeArray[targetTypeInd] 
 
             const sqliteType = currentType.sqLiteKey.key
 
-            // const defaultString = haveDefault === -1 ? "" : postgresTypeArray[haveDefault].defaultValue;
             const isPrimary = col.isPrimaryKey ? " PRIMARY KEY" : "";
             const isNotNull = col.notNull ? " NOT NULL" : "";
 
@@ -39,6 +35,5 @@ export function tableDataToSQLiteScheme(tables: Table[]){
         schemeArray.push(finalTableStr);
     }
 
-    // console.log(schemeArray.join("\n"));
     return schemeArray.join("\n")
 }

@@ -23,7 +23,7 @@ export function tableDataToKnexScheme(tables: Table[]){
                 const specificType = postgresTypeArray[targetTypeInd].knexKey.specificTypeName;
                 strs += `table.specificType("${col.name}", "${specificType}")`;
             }
-            else{
+            else {
                 strs += `table.${postgresTypeArray[targetTypeInd].knexKey.key}("${col.name}")`
             }
 
@@ -47,8 +47,6 @@ export function tableDataToKnexScheme(tables: Table[]){
 
         schemeArray.push(finalTableStr);
     }
-
-    // console.log(schemeArray.join("\n"));
 
     let reverseArr = [...tables]
         .map( v => tab(1) + `await knex.schema.dropTableIfExists("${v.name}");`).reverse();

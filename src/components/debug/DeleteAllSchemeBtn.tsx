@@ -9,16 +9,16 @@ interface DeleteAllSchemeBtnProps {
     showsFormat: "Menu" | "NavLink"
 }
 
-function DeleteAllSchemeBtn({ showsFormat = "NavLink" }: DeleteAllSchemeBtnProps){
+function DeleteAllSchemeBtn({ showsFormat = "NavLink" }: DeleteAllSchemeBtnProps) {
 
     const deleteAllTemplate = useTemplateStoreStore((state) => state.deleteAllTemplate);
 
     const openDeleteModal = () => openConfirmModal({
         title: 'New projects',
         children: (
-          <Text size="sm">
+            <Text size="sm">
                 All Scheme will be deleted. Are you sure to do this?
-          </Text>
+            </Text>
         ),
         labels: { confirm: 'Confirm', cancel: 'Cancel' },
         onCancel: () => console.log(),
@@ -30,31 +30,31 @@ function DeleteAllSchemeBtn({ showsFormat = "NavLink" }: DeleteAllSchemeBtnProps
 
     return (
         <>
-        {
-            showsFormat === "NavLink" && (
-                <NavLink 
-                    label="Delete all scheme"
-                    variant="light"
-                    color="red"
-                    active
-                    leftSection={<IconTrashOff size={16} stroke={1.5} />}
-                    onClick={ () => openDeleteModal() }
-                />
-            )
-        }
+            {
+                showsFormat === "NavLink" && (
+                    <NavLink
+                        label="Delete all scheme"
+                        variant="light"
+                        color="red"
+                        active
+                        leftSection={<IconTrashOff size={16} stroke={1.5} />}
+                        onClick={() => openDeleteModal()}
+                    />
+                )
+            }
 
-        {
-            showsFormat === "Menu" && (
-                <Menu.Item
-                    leftSection={<IconFile size={16} stroke={1.5} />}
-                    onClick={ () => openDeleteModal()}
-                >
-                    Delete all scheme
-                </Menu.Item>
-            )
-        }
+            {
+                showsFormat === "Menu" && (
+                    <Menu.Item
+                        leftSection={<IconFile size={16} stroke={1.5} />}
+                        onClick={() => openDeleteModal()}
+                    >
+                        Delete all scheme
+                    </Menu.Item>
+                )
+            }
         </>
     )
 }
-    
+
 export default DeleteAllSchemeBtn

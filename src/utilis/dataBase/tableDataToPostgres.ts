@@ -30,6 +30,5 @@ export function tableDataToPostgresScheme(tables: Table[]){
         schemeArray.push(finalTableStr);
     }
 
-    // console.log(schemeArray.join("\n"));
     return schemeArray.join("\n")
 }
