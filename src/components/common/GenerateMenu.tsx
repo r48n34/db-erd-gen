@@ -232,10 +232,10 @@ function GenerateMenu() {
                                 icon: <IconDatabase size={18} />
                             },
                             {
-                                title: 'Sqlite',
+                                title: 'Default others',
                                 schemeFunc: tableDataToPrismaScheme,
                                 types: "sqlite",
-                                downloadFileName: `${new Date().getTime()}_schema_sqlite.prisma`,
+                                downloadFileName: `${new Date().getTime()}_schema.prisma`,
                                 codeLanguages: 'ts',
                                 icon: <IconDatabase size={18} />
                             },

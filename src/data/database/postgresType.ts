@@ -749,7 +749,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "SMALLINT AUTO_INCREMENT",
         },
         prismaKey: {
-            key: "INT",
+            key: "Int",
             nativeAttribute: {
                 psql: "@db.SmallInt @default(autoincrement())",
                 mySQL: "@db.SmallInt @default(autoincrement())"
@@ -771,7 +771,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             key: "INTEGER AUTO_INCREMENT",
         },
         prismaKey: {
-            key: "INT",
+            key: "Int",
             nativeAttribute: {
                 psql: "@db.Int @default(autoincrement())",
                 mySQL: "@db.Int @default(autoincrement())"

@@ -4,6 +4,7 @@ import DeleteTableBtn from './DeleteTableBtn';
 import TableForm from './TableForm';
 import useTableStore from '../../../store/zustandStore';
 import LeftTopBar from '../LeftTopBar';
+import TableDataCRUD from '../../debug/TableDataCRUD';
 
 function DisplayTableComp(){
     
@@ -30,7 +31,11 @@ function DisplayTableComp(){
 
                         <Group justify="space-between" mb={4}>
                             <DeleteTableBtn tableName={v.name} />
-                            <TableForm mode={'edit'} allTableData={tableArray} editData={v}  />
+
+                            <Group>
+                                <TableDataCRUD dataTable={v} />
+                                <TableForm mode={'edit'} allTableData={tableArray} editData={v}  />
+                            </Group>
                         </Group>
 
                         <Text fz={16} ta="center">

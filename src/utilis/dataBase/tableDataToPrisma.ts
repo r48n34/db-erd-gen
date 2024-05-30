@@ -20,8 +20,8 @@ export function tableDataToPrismaScheme(tables: Table[], dbTypes: "postgresql" |
             const prismaKeyNativeAttribute = dbTypes === "postgresql"
                 ? " " + currentType.prismaKey.nativeAttribute.psql
                 : dbTypes === "mySQL"
-                    ? " " + currentType.prismaKey.nativeAttribute.mySQL
-                    : ""
+                ? " " + currentType.prismaKey.nativeAttribute.mySQL
+                : ""
 
             const finalStrs = tab(1)
                 + (col.foreignTo
@@ -45,6 +45,6 @@ export function tableDataToPrismaScheme(tables: Table[], dbTypes: "postgresql" |
         schemeArray.push(finalTableStr);
     }
 
-    return schemeArray.join("\n")
+    return (dbTypes === "postgresql" ? `// https://www.prisma.io/docs/orm/prisma-schema/data-model/unsupported-database-features#enable-postgresql-extensions-for-native-database-functions\n// For psql extentions \n` : "") + schemeArray.join("\n")
 
 }
