@@ -35,6 +35,7 @@ URL: https://db-erd-gen.vercel.app/
 - ✅ Support MySQL / MariaDB types output  
 - ✅ Support typescript normal types
 - ✅ Support zod types generate
+- ✅ Support Tables CRUD code for several frameworks
 - ⬜️ Add enums options and input for enums
 - ⬜️ Support defaultTo string in general
 - ⬜️ Support defaultTo string in kysely
