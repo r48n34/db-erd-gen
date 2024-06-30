@@ -13,11 +13,16 @@ import MainPage from "./pages/MainPage"
 import ErrorComp from './components/common/ErrorComp';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Suspense } from 'react';
+import HomePage from './pages/HomePage';
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <MainPage />,
+    },
+    {
+      path: "/home",
+      element: <HomePage />,
     },
 ]);
 
