@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
     "@devbookhq/splitter": "^1.4.0",
@@ -41,6 +42,7 @@
     "postcss-preset-mantine": "^1.14.4",
     "postcss-simple-vars": "^7.0.1",
     "typescript": "^4.9.3",
-    "vite": "^5.2.10"
+    "vite": "^5.2.10",
+    "vitest": "^1.6.0"
   }
 }
