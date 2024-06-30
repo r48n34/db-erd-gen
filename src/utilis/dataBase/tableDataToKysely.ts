@@ -22,7 +22,7 @@ export function tableDataToKyselyScheme(tables: Table[], dbTypes: "postgresql" |
                 ? currentType.mySQLKey.key
                 : ""
 
-            console.log(currentType);
+            // console.log(currentType);
 
             let finalStrs = tab(2) + ``;
             let funcString = "(col) => col";
