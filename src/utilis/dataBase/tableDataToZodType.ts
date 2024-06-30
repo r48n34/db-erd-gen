@@ -26,7 +26,7 @@ export function tableDataToZodTypeScheme(tables: Table[]){
 
         const finalTableStr = `export const ${uppperName}Scheme = z.object({ \n`
             + tableStr.join("\n") + `\n }) \n`
-            + `\n type ${uppperName} = z.infer<typeof ${uppperName}Scheme>; \n`
+            + `\nexport type ${uppperName} = z.infer<typeof ${uppperName}Scheme>; \n`
             
         schemeArray.push(finalTableStr);
     }

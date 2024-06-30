@@ -1,4 +1,4 @@
-import { PostgresTypeArray, postgresTypeArray } from "../../data/database/postgresType";
+import { postgresTypeArray } from "../../data/database/postgresType";
 import { Table } from "../../interface/inputData";
 
 export function tableDataToSQLiteScheme(tables: Table[]){

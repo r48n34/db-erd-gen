@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import Sitemap from 'vite-plugin-sitemap'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
-    if (command === 'serve') {
+export default defineConfig(({ command }) => {
+    if (command === 'serve') { // dev
         return {
             plugins: [
                 react()
@@ -16,7 +17,8 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
         // command === 'build'
         return {
             plugins: [
-                react()
+                react(),
+                Sitemap(),
             ],
             esbuild: {
                 drop: ['console', 'debugger'],

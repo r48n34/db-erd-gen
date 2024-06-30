@@ -2,6 +2,7 @@ import { dummyScheme } from '../dummyDataTest';
 import { expect, test, describe } from 'vitest'
 import { tableDataToKyselyScheme, tableDataToKyselyTypescriptScheme } from '../../../src/utilis/dataBase/tableDataToKysely'
 
+// TODO MySQL and Default
 describe('For Kysely Scheme', () => {
 
 	const schemeStr = tableDataToKyselyScheme(dummyScheme, "postgresql");
