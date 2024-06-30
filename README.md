@@ -1,4 +1,6 @@
 # db-erd-gen
+<a href="https://github.com/r48n34/db-erd-gen"><img src="https://img.shields.io/github/actions/workflow/status/r48n34/db-erd-gen/test.yml" /></a>
+
 Free DrawSQL like website but free forever  
 
 ![https://db-erd-gen.vercel.app/](/assert/banners.jpg)

@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-// import Splitter from '@devbookhq/splitter'
 import Split from '@uiw/react-split';
 
 import useTableStore from '../store/zustandStore';

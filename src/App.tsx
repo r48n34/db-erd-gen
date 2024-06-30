@@ -2,7 +2,7 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/code-highlight/styles.css';
 
-import { MantineProvider } from '@mantine/core';
+import { Loader, MantineProvider } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 
@@ -11,6 +11,15 @@ import { Analytics } from '@vercel/analytics/react';
 
 import MainPage from "./pages/MainPage"
 import ErrorComp from './components/common/ErrorComp';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Suspense } from 'react';
+
+const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <MainPage />,
+    },
+]);
 
 function App() {
 
@@ -21,7 +30,9 @@ function App() {
             <ModalsProvider> 
             <Notifications />
                 <ErrorBoundary fallback={<ErrorComp/>}>
-                    <MainPage/>
+                <Suspense fallback={<Loader />}>
+                    <RouterProvider router={router} />
+                </Suspense>
                 </ErrorBoundary>
             </ModalsProvider>
             </MantineProvider>
