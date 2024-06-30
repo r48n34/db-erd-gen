@@ -55,9 +55,12 @@ function TableDataCRUD({ dataTable }: TableDataCRUDProps) {
     return (
         <>
             <Tooltip label="CRUD string">
-                <ActionIcon variant="light" onClick={() => {
-                    openGenerateModal(dataTable);
-                }}>
+                <ActionIcon
+                    size="md" variant="light" 
+                    onClick={() => {
+                        openGenerateModal(dataTable);
+                    }}
+                >
                    <IconInfoCircle size={18} />
                 </ActionIcon>
             </Tooltip>

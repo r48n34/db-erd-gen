@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Column, Table } from "../../../interface/inputData";
 
-import { useForm } from '@mantine/form';
-import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Text, Select, Box } from "@mantine/core";
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
-import { IconSquarePlus, IconEdit, IconTrash, IconDeviceFloppy } from '@tabler/icons';
+import { useForm } from '@mantine/form';
+import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Select, Center } from "@mantine/core";
+
+import { IconSquarePlus, IconEdit, IconTrash, IconDeviceFloppy, IconGripVertical, IconRefresh } from '@tabler/icons';
 import useTableStore from "../../../store/zustandStore";
 
 import { uuidGen } from "../../../utilis/uuidGen";
@@ -101,112 +103,120 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     }, [editData])
 
     const tablesField = form.values.columns.map((v, index) => (
-        // <Card shadow="sm" p="sm" radius="md" withBorder  m={8}>
-        <Grid key={"col_" + v.id}>
-            <Grid.Col span={{ base: 1, md: 1 }}>
-                <Tooltip label="Delete column">
-                    <ActionIcon
-                        variant="light"
-                        mt={26}
-                        color="red"
-                        onClick={() => form.removeListItem('columns', index)}
-                    >
-                        <IconTrash size={16} />
-                    </ActionIcon>
-                </Tooltip>
-            </Grid.Col>
+        <Draggable key={"col_" + v.id} index={index} draggableId={"col_" + v.id}>
+            {(provided) => (
+                <Grid ref={provided.innerRef} {...provided.draggableProps}>
+                    <Grid.Col span={{ base: 1, md: 1 }}>
+                        <Group    mt={26}>
+                        <Center {...provided.dragHandleProps}>
+                            <IconGripVertical size="1.2rem" />
+                        </Center>
 
-            <Grid.Col span={{ base: 2, md: 2 }}>
-                <TextInput
-                    withAsterisk
-                    label="Column name"
-                    placeholder="id"
-                    {...form.getInputProps(`columns.${index}.name`)}
-                />
-            </Grid.Col>
+                        <Tooltip label="Delete column">
+                            <ActionIcon
+                                variant="light"
+                             
+                                color="red"
+                                onClick={() => form.removeListItem('columns', index)}
+                            >
+                                <IconTrash size={16} />
+                            </ActionIcon>
+                        </Tooltip>
+                        </Group>
+                    </Grid.Col>
 
-            <Grid.Col span={{ base: 2, md: 2 }}>
-                <Select
-                    label={<div style={{ display: "inline-block" }}><ColumnTypeList /></div>}
-                    placeholder="integer"
-                    withAsterisk
-                    searchable
-                    data={groupedPostgresTypeArray}
-                    {...form.getInputProps(`columns.${index}.dataType`)}
-                />
-            </Grid.Col>
+                    <Grid.Col span={{ base: 2, md: 2 }}>
+                        <TextInput
+                            withAsterisk
+                            label="Column name"
+                            placeholder="id"
+                            {...form.getInputProps(`columns.${index}.name`)}
+                        />
+                    </Grid.Col>
 
-            <Grid.Col span={{ base: 3, md: 3 }}>
-                <Group mt={12}>
-                    <Switch
-                        mt={10}
-                        label="PK" size="xs"
-                        {...form.getInputProps(`columns.${index}.isPrimaryKey`, { type: 'checkbox' })}
-                    />
+                    <Grid.Col span={{ base: 2, md: 2 }}>
+                        <Select
+                            label={<div style={{ display: "inline-block" }}><ColumnTypeList /></div>}
+                            placeholder="integer"
+                            withAsterisk
+                            searchable
+                            data={groupedPostgresTypeArray}
+                            {...form.getInputProps(`columns.${index}.dataType`)}
+                        />
+                    </Grid.Col>
 
-                    <Switch
-                        mt={10}
-                        label="FK" size="xs"
-                        disabled={allTableData.length <= 1 && mode === "edit"}
-                        {...form.getInputProps(`columns.${index}.isForeignKey`, { type: 'checkbox' })}
-                    />
-                </Group>
+                    <Grid.Col span={{ base: 3, md: 3 }}>
+                        <Group mt={12}>
+                            <Switch
+                                mt={10}
+                                label="PK" size="xs"
+                                {...form.getInputProps(`columns.${index}.isPrimaryKey`, { type: 'checkbox' })}
+                            />
 
-                <Group>
-                    <Switch
-                        mt={10}
-                        label="Unique" size="xs"
-                        {...form.getInputProps(`columns.${index}.unique`, { type: 'checkbox' })}
-                    />
-
-                    <Switch
-                        mt={10}
-                        label="Not Null" size="xs"
-                        {...form.getInputProps(`columns.${index}.notNull`, { type: 'checkbox' })}
-                    />
-                </Group>
-            </Grid.Col>
-
-            {form.values.columns[index].isForeignKey
-                ? (
-                    <>
-                        <Grid.Col span={{ base: 2, md: 2 }}>
-                            <Select
-                                label="FK Table name"
-                                placeholder="name"
-                                withAsterisk
+                            <Switch
+                                mt={10}
+                                label="FK" size="xs"
                                 disabled={allTableData.length <= 1 && mode === "edit"}
-                                data={
-                                    Array.isArray(allTableData)
-                                        ? allTableData.map(v => ({ value: v.name, label: v.name, disabled: v.name === form.values.tableName }))
-                                        : []
-                                }
-                                {...form.getInputProps(`columns.${index}.foreignTo.name`)}
+                                {...form.getInputProps(`columns.${index}.isForeignKey`, { type: 'checkbox' })}
                             />
-                        </Grid.Col>
+                        </Group>
 
-                        <Grid.Col span={{ base: 2, md: 2 }}>
-                            <Select
-                                label="FK Column"
-                                placeholder="id"
-                                withAsterisk
-                                disabled={!form.values.columns[index].foreignTo!.name}
-                                data={
-                                    form.values.columns[index].foreignTo!.name
-                                        ? allTableData.filter(v => v.name === form.values.columns[index].foreignTo!.name)
-                                        [0].columns.map(v => v.name)
-                                        : []
-                                }
-                                {...form.getInputProps(`columns.${index}.foreignTo.column`)}
+                        <Group>
+                            <Switch
+                                mt={10}
+                                label="Unique" size="xs"
+                                {...form.getInputProps(`columns.${index}.unique`, { type: 'checkbox' })}
                             />
-                        </Grid.Col>
-                    </>)
-                : (<Grid.Col span={{ base: 3, md: 3 }}><></></Grid.Col>)
-            }
+
+                            <Switch
+                                mt={10}
+                                label="Not Null" size="xs"
+                                {...form.getInputProps(`columns.${index}.notNull`, { type: 'checkbox' })}
+                            />
+                        </Group>
+                    </Grid.Col>
+
+                    {form.values.columns[index].isForeignKey
+                        ? (
+                            <>
+                                <Grid.Col span={{ base: 2, md: 2 }}>
+                                    <Select
+                                        label="FK Table name"
+                                        placeholder="name"
+                                        withAsterisk
+                                        disabled={allTableData.length <= 1 && mode === "edit"}
+                                        data={
+                                            Array.isArray(allTableData)
+                                                ? allTableData.map(v => ({ value: v.name, label: v.name, disabled: v.name === form.values.tableName }))
+                                                : []
+                                        }
+                                        {...form.getInputProps(`columns.${index}.foreignTo.name`)}
+                                    />
+                                </Grid.Col>
+
+                                <Grid.Col span={{ base: 2, md: 2 }}>
+                                    <Select
+                                        label="FK Column"
+                                        placeholder="id"
+                                        withAsterisk
+                                        disabled={!form.values.columns[index].foreignTo!.name}
+                                        data={
+                                            form.values.columns[index].foreignTo!.name
+                                                ? allTableData.filter(v => v.name === form.values.columns[index].foreignTo!.name)
+                                                [0].columns.map(v => v.name)
+                                                : []
+                                        }
+                                        {...form.getInputProps(`columns.${index}.foreignTo.column`)}
+                                    />
+                                </Grid.Col>
+                            </>)
+                        : (<Grid.Col span={{ base: 3, md: 3 }}><></></Grid.Col>)
+                    }
 
 
-        </Grid>
-        // </Card>
+                </Grid>
+            )}
+        </Draggable>
 
     ));
 
@@ -302,10 +312,15 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         {...form.getInputProps('tableName')}
                     />
 
-                    <Group justify="flex-end" mt="md">
+                    <Group justify="space-between" mt="lg" mb={12}>
+                        <Group justify="center">
+                            <Button onClick={() => form.reset()} variant="light" leftSection={<IconRefresh size={16}/>}>
+                                Reset all
+                            </Button>
+                        </Group>
+
                         <Button
                             variant="light"
-                            mb={8}
                             onClick={() =>
                                 form.insertListItem(
                                     'columns',
@@ -329,7 +344,22 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         </Button>
                     </Group>
 
-                    {tablesField}
+                    
+                    <DragDropContext
+                        onDragEnd={({ destination, source }) =>
+                            destination?.index !== undefined && form.reorderListItem('columns', { from: source.index, to: destination.index })
+                        }
+                    >
+                        <Droppable droppableId="dnd-list" direction="vertical">
+                            {(provided) => (
+                                <div {...provided.droppableProps} ref={provided.innerRef}>
+                                    {tablesField}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                    </DragDropContext>
+
 
                     <Group justify="flex-end" mt="md">
                         <Button type="submit" leftSection={<IconDeviceFloppy size={18} />} variant="light">
@@ -342,7 +372,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
 
             <Group justify="center">
                 <Tooltip label={mode === "create" ? "Add table" : "Edit table"}>
-                    <ActionIcon variant="light" onClick={() => setOpened(true)}>
+                    <ActionIcon variant="light" onClick={() => setOpened(true)} size="md">
                         {mode === "create" ? <IconSquarePlus size={20} /> : <IconEdit size={18} />}
                     </ActionIcon>
                 </Tooltip>

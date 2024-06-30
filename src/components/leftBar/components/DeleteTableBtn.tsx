@@ -16,8 +16,7 @@ function DeleteTableBtn({ tableName }: DeleteTableBtnProps){
         title: 'Please confirm your action',
         children: (
           <Text size="sm">
-            This action is so important that you are required to confirm it with a modal. Please click
-            one of these buttons to proceed.
+            This action can not be reversed. Are you sure to delete this table?
           </Text>
         ),
         labels: { confirm: 'Confirm', cancel: 'Cancel' },
@@ -27,8 +26,8 @@ function DeleteTableBtn({ tableName }: DeleteTableBtnProps){
 
     return (
         <>
-        <Tooltip label={ "Delete " + tableName }>
-            <ActionIcon onClick={ () => openModal() } variant="light" color="red">
+        <Tooltip label={ "Delete " + tableName + " table" }>
+            <ActionIcon onClick={ () => openModal() } variant="light" color="red" size="md">
                 <IconTrash size={14}/>
             </ActionIcon>
         </Tooltip>

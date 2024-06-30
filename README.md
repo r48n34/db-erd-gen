@@ -6,11 +6,12 @@ Free DrawSQL like website but free forever
 URL: https://db-erd-gen.vercel.app/
 
 ## Features  
-1. Free forever  
-2. Save SQL in various DB format  
-3. Easy to use / store GUI website    
+1. Free forever and open sources. 
+2. Save SQL in various DB format.   
+3. Easy to use / store GUI website.  
+4. Low learning curve UI.    
 
-## Curretn support output  
+## Current supported output  
 - Postgres raw  
 - MySQL / MariaDB raw 
 - SQLite raw
@@ -22,11 +23,14 @@ URL: https://db-erd-gen.vercel.app/
 - Zod scheme types
 - Prisma Postgres
 - Prisma MySQL
+- mikro-orm (Todo)
+- Mongoose Scheme (TBC)
 
 ## Roadmap
 - ✅ With Zod type checking
 - ✅ Update Maininte to v7
 - ⬜️ i18n adapts
+- ⬜️ mikro-orm & Mongoose Scheme adapts
 
 ## Todo
 - ✅ Support kysely db migrate types output  
@@ -44,3 +48,19 @@ URL: https://db-erd-gen.vercel.app/
 - ✅ Support sqlite types output    
 - ⬜️ More features  
 - ✅ Update UI  
+- ⬜️ Testing vitest  
+
+## Self hosting
+```bash
+# Install with yarn
+yarn
+
+# Start with dev
+yarn dev
+
+# Build to production
+yarn build
+```
+
+## License
+Distributed under the `MIT License`.

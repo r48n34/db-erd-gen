@@ -1,4 +1,4 @@
-import { Accordion, Group, Text, Box, Badge, ScrollArea, Space } from '@mantine/core';
+import { Accordion, Group, Text, Box, Badge, ScrollArea, Space, Code } from '@mantine/core';
 
 import DeleteTableBtn from './DeleteTableBtn';
 import TableForm from './TableForm';
@@ -6,72 +6,74 @@ import useTableStore from '../../../store/zustandStore';
 import LeftTopBar from '../LeftTopBar';
 import TableDataCRUD from '../../debug/TableDataCRUD';
 
-function DisplayTableComp(){
-    
+function DisplayTableComp() {
+
     const tableArray = useTableStore((state) => state.tableArray);
 
     return (
         <>
-        <ScrollArea style={{ height: "88vh" }} mt={50}>
+            <ScrollArea style={{ height: "88vh" }} mt={50}>
 
-        <LeftTopBar/>
-        <Space h="sm"/>
+                <LeftTopBar />
+                <Space h="sm" />
 
-        <Accordion multiple>
+                <Accordion multiple variant="filled">
 
-            { tableArray.map( v => (
-                <Accordion.Item value={v.name} key={"tables" + v.name}>
-                    <Accordion.Control>
-                        <Text fz={18} ta="left">
-                            {v.name}
-                        </Text>
-                    </Accordion.Control>
+                    {tableArray.map(v => (
+                        <Accordion.Item value={v.name} key={"tables" + v.name}>
+                            <Accordion.Control>
+                                <Text fz={18} ta="left">
+                                    {v.name}
+                                </Text>
+                            </Accordion.Control>
 
-                    <Accordion.Panel>
+                            <Accordion.Panel>
 
-                        <Group justify="space-between" mb={4}>
-                            <DeleteTableBtn tableName={v.name} />
+                                <Text fz={16} ta="center">
+                                    <Code>
+                                        {v.name}
+                                    </Code>
+                                </Text>
 
-                            <Group>
-                                <TableDataCRUD dataTable={v} />
-                                <TableForm mode={'edit'} allTableData={tableArray} editData={v}  />
-                            </Group>
-                        </Group>
+                                {v.columns.map(k => (
+                                    <Box key={"tables_cols_" + k.name} mt={4}>
+                                        <Group justify="space-between">
+                                            <Text fz={14}>
+                                                {k.name}{" "}
+                                                {k.notNull && <Badge color="red" size="xs" variant="light">(Not Null)</Badge>}
+                                                {k.unique && <Badge color="red" size="xs" variant="light">(U)</Badge>}
+                                            </Text>
+                                            <Text fz={14}>
+                                                {k.dataType}
+                                            </Text>
+                                        </Group>
+                                        {k.foreignTo && (
+                                            <Group ml={6}>
+                                                <Badge size="xs" variant="light" mt={4}>
+                                                    (FK) {k.foreignTo.name} {"->"} {k.foreignTo.column}
+                                                </Badge>
+                                            </Group>
+                                        )}
+                                    </Box>
+                                ))}
 
-                        <Text fz={16} ta="center">
-                            {v.name}
-                        </Text>
+                                <Group justify="space-between" mb={4} mt={16}>
+                                    <DeleteTableBtn tableName={v.name} />
 
-                        { v.columns.map( k => (
-                            <Box key={"tables_cols_" + k.name} mt={4}>
-                                <Group justify="space-between">                 
-                                    <Text fz={14}>
-                                        {k.name}{" "}
-                                        {k.notNull && <Badge color="red" size="xs" variant="light">(Not Null)</Badge>}
-                                        {k.unique  && <Badge color="red" size="xs" variant="light">(U)</Badge>}
-                                    </Text>
-                                    <Text fz={14}>
-                                        {k.dataType}
-                                    </Text>
-                                </Group>
-                                { k.foreignTo && (
-                                    <Group ml={6}>
-                                        <Badge size="xs" variant="light" mt={4}>
-                                            (FK) {k.foreignTo.name} {"->"} {k.foreignTo.column}
-                                        </Badge>
+                                    <Group>
+                                        <TableDataCRUD dataTable={v} />
+                                        <TableForm mode={'edit'} allTableData={tableArray} editData={v} />
                                     </Group>
-                                )}
-                            </Box>
-                        ))}
-                        
-                    </Accordion.Panel>
-                </Accordion.Item>
-            ))}
+                                </Group>
 
-        </Accordion>
-        </ScrollArea>
+                            </Accordion.Panel>
+                        </Accordion.Item>
+                    ))}
+
+                </Accordion>
+            </ScrollArea>
         </>
     )
 }
-    
+
 export default DisplayTableComp
