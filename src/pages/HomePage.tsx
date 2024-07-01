@@ -2,10 +2,10 @@ import { Box, Button, Card, Container, Group, Text } from "@mantine/core";
 import ERTableComp from "../components/ERTableComp";
 
 import { dummySchemeHome } from "./dummyDataTest";
-import HomeNavBar from "../components/home/HomeNavBar";
 import Footer from "../components/home/Footer";
 import { IconArrowRight, IconDatabase } from "@tabler/icons";
 import { useNavigate } from "react-router-dom";
+import { FeaturesTitle } from "../components/home/FeaturesTitle";
 
 function HomePage(){
     
@@ -42,6 +42,12 @@ function HomePage(){
                 </Card>
             </Group>
 
+            
+
+        </Container>
+
+        <Container size="lg" mt={48}>
+            <FeaturesTitle />
         </Container>
 
         <Footer />
