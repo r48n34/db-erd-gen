@@ -7,7 +7,7 @@ import ERTableComp from '../components/ERTableComp';
 import NavBar from '../components/common/NavBar';
 import LeftNavBar from '../components/leftBar/components/LeftNavBar';
 
-import 'reactflow/dist/style.css';
+
 import { useHotkeys } from '@mantine/hooks';
 import { useMantineColorScheme } from '@mantine/core';
  
