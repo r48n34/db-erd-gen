@@ -9,7 +9,19 @@ import ImportTemplateBtn from './ImportTemplateBtn';
 
 import ExportJsonFormatView from './ExportJsonFormatView';
 
-import { IconArchive, IconFileArrowRight, IconAlertTriangle, IconClipboardData, IconDeviceFloppy, IconList, IconBrandGithub, IconFileDatabase, IconBrandTypescript, IconDatabase, IconSteeringWheel } from '@tabler/icons';
+import { 
+    IconArchive,
+    IconFileArrowRight,
+    IconAlertTriangle,
+    IconClipboardData,
+    IconDeviceFloppy,
+    IconList,
+    IconFileDatabase,
+    IconBrandTypescript,
+    IconDatabase,
+    IconSteeringWheel
+} from '@tabler/icons';
+
 import SavedSchemeList from './SavedSchemeList';
 import DeleteAllSchemeBtn from './DeleteAllSchemeBtn';
 import TableDataToBtnView from './TableDataToBtnView';
@@ -20,12 +32,15 @@ import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite
 import { tableDataToTsTypeScheme } from '../../utilis/dataBase/tableDataToTsType';
 import { tableDataToZodTypeScheme } from '../../utilis/dataBase/tableDataToZodType';
 import { tableDataToPostgresScheme } from '../../utilis/dataBase/tableDataToPostgres';
-import { tableDataToKyselyScheme, tableDataToKyselyTypescriptScheme } from '../../utilis/dataBase/tableDataToKysely';
+import { 
+    tableDataToKyselyScheme,
+    tableDataToKyselyTypescriptScheme
+} from '../../utilis/dataBase/tableDataToKysely';
+
 import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
 
 import SavedScheme from './SavedSchemeBtn';
-import GoUrlBtn from '../common/GoUrlBtn';
-import ThemeToggleBtn from '../common/ThemeToggleBtn';
+import GrandMenu from '../common/menu/GrandMenu';
 
 function DebugModal() {
     const [opened, setOpened] = useState<boolean>(false);
@@ -42,23 +57,29 @@ function DebugModal() {
             title={
                 <>
                 <Group>
-                    <GoUrlBtn
+                    {/* <GoUrlBtn
                         title={'Github'}
                         url={'https://github.com/r48n34/db-erd-gen'}
                         icon={<IconBrandGithub size={18}/>}
-                    />
+                    /> */}
                     <Text fw={300} fz={22} >
                         DB graphers (Beta)
                     </Text>
-                    <ThemeToggleBtn/>
+                    <GrandMenu />
                 </Group>
-                <Text c="dimmed" fz={"sm"} mt={8}>Still in testing, bugs may occur</Text>
+                <Text c="dimmed" fz={"sm"}>
+                    Still in beta testing
+                </Text>
                 </>
             }
             padding="xl"
             size="xl"
         >
-            <NavLink label="Generate" leftSection={<IconArchive size={16} stroke={1.5} />} childrenOffset={28}>
+            <NavLink 
+                label="Generate"
+                leftSection={<IconArchive size={16} stroke={1.5} />}
+                childrenOffset={28}
+            >
 
                 <NavLink
                     label="Typescript"
@@ -298,7 +319,11 @@ function DebugModal() {
 
             </NavLink>
 
-            <NavLink label="Templates" leftSection={<IconClipboardData size={16} stroke={1.5} />} childrenOffset={28}>
+            <NavLink 
+                label="Templates"
+                leftSection={<IconClipboardData size={16} stroke={1.5} />}
+                childrenOffset={28}
+            >
                 <ImportTemplateBtn/>
             </NavLink>
 

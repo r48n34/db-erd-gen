@@ -11,7 +11,8 @@ URL: https://db-erd-gen.vercel.app/
 1. Free forever and open sources. 
 2. Save SQL in various DB format.   
 3. Easy to use / store GUI website.  
-4. Low learning curve UI.    
+4. Low learning curve UI.   
+5. No server involved, all in local.   
 
 ## Current supported output  
 - Postgres raw  

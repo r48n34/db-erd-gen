@@ -12,7 +12,7 @@ function HomeNavBar(){
             <Group justify="flex-end">
 
                 <Button variant='light' onClick={() => navigate("/")} leftSection={<IconDatabase size={16}/>}>
-                    Try now!
+                    Get started!
                 </Button>
 
             </Group>
