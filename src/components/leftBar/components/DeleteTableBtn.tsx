@@ -3,6 +3,7 @@ import { openConfirmModal } from '@mantine/modals';
 import { ActionIcon, Tooltip, Text } from "@mantine/core";
 
 import useTableStore from "../../../store/zustandStore";
+import { commonSuccessActions } from '../../../utilis/notificationUtilis';
 
 type DeleteTableBtnProps = {
     tableName: string;
@@ -21,7 +22,10 @@ function DeleteTableBtn({ tableName }: DeleteTableBtnProps){
         ),
         labels: { confirm: 'Confirm', cancel: 'Cancel' },
         onCancel: () => console.log('Cancel'),
-        onConfirm: () => deleteOneTableStore(tableName),
+        onConfirm: () => {
+            deleteOneTableStore(tableName);
+            commonSuccessActions();
+        },
     });
 
     return (

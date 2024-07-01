@@ -9,14 +9,14 @@ import ReactFlow, {
     Panel,
     Node,
     Edge,
-    // MiniMap
 } from 'reactflow';
 import DataTableNode from './node/DataTableNode';
 import { Badge, Group } from '@mantine/core';
 
 import { inputDataToNodeAndEdges } from '../utilis/inputData/inputDataToNode';
-import useTableStore from '../store/zustandStore';
 import { Table, TablePosition } from '../interface/inputData';
+
+import useTableStore from '../store/zustandStore';
 import DownloadButton from './leftBar/components/DownloadButton';
 
 interface ERTableProps {

@@ -19,7 +19,7 @@ function ImportTemplateBtn(){
           </Text>
         ),
         labels: { confirm: 'Confirm', cancel: 'Cancel' },
-        onCancel: () => console.log('Cancel'),
+        onCancel: () => {},
         onConfirm: () => {
             const result = importJsonFormat(importString);
             importTableObj(result);

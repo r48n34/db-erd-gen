@@ -1,19 +1,23 @@
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/code-highlight/styles.css';
+import 'reactflow/dist/style.css';
 
-import { Loader, MantineProvider } from '@mantine/core';
+import {MantineProvider } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 
 import { ErrorBoundary } from "react-error-boundary";
 import { Analytics } from '@vercel/analytics/react';
 
-import MainPage from "./pages/MainPage"
-import ErrorComp from './components/common/ErrorComp';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Suspense } from 'react';
-import HomePage from './pages/HomePage';
+import { lazy, Suspense } from 'react';
+
+import ErrorComp from './components/common/ErrorComp';
+import LoadingPage from './components/common/LoadingPage';
+
+const MainPage = lazy(() => import('./pages/MainPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
 
 const router = createBrowserRouter([
     {
@@ -35,7 +39,7 @@ function App() {
             <ModalsProvider> 
             <Notifications />
                 <ErrorBoundary fallback={<ErrorComp/>}>
-                <Suspense fallback={<Loader />}>
+                <Suspense fallback={<LoadingPage />}>
                     <RouterProvider router={router} />
                 </Suspense>
                 </ErrorBoundary>

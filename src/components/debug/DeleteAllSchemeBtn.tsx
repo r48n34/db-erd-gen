@@ -21,7 +21,7 @@ function DeleteAllSchemeBtn({ showsFormat = "NavLink" }: DeleteAllSchemeBtnProps
             </Text>
         ),
         labels: { confirm: 'Confirm', cancel: 'Cancel' },
-        onCancel: () => console.log(),
+        onCancel: () => {},
         onConfirm: () => {
             deleteAllTemplate()
             commonSuccessActions();
