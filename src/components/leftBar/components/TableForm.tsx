@@ -14,6 +14,7 @@ import { commonSuccessActions, failedDeleteMessage } from "../../../utilis/notif
 
 import { groupedPostgresTypeArray } from "../../../data/database/postgresType";
 import ColumnTypeList from "../../dataSample/ColumnTypeList";
+import useSettingStoreStore, { SettingData } from "../../../store/settingStore";
 
 type TableFormProps = {
     mode: "create" | "edit"
@@ -88,6 +89,8 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     const addTableObjStore = useTableStore((state) => state.addTableObj);
     const updateTableObj = useTableStore((state) => state.updateTableObj);
 
+    const generalSettings = useSettingStoreStore((state) => state.settings);
+
     const form = useForm({
         initialValues: initDataGenerator(mode, editData),
         validate: {
@@ -99,7 +102,9 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     });
 
     useEffect(() => {
-        form.setValues(initDataGenerator(mode, editData))
+        form.setValues(
+            initDataGenerator(mode, editData)
+        )
     }, [editData])
 
     const tablesField = form.values.columns.map((v, index) => (
@@ -330,7 +335,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                                         dataType: "varchar",
                                         isPrimaryKey: false,
                                         isForeignKey: false,
-                                        notNull: false,
+                                        notNull: generalSettings.defaultToNotNull ?? false,
                                         unique: false,
                                         foreignTo: {
                                             name: null,

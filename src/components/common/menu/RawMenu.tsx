@@ -1,7 +1,8 @@
 
 import { Blockquote, Container, Tabs, Text, rem } from '@mantine/core';
 import { IconColorPicker, IconInfoCircle, IconMessageCircle, IconSettings, } from '@tabler/icons';
-import ThemeToggleSwitch from '../ThemeToggleSwitch';
+import ThemeSetting from './ThemeSetting';
+import GeneralSetting from './GeneralSetting';
 
 function RawMenu() {
 
@@ -23,25 +24,11 @@ function RawMenu() {
                 </Tabs.List>
 
                 <Tabs.Panel value="general">
-                    <Container fluid>
-                        <Text fz={32} fw={600}>
-                            General settings
-                        </Text>
-                    </Container>
+                    <GeneralSetting />
                 </Tabs.Panel>
 
                 <Tabs.Panel value="theme">
-                    <Container fluid>
-                        <Text fz={32} fw={600}>
-                            Theme settings
-                        </Text>
-
-                        <Text fz={14} fw={400} c="dimmed" mt={12} mb={12}>
-                            Toggle dark / light theme
-                        </Text>
-
-                        <ThemeToggleSwitch />
-                    </Container>
+                    <ThemeSetting />
                 </Tabs.Panel>
 
                 <Tabs.Panel value="misc">
