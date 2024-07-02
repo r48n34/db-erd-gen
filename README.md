@@ -25,6 +25,7 @@ URL: https://db-erd-gen.vercel.app/
 - Typescript types
 - Zod scheme types
 - Yup scheme types
+- Valibot scheme types
 - Prisma Postgres
 - Prisma MySQL
 - mikro-orm (Todo)

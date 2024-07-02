@@ -13,6 +13,7 @@ import { tableDataToKnexScheme } from '../../utilis/dataBase/tableDataToKnex';
 import { tableDataToKyselyScheme, tableDataToKyselyTypescriptScheme } from '../../utilis/dataBase/tableDataToKysely';
 import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
 import { tableDataToYupTypeScheme } from '../../utilis/dataBase/tableDataToYupType';
+import { tableDataToValibotTypeScheme } from '../../utilis/dataBase/tableDataToValibotType';
 
 function GenerateMenu() {
 
@@ -75,6 +76,20 @@ function GenerateMenu() {
                                 title: 'Typescript Yup Scheme',
                                 schemeFunc: tableDataToYupTypeScheme,
                                 downloadFileName: "yupScheme.ts",
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            }
+                        ]}
+                    />
+
+                    <TableDataToBtnView
+                        showsFormat="Menu"
+                        title='Typescript Valibot Scheme'
+                        generatedDataList={[
+                            {
+                                title: 'Typescript Valibot Scheme',
+                                schemeFunc: tableDataToValibotTypeScheme,
+                                downloadFileName: "valibotScheme.ts",
                                 codeLanguages: 'ts',
                                 icon: <IconBrandTypescript size={18} />
                             }

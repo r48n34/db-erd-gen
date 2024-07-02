@@ -42,6 +42,7 @@ import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma
 import SavedScheme from './SavedSchemeBtn';
 import GrandMenu from '../common/menu/GrandMenu';
 import { tableDataToYupTypeScheme } from '../../utilis/dataBase/tableDataToYupType';
+import { tableDataToValibotTypeScheme } from '../../utilis/dataBase/tableDataToValibotType';
 
 function DebugModal() {
     const [opened, setOpened] = useState<boolean>(false);
@@ -123,6 +124,20 @@ function DebugModal() {
                                     title: 'Typescript Yup Scheme',
                                     schemeFunc: tableDataToYupTypeScheme,
                                     downloadFileName: "yupScheme.ts",
+                                    codeLanguages: 'ts',
+                                    icon: <IconBrandTypescript size={18} />
+                                }
+                            ]}
+                        />
+
+                        <TableDataToBtnView
+                            showsFormat="NavLink"
+                            title='Typescript Valibot Scheme'
+                            generatedDataList={[
+                                {
+                                    title: 'Typescript Valibot Scheme',
+                                    schemeFunc: tableDataToValibotTypeScheme,
+                                    downloadFileName: "valibotScheme.ts",
                                     codeLanguages: 'ts',
                                     icon: <IconBrandTypescript size={18} />
                                 }
