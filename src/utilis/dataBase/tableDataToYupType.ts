@@ -2,7 +2,7 @@ import { postgresTypeArray } from "../../data/database/postgresType";
 import { Table } from "../../interface/inputData";
 import { tab } from "../generateTab";
 
-export function tableDataToZodTypeScheme(tables: Table[]){
+export function tableDataToYupTypeScheme(tables: Table[]){
 
     let schemeArray: string[] = [];
 
@@ -14,8 +14,8 @@ export function tableDataToZodTypeScheme(tables: Table[]){
             const targetTypeInd = postgresTypeArray.findIndex( v => v.value === col.dataType );
             const currentType = postgresTypeArray[targetTypeInd].tsTypes
 
-            const zodVal = `z.${currentType.toLocaleLowerCase()}()`
-            const finalZodValue = col.notNull || col.isPrimaryKey ? zodVal : `z.optional(${zodVal})`
+            const yumVal = `yup.${currentType.toLocaleLowerCase()}()`
+            const finalZodValue = col.notNull || col.isPrimaryKey ? `${yumVal}.defined()` : `${yumVal}.nullable()`
 
             let finalStrs = tab(1) + `${col.name}: ${finalZodValue},`;
             tableStr.push(finalStrs)
@@ -24,14 +24,14 @@ export function tableDataToZodTypeScheme(tables: Table[]){
 
         const uppperName = table.name.charAt(0).toUpperCase() + table.name.slice(1);
 
-        const finalTableStr = `export const ${uppperName}Scheme = z.object({ \n`
+        const finalTableStr = `export const ${uppperName}Scheme = yup.object({ \n`
             + tableStr.join("\n") + `\n}) \n`
-            + `\nexport type ${uppperName} = z.infer<typeof ${uppperName}Scheme>; \n`
+            + `\nexport type ${uppperName} = yup.InferType<typeof ${uppperName}Scheme>; \n`
             
         schemeArray.push(finalTableStr);
     }
 
-    return `import { z } from "zod"; \n \n`
+    return `import * as yup from 'yup'; \n \n`
         + schemeArray.join("\n")
         
 }

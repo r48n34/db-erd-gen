@@ -12,6 +12,7 @@ import { tableDataToSQLiteScheme } from '../../utilis/dataBase/tableDataToSQLite
 import { tableDataToKnexScheme } from '../../utilis/dataBase/tableDataToKnex';
 import { tableDataToKyselyScheme, tableDataToKyselyTypescriptScheme } from '../../utilis/dataBase/tableDataToKysely';
 import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
+import { tableDataToYupTypeScheme } from '../../utilis/dataBase/tableDataToYupType';
 
 function GenerateMenu() {
 
@@ -60,6 +61,20 @@ function GenerateMenu() {
                                 title: 'Typescript Zod Scheme',
                                 schemeFunc: tableDataToZodTypeScheme,
                                 downloadFileName: "zodScheme.ts",
+                                codeLanguages: 'ts',
+                                icon: <IconBrandTypescript size={18} />
+                            }
+                        ]}
+                    />
+
+                    <TableDataToBtnView
+                        showsFormat="Menu"
+                        title='Typescript Yup Scheme'
+                        generatedDataList={[
+                            {
+                                title: 'Typescript Yup Scheme',
+                                schemeFunc: tableDataToYupTypeScheme,
+                                downloadFileName: "yupScheme.ts",
                                 codeLanguages: 'ts',
                                 icon: <IconBrandTypescript size={18} />
                             }

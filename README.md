@@ -24,6 +24,7 @@ URL: https://db-erd-gen.vercel.app/
 - kysely sqlite
 - Typescript types
 - Zod scheme types
+- Yup scheme types
 - Prisma Postgres
 - Prisma MySQL
 - mikro-orm (Todo)
