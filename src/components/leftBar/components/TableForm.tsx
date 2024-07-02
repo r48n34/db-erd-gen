@@ -207,8 +207,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                                         disabled={!form.values.columns[index].foreignTo!.name}
                                         data={
                                             form.values.columns[index].foreignTo!.name
-                                                ? allTableData.filter(v => v.name === form.values.columns[index].foreignTo!.name)
-                                                [0].columns.map(v => v.name)
+                                                ? allTableData.filter(v => v.name === form.values.columns[index].foreignTo!.name)[0].columns.map(v => v.name)
                                                 : []
                                         }
                                         {...form.getInputProps(`columns.${index}.foreignTo.column`)}
@@ -217,7 +216,6 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                             </>)
                         : (<Grid.Col span={{ base: 3, md: 3 }}><></></Grid.Col>)
                     }
-
 
                 </Grid>
             )}
@@ -228,8 +226,6 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
     function handleSubmit(values: FormObject) {
 
         try {
-
-            // console.log(values);
 
             // Empty table name
             if (values.columns.length === 0) {

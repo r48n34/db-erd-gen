@@ -56,10 +56,10 @@ function GenerateMenu() {
 
                     <TableDataToBtnView
                         showsFormat="Menu"
-                        title='Typescript Zod Scheme'
+                        title='Zod Scheme'
                         generatedDataList={[
                             {
-                                title: 'Typescript Zod Scheme',
+                                title: 'Zod Scheme',
                                 schemeFunc: tableDataToZodTypeScheme,
                                 downloadFileName: "zodScheme.ts",
                                 codeLanguages: 'ts',
@@ -70,10 +70,10 @@ function GenerateMenu() {
 
                     <TableDataToBtnView
                         showsFormat="Menu"
-                        title='Typescript Yup Scheme'
+                        title='Yup Scheme'
                         generatedDataList={[
                             {
-                                title: 'Typescript Yup Scheme',
+                                title: 'Yup Scheme',
                                 schemeFunc: tableDataToYupTypeScheme,
                                 downloadFileName: "yupScheme.ts",
                                 codeLanguages: 'ts',
@@ -84,10 +84,10 @@ function GenerateMenu() {
 
                     <TableDataToBtnView
                         showsFormat="Menu"
-                        title='Typescript Valibot Scheme'
+                        title='Valibot Scheme'
                         generatedDataList={[
                             {
-                                title: 'Typescript Valibot Scheme',
+                                title: 'Valibot Scheme',
                                 schemeFunc: tableDataToValibotTypeScheme,
                                 downloadFileName: "valibotScheme.ts",
                                 codeLanguages: 'ts',
