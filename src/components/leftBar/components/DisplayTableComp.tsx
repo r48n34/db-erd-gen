@@ -40,8 +40,8 @@ function DisplayTableComp() {
                                         <Group justify="space-between">
                                             <Text fz={14}>
                                                 {k.name}{" "}
-                                                {k.notNull && <Badge color="red" size="xs" variant="light">(Not Null)</Badge>}
-                                                {k.unique && <Badge color="red" size="xs" variant="light">(U)</Badge>}
+                                                {k.notNull && <Badge radius="sm" color="red" size="xs" variant="light">(Not Null)</Badge>}
+                                                {k.unique && <Badge radius="sm" color="red" size="xs" variant="light">(U)</Badge>}
                                             </Text>
                                             <Text fz={14}>
                                                 {k.dataType}
@@ -49,7 +49,7 @@ function DisplayTableComp() {
                                         </Group>
                                         {k.foreignTo && (
                                             <Group ml={6}>
-                                                <Badge size="xs" variant="light" mt={4}>
+                                                <Badge radius="sm" size="xs" variant="light" mt={4}>
                                                     (FK) {k.foreignTo.name} {"->"} {k.foreignTo.column}
                                                 </Badge>
                                             </Group>

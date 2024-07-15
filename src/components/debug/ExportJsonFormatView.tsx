@@ -39,7 +39,7 @@ function ExportJsonFormatView({ showsFormat = "NavLink" }: ExportJsonFormatViewP
         <>
         { showsFormat === "NavLink" && (
             <NavLink
-                label="Export json"
+                label="Export JSON"
                 leftSection={<IconFileExport size={16} stroke={1.5} />}
                 onClick={ () => {
                     opeJsonFormatViewModal(JSON.stringify(tableArray, null, "\t"));
@@ -54,7 +54,7 @@ function ExportJsonFormatView({ showsFormat = "NavLink" }: ExportJsonFormatViewP
                     opeJsonFormatViewModal(JSON.stringify(tableArray, null, "\t"));
                 }}
             >
-                Export json
+                Export JSON
             </Menu.Item>
         )}
         </>

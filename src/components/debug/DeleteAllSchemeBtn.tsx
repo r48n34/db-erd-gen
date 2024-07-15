@@ -1,6 +1,6 @@
 import { Menu, NavLink, Text } from "@mantine/core";
 import { openConfirmModal } from "@mantine/modals";
-import { IconFile, IconTrashOff } from "@tabler/icons";
+import { IconFile, IconTableOff } from "@tabler/icons";
 
 import useTemplateStoreStore from "../../store/templateStore";
 import { commonSuccessActions } from "../../utilis/notificationUtilis";
@@ -33,11 +33,11 @@ function DeleteAllSchemeBtn({ showsFormat = "NavLink" }: DeleteAllSchemeBtnProps
             {
                 showsFormat === "NavLink" && (
                     <NavLink
-                        label="Delete all scheme"
+                        label="Delete all schemes"
                         variant="light"
                         color="red"
                         active
-                        leftSection={<IconTrashOff size={16} stroke={1.5} />}
+                        leftSection={<IconTableOff size={16} stroke={1.5} />}
                         onClick={() => openDeleteModal()}
                     />
                 )

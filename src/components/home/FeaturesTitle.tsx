@@ -39,7 +39,7 @@ export function FeaturesTitle() {
             <Text fz="lg" mt="sm" fw={500}>
                 {feature.title}
             </Text>
-            <Text c="dimmed" fz="sm">
+            <Text c="dimmed" fz="sm" mt={4}>
                 {feature.description}
             </Text>
         </div>

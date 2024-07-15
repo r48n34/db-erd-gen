@@ -9,7 +9,7 @@ function LeftTopBar(){
     return (
         <>
         <Group justify="space-between" mt={12} mr={6}>
-            <Badge ml={12} color="green">
+            <Badge ml={12} color="green" variant="light" radius="sm">
                 Table List
             </Badge>
             <TableForm mode={"create"} allTableData={tableArray}/>

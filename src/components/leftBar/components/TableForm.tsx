@@ -112,21 +112,21 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
             {(provided) => (
                 <Grid ref={provided.innerRef} {...provided.draggableProps}>
                     <Grid.Col span={{ base: 1, md: 1 }}>
-                        <Group    mt={26}>
-                        <Center {...provided.dragHandleProps}>
-                            <IconGripVertical size="1.2rem" />
-                        </Center>
+                        <Group mt={26}>
+                            <Center {...provided.dragHandleProps}>
+                                <IconGripVertical size="1.2rem" />
+                            </Center>
 
-                        <Tooltip label="Delete column">
-                            <ActionIcon
-                                variant="light"
-                             
-                                color="red"
-                                onClick={() => form.removeListItem('columns', index)}
-                            >
-                                <IconTrash size={16} />
-                            </ActionIcon>
-                        </Tooltip>
+                            <Tooltip label="Delete column">
+                                <ActionIcon
+                                    variant="light"
+
+                                    color="red"
+                                    onClick={() => form.removeListItem('columns', index)}
+                                >
+                                    <IconTrash size={16} />
+                                </ActionIcon>
+                            </Tooltip>
                         </Group>
                     </Grid.Col>
 
@@ -315,9 +315,15 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
 
                     <Group justify="space-between" mt="lg" mb={12}>
                         <Group justify="center">
-                            <Button onClick={() => form.reset()} variant="light" leftSection={<IconRefresh size={16}/>}>
-                                Reset all
-                            </Button>
+                            <Tooltip label="Reset to changes state">
+                                <Button
+                                    onClick={() => form.reset()}
+                                    variant="light"
+                                    leftSection={<IconRefresh size={16} />}
+                                >
+                                    Reset all
+                                </Button>
+                            </Tooltip>
                         </Group>
 
                         <Button
@@ -345,7 +351,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         </Button>
                     </Group>
 
-                    
+
                     <DragDropContext
                         onDragEnd={({ destination, source }) =>
                             destination?.index !== undefined && form.reorderListItem('columns', { from: source.index, to: destination.index })

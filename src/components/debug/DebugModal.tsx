@@ -323,7 +323,7 @@ function DebugModal() {
                 </NavLink>
 
                 <NavLink
-                    label="Import / Export"
+                    label="Import / Export Scheme"
                     leftSection={<IconFileArrowRight size={16} stroke={1.5} />}
                     childrenOffset={28}
                 >

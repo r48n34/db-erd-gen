@@ -29,7 +29,7 @@ function FileMenu() {
 
                 <Menu.Divider />
                 <Menu.Label>
-                    Import / Export
+                    Import / Export Scheme
                 </Menu.Label>
 
                 <ExportJsonFormatView showsFormat="Menu" /> 
