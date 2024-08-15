@@ -1,6 +1,6 @@
 import { postgresTypeArray } from "../../data/database/postgresType";
 import { Table } from "../../interface/inputData";
-import { tab } from "../generateTab";
+import { firstStrUpper, tab } from "../generateTab";
 
 export function tableDataToPrismaScheme(tables: Table[], dbTypes: "postgresql" | "mySQL" | "sqlite" | "" = "postgresql") {
 
@@ -8,7 +8,6 @@ export function tableDataToPrismaScheme(tables: Table[], dbTypes: "postgresql" |
 
     for (let table of tables) {
         let tableStr: string[] = []
-        let uniqueList: string[] = []
 
         for (let col of table.columns) {
 
@@ -20,26 +19,24 @@ export function tableDataToPrismaScheme(tables: Table[], dbTypes: "postgresql" |
             const prismaKeyNativeAttribute = dbTypes === "postgresql"
                 ? " " + currentType.prismaKey.nativeAttribute.psql
                 : dbTypes === "mySQL"
-                ? " " + currentType.prismaKey.nativeAttribute.mySQL
-                : ""
+                    ? " " + currentType.prismaKey.nativeAttribute.mySQL
+                    : ""
 
-            const finalStrs = tab(1)
-                + (col.foreignTo
-                    ? `${col.name} ${col.foreignTo.name} @relation(fields: [${col.foreignTo.column}], references: [${col.foreignTo.column}], onDelete: NoAction, onUpdate: NoAction)`
-                    : `${col.name} ${currentKey}${prismaKeyNativeAttribute}`
-                )
-
-            if (col.unique) {
-                uniqueList.push(col.name)
-            }
+            let finalStrs = tab(1) + `${col.name} ${currentKey}${prismaKeyNativeAttribute}`
+            col.unique && (finalStrs += " @unique")
 
             tableStr.push(finalStrs)
 
+            if (col.foreignTo) {
+                tableStr.push(
+                    tab(1) + `${col.foreignTo.name} ${firstStrUpper(col.foreignTo.name)} @relation(fields: [${col.name}], references: [${col.foreignTo.column}], onDelete: NoAction, onUpdate: NoAction)`
+                )
+            }
+
         }
 
-        const finalTableStr = `model ${table.name} { \n`
+        const finalTableStr = `model ${firstStrUpper(table.name)} { \n`
             + tableStr.join("\n")
-            + (uniqueList.length >= 1 ? `\n\n${tab(1)}@@unique([${uniqueList.join(", ")}])` : "")
             + `\n} \n`
 
         schemeArray.push(finalTableStr);

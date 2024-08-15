@@ -861,8 +861,8 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         prismaKey: {
             key: "DateTime",
             nativeAttribute: {
-                psql: "@db.Timestamp(3)",
-                mySQL: "@db.Timestamp(3)"
+                psql:  "@default(now()) @db.Timestamp(3)",
+                mySQL: "@default(now()) @db.Timestamp(3)"
             }
         },
     },
