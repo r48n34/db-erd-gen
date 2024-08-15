@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHotkeys } from '@mantine/hooks';
-import { Drawer, Burger, NavLink, Tooltip, Text, Group } from '@mantine/core';
+import { Drawer, Burger, NavLink, Tooltip, Text, Group, Image } from '@mantine/core';
 
 import DeleteAllData from './DeleteAllData';
 
@@ -59,18 +59,19 @@ function DebugModal() {
                 title={
                     <>
                         <Group>
-                            {/* <GoUrlBtn
-                        title={'Github'}
-                        url={'https://github.com/r48n34/db-erd-gen'}
-                        icon={<IconBrandGithub size={18}/>}
-                    /> */}
+                            <Image
+                                radius="md"
+                                src="/logo.ico"
+                                height={35}
+                                width={35}
+                            />
                             <Text fw={300} fz={22} >
                                 DB graphers (Beta)
                             </Text>
                             <GrandMenu />
                         </Group>
-                        <Text c="dimmed" fz={"sm"}>
-                            Still in beta testing
+                        <Text c="dimmed" fz={"sm"} mt={6}>
+                            Still in beta testing, be patients :)
                         </Text>
                     </>
                 }
