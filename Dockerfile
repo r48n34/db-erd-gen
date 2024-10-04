@@ -6,11 +6,12 @@ RUN yarn
 RUN npm i -g serve
 COPY . .
 RUN yarn build
-EXPOSE 3000
-CMD [ "serve", "-s", "dist" ]
+EXPOSE 5174
+CMD [ "serve", "-s", "dist", "-p", "5174" ]
 
 # Build
 # docker build . -t db-erd-gen
 
 # Run
-# docker run -p 3000:3000 db-erd-gen:latest
+# docker run -d -p 5174:5174 db-erd-gen:latest
+# docker run -p 5174:5174 db-erd-gen:latest

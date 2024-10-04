@@ -93,7 +93,7 @@ docker build . -t db-erd-gen
 
 2. After builded, run the container.
 ```bash
-docker run -d -p 3000:3000 db-erd-gen:latest
+docker run -d -p 5174:5174 db-erd-gen:latest
 ```
 
 ## License

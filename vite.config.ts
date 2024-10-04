@@ -12,16 +12,10 @@ export default defineConfig(({ command }) => {
             build: {
                 sourcemap: false,
             },
-            preview: {
-                port: 3000,
-                strictPort: true,
-            },
-            server: {
-                port: 3000,
-                strictPort: true,
-                host: true,
-                origin: "http://0.0.0.0:3000",
-            },
+            // preview: {
+            //     port: 3000,
+            //     strictPort: true,
+            // },
         };
     } else {
         // command === 'build'
@@ -35,6 +29,12 @@ export default defineConfig(({ command }) => {
             },
             build: {
                 sourcemap: false,
+            },
+            server: {
+                port: 5174,
+                strictPort: true,
+                host: true,
+                origin: "http://0.0.0.0:5174",
             },
         };
     }
