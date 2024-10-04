@@ -1,20 +1,21 @@
-# db-erd-gen
+# 💾 db-erd-gen
 <a href="https://github.com/r48n34/db-erd-gen"><img src="https://img.shields.io/github/actions/workflow/status/r48n34/db-erd-gen/test.yml" /></a>
 
-Free DrawSQL like website but free forever  
+✏️ Free DrawSQL like website but free forever  
 
 ![https://db-erd-gen.vercel.app/](/assert/banners.jpg)
 
-URL: https://db-erd-gen.vercel.app/
+URL:
+https://db-erd-gen.vercel.app/
 
-## Features  
+## 💡 Features  
 1. Free forever and open sources. 
 2. Save SQL in various DB format.   
 3. Easy to use / store GUI website.  
 4. Low learning curve UI.   
 5. No server involved, all in local.   
 
-## Current supported output  
+## 🔊 Current supported output  
 - Postgres raw  
 - MySQL / MariaDB raw 
 - SQLite raw
@@ -31,13 +32,13 @@ URL: https://db-erd-gen.vercel.app/
 - mikro-orm (Todo)
 - Mongoose Scheme (TBC)
 
-## Roadmap
+## 🗺️ Roadmap
 - ✅ With Zod type checking
 - ✅ Update Maininte to v7
 - ⬜️ i18n adapts
 - ⬜️ mikro-orm & Mongoose Scheme adapts
 
-## Todo
+## 📝 Todo
 - ✅ Support kysely db migrate types output  
 - ✅ Support kysely ts types output  
 - ✅ Support SQLite types output  
@@ -55,16 +56,44 @@ URL: https://db-erd-gen.vercel.app/
 - ✅ Update UI  
 - ⬜️ Testing vitest  
 
-## Self hosting
+## 🏠 Self hosting (Nodejs base)
+1. Clone the project to your environment.
 ```bash
-# Install with yarn
-yarn
+git clone https://github.com/r48n34/db-erd-gen.git
+```
 
+2. Install packages with npm / yarn.
+```bash
+# Install with yarn for samples
+yarn
+```
+
+3. Start the project with dev mode.
+```bash
 # Start with dev
 yarn dev
+```
 
+4. Build the project.
+```bash
 # Build to production
 yarn build
+```
+
+5. Preview the build project.
+```bash
+yarn preview
+```
+
+## 🐳 Self hosting (Docker)
+1. Build the docker container with the following command.
+```bash
+docker build . -t db-erd-gen
+```
+
+2. After builded, run the container.
+```bash
+docker run -d -p 3000:3000 db-erd-gen:latest
 ```
 
 ## License
