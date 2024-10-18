@@ -29,7 +29,8 @@ https://db-erd-gen.vercel.app/
 - Valibot scheme types
 - Prisma Postgres
 - Prisma MySQL
-- mikro-orm (Todo)
+- Drizzle ORM (Todo)
+- mikro-orm (TBC)
 - Mongoose Scheme (TBC)
 
 ## 🗺️ Roadmap
@@ -46,6 +47,7 @@ https://db-erd-gen.vercel.app/
 - ✅ Support typescript normal types
 - ✅ Support zod types generate
 - ✅ Support Tables CRUD code for several frameworks
+- ⬜️ Support Drizzle ORM types output 
 - ⬜️ Add enums options and input for enums
 - ⬜️ Support defaultTo string in general
 - ⬜️ Support defaultTo string in kysely
