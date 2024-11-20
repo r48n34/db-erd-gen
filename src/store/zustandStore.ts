@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand'
 
 import { Table, TablePosition } from '../interface/inputData';
 import { grandData } from '../data/testInputData';

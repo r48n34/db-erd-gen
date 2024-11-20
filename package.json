@@ -34,7 +34,7 @@
     "react-router-dom": "^6.24.0",
     "reactflow": "^11.4.0",
     "zod": "^3.22.4",
-    "zustand": "^4.2.0"
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

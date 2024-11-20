@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import Split from '@uiw/react-split';
-
 import useTableStore from '../store/zustandStore';
 
 import ERTableComp from '../components/ERTableComp';
@@ -10,10 +8,11 @@ import LeftNavBar from '../components/leftBar/components/LeftNavBar';
 
 import { useHotkeys } from '@mantine/hooks';
 import { useMantineColorScheme } from '@mantine/core';
+import { useEffect } from 'react';
  
 function MainPage(){
 
-    const tableArray = useTableStore((state) => state.tableArray);
+    const tableArray = useTableStore( (state) => state.tableArray );
     const updateTablePositions = useTableStore((state) => state.updateTablePositions);
     const update = useTableStore((state) => state.update);
 

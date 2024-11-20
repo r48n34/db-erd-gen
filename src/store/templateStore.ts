@@ -1,4 +1,5 @@
-import create from 'zustand'
+import { create } from 'zustand'
+
 import { Table } from '../interface/inputData';
 import { devtools, persist } from 'zustand/middleware'
 
