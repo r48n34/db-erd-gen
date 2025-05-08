@@ -18,6 +18,7 @@ import { tableDataToKyselyScheme, tableDataToKyselyTypescriptScheme } from '../.
 import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
 import { tableDataToYupTypeScheme } from '../../utilis/dataBase/tableDataToYupType';
 import { tableDataToValibotTypeScheme } from '../../utilis/dataBase/tableDataToValibotType';
+import { tableDataToDrizzleScheme } from '../../utilis/dataBase/tableDataToDrizzle';
 
 function GenerateMenu() {
 
@@ -314,15 +315,44 @@ function GenerateMenu() {
 
                     <Menu.Divider />
 
-                    <Menu.Sub disabled>
+                    <Menu.Sub>
                         <Menu.Sub.Target >
                             <Menu.Sub.Item leftSection={<IconCloudRain size={16} />}>
-                                Drizzle ORM (Coming Soon)
+                                Drizzle ORM
                             </Menu.Sub.Item>
                         </Menu.Sub.Target>
 
                         <Menu.Sub.Dropdown>
-                            
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title="Drizzle Scheme"
+                                generatedDataList={[
+                                    {
+                                        title: 'PostgreSQL',
+                                        schemeFunc: tableDataToDrizzleScheme,
+                                        types: "postgresql",
+                                        downloadFileName: `${new Date().getTime()}_schema_pg.ts`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                    {
+                                        title: 'MySQL',
+                                        schemeFunc: tableDataToDrizzleScheme,
+                                        types: "mySQL",
+                                        downloadFileName: `${new Date().getTime()}_schema_sql.ts`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                    {
+                                        title: 'Sqlite',
+                                        schemeFunc: tableDataToDrizzleScheme,
+                                        types: "sqlite",
+                                        downloadFileName: `${new Date().getTime()}_schema_sqlite.ts`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                ]}
+                            />
                         </Menu.Sub.Dropdown>
                     </Menu.Sub>
 

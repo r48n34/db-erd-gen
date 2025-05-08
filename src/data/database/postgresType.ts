@@ -1135,7 +1135,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         },
         drizzleKey: {
             psql: "uuid()",
-            mySQL: "varchar({ length: 42 })",
+            mySQL: "varchar({ length: 36 })",
             sqlite: "text()"
         }
     },
