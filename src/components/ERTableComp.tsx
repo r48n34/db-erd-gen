@@ -34,27 +34,26 @@ function ERTableComp({ tableArray, updateTablePositions }: ERTableProps){
     useEffect(() => {
         const testData = inputDataToNodeAndEdges(tableArray);
         
-        setNodes(testData.nodes)
-        setEdges(testData.edges)
+        setNodes(testData.nodes);
+        setEdges(testData.edges);
+
     }, [tableArray, update]);
 
     const onNodesChange = useCallback(
         (changes: NodeChange[]) => {
             setNodes((nds) => applyNodeChanges(changes, nds))
-        },
-        []
+        },[]
     );
 
     const onNodeDragStop = useCallback(
         (_: React.MouseEvent, node: Node,) => {          
             !!updateTablePositions && updateTablePositions(node.data.name, node.position);
-        },
-        []
+        },[]
     );
 
     const onEdgesChange = useCallback(
         (changes: EdgeChange[]) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-        [setEdges]
+        [setEdges, tableArray]
     );
 
     const nodeTypes = useMemo(() => ({ textUpdater: DataTableNode }), []);
@@ -77,7 +76,7 @@ function ERTableComp({ tableArray, updateTablePositions }: ERTableProps){
 
             <Panel position="top-right">
                 <Group mt={8}>
-                    <Badge radius="sm" variant='light' color="green">
+                    <Badge radius="sm" variant='light' color="green" tt="none">
                         Table count: {nodes.length}
                     </Badge>
                     

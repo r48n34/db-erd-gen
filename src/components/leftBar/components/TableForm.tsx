@@ -90,6 +90,7 @@ function TableForm({ mode = "create", allTableData, editData, ...rest }: TableFo
     const [opened, setOpened] = useState<boolean>(false);
 
     const addTableObjStore = useTableStore((state) => state.addTableObj);
+    const forceUpdateToggle = useTableStore((state) => state.forceUpdateToggle);
     const updateTableObj = useTableStore((state) => state.updateTableObj);
 
     const generalSettings = useSettingStoreStore((state) => state.settings);
@@ -284,7 +285,8 @@ function TableForm({ mode = "create", allTableData, editData, ...rest }: TableFo
                 addTableObjStore(storeObj);
             }
             else if (mode === "edit") { // Edit table
-                updateTableObj(storeObj)
+                updateTableObj(storeObj);
+                forceUpdateToggle();
             }
 
             setOpened(false);

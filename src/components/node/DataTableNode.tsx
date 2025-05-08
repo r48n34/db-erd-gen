@@ -44,9 +44,9 @@ function DataTableNode({ data }: DataTableNodeProps) {
 
                 <Space h="xs" />
 
-                {data.columns.map((v, i) => {
+                {data.columns.map((v, ind) => {
 
-                    const nodeDistance = 54 + i * 24;
+                    const nodeDistance = 54 + ind * 24;
 
                     const leftNodeName = `${data.name}_${v.name}_left`
                     const rightNodeName = `${data.name}_${v.name}_right`

@@ -13,7 +13,7 @@ export function inputDataToNodeAndEdges(tablesArr: Table[]){
         const name = table.name;
 
         // Create Edge checking
-        for(let k of table.columns){
+        for(let [ind, k] of Object.entries(table.columns)){
             if(!!k.foreignTo){
 
                 const sourceHandle = `${k.foreignTo!.name}_${k.foreignTo!.column}_right`

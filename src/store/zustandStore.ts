@@ -9,10 +9,14 @@ interface DataState {
     tableArray: Table[]
     update: number
 
+    forceUpdate: boolean
+
     addTableObj: (obj: Table) => void // Get all data from db
     updateTableObj: (obj: Table) => void // Update specific table content by name
     deleteOneTable: (tableName: string) => void // Delete single data from db
     deleteAllRecord: () => void // Delete all data in db
+
+    forceUpdateToggle: () => void // Force Update data
 
     updateTablePositions: (tableName: string, position: TablePosition) => void // Update 
 
@@ -24,6 +28,7 @@ const useTableStore = create<DataState>()(
         persist((set) => ({
             tableArray: grandData,
             update: 0,
+            forceUpdate: false,
             addTableObj: (obj: Table) => {
                 set((state) => {
                     return {
@@ -32,11 +37,35 @@ const useTableStore = create<DataState>()(
                     }
                 })
             },
+            forceUpdateToggle: () => {
+                set((state) => {
+                    return {
+                        tableArray: state.tableArray,
+                        update: state.update + 1,
+                        forceUpdate: true
+                    }
+                })
+
+                setTimeout(() => {
+                    set((state) => {
+                        return {
+                            tableArray: state.tableArray,
+                            update: state.update + 1,
+                            forceUpdate: false
+                        }
+                    });
+                }, 150);
+            },
             updateTableObj: (obj: Table) => {
                 set((state) => {
                     const targetTableObjIndex = state.tableArray.findIndex(v => v.name === obj.name);
 
-                    console.log("newTable[targetTableObjIndex]", state.tableArray[targetTableObjIndex]);
+                    if (targetTableObjIndex <= -1) {
+                        return {
+                            tableArray: state.tableArray,
+                            update: state.update + 1
+                        }
+                    }
 
                     let newTable = state.tableArray;
                     newTable[targetTableObjIndex]["columns"] = obj["columns"];
@@ -46,6 +75,8 @@ const useTableStore = create<DataState>()(
                         update: state.update + 1
                     }
                 })
+
+                
             },
             deleteOneTable: (tableName: string) => {
                 set((state) => {
@@ -55,8 +86,7 @@ const useTableStore = create<DataState>()(
                         .flat()
                         .filter(v => v.foreignTo && v.foreignTo.name === tableName);
 
-                    // console.log(isBeingReferences);
-
+                    // In References By Other Table Currently, not allow to delete
                     if (isBeingReferences.length >= 1) {
                         failedDelete(isBeingReferences.map(v => v.name));
 
@@ -74,9 +104,6 @@ const useTableStore = create<DataState>()(
             },
             updateTablePositions: (tableName: string, position: TablePosition) => {
                 set((state) => {
-
-                    // console.log(tableName);
-                    // console.log(tableName);
 
                     const targetTableObjIndex = state.tableArray.findIndex(v => v.name === tableName);
 
