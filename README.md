@@ -36,8 +36,9 @@ https://db-erd-gen.vercel.app/
 ## 🗺️ Roadmap
 - ✅ With Zod type checking
 - ✅ Update Maininte to v7
+- ⬜️ Drizzle ORM Support
 - ⬜️ i18n adapts
-- ⬜️ mikro-orm & Mongoose Scheme adapts
+- ⬜️ Allow to dup table
 
 ## 📝 Todo
 - ✅ Support kysely db migrate types output  

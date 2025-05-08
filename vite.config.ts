@@ -12,10 +12,6 @@ export default defineConfig(({ command }) => {
             build: {
                 sourcemap: false,
             },
-            // preview: {
-            //     port: 3000,
-            //     strictPort: true,
-            // },
         };
     } else {
         // command === 'build'

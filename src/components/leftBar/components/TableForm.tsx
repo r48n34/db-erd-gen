@@ -16,11 +16,6 @@ import { groupedPostgresTypeArray } from "../../../data/database/postgresType";
 import ColumnTypeList from "../../dataSample/ColumnTypeList";
 import useSettingStoreStore, { SettingData } from "../../../store/settingStore";
 
-type TableFormProps = {
-    mode: "create" | "edit"
-    allTableData: Table[]
-    editData?: Table // Optional if creating table 
-};
 
 interface FormColumns {
     id: string
@@ -82,7 +77,15 @@ interface FormObject {
     columns: FormColumns[]
 }
 
-function TableForm({ mode = "create", allTableData, editData }: TableFormProps) {
+type TableFormProps = {
+    mode: "create" | "edit"
+    allTableData: Table[]
+    editData?: Table // Optional if creating table 
+
+    [x:string]: any; // For ActionIcon
+};
+
+function TableForm({ mode = "create", allTableData, editData, ...rest }: TableFormProps) {
 
     const [opened, setOpened] = useState<boolean>(false);
 
@@ -310,6 +313,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
                         label="Table name"
                         placeholder="some_table_name"
                         disabled={mode === "edit"}
+                        description="Table Name Can not be change after created"
                         {...form.getInputProps('tableName')}
                     />
 
@@ -379,7 +383,7 @@ function TableForm({ mode = "create", allTableData, editData }: TableFormProps) 
 
             <Group justify="center">
                 <Tooltip label={mode === "create" ? "Add table" : "Edit table"}>
-                    <ActionIcon variant="light" onClick={() => setOpened(true)} size="md">
+                    <ActionIcon variant="light" onClick={() => setOpened(true)} size="md" {...rest}>
                         {mode === "create" ? <IconSquarePlus size={20} /> : <IconEdit size={18} />}
                     </ActionIcon>
                 </Tooltip>

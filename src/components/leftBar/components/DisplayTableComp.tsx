@@ -1,4 +1,4 @@
-import { Accordion, Group, Text, Box, Badge, ScrollArea, Space, Code } from '@mantine/core';
+import { Accordion, Group, Text, Box, Badge, ScrollArea, Space, Code, Tooltip } from '@mantine/core';
 
 import DeleteTableBtn from './DeleteTableBtn';
 import TableForm from './TableForm';
@@ -40,8 +40,20 @@ function DisplayTableComp() {
                                         <Group justify="space-between">
                                             <Text fz={14}>
                                                 {k.name}{" "}
-                                                {k.notNull && <Badge radius="sm" color="red" size="xs" variant="light">(Not Null)</Badge>}
-                                                {k.unique && <Badge radius="sm" color="red" size="xs" variant="light">(U)</Badge>}
+                                                {k.notNull && (
+                                                    <Tooltip label="Not Null">
+                                                    <Badge radius="sm" color="red" size="xs" variant="light">
+                                                        (Not Null)
+                                                    </Badge>
+                                                    </Tooltip>
+                                                )}
+                                                {k.unique && (
+                                                    <Tooltip label="Unique">
+                                                        <Badge radius="sm" color="red" size="xs" variant="light">
+                                                            (U)
+                                                        </Badge>
+                                                    </Tooltip>
+                                                )}
                                             </Text>
                                             <Text fz={14}>
                                                 {k.dataType}

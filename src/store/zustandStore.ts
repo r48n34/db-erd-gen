@@ -34,10 +34,12 @@ const useTableStore = create<DataState>()(
             },
             updateTableObj: (obj: Table) => {
                 set((state) => {
-                    const targetTableObjIndex = state.tableArray.findIndex(v => v.name === obj.name)
+                    const targetTableObjIndex = state.tableArray.findIndex(v => v.name === obj.name);
+
+                    console.log("newTable[targetTableObjIndex]", state.tableArray[targetTableObjIndex]);
 
                     let newTable = state.tableArray;
-                    newTable[targetTableObjIndex] = obj;
+                    newTable[targetTableObjIndex]["columns"] = obj["columns"];
 
                     return {
                         tableArray: newTable,
