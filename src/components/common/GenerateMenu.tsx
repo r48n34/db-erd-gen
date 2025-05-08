@@ -2,6 +2,7 @@ import { Menu, Button } from '@mantine/core';
 import {
     IconBrandPrisma,
     IconBrandTypescript,
+    IconCloudRain,
     IconDatabase,
     IconPlayCardK,
     IconWheel,
@@ -308,6 +309,20 @@ function GenerateMenu() {
                                     },
                                 ]}
                             />
+                        </Menu.Sub.Dropdown>
+                    </Menu.Sub>
+
+                    <Menu.Divider />
+
+                    <Menu.Sub disabled>
+                        <Menu.Sub.Target >
+                            <Menu.Sub.Item leftSection={<IconCloudRain size={16} />}>
+                                Drizzle ORM (Coming Soon)
+                            </Menu.Sub.Item>
+                        </Menu.Sub.Target>
+
+                        <Menu.Sub.Dropdown>
+                            
                         </Menu.Sub.Dropdown>
                     </Menu.Sub>
 

@@ -62,16 +62,16 @@ function DebugModal() {
                             <Image
                                 radius="md"
                                 src="/logo.ico"
-                                height={35}
-                                width={35}
+                                h={35}
+                                w={35}
                             />
                             <Text fw={300} fz={22} >
-                                DB graphers (Beta)
+                                DB graphers
                             </Text>
                             <GrandMenu />
                         </Group>
                         <Text c="dimmed" fz={"sm"} mt={6}>
-                            Still in beta testing, be patients :)
+                            Beta Version
                         </Text>
                     </>
                 }
