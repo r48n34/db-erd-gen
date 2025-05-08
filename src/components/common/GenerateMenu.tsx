@@ -1,7 +1,10 @@
 import { Menu, Button } from '@mantine/core';
 import {
+    IconBrandPrisma,
     IconBrandTypescript,
     IconDatabase,
+    IconPlayCardK,
+    IconWheel,
 } from '@tabler/icons-react';
 import { tableDataToTsTypeScheme } from '../../utilis/dataBase/tableDataToTsType';
 import { tableDataToZodTypeScheme } from '../../utilis/dataBase/tableDataToZodType';
@@ -37,244 +40,276 @@ function GenerateMenu() {
                 <Menu.Dropdown>
 
                     <Menu.Label>
-                        Typescript
+                        Generations Menu
                     </Menu.Label>
 
-                    <TableDataToBtnView
-                        showsFormat="Menu"
-                        title='Typescript Type'
-                        generatedDataList={[
-                            {
-                                title: 'Typescript Type',
-                                schemeFunc: tableDataToTsTypeScheme,
-                                downloadFileName: "types.ts",
-                                codeLanguages: 'ts',
-                                icon: <IconBrandTypescript size={18} />
-                            }
-                        ]}
-                    />
+                    <Menu.Sub>
+                        <Menu.Sub.Target>
+                            <Menu.Sub.Item leftSection={<IconBrandTypescript size={16} />}>
+                                Typescript
+                            </Menu.Sub.Item>
+                        </Menu.Sub.Target>
 
-                    <TableDataToBtnView
-                        showsFormat="Menu"
-                        title='Zod Scheme'
-                        generatedDataList={[
-                            {
-                                title: 'Zod Scheme',
-                                schemeFunc: tableDataToZodTypeScheme,
-                                downloadFileName: "zodScheme.ts",
-                                codeLanguages: 'ts',
-                                icon: <IconBrandTypescript size={18} />
-                            }
-                        ]}
-                    />
+                        <Menu.Sub.Dropdown>
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title='Typescript Type'
+                                generatedDataList={[
+                                    {
+                                        title: 'Typescript Type',
+                                        schemeFunc: tableDataToTsTypeScheme,
+                                        downloadFileName: "types.ts",
+                                        codeLanguages: 'ts',
+                                        icon: <IconBrandTypescript size={18} />
+                                    }
+                                ]}
+                            />
 
-                    <TableDataToBtnView
-                        showsFormat="Menu"
-                        title='Yup Scheme'
-                        generatedDataList={[
-                            {
-                                title: 'Yup Scheme',
-                                schemeFunc: tableDataToYupTypeScheme,
-                                downloadFileName: "yupScheme.ts",
-                                codeLanguages: 'ts',
-                                icon: <IconBrandTypescript size={18} />
-                            }
-                        ]}
-                    />
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title='Zod Scheme'
+                                generatedDataList={[
+                                    {
+                                        title: 'Zod Scheme',
+                                        schemeFunc: tableDataToZodTypeScheme,
+                                        downloadFileName: "zodScheme.ts",
+                                        codeLanguages: 'ts',
+                                        icon: <IconBrandTypescript size={18} />
+                                    }
+                                ]}
+                            />
 
-                    <TableDataToBtnView
-                        showsFormat="Menu"
-                        title='Valibot Scheme'
-                        generatedDataList={[
-                            {
-                                title: 'Valibot Scheme',
-                                schemeFunc: tableDataToValibotTypeScheme,
-                                downloadFileName: "valibotScheme.ts",
-                                codeLanguages: 'ts',
-                                icon: <IconBrandTypescript size={18} />
-                            }
-                        ]}
-                    />
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title='Yup Scheme'
+                                generatedDataList={[
+                                    {
+                                        title: 'Yup Scheme',
+                                        schemeFunc: tableDataToYupTypeScheme,
+                                        downloadFileName: "yupScheme.ts",
+                                        codeLanguages: 'ts',
+                                        icon: <IconBrandTypescript size={18} />
+                                    }
+                                ]}
+                            />
+
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title='Valibot Scheme'
+                                generatedDataList={[
+                                    {
+                                        title: 'Valibot Scheme',
+                                        schemeFunc: tableDataToValibotTypeScheme,
+                                        downloadFileName: "valibotScheme.ts",
+                                        codeLanguages: 'ts',
+                                        icon: <IconBrandTypescript size={18} />
+                                    }
+                                ]}
+                            />
+                        </Menu.Sub.Dropdown>
+                    </Menu.Sub>
 
                     <Menu.Divider />
 
-                    <Menu.Label>
-                        Raw Database
-                    </Menu.Label>
+                    <Menu.Sub>
+                        <Menu.Sub.Target>
+                            <Menu.Sub.Item leftSection={<IconDatabase size={16} />}>
+                                Raw Database
+                            </Menu.Sub.Item>
+                        </Menu.Sub.Target>
 
-                    <TableDataToBtnView
-                        showsFormat="Menu"
-                        title='Postgres'
-                        generatedDataList={[
-                            {
-                                title: 'Postgres',
-                                schemeFunc: tableDataToPostgresScheme,
-                                downloadFileName: "tables.sql",
-                                codeLanguages: 'sql',
-                                icon: <IconDatabase size={18} />
-                            }
-                        ]}
-                    />
+                        <Menu.Sub.Dropdown>
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title='Postgres'
+                                generatedDataList={[
+                                    {
+                                        title: 'Postgres',
+                                        schemeFunc: tableDataToPostgresScheme,
+                                        downloadFileName: "tables.sql",
+                                        codeLanguages: 'sql',
+                                        icon: <IconDatabase size={18} />
+                                    }
+                                ]}
+                            />
 
-                    <TableDataToBtnView
-                        showsFormat="Menu"
-                        title='MySQL'
-                        generatedDataList={[
-                            {
-                                title: 'mySQL',
-                                schemeFunc: tableDataToMySQLScheme,
-                                downloadFileName: "mySqlTables.sql",
-                                codeLanguages: 'sql',
-                                icon: <IconDatabase size={18} />
-                            }
-                        ]}
-                    />
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title='MySQL'
+                                generatedDataList={[
+                                    {
+                                        title: 'mySQL',
+                                        schemeFunc: tableDataToMySQLScheme,
+                                        downloadFileName: "mySqlTables.sql",
+                                        codeLanguages: 'sql',
+                                        icon: <IconDatabase size={18} />
+                                    }
+                                ]}
+                            />
 
 
-                    <TableDataToBtnView
-                        showsFormat="Menu"
-                        title='SQLite'
-                        generatedDataList={[
-                            {
-                                title: 'SQLite',
-                                schemeFunc: tableDataToSQLiteScheme,
-                                downloadFileName: `${new Date().getTime()}_migrations.db`,
-                                codeLanguages: 'sql',
-                                icon: <IconDatabase size={18} />
-                            }
-                        ]}
-                    />
-
-                    <Menu.Divider />
-
-                    <Menu.Label>
-                        Knex
-                    </Menu.Label>
-
-                    <TableDataToBtnView
-                        showsFormat="Menu"
-                        title='knex migrations'
-                        generatedDataList={[
-                            {
-                                title: 'knex',
-                                schemeFunc: tableDataToKnexScheme,
-                                downloadFileName: `${new Date().getTime()}_migrations.ts`,
-                                codeLanguages: 'ts',
-                                icon: <IconBrandTypescript size={18} />
-                            }
-                        ]}
-                    />
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title='SQLite'
+                                generatedDataList={[
+                                    {
+                                        title: 'SQLite',
+                                        schemeFunc: tableDataToSQLiteScheme,
+                                        downloadFileName: `${new Date().getTime()}_migrations.db`,
+                                        codeLanguages: 'sql',
+                                        icon: <IconDatabase size={18} />
+                                    }
+                                ]}
+                            />
+                        </Menu.Sub.Dropdown>
+                    </Menu.Sub>
 
                     <Menu.Divider />
 
-                    <Menu.Label>
-                        Kysely
-                    </Menu.Label>
+                    <Menu.Sub>
+                        <Menu.Sub.Target>
+                            <Menu.Sub.Item leftSection={<IconWheel size={16} />}>
+                                Knex
+                            </Menu.Sub.Item>
+                        </Menu.Sub.Target>
 
-                    <TableDataToBtnView
-                        showsFormat="Menu"
-                        title="Kysely Postgres"
-                        generatedDataList={[
-                            {
-                                title: 'postgresql',
-                                schemeFunc: tableDataToKyselyScheme,
-                                downloadFileName: `${new Date().getTime()}_migrations.ts`,
-                                types: "postgresql",
-                                codeLanguages: 'ts',
-                                icon: <IconBrandTypescript size={18} />
-                            },
-                            {
-                                title: 'Kysely Types',
-                                schemeFunc: tableDataToKyselyTypescriptScheme,
-                                downloadFileName: `types.ts`,
-                                codeLanguages: 'ts',
-                                icon: <IconBrandTypescript size={18} />
-                            },
-                        ]}
-                    />
-
-                    <TableDataToBtnView
-                        showsFormat="Menu"
-                        title="Kysely MySQL"
-                        generatedDataList={[
-                            {
-                                title: 'MYSQL',
-                                schemeFunc: tableDataToKyselyScheme,
-                                downloadFileName: `${new Date().getTime()}_migrations.ts`,
-                                types: "mySQL",
-                                codeLanguages: 'ts',
-                                icon: <IconBrandTypescript size={18} />
-                            },
-                            {
-                                title: 'Kysely Types',
-                                schemeFunc: tableDataToKyselyTypescriptScheme,
-                                downloadFileName: `types.ts`,
-                                codeLanguages: 'ts',
-                                icon: <IconBrandTypescript size={18} />
-                            },
-                        ]}
-                    />
-
-                    <TableDataToBtnView
-                        showsFormat="Menu"
-                        title="Kysely SQLite"
-                        generatedDataList={[
-                            {
-                                title: 'sqlite',
-                                schemeFunc: tableDataToKyselyScheme,
-                                types: "sqlite",
-                                downloadFileName: `${new Date().getTime()}_migrations.ts`,
-                                codeLanguages: 'ts',
-                                icon: <IconBrandTypescript size={18} />
-                            },
-                            {
-                                title: 'Kysely Types',
-                                schemeFunc: tableDataToKyselyTypescriptScheme,
-                                downloadFileName: `types.ts`,
-                                codeLanguages: 'ts',
-                                icon: <IconBrandTypescript size={18} />
-                            },
-                        ]}
-                    />
+                        <Menu.Sub.Dropdown>
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title='knex migrations'
+                                generatedDataList={[
+                                    {
+                                        title: 'knex',
+                                        schemeFunc: tableDataToKnexScheme,
+                                        downloadFileName: `${new Date().getTime()}_migrations.ts`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconBrandTypescript size={18} />
+                                    }
+                                ]}
+                            />
+                        </Menu.Sub.Dropdown>
+                    </Menu.Sub>
 
                     <Menu.Divider />
 
-                    <Menu.Label>
-                        Prisma
-                    </Menu.Label>
+                    <Menu.Sub>
+                        <Menu.Sub.Target>
+                            <Menu.Sub.Item leftSection={<IconPlayCardK size={16} />}>
+                                Kysely
+                            </Menu.Sub.Item>
+                        </Menu.Sub.Target>
 
-                    <TableDataToBtnView
-                        showsFormat="Menu" 
-                        title="Prisma Scheme"
-                        generatedDataList={[
-                            {
-                                title: 'PostgreSQL',
-                                schemeFunc: tableDataToPrismaScheme,
-                                types: "postgresql",
-                                downloadFileName: `${new Date().getTime()}_schema_psql.prisma`,
-                                codeLanguages: 'ts',
-                                icon: <IconDatabase size={18} />
-                            },
-                            {
-                                title: 'MySQL',
-                                schemeFunc: tableDataToPrismaScheme,
-                                types: "mySQL",
-                                downloadFileName: `${new Date().getTime()}_schema_mysql.prisma`,
-                                codeLanguages: 'ts',
-                                icon: <IconDatabase size={18} />
-                            },
-                            {
-                                title: 'Default others',
-                                schemeFunc: tableDataToPrismaScheme,
-                                types: "sqlite",
-                                downloadFileName: `${new Date().getTime()}_schema.prisma`,
-                                codeLanguages: 'ts',
-                                icon: <IconDatabase size={18} />
-                            },
-                        ]}
-                    />
+                        <Menu.Sub.Dropdown>
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title="Kysely Postgres"
+                                generatedDataList={[
+                                    {
+                                        title: 'postgresql',
+                                        schemeFunc: tableDataToKyselyScheme,
+                                        downloadFileName: `${new Date().getTime()}_migrations.ts`,
+                                        types: "postgresql",
+                                        codeLanguages: 'ts',
+                                        icon: <IconBrandTypescript size={18} />
+                                    },
+                                    {
+                                        title: 'Kysely Types',
+                                        schemeFunc: tableDataToKyselyTypescriptScheme,
+                                        downloadFileName: `types.ts`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconBrandTypescript size={18} />
+                                    },
+                                ]}
+                            />
 
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title="Kysely MySQL"
+                                generatedDataList={[
+                                    {
+                                        title: 'MYSQL',
+                                        schemeFunc: tableDataToKyselyScheme,
+                                        downloadFileName: `${new Date().getTime()}_migrations.ts`,
+                                        types: "mySQL",
+                                        codeLanguages: 'ts',
+                                        icon: <IconBrandTypescript size={18} />
+                                    },
+                                    {
+                                        title: 'Kysely Types',
+                                        schemeFunc: tableDataToKyselyTypescriptScheme,
+                                        downloadFileName: `types.ts`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconBrandTypescript size={18} />
+                                    },
+                                ]}
+                            />
 
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title="Kysely SQLite"
+                                generatedDataList={[
+                                    {
+                                        title: 'sqlite',
+                                        schemeFunc: tableDataToKyselyScheme,
+                                        types: "sqlite",
+                                        downloadFileName: `${new Date().getTime()}_migrations.ts`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconBrandTypescript size={18} />
+                                    },
+                                    {
+                                        title: 'Kysely Types',
+                                        schemeFunc: tableDataToKyselyTypescriptScheme,
+                                        downloadFileName: `types.ts`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconBrandTypescript size={18} />
+                                    },
+                                ]}
+                            />
+                        </Menu.Sub.Dropdown>
+                    </Menu.Sub>
+
+                    <Menu.Divider />
+
+                    <Menu.Sub>
+                        <Menu.Sub.Target>
+                            <Menu.Sub.Item leftSection={<IconBrandPrisma size={16} />}>
+                                Prisma
+                            </Menu.Sub.Item>
+                        </Menu.Sub.Target>
+
+                        <Menu.Sub.Dropdown>
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title="Prisma Scheme"
+                                generatedDataList={[
+                                    {
+                                        title: 'PostgreSQL',
+                                        schemeFunc: tableDataToPrismaScheme,
+                                        types: "postgresql",
+                                        downloadFileName: `${new Date().getTime()}_schema_psql.prisma`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                    {
+                                        title: 'MySQL',
+                                        schemeFunc: tableDataToPrismaScheme,
+                                        types: "mySQL",
+                                        downloadFileName: `${new Date().getTime()}_schema_mysql.prisma`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                    {
+                                        title: 'Default others',
+                                        schemeFunc: tableDataToPrismaScheme,
+                                        types: "sqlite",
+                                        downloadFileName: `${new Date().getTime()}_schema.prisma`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                ]}
+                            />
+                        </Menu.Sub.Dropdown>
+                    </Menu.Sub>
 
                 </Menu.Dropdown>
             </Menu>

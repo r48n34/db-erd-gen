@@ -95,10 +95,7 @@ function TableDataToBtnView({
                         { title }
                     </Menu.Item>
                 )
-
             }
-
-
         </Fragment>
     )
 }
