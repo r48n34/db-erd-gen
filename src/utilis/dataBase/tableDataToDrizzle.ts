@@ -52,9 +52,35 @@ export function tableDataToDrizzleScheme(tables: Table[], dbTypes: "postgresql" 
             
         schemeArray.push(finalTableStr);
         schemeArray.push(`export type ${firstStrUpper(table.name)} = typeof ${table.name}.$inferSelect;\n`);
+
+        const isBeingReferencesLs = tables.filter( t => 
+            t.columns.filter( c => c.foreignTo && c.foreignTo.name === table.name).length >= 1
+        )
+        
+        const haveForeginLs = table.columns.filter( t => !!t.foreignTo )
+        if(haveForeginLs.length >= 1 || isBeingReferencesLs.length >= 1){
+
+            const beRelationOrmLs = isBeingReferencesLs.map( v => 
+                tab(1) + `${v.name}: many(${v.name})`
+            )
+
+            const relationOrmLs = haveForeginLs.map( v => 
+                tab(1) + `${v.foreignTo?.name}: one(${v.foreignTo?.name}, { fields: [${table.name}.${v.name}], references: [${v.foreignTo?.name}.${v.foreignTo?.column}] })`
+            )
+
+            schemeArray.push(
+                `export const ${table.name}Relations = relations(${table.name}, ({ one, many }) => ({\n`
+                + beRelationOrmLs.join(",\n")
+                + relationOrmLs.join(",\n")
+                + "\n}));\n"
+            );
+
+        }
+        
     }
 
-    return `import { ${importType.table}, ${Array.from(importSet).join(", ")} } from "${importType.from}"; \n \n`
+    return `import { ${importType.table}, ${Array.from(importSet).join(", ")} } from "${importType.from}";\n`
+        + `import { relations } from "drizzle-orm";\n\n`
         + schemeArray.join("\n")
 }
 
