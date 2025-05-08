@@ -237,6 +237,8 @@ function GenerateMenu() {
                         ]}
                     />
 
+                    <Menu.Divider />
+
                     <Menu.Label>
                         Prisma
                     </Menu.Label>
