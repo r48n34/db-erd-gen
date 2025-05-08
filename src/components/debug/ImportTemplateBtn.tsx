@@ -1,6 +1,6 @@
 import { NavLink, Text } from "@mantine/core";
 import { openConfirmModal } from '@mantine/modals';
-import { IconListDetails } from "@tabler/icons";
+import { IconListDetails } from '@tabler/icons-react';;
 
 import { importString } from "../../data/testInputData";
 import { commonSuccessActions } from "../../utilis/notificationUtilis";

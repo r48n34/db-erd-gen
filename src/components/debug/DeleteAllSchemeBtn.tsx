@@ -1,6 +1,6 @@
 import { Menu, NavLink, Text } from "@mantine/core";
 import { openConfirmModal } from "@mantine/modals";
-import { IconFile, IconTableOff } from "@tabler/icons";
+import { IconFile, IconTableOff } from '@tabler/icons-react';;
 
 import useTemplateStoreStore from "../../store/templateStore";
 import { commonSuccessActions } from "../../utilis/notificationUtilis";

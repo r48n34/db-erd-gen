@@ -1,5 +1,5 @@
 import { Tooltip, ActionIcon } from "@mantine/core";
-import { IconDownload } from '@tabler/icons';
+import { IconDownload } from '@tabler/icons-react';
 
 import useTableStore from "../../store/zustandStore";
 

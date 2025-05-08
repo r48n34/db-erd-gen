@@ -1,8 +1,9 @@
 
 import { Blockquote, Container, Tabs, Text, rem } from '@mantine/core';
-import { IconColorPicker, IconInfoCircle, IconMessageCircle, IconSettings, } from '@tabler/icons';
+import { IconColorPicker, IconDeviceImac, IconInfoCircle, IconMessageCircle, IconSettings } from '@tabler/icons-react';
 import ThemeSetting from './ThemeSetting';
 import GeneralSetting from './GeneralSetting';
+import DevLogs from './DevLogs';
 
 function RawMenu() {
 
@@ -20,6 +21,9 @@ function RawMenu() {
                     </Tabs.Tab>
                     <Tabs.Tab value="misc" leftSection={<IconMessageCircle style={iconStyle} />}>
                         Misc
+                    </Tabs.Tab>
+                    <Tabs.Tab value="devLogs" leftSection={<IconDeviceImac style={iconStyle} />}>
+                        Dev Logs
                     </Tabs.Tab>
                 </Tabs.List>
 
@@ -41,6 +45,10 @@ function RawMenu() {
                             Life is like an npm install – you never know what you are going to get.
                         </Blockquote>
                     </Container>
+                </Tabs.Panel>
+
+                <Tabs.Panel value="devLogs">
+                    <DevLogs />
                 </Tabs.Panel>
 
             </Tabs>

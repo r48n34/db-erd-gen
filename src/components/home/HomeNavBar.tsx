@@ -1,5 +1,5 @@
 import { AppShell, Button, Group } from '@mantine/core';
-import { IconDatabase } from '@tabler/icons';
+import { IconDatabase } from '@tabler/icons-react';
 import { useNavigate } from "react-router-dom";
 
 function HomeNavBar(){

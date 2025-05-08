@@ -1,7 +1,7 @@
 import { Container, Group, Anchor, Box, Text } from '@mantine/core';
 // import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from '../../styles/FooterSimple.module.css';
-import { IconDatabaseExport } from '@tabler/icons';
+import { IconDatabaseExport } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import ThemeToggleSwitch from '../common/ThemeToggleSwitch';
 

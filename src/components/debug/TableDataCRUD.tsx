@@ -1,6 +1,6 @@
 import { ActionIcon, Tooltip } from "@mantine/core";
 
-import { IconDatabase, IconInfoCircle } from '@tabler/icons';
+import { IconDatabase, IconInfoCircle } from '@tabler/icons-react';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
 
 import { Table } from "../../interface/inputData";

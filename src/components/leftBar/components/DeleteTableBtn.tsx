@@ -1,4 +1,4 @@
-import { IconTrash } from '@tabler/icons';
+import { IconTrash } from '@tabler/icons-react';
 import { openConfirmModal } from '@mantine/modals';
 import { ActionIcon, Tooltip, Text } from "@mantine/core";
 

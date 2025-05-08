@@ -2,9 +2,9 @@ import { Fragment } from 'react';
 
 import { ActionIcon, Group, Modal, NavLink, Tooltip, Menu } from "@mantine/core";
 import useTableStore from "../../store/zustandStore";
-import { IconDownload } from '@tabler/icons';
+import { IconDownload } from '@tabler/icons-react';
 
-import { IconDatabaseImport } from '@tabler/icons';
+import { IconDatabaseImport } from '@tabler/icons-react';
 import { CodeHighlightTabs, CodeHighlightTabsCode } from '@mantine/code-highlight';
 
 import { Table } from "../../interface/inputData";

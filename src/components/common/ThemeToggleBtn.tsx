@@ -1,4 +1,4 @@
-import { IconSun, IconMoonStars } from '@tabler/icons';
+import { IconSun, IconMoonStars } from '@tabler/icons-react';
 import { Tooltip, ActionIcon, useMantineColorScheme } from '@mantine/core';
     
 function ThemeToggleBtn(){

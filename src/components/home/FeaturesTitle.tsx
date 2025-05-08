@@ -1,5 +1,5 @@
 import { Title, SimpleGrid, Text, Button, ThemeIcon, Grid, rem } from '@mantine/core';
-import { IconReceiptOff, IconFlame, IconCircleDotted, IconFileCode } from '@tabler/icons';
+import { IconReceiptOff, IconFlame, IconCircleDotted, IconFileCode } from '@tabler/icons-react';
 import classes from '../../styles/FeaturesTitle.module.css';
 
 const features = [

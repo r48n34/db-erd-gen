@@ -2,7 +2,7 @@ import { Menu, Button } from '@mantine/core';
 import {
     IconBrandTypescript,
     IconDatabase,
-} from '@tabler/icons';
+} from '@tabler/icons-react';
 import { tableDataToTsTypeScheme } from '../../utilis/dataBase/tableDataToTsType';
 import { tableDataToZodTypeScheme } from '../../utilis/dataBase/tableDataToZodType';
 import TableDataToBtnView from '../debug/TableDataToBtnView';

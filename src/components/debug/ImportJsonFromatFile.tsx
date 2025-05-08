@@ -1,5 +1,5 @@
 import { FileButton, Tooltip, ActionIcon } from "@mantine/core";
-import { IconFileUpload } from "@tabler/icons";
+import { IconFileUpload } from '@tabler/icons-react';;
 import { readJsonFromFile } from "../../utilis/fileUtils";
 import { commonSuccessActions, failedDeleteMessage } from "../../utilis/notificationUtilis";
 import { importJsonFormat } from "../../utilis/dataBase/jsonFormat";

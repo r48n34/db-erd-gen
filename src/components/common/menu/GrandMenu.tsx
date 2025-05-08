@@ -1,6 +1,6 @@
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, ActionIcon, Tooltip } from '@mantine/core';
-import { IconMenu2 } from '@tabler/icons';
+import { IconMenu2 } from '@tabler/icons-react';
 import RawMenu from './RawMenu';
 
 function GrandMenu() {

@@ -1,5 +1,5 @@
 import { ActionIcon, Tooltip } from '@mantine/core';
-import { IconRefresh } from '@tabler/icons';
+import { IconRefresh } from '@tabler/icons-react';
 import useTableStore from '../../../store/zustandStore';
 function ReloadButton() {
     const forceUpdateToggle = useTableStore((state) => state.forceUpdateToggle);

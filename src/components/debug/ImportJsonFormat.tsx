@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IconFileExport, IconFileImport } from '@tabler/icons';
+import { IconFileExport, IconFileImport } from '@tabler/icons-react';
 import { Button, JsonInput, Space, Group, NavLink, LoadingOverlay, Menu } from "@mantine/core";
 
 import { importString } from "../../data/testInputData";

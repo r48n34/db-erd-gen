@@ -99,5 +99,7 @@ docker build . -t db-erd-gen
 docker run -d -p 5174:5174 db-erd-gen:latest
 ```
 
-## License
+## 🚗 License
 Distributed under the `MIT License`.
+
+## Dev Logs

@@ -1,5 +1,5 @@
 import { ActionIcon, Button, Group, Modal, NavLink, TextInput, Tooltip } from "@mantine/core";
-import { IconCloudDownload, IconDeviceFloppy, IconFileImport } from "@tabler/icons";
+import { IconCloudDownload, IconDeviceFloppy, IconFileImport } from '@tabler/icons-react';;
 
 import { commonSuccessActions, failedDeleteMessage } from "../../utilis/notificationUtilis";
 

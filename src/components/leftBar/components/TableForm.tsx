@@ -6,7 +6,7 @@ import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { useForm } from '@mantine/form';
 import { Tooltip, ActionIcon, Modal, Group, Button, TextInput, Grid, Switch, Select, Center } from "@mantine/core";
 
-import { IconSquarePlus, IconEdit, IconTrash, IconDeviceFloppy, IconGripVertical, IconRefresh } from '@tabler/icons';
+import { IconSquarePlus, IconEdit, IconTrash, IconDeviceFloppy, IconGripVertical, IconRefresh } from '@tabler/icons-react';
 import useTableStore from "../../../store/zustandStore";
 
 import { uuidGen } from "../../../utilis/uuidGen";

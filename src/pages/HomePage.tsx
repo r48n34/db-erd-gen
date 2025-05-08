@@ -3,7 +3,7 @@ import ERTableComp from "../components/ERTableComp";
 
 import { dummySchemeHome } from "./dummyDataTest";
 import Footer from "../components/home/Footer";
-import { IconArrowRight, IconDatabase } from "@tabler/icons";
+import { IconArrowRight, IconDatabase } from '@tabler/icons-react';;
 import { useNavigate } from "react-router-dom";
 import { FeaturesTitle } from "../components/home/FeaturesTitle";
 

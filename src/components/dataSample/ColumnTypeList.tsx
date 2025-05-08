@@ -1,7 +1,7 @@
 import { Modal, Group, ActionIcon, Text, Tabs } from "@mantine/core";
 import { useState } from "react";
 import { postgresTypeArray, postgresTypeGroup } from "../../data/database/postgresType";
-import { IconQuestionCircle, IconSettings } from '@tabler/icons';
+import { IconProgressHelp, IconSettings } from '@tabler/icons-react';
 
 function ColumnTypeList(){
     const [opened, setOpened] = useState(false);
@@ -38,7 +38,7 @@ function ColumnTypeList(){
         <Group>
             <Text fw={600} fz={14}>Type</Text>
             <ActionIcon variant="light" size="sm" onClick={ () => setOpened(true) }>
-                <IconQuestionCircle size={14} />
+                <IconProgressHelp size={14} />
             </ActionIcon>
         </Group>
         

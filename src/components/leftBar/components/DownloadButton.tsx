@@ -2,7 +2,7 @@
 import { useReactFlow, getRectOfNodes, getTransformForBounds } from 'reactflow';
 import { toPng } from 'html-to-image';
 import { ActionIcon, Tooltip } from '@mantine/core';
-import { IconCamera } from '@tabler/icons';
+import { IconCamera } from '@tabler/icons-react';
 
 function downloadImage(dataUrl: string) {
     const a = document.createElement('a');

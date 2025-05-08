@@ -1,7 +1,7 @@
 import { ActionIcon, Grid, NavLink, Tooltip, Text, Box } from "@mantine/core";
 import { modals } from '@mantine/modals';
 
-import { IconListDetails, IconCloudDownload, IconTrashOff, IconInfoCircle } from "@tabler/icons";
+import { IconListDetails, IconCloudDownload, IconTrashOff, IconInfoCircle } from '@tabler/icons-react';;
 
 import useTemplateStoreStore, { TemplateStoreData } from "../../store/templateStore";
 import useTableStore from "../../store/zustandStore";

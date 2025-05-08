@@ -20,7 +20,7 @@ import {
     IconBrandTypescript,
     IconDatabase,
     IconSteeringWheel
-} from '@tabler/icons';
+} from '@tabler/icons-react';
 
 import SavedSchemeList from './SavedSchemeList';
 import DeleteAllSchemeBtn from './DeleteAllSchemeBtn';

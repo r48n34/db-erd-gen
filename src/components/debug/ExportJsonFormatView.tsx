@@ -1,5 +1,5 @@
 import { Group, Menu, NavLink } from "@mantine/core";
-import { IconDatabaseExport, IconFileExport } from '@tabler/icons';
+import { IconDatabaseExport, IconFileExport } from '@tabler/icons-react';
 
 import useTableStore from "../../store/zustandStore";
 
