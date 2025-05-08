@@ -90,7 +90,7 @@ function ImportJsonFormat({ showsFormat = "NavLink" }: ImportJsonFormatProps) {
         <>
             {showsFormat === "NavLink" && (
                 <NavLink
-                    label="Import json"
+                    label="Import JSON"
                     leftSection={<IconFileImport size={16} stroke={1.5} />}
                     onClick={() => openImportJsonViewModal()}
                 />
@@ -103,7 +103,7 @@ function ImportJsonFormat({ showsFormat = "NavLink" }: ImportJsonFormatProps) {
                         openImportJsonViewModal();
                     }}
                 >
-                    Import json
+                    Import JSON
                 </Menu.Item>
             )}
         </>

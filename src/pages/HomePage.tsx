@@ -32,7 +32,7 @@ function HomePage(){
 
             <Group justify="center" mt={24} >
                 <Card shadow="sm" padding="lg" radius="md" withBorder style={{ height: "70vh", width: "80%" }}>    
-                    <Text fz={24} fw={300} ta="center">
+                    <Text fz={24} fw={300} ta="center" c="dimmed">
                         GUI base database entity relationship diagrams tool, create table and export scheme in a few clicks!
                     </Text>
                     

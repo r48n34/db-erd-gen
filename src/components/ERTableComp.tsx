@@ -76,8 +76,8 @@ function ERTableComp({ tableArray, updateTablePositions }: ERTableProps){
             {/* <MiniMap  pannable zoomable/> */}
 
             <Panel position="top-right">
-                <Group mt={6}>
-                    <Badge>
+                <Group mt={8}>
+                    <Badge radius="sm" variant='light' color="green">
                         Table count: {nodes.length}
                     </Badge>
                     

@@ -1,7 +1,7 @@
 import { Menu, NavLink, Text } from '@mantine/core';
 import { openConfirmModal } from '@mantine/modals';
 
-import { IconFile, IconTrashOff } from '@tabler/icons';
+import { IconFile, IconTableExport } from '@tabler/icons';
 import { commonSuccessActions } from '../../utilis/notificationUtilis';
 
 import useTableStore from "../../store/zustandStore";
@@ -40,7 +40,7 @@ function DeleteAllData({ showsFormat = "NavLink" }: DeleteAllDataProps) {
                         variant="light"
                         color="red"
                         active
-                        leftSection={<IconTrashOff size={16} stroke={1.5} />}
+                        leftSection={<IconTableExport size={16} stroke={1.5} />}
                         onClick={() => openDeleteAllDataModal()}
                     />
                 )

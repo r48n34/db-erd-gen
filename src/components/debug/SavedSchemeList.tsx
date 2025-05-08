@@ -34,12 +34,15 @@ function SavedSchemeList({ closeModal }: SavedSchemeListProps) {
     });
 
     const contentDBViewModal = (contentData: TemplateStoreData) => modals.open({
-        title: 'Table view',
+        title: `Table view (${contentData.name})`,
         size: "85%",
         children: (
             <>
+                <Text c="dimmed" fz={12} ta="right">
+                    Saved date
+                </Text>
                 <Text c="dimmed" fz={14} ta="right">
-                    Saved date: {contentData.addedDate ?? "N/A"}
+                    {contentData.addedDate ?? "N/A"}
                 </Text>
                 <Box style={{ height: "80vh", width: "100%" }}>
                     <ERTableComp tableArray={contentData.data} />
@@ -53,6 +56,7 @@ function SavedSchemeList({ closeModal }: SavedSchemeListProps) {
 
             {templateArray.length === 0 && (
                 <NavLink
+                    disabled
                     label="No saved scheme"
                     leftSection={<IconListDetails size={16} stroke={1.5} />}
                 />
@@ -82,7 +86,7 @@ function SavedSchemeList({ closeModal }: SavedSchemeListProps) {
                     </Grid.Col>
 
                     <Grid.Col span={1}>
-                        <Tooltip label={`Info`}>
+                        <Tooltip label={`Scheme info`}>
                             <ActionIcon
                                 variant="light"
                                 onClick={() => contentDBViewModal(v)}

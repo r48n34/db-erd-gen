@@ -8,18 +8,18 @@ import { importJsonFormat } from "../../utilis/dataBase/jsonFormat";
 
 import useTableStore from "../../store/zustandStore";
 
-function ImportTemplateBtn(){
+function ImportTemplateBtn() {
     const importTableObj = useTableStore((state) => state.importTableObj);
 
     const openModal = () => openConfirmModal({
-        title: 'Confirm the action',
+        title: 'Confirm',
         children: (
-          <Text size="sm">
-            The current table will be deleted. Are you sure to do this?
-          </Text>
+            <Text size="sm">
+                The current table scheme will be deleted. Are you sure to do this?
+            </Text>
         ),
         labels: { confirm: 'Confirm', cancel: 'Cancel' },
-        onCancel: () => {},
+        onCancel: () => { },
         onConfirm: () => {
             const result = importJsonFormat(importString);
             importTableObj(result);
@@ -29,15 +29,15 @@ function ImportTemplateBtn(){
 
     return (
         <>
-        <NavLink
-            label="Import Simple template"
-            leftSection={<IconListDetails size={16} stroke={1.5} />}
-            onClick={ () => {
-                openModal();
-            }}
-        />
+            <NavLink
+                label="Import simple template"
+                leftSection={<IconListDetails size={16} stroke={1.5} />}
+                onClick={() => {
+                    openModal();
+                }}
+            />
         </>
     )
 }
-    
+
 export default ImportTemplateBtn
