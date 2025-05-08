@@ -18,6 +18,7 @@ import { Table, TablePosition } from '../interface/inputData';
 
 import useTableStore from '../store/zustandStore';
 import DownloadButton from './leftBar/components/DownloadButton';
+import ReloadButton from './leftBar/components/ReloadButton';
 
 interface ERTableProps {
     tableArray: Table[]
@@ -81,6 +82,7 @@ function ERTableComp({ tableArray, updateTablePositions }: ERTableProps){
                     </Badge>
                     
                     {!!updateTablePositions && <DownloadButton />}
+                    <ReloadButton />
                 </Group>
             </Panel>
         </ReactFlow>
