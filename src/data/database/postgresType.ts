@@ -60,7 +60,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "bigint()",
             mySQL: "bigint()",
-            sqlite: "integer()"
+            sqlite: "numeric({ mode: 'bigint' })"
         }
     },
     {
@@ -113,9 +113,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "integer()",
-            mySQL: "int()",
-            sqlite: "integer()"
+            psql: "char({ length: 8 })",
+            mySQL: "char({ length: 8 })",
+            sqlite: "text()"
         }
     },
     {
@@ -141,9 +141,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "integer()",
-            mySQL: "int()",
-            sqlite: "integer()"
+            psql: "varchar({ length: 8 })",
+            mySQL: "varchar({ length: 8 })",
+            sqlite: "text()"
         }
     },
     {
@@ -169,9 +169,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "integer()",
-            mySQL: "int()",
-            sqlite: "integer()"
+            psql: "boolean()",
+            mySQL: "boolean()",
+            sqlite: "integer({ mode: 'boolean' })"
         }
     },
     {
@@ -197,9 +197,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "",
-            mySQL: "",
-            sqlite: "",
+            psql: "varchar({ length: 8 })",
+            mySQL: "varchar({ length: 8 })",
+            sqlite: "text()",
         }
     },
     {
@@ -224,9 +224,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "",
-            mySQL: "",
-            sqlite: "",
+            psql: "varchar({ length: 8 })",
+            mySQL: "varchar({ length: 8 })",
+            sqlite: "text()",
         }
     },
     {
@@ -254,7 +254,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "varchar({ length: 255 })",
             mySQL: "varchar({ length: 255 })",
-            sqlite: "varchar()"
+            sqlite: "text()"
         }
     },
     {
@@ -283,7 +283,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "char({ length: 255 })",
             mySQL: "char({ length: 255 })",
-            sqlite: "char()"
+            sqlite: "text()"
         }
     },
     {
@@ -311,7 +311,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "varchar({ length: 43 })",
             mySQL: "varchar({ length: 43 })",
-            sqlite: "varchar({ length: 43 })"
+            sqlite: "text()"
         }
     },
     {
@@ -339,7 +339,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "varchar({ length: 0 })",
             mySQL: "varchar({ length: 0 })",
-            sqlite: "varchar({ length: 0 })"
+            sqlite: "text()"
         }
     },
     {
@@ -366,7 +366,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "date()",
             mySQL: "date()",
-            sqlite: "date()"
+            sqlite: "text()"
         }
     },
     {
@@ -393,7 +393,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "doublePrecision()",
             mySQL: "double()",
-            sqlite: "double()"
+            sqlite: "real()"
         }
     },
     {
@@ -421,7 +421,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "varchar({ length: 43 })",
             mySQL: "varchar({ length: 43 })",
-            sqlite: "varchar({ length: 43 })"
+            sqlite: "text()"
         }
     },
     {
@@ -448,7 +448,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "integer()",
             mySQL: "int()",
-            sqlite: "integer({ mode: 'number' })"
+            sqlite: "integer()"
         }
     },
     {
@@ -476,7 +476,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "time()",
             mySQL: "time()",
-            sqlite: "time()"
+            sqlite: "integer({ mode: 'timestamp' })"
         }
     },
     {
@@ -503,7 +503,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "json()",
             mySQL: "json()",
-            sqlite: "json()"
+            sqlite: "text({ mode: 'json' })"
         }
     },
     {
@@ -530,7 +530,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "jsonb()",
             mySQL: "json()",
-            sqlite: "json()"
+            sqlite: "text({ mode: 'json' })"
         }
     },
     {
@@ -556,9 +556,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "",
-            mySQL: "",
-            sqlite: ""
+            psql: "varchar({ length: 0 })",
+            mySQL: "varchar({ length: 0 })",
+            sqlite: "text()"
         }
     },
     {
@@ -584,9 +584,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "",
-            mySQL: "",
-            sqlite: ""
+            psql: "varchar({ length: 0 })",
+            mySQL: "varchar({ length: 0 })",
+            sqlite: "text()"
         }
     },
     {
@@ -614,7 +614,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "varchar({ length: 17 })",
             mySQL: "varchar({ length: 17 })",
-            sqlite: "varchar({ length: 17 })"
+            sqlite: "text()"
         }
     },
     {
@@ -642,7 +642,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "varchar({ length: 17 })",
             mySQL: "varchar({ length: 17 })",
-            sqlite: "varchar({ length: 17 })"
+            sqlite: "text()"
         }
     },
     {
@@ -723,9 +723,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "",
-            mySQL: "",
-            sqlite: ""
+            psql: "varchar({ length: 0 })",
+            mySQL: "varchar({ length: 0 })",
+            sqlite: "text()"
         }
     },
     {
@@ -751,9 +751,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "",
-            mySQL: "",
-            sqlite: ""
+            psql: "varchar({ length: 0 })",
+            mySQL: "varchar({ length: 0 })",
+            sqlite: "text()"
         }
     },
     {
@@ -779,9 +779,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "",
-            mySQL: "",
-            sqlite: ""
+            psql: "varchar({ length: 0 })",
+            mySQL: "varchar({ length: 0 })",
+            sqlite: "text()"
         }
     },
     {
@@ -806,9 +806,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "",
-            mySQL: "",
-            sqlite: ""
+            psql: "varchar({ length: 0 })",
+            mySQL: "varchar({ length: 0 })",
+            sqlite: "text()"
         }
     },
     {
@@ -834,9 +834,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "",
-            mySQL: "",
-            sqlite: ""
+            psql: "varchar({ length: 0 })",
+            mySQL: "varchar({ length: 0 })",
+            sqlite: "text()"
         }
     },
     {
@@ -863,8 +863,8 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         },
         drizzleKey: {
             psql: "real()",
-            mySQL: "float()",
-            sqlite: "float()"
+            mySQL: "real()",
+            sqlite: "real()"
         }
     },
     {
@@ -891,7 +891,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "smallint()",
             mySQL: "tinyint()",
-            sqlite: "integer({ mode: 'number' })"
+            sqlite: "numeric({ mode: 'smallint' })"
         }
     },
     {
@@ -918,7 +918,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "smallserial()",
             mySQL: "serial()",
-            sqlite: "serial()"
+            sqlite: "integer({ mode: 'number' }).primaryKey({ autoIncrement: true })"
         }
     },
     {
@@ -945,7 +945,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "serial()",
             mySQL: "serial()",
-            sqlite: "serial()"
+            sqlite: "integer({ mode: 'number' }).primaryKey({ autoIncrement: true })"
         }
     },
     {
@@ -999,7 +999,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "time()",
             mySQL: "time()",
-            sqlite: "time()"
+            sqlite: "integer({ mode: 'timestamp' })"
         }
     },
     {
@@ -1026,7 +1026,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "time({ withTimezone: true })",
             mySQL: "time({ withTimezone: true })",
-            sqlite: "time()"
+            sqlite: "integer({ mode: 'timestamp' })"
         }
     },
     {
@@ -1053,7 +1053,7 @@ export const postgresTypeArray: PostgresTypeArray[] = [
         drizzleKey: {
             psql: "timestamp()",
             mySQL: "timestamp()",
-            sqlite: "timestamp()"
+            sqlite: "integer({ mode: 'timestamp' })"
         }
     },
     {
@@ -1079,9 +1079,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "",
-            mySQL: "",
-            sqlite: ""
+            psql: "varchar({ length: 0 })",
+            mySQL: "varchar({ length: 0 })",
+            sqlite: "text()"
         }
     },
     {
@@ -1107,9 +1107,9 @@ export const postgresTypeArray: PostgresTypeArray[] = [
             }
         },
         drizzleKey: {
-            psql: "",
-            mySQL: "",
-            sqlite: ""
+            psql: "varchar({ length: 0 })",
+            mySQL: "varchar({ length: 0 })",
+            sqlite: "text()"
         }
     },
     {

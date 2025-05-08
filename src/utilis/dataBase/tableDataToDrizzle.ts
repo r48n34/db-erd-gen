@@ -1,6 +1,6 @@
 import { postgresTypeArray } from "../../data/database/postgresType";
 import { Table } from "../../interface/inputData";
-import { tab } from "../generateTab";
+import { firstStrUpper, tab } from "../generateTab";
 
 export function tableDataToDrizzleScheme(tables: Table[], dbTypes: "postgresql" | "mySQL" | "sqlite" | "" = "postgresql"){
 
@@ -51,6 +51,7 @@ export function tableDataToDrizzleScheme(tables: Table[], dbTypes: "postgresql" 
             + `\n}); \n`;
             
         schemeArray.push(finalTableStr);
+        schemeArray.push(`export type ${firstStrUpper(table.name)} = typeof ${table.name}.$inferSelect;\n`);
     }
 
     return `import { ${importType.table}, ${Array.from(importSet).join(", ")} } from "${importType.from}"; \n \n`
