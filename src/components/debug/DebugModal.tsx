@@ -19,7 +19,11 @@ import {
     IconFileDatabase,
     IconBrandTypescript,
     IconDatabase,
-    IconSteeringWheel
+    IconSteeringWheel,
+    IconBrandPrisma,
+    IconCloudRain,
+    IconPlayCardK,
+    IconWheel
 } from '@tabler/icons-react';
 
 import SavedSchemeList from './SavedSchemeList';
@@ -43,6 +47,7 @@ import SavedScheme from './SavedSchemeBtn';
 import GrandMenu from '../common/menu/GrandMenu';
 import { tableDataToYupTypeScheme } from '../../utilis/dataBase/tableDataToYupType';
 import { tableDataToValibotTypeScheme } from '../../utilis/dataBase/tableDataToValibotType';
+import { tableDataToDrizzleScheme } from '../../utilis/dataBase/tableDataToDrizzle';
 
 function DebugModal() {
     const [opened, setOpened] = useState<boolean>(false);
@@ -199,7 +204,7 @@ function DebugModal() {
 
                     <NavLink
                         label="Knex"
-                        leftSection={<IconSteeringWheel size={16} stroke={1.5} />}
+                        leftSection={<IconWheel size={16} stroke={1.5} />}
                         childrenOffset={28}
                     >
                         <TableDataToBtnView
@@ -219,7 +224,7 @@ function DebugModal() {
 
                     <NavLink
                         label="Kysely"
-                        leftSection={<IconFileDatabase size={16} stroke={1.5} />}
+                        leftSection={<IconPlayCardK size={16} stroke={1.5} />}
                         childrenOffset={28}
                     >
                         <TableDataToBtnView
@@ -292,7 +297,7 @@ function DebugModal() {
 
                     <NavLink
                         label="Prisma"
-                        leftSection={<IconFileDatabase size={16} stroke={1.5} />}
+                        leftSection={<IconBrandPrisma size={16} stroke={1.5} />}
                         childrenOffset={28}
                     >
                         <TableDataToBtnView
@@ -317,8 +322,43 @@ function DebugModal() {
                                 },
                             ]}
                         />
-
-
+                    </NavLink>
+                    
+                    <NavLink
+                        label="Drizzle"
+                        leftSection={<IconCloudRain size={16} stroke={1.5} />}
+                        childrenOffset={28}
+                    >
+                        <TableDataToBtnView
+                                showsFormat="NavLink"
+                                title="Drizzle Scheme"
+                                generatedDataList={[
+                                    {
+                                        title: 'PostgreSQL',
+                                        schemeFunc: tableDataToDrizzleScheme,
+                                        types: "postgresql",
+                                        downloadFileName: `${new Date().getTime()}_schema_pg.ts`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                    {
+                                        title: 'MySQL',
+                                        schemeFunc: tableDataToDrizzleScheme,
+                                        types: "mySQL",
+                                        downloadFileName: `${new Date().getTime()}_schema_sql.ts`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                    {
+                                        title: 'Sqlite',
+                                        schemeFunc: tableDataToDrizzleScheme,
+                                        types: "sqlite",
+                                        downloadFileName: `${new Date().getTime()}_schema_sqlite.ts`,
+                                        codeLanguages: 'ts',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                ]}
+                            />
                     </NavLink>
 
                 </NavLink>
