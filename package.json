@@ -48,7 +48,7 @@
     "postcss": "^8.5.3",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
-    "typescript": "^4.9.3",
+    "typescript": "^5.8.3",
     "vite": "^5.4.8",
     "vite-plugin-sitemap": "^0.6.2",
     "vitest": "^1.6.0"

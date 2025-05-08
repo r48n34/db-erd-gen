@@ -19,7 +19,7 @@ function Footer() {
             c="dimmed"
             key={link.label}
             href={link.link}
-            onClick={(event) => {
+            onClick={(event: any) => {
                 event.preventDefault();
                 if(link.format === "internal"){
                     navigate(link.link)
