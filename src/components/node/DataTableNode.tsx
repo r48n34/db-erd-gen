@@ -1,5 +1,5 @@
 import { Handle, Position } from 'reactflow';
-import { Card, Text, Space, Badge, Grid, Box } from '@mantine/core';
+import { Card, Text, Space, Badge, Grid, Box, Tooltip } from '@mantine/core';
 import { Table } from '../../interface/inputData';
 import TableForm from '../leftBar/components/TableForm';
 import useTableStore from '../../store/zustandStore';
@@ -16,7 +16,7 @@ function DataTableNode({ data }: DataTableNodeProps) {
         <Card
             shadow="sm"
             radius="md"
-            style={{ height: `${47 + data.columns.length * 28}px`, padding: "10px", fontSize: "2px", width: "230px" }}
+            style={{ height: `${47 + data.columns.length * 28}px`, padding: "10px", fontSize: "2px", width: "320px" }}
         >
             <div>
 
@@ -67,15 +67,19 @@ function DataTableNode({ data }: DataTableNodeProps) {
                                 </Grid.Col>
 
                                 <Grid.Col span={6}>
+                                    <Tooltip label={v.name}>
                                     <Text fz={12}>
-                                        {v.name}
+                                        {v.name && v.name.length >= 20 ? v.name.slice(0, 20) + "..." : v.name}
                                     </Text>
+                                    </Tooltip>
                                 </Grid.Col>
 
                                 <Grid.Col span={4}>
+                                    <Tooltip label={v.dataType}>
                                     <Text fz={12}>
                                         {v.dataType}
                                     </Text>
+                                    </Tooltip>
                                 </Grid.Col>
                             </Grid>
 
