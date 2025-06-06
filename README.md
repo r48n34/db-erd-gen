@@ -32,6 +32,7 @@ https://db-erd-gen.vercel.app/
 - Drizzle ORM (Postgres)
 - Drizzle ORM (MySQL)
 - Drizzle ORM (sqlite)
+- Sequelize (Postgres, MySQL, sqlite) (Thanks [roshangautam07](https://github.com/roshangautam07))
 - Mongoose Scheme (TBC)
 
 ## 🗺️ Roadmap
@@ -103,4 +104,3 @@ docker run -d -p 5174:5174 db-erd-gen:latest
 ## 🚗 License
 Distributed under the `MIT License`.
 
-## Dev Logs
