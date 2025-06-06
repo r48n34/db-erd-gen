@@ -19,6 +19,7 @@ import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma
 import { tableDataToYupTypeScheme } from '../../utilis/dataBase/tableDataToYupType';
 import { tableDataToValibotTypeScheme } from '../../utilis/dataBase/tableDataToValibotType';
 import { tableDataToDrizzleScheme } from '../../utilis/dataBase/tableDataToDrizzle';
+import { tableDataToSequelizeScheme } from '../../utilis/dataBase/tableDataToSequelize';
 
 function GenerateMenu() {
 
@@ -349,6 +350,49 @@ function GenerateMenu() {
                                         types: "sqlite",
                                         downloadFileName: `${new Date().getTime()}_schema_sqlite.ts`,
                                         codeLanguages: 'ts',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                ]}
+                            />
+                        </Menu.Sub.Dropdown>
+                    </Menu.Sub>
+
+                    <Menu.Divider />
+
+                    <Menu.Sub>
+                        <Menu.Sub.Target>
+                            <Menu.Sub.Item leftSection={<IconDatabase size={16} />}>
+                                Sequelize ORM
+                            </Menu.Sub.Item>
+                        </Menu.Sub.Target>
+
+                        <Menu.Sub.Dropdown>
+                            <TableDataToBtnView
+                                showsFormat="Menu"
+                                title="Sequelize Scheme"
+                                generatedDataList={[
+                                    {
+                                        title: 'PostgreSQL',
+                                        schemeFunc: tableDataToSequelizeScheme,
+                                        types: "postgresql",
+                                        downloadFileName: `${new Date().getTime()}_schema_pg.js`,
+                                        codeLanguages: 'javascript',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                    {
+                                        title: 'MySQL',
+                                        schemeFunc: tableDataToSequelizeScheme,
+                                        types: "mySQL",
+                                        downloadFileName: `${new Date().getTime()}_schema_mysql.js`,
+                                        codeLanguages: 'javascript',
+                                        icon: <IconDatabase size={18} />
+                                    },
+                                    {
+                                        title: 'Sqlite',
+                                        schemeFunc: tableDataToSequelizeScheme,
+                                        types: "sqlite",
+                                        downloadFileName: `${new Date().getTime()}_schema_sqlite.js`,
+                                        codeLanguages: 'javascript',
                                         icon: <IconDatabase size={18} />
                                     },
                                 ]}
