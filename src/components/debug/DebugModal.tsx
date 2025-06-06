@@ -42,6 +42,7 @@ import {
 } from '../../utilis/dataBase/tableDataToKysely';
 
 import { tableDataToPrismaScheme } from '../../utilis/dataBase/tableDataToPrisma';
+import { tableDataToSequelizeScheme } from '../../utilis/dataBase/tableDataToSequelize';
 
 import SavedScheme from './SavedSchemeBtn';
 import GrandMenu from '../common/menu/GrandMenu';
@@ -323,42 +324,79 @@ function DebugModal() {
                             ]}
                         />
                     </NavLink>
-                    
+
                     <NavLink
                         label="Drizzle"
                         leftSection={<IconCloudRain size={16} stroke={1.5} />}
                         childrenOffset={28}
                     >
                         <TableDataToBtnView
-                                showsFormat="NavLink"
-                                title="Drizzle Scheme"
-                                generatedDataList={[
-                                    {
-                                        title: 'PostgreSQL',
-                                        schemeFunc: tableDataToDrizzleScheme,
-                                        types: "postgresql",
-                                        downloadFileName: `${new Date().getTime()}_schema_pg.ts`,
-                                        codeLanguages: 'ts',
-                                        icon: <IconDatabase size={18} />
-                                    },
-                                    {
-                                        title: 'MySQL',
-                                        schemeFunc: tableDataToDrizzleScheme,
-                                        types: "mySQL",
-                                        downloadFileName: `${new Date().getTime()}_schema_sql.ts`,
-                                        codeLanguages: 'ts',
-                                        icon: <IconDatabase size={18} />
-                                    },
-                                    {
-                                        title: 'Sqlite',
-                                        schemeFunc: tableDataToDrizzleScheme,
-                                        types: "sqlite",
-                                        downloadFileName: `${new Date().getTime()}_schema_sqlite.ts`,
-                                        codeLanguages: 'ts',
-                                        icon: <IconDatabase size={18} />
-                                    },
-                                ]}
-                            />
+                            showsFormat="NavLink"
+                            title="Drizzle Scheme"
+                            generatedDataList={[
+                                {
+                                    title: 'PostgreSQL',
+                                    schemeFunc: tableDataToDrizzleScheme,
+                                    types: "postgresql",
+                                    downloadFileName: `${new Date().getTime()}_schema_pg.ts`,
+                                    codeLanguages: 'ts',
+                                    icon: <IconDatabase size={18} />
+                                },
+                                {
+                                    title: 'MySQL',
+                                    schemeFunc: tableDataToDrizzleScheme,
+                                    types: "mySQL",
+                                    downloadFileName: `${new Date().getTime()}_schema_sql.ts`,
+                                    codeLanguages: 'ts',
+                                    icon: <IconDatabase size={18} />
+                                },
+                                {
+                                    title: 'Sqlite',
+                                    schemeFunc: tableDataToDrizzleScheme,
+                                    types: "sqlite",
+                                    downloadFileName: `${new Date().getTime()}_schema_sqlite.ts`,
+                                    codeLanguages: 'ts',
+                                    icon: <IconDatabase size={18} />
+                                },
+                            ]}
+                        />
+                    </NavLink>
+
+                    <NavLink
+                        label="Sequelize"
+                        leftSection={<IconDatabase size={16} stroke={1.5} />}
+                        childrenOffset={28}
+                    >
+                        <TableDataToBtnView
+                            showsFormat="NavLink"
+                            title="Sequelize Scheme"
+                            generatedDataList={[
+                                {
+                                    title: 'PostgreSQL',
+                                    schemeFunc: tableDataToSequelizeScheme,
+                                    types: "postgresql",
+                                    downloadFileName: `${new Date().getTime()}_schema_pg.js`,
+                                    codeLanguages: 'ts',
+                                    icon: <IconDatabase size={18} />
+                                },
+                                {
+                                    title: 'MySQL',
+                                    schemeFunc: tableDataToSequelizeScheme,
+                                    types: "mySQL",
+                                    downloadFileName: `${new Date().getTime()}_schema_mysql.js`,
+                                    codeLanguages: 'ts',
+                                    icon: <IconDatabase size={18} />
+                                },
+                                {
+                                    title: 'SQLite',
+                                    schemeFunc: tableDataToSequelizeScheme,
+                                    types: "sqlite",
+                                    downloadFileName: `${new Date().getTime()}_schema_sqlite.js`,
+                                    codeLanguages: 'ts',
+                                    icon: <IconDatabase size={18} />
+                                },
+                            ]}
+                        />
                     </NavLink>
 
                 </NavLink>
