@@ -2,6 +2,21 @@ import { postgresTypeArray } from "../../data/database/postgresType";
 import { Table } from "../../interface/inputData";
 import { firstStrUpper, tab } from "../generateTab";
 
+function snakeToCamel(snakeStr: string): string {
+  return snakeStr
+    .split('_')
+    .map((word, index) => {
+      word = word.toLowerCase();
+      if (index === 0) {
+        // For first word, remove trailing 's' if present for singular form like 'users' to 'user'
+        return word.endsWith('s') ? word.slice(0, -1) : word;
+      }
+      // Capitalize first letter of other words
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join('');
+}
+
 export function tableDataToDrizzleScheme(tables: Table[], dbTypes: "postgresql" | "mySQL" | "sqlite" | "" = "postgresql"){
 
     let schemeArray:string[] = [];
@@ -33,10 +48,12 @@ export function tableDataToDrizzleScheme(tables: Table[], dbTypes: "postgresql" 
 
             !!dataType && importSet.add(dataType?.split("(")[0])
 
-            let finalStrs = tab(1) + `${col.name}: ${dataType}`;
+            const camoWord = snakeToCamel(col.name)
+
+            let finalStrs = tab(1) + `${camoWord}: ${dataType}`;
 
             if(col.isPrimaryKey){
-                finalStrs = tab(1) + `${col.name}: integer().primaryKey().generatedByDefaultAsIdentity()`;
+                finalStrs = tab(1) + `${camoWord}: integer().primaryKey().generatedByDefaultAsIdentity()`;
             }
 
             col.foreignTo && (finalStrs += `.references(() => ${col.foreignTo.name}.${col.foreignTo.column})`)
@@ -46,12 +63,14 @@ export function tableDataToDrizzleScheme(tables: Table[], dbTypes: "postgresql" 
             tableStr.push(finalStrs)
         }
 
-        const finalTableStr = `export const ${table.name} = ${importType.table}("${table.name}", { \n`
+        const camoWordTable = snakeToCamel(table.name)
+
+        const finalTableStr = `export const ${camoWordTable} = ${importType.table}("${table.name}", { \n`
             + tableStr.join(",\n") 
             + `\n}); \n`;
             
         schemeArray.push(finalTableStr);
-        schemeArray.push(`export type ${firstStrUpper(table.name)} = typeof ${table.name}.$inferSelect;\n`);
+        schemeArray.push(`export type ${firstStrUpper(camoWordTable)} = typeof ${camoWordTable}.$inferSelect;\n`);
 
         const isBeingReferencesLs = tables.filter( t => 
             t.columns.filter( c => c.foreignTo && c.foreignTo.name === table.name).length >= 1
@@ -60,16 +79,27 @@ export function tableDataToDrizzleScheme(tables: Table[], dbTypes: "postgresql" 
         const haveForeginLs = table.columns.filter( t => !!t.foreignTo )
         if(haveForeginLs.length >= 1 || isBeingReferencesLs.length >= 1){
 
-            const beRelationOrmLs = isBeingReferencesLs.map( v => 
-                tab(1) + `${v.name}: many(${v.name})`
+            const beRelationOrmLs = isBeingReferencesLs.map( v => {
+                const camoWordRelationship = snakeToCamel(v.name)
+
+                return tab(1) + `${camoWordRelationship}: many(${camoWordRelationship})`
+            }
             )
 
-            const relationOrmLs = haveForeginLs.map( v => 
-                tab(1) + `${v.foreignTo?.name}: one(${v.foreignTo?.name}, { fields: [${table.name}.${v.name}], references: [${v.foreignTo?.name}.${v.foreignTo?.column}] })`
-            )
+            const relationOrmLs = haveForeginLs.map( v => {
+                const camoWordRelationship = snakeToCamel(v.foreignTo?.name!)
+                const camoWordForColRelationship = snakeToCamel(v.foreignTo?.column!)
+
+                const camoWordTableRelationship = snakeToCamel(table.name)
+                const camoWordColNameRelationship = snakeToCamel(v.name)
+
+                return tab(1) + `${camoWordRelationship}: one(${camoWordRelationship}, { fields: [${camoWordTableRelationship}.${camoWordColNameRelationship}], references: [${camoWordRelationship}.${camoWordForColRelationship}] })`
+            })
+
+            const camoWordTableRelationship = snakeToCamel(table.name)
 
             schemeArray.push(
-                `export const ${table.name}Relations = relations(${table.name}, ({ one, many }) => ({\n`
+                `export const ${camoWordTableRelationship}Relations = relations(${camoWordTableRelationship}, ({ one, many }) => ({\n`
                 + beRelationOrmLs.join(",\n")
                 + relationOrmLs.join(",\n")
                 + "\n}));\n"
