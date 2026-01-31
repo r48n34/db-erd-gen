@@ -1,12 +1,17 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import Sitemap from "vite-plugin-sitemap";
+import { codeInspectorPlugin } from "code-inspector-plugin";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
     if (command === "serve") { // dev
         return {
             plugins: [
+                codeInspectorPlugin({
+                    bundler: "vite",
+                    hotKeys: ["altKey"],
+                }),
                 react(),
             ],
             build: {

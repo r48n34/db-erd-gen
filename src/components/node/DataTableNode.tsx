@@ -1,5 +1,5 @@
 import { Handle, Position } from 'reactflow';
-import { Card, Text, Space, Badge, Grid, Box, Tooltip } from '@mantine/core';
+import { Card, Text, Space, Badge, Grid, Box, Group, Tooltip } from '@mantine/core';
 import { Table } from '../../interface/inputData';
 import TableForm from '../leftBar/components/TableForm';
 import useTableStore from '../../store/zustandStore';
@@ -21,25 +21,26 @@ function DataTableNode({ data }: DataTableNodeProps) {
             <div>
 
                 <Card.Section>
-                    <Text fz={15} ta="center" mt={12}>
+                    <Group justify="space-around" mt={12}>
+                        <Box>
+                        </Box>
+
                         <Badge
                             size="lg"
                             tt="none"
                             radius={"md"}
-                            rightSection={
-                                <TableForm
-                                    mode={'edit'}
-                                    editData={data}
-                                    allTableData={tableArray}
-
-                                    size={14}
-                                    color={"white"}
-                                />
-                            }
+                            ml={32}
                         >
                             {data.name}
                         </Badge>
-                    </Text>
+
+                        <TableForm
+                            mode={'edit'}
+                            editData={data}
+                            allTableData={tableArray}
+                            color={"white"}
+                        />
+                    </Group>
                 </Card.Section>
 
                 <Space h="xs" />
@@ -68,17 +69,17 @@ function DataTableNode({ data }: DataTableNodeProps) {
 
                                 <Grid.Col span={6}>
                                     <Tooltip label={v.name}>
-                                    <Text fz={12}>
-                                        {v.name && v.name.length >= 20 ? v.name.slice(0, 20) + "..." : v.name}
-                                    </Text>
+                                        <Text fz={12}>
+                                            {v.name && v.name.length >= 20 ? v.name.slice(0, 20) + "..." : v.name}
+                                        </Text>
                                     </Tooltip>
                                 </Grid.Col>
 
                                 <Grid.Col span={4}>
                                     <Tooltip label={v.dataType}>
-                                    <Text fz={12}>
-                                        {v.dataType}
-                                    </Text>
+                                        <Text fz={12}>
+                                            {v.dataType}
+                                        </Text>
                                     </Tooltip>
                                 </Grid.Col>
                             </Grid>
